@@ -1,0 +1,153 @@
+
+
+.container, .container1{
+    background-color: #fff;
+    width: 60vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+  
+  h1{
+    color: #268AFF;
+    margin-bottom: 15px;
+    font-size: 2.8em;
+    text-align: center;
+  }
+  
+  #formulario{
+    width: max-content;
+    text-align: center;
+   
+  }
+
+  .icons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .icon{
+    border-radius: 50%;
+    min-width: 40px;
+    min-height: 40px;
+    padding: 5px;
+    border: 2px solid #00000031;
+    color: #00000071;
+    transition: 0.3s all;
+    cursor: pointer;
+  }
+  
+  .icon:hover{
+    color: rgba(0, 0, 0, 0.692);
+
+  }
+
+  .container input, .container1 input{
+    background-color: #00000017;
+    color: #000000;
+    border: none;
+    outline: none;
+    padding: 10px 10px;
+    width: 400px;
+    height: 50px;
+   
+  }
+
+  .iconEmail{
+    background-color: #0000002c;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    cursor: pointer;
+  }
+
+  #senha{
+    padding: 12px;
+    cursor: pointer;
+  }
+
+  form{
+    margin-top: 10px;
+  }
+
+  form div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    
+  }
+  
+  
+
+#formulario div p{
+  margin-top: 20px;
+  color: #0000009c;
+}
+
+  #formulario form button, form a{
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #formulario button{
+    margin: auto;
+    background-color: #268AFF;
+    color: #fff;
+    border-radius: 25px;
+    padding: 11px 50px;
+    margin-top: 20px;
+  }
+
+  .voltar{
+    display: none;
+  }
+
+  @media screen and (max-width: 914px){
+  
+    .container{
+      width: 100vw;
+    }
+
+   .container1{
+    width: 100vw;
+   }
+
+  .container2{
+    width: 100vw;
+   }
+   .container input, .container1 input{
+  
+    width: 70vw;
+    max-width: 500px;
+    height: 50px;
+  }
+
+  .voltar{
+    display: flex;
+  }
+
+  }
+
+  .alertas{
+    height: 30px;
+    font-weight: bold;
+  }
+
+  .alertas #erro{
+    color: rgb(246, 8, 8);
+  }
+
+  .alertas #sucesso{
+    color: rgb(0, 174, 32);
+  }
