@@ -1,0 +1,29 @@
+.main{
+    margin: 50px 0 0px 281px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    flex-direction: column;
+    padding-bottom: 100px;
+
+}
+
+
+@media screen and (max-width: 1280px) {
+    .main{
+      align-items: center;
+      margin: 50px 0px 0px 280px;
+    }
+  }
+  
+
+@media screen and (max-width: 800px) {
+    .main{
+        margin: 50px 0px 0px 0px; 
+        display: flex;
+        
+        align-items: center;
+    }
+}
+
