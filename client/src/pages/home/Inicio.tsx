@@ -1,7 +1,7 @@
 const Inicio = () => {
     return ( 
         <div>
-            INICIO - ROTA SEGURA
+            SIMPLIFICA
         </div>
      );
 }

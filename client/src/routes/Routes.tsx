@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom"
-import LoginMobile from "../pages/autentificacao/LoginMobile"
-import Registro from "../pages/autentificacao/Cadastro"
+import LoginMobile from "../pages/auth/LoginMobile"
+import Registro from "../pages/auth/Cadastro"
 import Inicio from "../pages/home/Inicio"
 
 const Rotas = () => {
