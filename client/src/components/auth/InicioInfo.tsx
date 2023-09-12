@@ -1,4 +1,4 @@
-import styles from "../../styles/InicioInfo.module.css";
+import styles from "../../styles/auth/InicioInfo.module.css";
 import { Link } from "react-router-dom";
 
  type elementos = {

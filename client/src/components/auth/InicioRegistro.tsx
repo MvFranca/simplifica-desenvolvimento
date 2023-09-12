@@ -2,7 +2,7 @@ import { useState } from "react";
 import IconEmail from "../../icons/IconEmail";
 import IconLockPasswordFill from "../../icons/IconPassword";
 import IconUser from "../../icons/IconUser";
-import styles from "../../styles/InicioEntrar.module.css";
+import styles from "../../styles/auth/InicioEntrar.module.css";
 import { Link } from "react-router-dom";
 import axios from 'axios'
 
