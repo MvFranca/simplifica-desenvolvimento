@@ -1,0 +1,60 @@
+
+.cabecalho{
+    height: 100vh;
+    width: 250px;
+    border-right: 2.5px solid rgba(0, 0, 0, 0.116);
+    text-align: center;
+    padding: 20px 20px 0px 0px;
+    position: fixed;
+  }
+  
+  .cabecalho h1{
+    color: #268AFF;
+    margin-right: -20px;
+  }
+  
+  .cabecalho nav{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-self: center;
+    align-items: center;
+    margin-right: -20px;
+  }
+  
+  .cabecalho nav div{
+    display: flex;
+    align-items: center;
+    justify-content: initial;
+    padding: 15px;
+    width: 200px;
+    margin-bottom: 5px;
+    border-radius: 12px;
+    gap: 7px;
+   
+  }
+
+  .cabecalho nav div img{
+    width: 30px;
+    height: 30px;
+  }
+
+  .cabecalho nav a{
+    text-decoration: none;
+   font-size: 0.9em;
+    font-weight: bold;
+    color: #777777;
+  }
+  
+  .cabecalho nav .teste{
+    border: 2px solid #84D8FF;
+    background-color: #84d8ff2d;
+    color: #1CB0F6;
+  }
+
+  @media screen and (max-width: 800px) {
+    .cabecalho{
+        display: none;
+    }
+}

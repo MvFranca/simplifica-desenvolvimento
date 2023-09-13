@@ -1,0 +1,62 @@
+.botao, .botoes .botao1,
+.botoes .botao2,
+.botoes .botao3,
+.botoes .botao4,
+.botoes .botao5,.botao11{
+  background-color: #268aff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75px;
+  height: 55px;
+  border-radius: 30px;
+  box-shadow: 0px 6.5px 0px 0.5px #1e6ac2;
+  transition: 0.2s all;
+}
+
+.botoes a {
+  background-color: #b6b6b6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75px;
+  height: 55px;
+  border-radius: 30px;
+  box-shadow: 0px 6.5px 0px 0.5px #777777;
+  transition: 0.2s all;
+}
+
+.botao11 {
+  background-color: #aaaaaa;
+  box-shadow: 0px 6.5px 0px 0.5px #808080;
+}
+
+.botoes img {
+  width: 28px;
+  height: 28px;
+}
+
+.botoes {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: -30px;
+  gap: 25px;
+}
+
+.botoes a:hover {
+  box-shadow: 0px 0px 0px 0px #1564be;
+  transform: translateY(5px);
+}
+
+#poucoCurvado,
+#item1,
+#item2 {
+  margin-left: -80px;
+}
+
+#muitoCurvado {
+  margin-left: -150px;
+}

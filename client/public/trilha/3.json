@@ -1,0 +1,79 @@
+[
+    {
+        "pergunta": " O que são laços de repetição?",
+        "questaoA":{
+            "texto": " É o nome utilizado para definir um ou mais valores utilizados pelos programas durante a sua operação.",
+            "veracidade": "f"
+          },
+          "questaoB":{
+            "texto": " São valores que não podem ser modificados.",
+            "veracidade": "f"
+          },
+          "questaoC":{
+            "texto": " São funções que recebem valores como parâmetros.",
+            "veracidade": "f"
+          },
+          "questaoD":{
+            "texto": " Podem ser simples ou compostas e executam um bloco de código se a condição estabelecida for verdadeira.",
+            "veracidade": "t"
+          }
+    },
+    {
+        "pergunta": " Sobre a parametrização presente no 'if', é correto afirmar:",
+        "questaoA":{
+            "texto": " É o nome utilizado para definir um ou mais valores utilizados pelos programas durante a sua operação.",
+            "veracidade": "f"
+          },
+          "questaoB":{
+            "texto": " São valores que não podem ser modificados.",
+            "veracidade": "f"
+          },
+          "questaoC":{
+            "texto": " São funções que recebem valores como parâmetros.",
+            "veracidade": "f"
+          },
+          "questaoD":{
+            "texto": " Podem ser simples ou compostas e executam um bloco de código se a condição estabelecida for verdadeira.",
+            "veracidade": "t"
+          }
+    },
+    {
+        "pergunta": " O que são condicionais?",
+        "questaoA":{
+            "texto": " É o nome utilizado para definir um ou mais valores utilizados pelos programas durante a sua operação.",
+            "veracidade": "f"
+          },
+          "questaoB":{
+            "texto": " São valores que não podem ser modificados.",
+            "veracidade": "f"
+          },
+          "questaoC":{
+            "texto": " São funções que recebem valores como parâmetros.",
+            "veracidade": "f"
+          },
+          "questaoD":{
+            "texto": " Podem ser simples ou compostas e executam um bloco de código se a condição estabelecida for verdadeira.",
+            "veracidade": "t"
+          }
+    },
+    {
+        "pergunta": " O que são condicionais?",
+        "questaoA":{
+            "texto": " É o nome utilizado para definir um ou mais valores utilizados pelos programas durante a sua operação.",
+            "veracidade": "f"
+          },
+          "questaoB":{
+            "texto": " São valores que não podem ser modificados.",
+            "veracidade": "f"
+          },
+          "questaoC":{
+            "texto": " São funções que recebem valores como parâmetros.",
+            "veracidade": "f"
+          },
+          "questaoD":{
+            "texto": " Podem ser simples ou compostas e executam um bloco de código se a condição estabelecida for verdadeira.",
+            "veracidade": "t"
+          }
+    }
+   
+]

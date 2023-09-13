@@ -1,0 +1,30 @@
+[
+    {
+        "conteudo": "Váriáveis",
+        "descricao": "Aprenda o que são variáveis e como elas funcionam.",
+        "id": 1,
+        "src": "./trilha/teste.gif"
+    },
+    {
+        "conteudo": "Condicionais",
+        "descricao": "Aprenda o que são condicionais e com utilizá-las.",
+        "id": 2,
+        "src": "./trilha/teste2.gif"
+    },
+    {
+        "conteudo": "Laços de Repetição",
+        "descricao": "Aprenda essas estruturas que estão presentes em qualquer programa atual.",
+        "id": 3,
+        "src": "./trilha/teste2.gif"
+    },{
+        "conteudo": "Condicionais",
+        "descricao": "Aprenda o que são condicionais e com utilizá-las.",
+        "id": 4,
+        "src": "./trilha/teste2.gif"
+    },{
+        "conteudo": "Condicionais",
+        "descricao": "Aprenda o que são condicionais e com utilizá-las.",
+        "id": 5,
+        "src": "./trilha/teste2.gif"
+    }
+]
