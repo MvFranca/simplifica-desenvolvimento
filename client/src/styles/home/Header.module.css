@@ -11,10 +11,11 @@
   .cabecalho h1{
     color: #268AFF;
     margin-right: -20px;
+    font-size: 2.2em;
   }
   
   .cabecalho nav{
-    margin-top: 30px;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     text-align: center;
