@@ -5,7 +5,7 @@ import IconGooglePlus from "../../icons/IconGoogle";
 import IconLockPasswordFill from "../../icons/IconPassword";
 import IconUser from "../../icons/IconUser";
 import styles from "../../styles/auth/InicioEntrar.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const InicioForm = () => {
@@ -13,6 +13,7 @@ const InicioForm = () => {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState("")
   const [sucess, setSucess] = useState("")
+  const router = useNavigate()
 
   function submitLogin(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -21,6 +22,7 @@ const InicioForm = () => {
     setSucess(res.data.msg)
     setError('')
     console.log(res)
+    router('/')
 
   }).catch((err)=> {
 
