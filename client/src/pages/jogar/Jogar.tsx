@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Pergunta from "../../components/pergunta/Pergunta";
 import { useEffect, useState } from "react";
 import { dados } from "../../types/dados";
@@ -8,6 +8,8 @@ const Jogar = () => {
   const [assunto, setAssunto] = useState<Array<dados>>([]);
 
   const { id } = useParams();
+  const router = useNavigate()
+
 
   async function conteudos() {
     const api = await fetch(`https://simplificaa.vercel.app/trilha/${id}.json`);
@@ -17,6 +19,10 @@ const Jogar = () => {
 
   useEffect(() => {
     conteudos();
+
+      const value = localStorage.getItem("simplifica: token");
+      if (!value) router("/entrar");
+  
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

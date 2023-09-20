@@ -20,6 +20,7 @@ const InicioForm = () => {
     axios
       .post("http://localhost:8000/api/auth/login", { email, password })
       .then((res) => {
+        
         setSucess(res.data.msg);
 
         localStorage.setItem(

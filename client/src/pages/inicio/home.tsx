@@ -9,16 +9,12 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Home() {
-
-  const navigate = useNavigate()
+  const router = useNavigate();
 
   useEffect(() => {
-    const value = localStorage.getItem('simplifica:token')
-    console.log(value)
-    if(!value) navigate('/entrar')
-    
-  }, [])
-
+    const value = localStorage.getItem("simplifica: token");
+    if (!value) router("/entrar");
+  }, []);
 
   return (
     <div className={styles.container}>
