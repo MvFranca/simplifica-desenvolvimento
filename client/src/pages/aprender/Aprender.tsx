@@ -20,9 +20,8 @@ const Aprender = () => {
   
   useEffect(() => {
     conteudos();
-    const value = localStorage.getItem("simplifica: token")
-    if(!value ) router('/')
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    const value = localStorage.getItem("simplifica:token")
+    if(!value ) router('/entrar')
   }, []);
 
 
