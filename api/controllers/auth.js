@@ -48,11 +48,10 @@ export const login = (req, res)=>{
             if(data.length === 0){
                 return res.status(404).json({msg: "Usuário não encontrado."})
             } else{
-                    var user = data
+                    var user = data[0]
 
-                    user.forEach(async (usuario) => {
 
-                        const checkPassword = await bcrypt.compare(password, usuario.password)
+                        const checkPassword = await bcrypt.compare(password, user.password)
                         if(!checkPassword) return res.status(422).json({msg: "Senha incorreta."})
     
                         try {
@@ -77,7 +76,6 @@ export const login = (req, res)=>{
                             console.log(error)
                             return res.status(500).json({msg: "Servidor indisponível. Tente novamente mais tarde."})
                         }
-                    })
 
                 
             }

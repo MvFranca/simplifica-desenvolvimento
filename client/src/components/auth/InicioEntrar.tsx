@@ -11,26 +11,38 @@ import axios from "axios";
 const InicioForm = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [error, setError] = useState("")
-  const [sucess, setSucess] = useState("")
-  const router = useNavigate()
+  const [error, setError] = useState("");
+  const [sucess, setSucess] = useState("");
+  const router = useNavigate();
 
   function submitLogin(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    axios.post("http://localhost:8000/api/auth/login", {email, password}).then((res) => {
+    axios
+      .post("http://localhost:8000/api/auth/login", { email, password })
+      .then((res) => {
+        setSucess(res.data.msg);
 
-    setSucess(res.data.msg)
-    setError('')
-    console.log(res)
-    router('/')
+        localStorage.setItem(
+          "simplifica:user",
+          JSON.stringify(res.data.data.user)
+        );
+        localStorage.setItem(
+          "simplifica:token",
+          JSON.stringify(res.data.data.token)
+        );
 
-  }).catch((err)=> {
+        setError("");
+        router("/");
 
-    setError(err.response.data.msg)
-    setSucess('')
-    console.log(err)
 
-  })
+      })
+
+      .catch((err) => {
+        setError(err.response.data.msg);
+        setSucess("");
+        console.log(err);
+      });
+
   }
 
   return (
@@ -52,7 +64,7 @@ const InicioForm = () => {
           <form onSubmit={submitLogin}>
             <div>
               <label htmlFor="email" className={styles.iconEmail}>
-                <IconUser width={20} height={20} color="#000000ad"/>
+                <IconUser width={20} height={20} color="#000000ad" />
               </label>
               <input
                 type="email"
@@ -71,7 +83,11 @@ const InicioForm = () => {
                 className={styles.iconEmail}
                 id={styles.senha}
               >
-                <IconLockPasswordFill width={25} height={25} color="#000000ad"/>
+                <IconLockPasswordFill
+                  width={25}
+                  height={25}
+                  color="#000000ad"
+                />
               </label>
               <input
                 type="password"
@@ -83,7 +99,7 @@ const InicioForm = () => {
                 }}
               />
             </div>
- 
+
             <div>
               <button type="submit">ENTRAR</button>
             </div>
@@ -95,10 +111,7 @@ const InicioForm = () => {
               {error.length > 0 && <span id={styles.erro}>{error}</span>}
               {sucess.length > 0 && <span id={styles.sucesso}>{sucess}</span>}
             </div>
-
           </form>
-
-
         </div>
       </div>
     </>
