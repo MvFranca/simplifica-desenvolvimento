@@ -12,9 +12,11 @@ export default function Home() {
   const router = useNavigate();
 
   useEffect(() => {
-    const value = localStorage.getItem("simplifica: token");
+    
+    const value = localStorage.getItem("simplifica:token");
     if (!value) router("/entrar");
-  }, []);
+
+  }, [router]);
 
   return (
     <div className={styles.container}>
