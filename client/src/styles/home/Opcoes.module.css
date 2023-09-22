@@ -35,7 +35,7 @@
   height: 30px;
 }
 
-.estudoManual{
+.estudoManual {
   margin-top: 30px;
 }
 
@@ -46,6 +46,12 @@
 
   padding: 30px;
   border-radius: 15px;
+}
+
+@media screen and (max-height: 821px) {
+  .progresso {
+    display: none;
+  }
 }
 
 .descricao {
@@ -100,18 +106,17 @@
 }
 
 .barraProgresso {
-  background-color: #E5E5E5;
+  background-color: #e5e5e5;
   width: 85%;
   height: 15px;
   border-radius: 30px;
 }
 
-
-.barra{
+.barra {
   width: 70%;
   height: 15px;
   border-radius: 30px;
-  background-color: #268AFF;
+  background-color: #268aff;
 }
 
 .dados {
@@ -124,7 +129,6 @@
   text-align: center;
   width: 100%;
 }
-
 
 @media screen and (max-width: 1280px) {
   .imagens {
@@ -155,11 +159,5 @@
 @media screen and (max-width: 1280px) {
   #infoComunidade p {
     width: 100%;
-  }
-}
-
-@media screen and (max-height: 700px) {
-  .informacoes {
-    overflow-y: scroll;
   }
 }

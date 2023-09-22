@@ -19,9 +19,14 @@ const Conteudo = ({titulo, descricao, id}: props) => {
             <p>
                 {descricao}
             </p>
-            <button onClick={()=> {routes(`/aprender/${id}`)}}>
-                ACESSAR
-            </button>
+            <div className={styles.botoes}>
+                <button onClick={()=> {routes(`/aprender/${id}`)}}>
+                    REVISÃO
+                </button>
+                <button onClick={()=> {routes(`/jogar/${id}`)}}>
+                    EXERCÍCIOS
+                </button>
+            </div>
         </div>
      );
 }

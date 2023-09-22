@@ -1,22 +1,31 @@
+import { NavLink, useNavigate } from "react-router-dom";
 import styles from "../../styles/home/MenuMobile.module.css";
 
 const MenuMobile = () => {
+
+  const router = useNavigate()
+
+  const sair = () => {
+    router('/entrar')
+    localStorage.removeItem("simplifica:token")
+  }
+
   return (
     <div className={styles.container}>
       <nav>
-        <a href="/" className={styles.home} >
+        <NavLink to={'/'} className={styles.home} >
           <img src="./home.png" alt="Home" />
-        </a>
-        <a href="/estudomanual">
+        </NavLink>
+        <NavLink to={'/estudomanual'}  className={styles.home}>
           <img src="./book.png" alt="Aprenda" />
-        </a>
-        <a href="#">
+        </NavLink>
+        <NavLink to={'/comunidade'}  className={styles.home}>
           <img src="./comunidade.png" alt="Comunidade" />
-        </a>
-        <a href="#">
+        </NavLink>
+        <NavLink to={'/perfil'}  className={styles.home}>
           <img src="./perfil.png" alt="Perfil" />
-        </a>
-        <a href="#">
+        </NavLink>
+        <a onClick={sair} >
           <img src="./config.png" alt="Configurações" />
         </a>
       </nav>

@@ -1,42 +1,38 @@
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styles from "../../styles/home/Header.module.css";
-
 
 const Header = () => {
   const router = useNavigate();
 
-  function sair(){
-    localStorage.removeItem('simplifica:token')
-    router('/entrar')
+  function sair() {
+    localStorage.removeItem("simplifica:token");
+    router("/entrar");
   }
 
   return (
     <header className={styles.cabecalho}>
       <h1>SIMPLIFICA</h1>
       <nav>
-        <div className={styles.teste} onClick={() => {
-          router('/')
-        }}>
+        <NavLink  to={"/"}>
           <img src="./home.png" alt="Home" />
-          <a >APRENDER</a>
-        </div>
-        <div>
+          <p>APRENDER</p>
+        </NavLink>
+        <NavLink to={"/estudomanual"}>
           <img src="./book.png" alt="Praticar" />
-          <a href="#">PRATICAR</a>
-        </div>
-        <div>
+          <p>PRATICAR</p>
+        </NavLink>
+        <NavLink to={"/comunidade"}>
           <img src="./comunidade.png" alt="Comunidade" />
-          <a href="#">COMUNIDADE</a>
-        </div>
-        <div>
+          <p>COMUNIDADE</p>
+        </NavLink>
+        <NavLink to={"/perfil"}>
           <img src="./perfil.png" alt="Perfil" />
-          <a href="#">PERFIL</a>
-        </div>
-        <div onClick={sair}>
+          <p>PERFIL</p>
+        </NavLink>
+        <NavLink onClick={sair} to={"/entrar"}>
           <img src="./config.png" alt="Configurações" />
-          <a href="/entrar">SAIR</a>
-        </div>
-       
+          <p>SAIR</p>
+        </NavLink>
       </nav>
     </header>
   );

@@ -13,7 +13,7 @@
 }
 
 .conteudo button{
-    width: 90%;
+    width: 45%;
     background-color: #268aff;
     color: #fff;
     box-shadow: 0px 5px 0px 0.5px #1564be;
@@ -28,6 +28,14 @@
 .conteudo button:hover{
     transform: translateY(5px);
     box-shadow: none;
+}
+
+.botoes{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 
