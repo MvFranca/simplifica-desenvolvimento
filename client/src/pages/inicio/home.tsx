@@ -18,9 +18,11 @@ export default function Home() {
 
   }, [router]);
 
+
   return (
     <div className={styles.container}>
-      <Header />
+      <Header 
+      />
       <MenuTopo />
       <TrilhaeInfo />
       <MenuMobile />

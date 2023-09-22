@@ -4,6 +4,7 @@ import Aprender from "../pages/aprender/Aprender";
 import Jogar from "../pages/jogar/Jogar";
 import LoginMobile from "../pages/auth/LoginMobile";
 import Registro from "../pages/auth/Cadastro";
+import EstudoManual from "../pages/estudoManual/EstudoManual";
 
 const Rotas = () => {
   return (
@@ -20,6 +21,9 @@ const Rotas = () => {
 
         <Route path={`/jogar/:id`} element={<Jogar />} />
         
+        <Route path={`/estudomanual`} element={<EstudoManual/>} />
+
+
       </Routes>
     </>
   );

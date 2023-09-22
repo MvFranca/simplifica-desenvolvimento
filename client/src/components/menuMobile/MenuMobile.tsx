@@ -4,10 +4,10 @@ const MenuMobile = () => {
   return (
     <div className={styles.container}>
       <nav>
-        <a href="#" className={styles.home}>
+        <a href="/" className={styles.home} >
           <img src="./home.png" alt="Home" />
         </a>
-        <a href="#">
+        <a href="/estudomanual">
           <img src="./book.png" alt="Aprenda" />
         </a>
         <a href="#">
