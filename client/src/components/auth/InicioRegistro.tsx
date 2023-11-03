@@ -3,32 +3,42 @@ import IconEmail from "../../icons/IconEmail";
 import IconLockPasswordFill from "../../icons/IconPassword";
 import IconUser from "../../icons/IconUser";
 import styles from "../../styles/auth/InicioEntrar.module.css";
-import { Link } from "react-router-dom";
-import axios from 'axios'
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const InicioRegistro = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [senha, setPassword] = useState("");
   const [confirmPassword, setConfirmPassoword] = useState("");
-  const [error, setError] = useState("")
-  const [sucess, setSucess] = useState("")
+  const [error, setError] = useState("");
+  const [sucess, setSucess] = useState("");
+  const [url_image] = useState("bvcb");
+  const router = useNavigate();
 
-  function submitRegistro(event:React.FormEvent<HTMLFormElement>){
-    event.preventDefault()
-    axios.post("http://localhost:8000/api/auth/register", {username, email, password, confirmPassword}).then((res) => {
+  function submitRegistro(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    axios
+      .post("http://localhost:8000/api/auth/register", {
+        username,
+        email,
+        senha,
+        confirmPassword,
+        url_image,
+      })
+      .then((res) => {
+        setError("");
 
-      setSucess(res.data.msg)
-      setError('')
-      console.log(res)
+        setSucess(res.data.msg);
 
-    }).catch((err)=> {
-
-      setError(err.response.data.msg)
-      setSucess('')
-      console.log(err, username)
-
-    })
+        setTimeout(() => {
+          router("/");
+        }, 1000);
+      })
+      .catch((err) => {
+        setError(err.response.data.msg);
+        setSucess("");
+      });
   }
 
   return (
@@ -131,7 +141,7 @@ const InicioRegistro = () => {
                 }}
               />
             </div>
-       
+
             <div>
               <button type="submit">Registrar</button>
             </div>
@@ -143,8 +153,6 @@ const InicioRegistro = () => {
               {error.length > 0 && <span id={styles.erro}>{error}</span>}
               {sucess.length > 0 && <span id={styles.sucesso}>{sucess}</span>}
             </div>
-
-            
           </form>
         </div>
       </div>

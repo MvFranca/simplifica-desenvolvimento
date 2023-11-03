@@ -10,7 +10,7 @@ import axios from "axios";
 
 const InicioForm = () => {
   const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [senha, setPassword] = useState<string>("");
   const [error, setError] = useState("");
   const [sucess, setSucess] = useState("");
   const router = useNavigate();
@@ -18,9 +18,10 @@ const InicioForm = () => {
   function submitLogin(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     axios
-      .post("http://localhost:8000/api/auth/login", { email, password })
+      .post("http://localhost:8000/api/auth/login", { email, senha })
       .then((res) => {
         
+        setError("");
         setSucess(res.data.msg);
 
         localStorage.setItem(
@@ -32,7 +33,7 @@ const InicioForm = () => {
           JSON.stringify(res.data.data.token)
         );
 
-        setError("");
+       
         router("/");
 
 
