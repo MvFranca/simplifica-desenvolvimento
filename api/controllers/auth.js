@@ -15,22 +15,22 @@ async function consulta(query, params, func) {
     port: process.env.DB_PORT_POSTGRESS,
     database: process.env.DB,
   });
+
   await conn.connect();
-
   await conn.query(query, [params], func);
-
   return conn;
-  // console.log(consulta);
 }
 
 async function insert(query, params, func) {
+
   let conn = new Client({
     user: process.env.DB_USER_POSTGRESS,
-    password: "Malandro123@",
+    password: process.env.DB_PASS,
     host: process.env.DB_HOST_POSTGRESS,
     port: process.env.DB_PORT_POSTGRESS,
     database: process.env.DB,
   });
+
   await conn.connect();
   const values = [
     params.username,
@@ -38,9 +38,10 @@ async function insert(query, params, func) {
     params.senha,
     params.url_image,
   ];
+
   await conn.query(query, values, func);
   return conn;
-  // console.log(consulta);
+
 }
 
 export const register = async (req, res) => {
@@ -88,6 +89,7 @@ export const register = async (req, res) => {
             }
           }
         );
+
       }
     }
   );

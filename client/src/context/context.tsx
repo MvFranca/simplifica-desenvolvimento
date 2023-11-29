@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, PropsWithChildren, useEffect, useState } from "react";
+import { createContext, PropsWithChildren, useState } from "react";
+
 
 
 interface pontuacao {
@@ -42,9 +43,7 @@ const Context = ({children}: PropsWithChildren) => {
 
   const [userId, setUserId] = useState(0)
 
-  useEffect(()=> {
-
-  }, [pontos])
+  
 
   return (
     <pointContext.Provider value={{pontos, setPontos, fogo, setFogo, variaveis, setVariaveis, userId, setUserId}}>

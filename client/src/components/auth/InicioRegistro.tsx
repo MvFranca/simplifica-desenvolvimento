@@ -16,6 +16,19 @@ const InicioRegistro = () => {
   const [url_image] = useState("bvcb");
   const router = useNavigate();
 
+  function adicionarIdPontuacao() {
+    axios
+      .post("http://localhost:8000/api/points/insertIdPoints", {
+        email,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   function submitRegistro(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     axios
@@ -30,6 +43,8 @@ const InicioRegistro = () => {
         setError("");
 
         setSucess(res.data.msg);
+
+        adicionarIdPontuacao();
 
         setTimeout(() => {
           router("/");

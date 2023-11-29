@@ -7,11 +7,14 @@ import Registro from "../pages/auth/Cadastro";
 import EstudoManual from "../pages/estudoManual/EstudoManual";
 import Comunidade from "../pages/comunidade/comunidade";
 
+
+
 const Rotas = () => {
+
+
   return (
     <>
       <Routes>
-        
         <Route path="/registrar" element={<Registro />} />
 
         <Route path="/entrar" element={<LoginMobile />} />
@@ -21,12 +24,10 @@ const Rotas = () => {
         <Route path={`/aprender/:id`} element={<Aprender />} />
 
         <Route path={`/jogar/:id`} element={<Jogar />} />
-        
-        <Route path={`/estudomanual`} element={<EstudoManual/>} />
 
-        <Route path={`/comunidade`} element={<Comunidade/>} />
+        <Route path={`/estudomanual`} element={<EstudoManual />} />
 
-
+        <Route path={`/comunidade`} element={<Comunidade />} />
       </Routes>
     </>
   );

@@ -7,8 +7,8 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Opcoes = () => {
+  const router = useNavigate();
   const { pontos, fogo } = useContext(pointContext);
-  const router = useNavigate()
 
   return (
     <aside className={styles.informacoes}>
@@ -27,7 +27,7 @@ const Opcoes = () => {
         </div>
       </div>
 
-      <div className={styles.estudoManual} >
+      <div className={styles.estudoManual}>
         <div className={styles.textos}>
           <div className={styles.descricao}>
             <h2>ESTUDO MANUAL</h2>
@@ -43,9 +43,14 @@ const Opcoes = () => {
             />
           </div>
         </div>
-        <button className={styles.botao}
-        onClick={() => { router('/estudomanual')}}
-        >CLIQUE AQUI PARA ACESSAR</button>
+        <button
+          className={styles.botao}
+          onClick={() => {
+            router("/estudomanual");
+          }}
+        >
+          CLIQUE AQUI PARA ACESSAR
+        </button>
       </div>
 
       <div className={styles.comunidade}>

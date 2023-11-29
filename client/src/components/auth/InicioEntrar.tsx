@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import {  useState } from "react";
 import IconApple from "../../icons/IconApple";
 import IconBxlFacebook from "../../icons/IconFacebook";
 import IconGooglePlus from "../../icons/IconGoogle";
@@ -8,7 +8,6 @@ import styles from "../../styles/auth/InicioEntrar.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import { pointContext } from "../../context/context";
 
 const InicioForm = () => {
   const [email, setEmail] = useState<string>("");
@@ -17,8 +16,6 @@ const InicioForm = () => {
   const [sucess, setSucess] = useState("");
   const router = useNavigate();
 
-  const {setUserId } = useContext(pointContext);
-
   function submitLogin(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     axios
@@ -26,13 +23,10 @@ const InicioForm = () => {
       .then((res) => {
         setError("");
         setSucess(res.data.msg);
-
         localStorage.setItem(
           "simplifica:user",
           JSON.stringify(res.data.data.user)
-        );
-
-        setUserId(res.data.data.user.id_usuario)
+        );    
 
         localStorage.setItem(
           "simplifica:token",
