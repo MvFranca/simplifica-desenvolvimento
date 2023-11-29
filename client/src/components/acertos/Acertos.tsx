@@ -7,11 +7,12 @@ type props = {
 }
 
 import { pointContext } from '../../context/context';
+import axios from 'axios';
 
 
 const Acertos = ({acertos, quantidadeQuestoes}: props) => {
     const [porcentagem, setPorcentagem] = useState(0)
-    const {pontos, setPontos} = useContext(pointContext)
+    const {pontos, setPontos, userId} = useContext(pointContext)
 
     useEffect(() => {
         setPorcentagem(acertos * 100/ quantidadeQuestoes)
@@ -19,7 +20,21 @@ const Acertos = ({acertos, quantidadeQuestoes}: props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+
+
+    
     useEffect(() => {
+
+        axios
+        .post("http://localhost:8000/api/points/diamantes", { userId })
+        .then((res) => {
+            console.log(res);
+        })
+    
+        .catch((err) => {
+          console.log(err);
+        });
+
         
         if(porcentagem == 100){
             setPontos(pontos + 4)
