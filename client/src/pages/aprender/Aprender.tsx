@@ -22,6 +22,7 @@ const Aprender = () => {
     conteudos();
     const value = localStorage.getItem("simplifica:token")
     if(!value ) router('/entrar')
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 

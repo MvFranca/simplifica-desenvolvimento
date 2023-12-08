@@ -2,9 +2,14 @@
 import { createContext, PropsWithChildren, useState } from "react";
 
 
+
 interface pontuacao {
   pontos: number;
   fogo: number;
+
+  userId: number;
+  setUserId:  (number: number) => void;
+
   setPontos: (number: number) => void;
   setFogo: (number: number) => void;
 
@@ -16,11 +21,15 @@ interface pontuacao {
 const initialValue = {
   pontos: 0,
   fogo: 0,
+
+  userId: 0,
+  setUserId: () => {},
+
   setPontos: () => {},
   setFogo: () => {},
-
   variaveis: false,
   setVariaveis: () => {},
+  setUsuario: () => {}
 };
 
 
@@ -32,8 +41,12 @@ const Context = ({children}: PropsWithChildren) => {
   const [fogo, setFogo] = useState(0);
   const [variaveis, setVariaveis] = useState(false)
 
+  const [userId, setUserId] = useState(0)
+
+  
+
   return (
-    <pointContext.Provider value={{pontos, setPontos, fogo, setFogo, variaveis, setVariaveis}}>
+    <pointContext.Provider value={{pontos, setPontos, fogo, setFogo, variaveis, setVariaveis, userId, setUserId}}>
         {children}
     </pointContext.Provider>
   );
