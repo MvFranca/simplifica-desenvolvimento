@@ -103,15 +103,15 @@ export const login = (req, res) => {
     "SELECT * FROM usuario WHERE email=$1",
     email,
     async (error, data) => {
+
       if (error) {
         console.log(error);
         return res
           .status(500)
           .json({ msg: "Servidor indisponível. Tente novamente mais tarde." });
       }
-      if (data.length === 0) {
-        return res.status(404).json({ msg: "Usuário não encontrado." });
-      } else {
+      if(data.rows[0]) {
+        console.log(data)
         var user = data.rows[0];
 
         const checkPassword = await bcrypt.compare(senha, user.senha);
@@ -145,6 +145,9 @@ export const login = (req, res) => {
             msg: "Servidor indisponível. Tente novamente mais tarde.",
           });
         }
+      }
+      else{
+          return res.status(404).json({ msg: "Usuário não encontrado." });
       }
     }
   );

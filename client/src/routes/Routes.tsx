@@ -6,6 +6,7 @@ import LoginMobile from "../pages/auth/LoginMobile";
 import Registro from "../pages/auth/Cadastro";
 import EstudoManual from "../pages/estudoManual/EstudoManual";
 import Comunidade from "../pages/comunidade/comunidade";
+import Ordenacao from "../pages/ordenacao/Ordenacao";
 
 
 
@@ -24,6 +25,8 @@ const Rotas = () => {
         <Route path={`/aprender/:id`} element={<Aprender />} />
 
         <Route path={`/jogar/:id`} element={<Jogar />} />
+
+        <Route path={`/ordenacao/:id`} element={<Ordenacao />} />
 
         <Route path={`/estudomanual`} element={<EstudoManual />} />
 

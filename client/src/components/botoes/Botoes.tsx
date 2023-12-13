@@ -49,8 +49,8 @@ const Botoes = ({ id }: props) => {
           <img src="./bau.png" alt="Baú" />
         </Link>
 
-        <Link to={""} className={`botao1`}>
-          <img src="./livro.png" alt="Livro" />
+        <Link to={`/ordenacao/${id}`} className={`botao1`}>
+          <img src="./programar.png" alt="Icone de programação" />
         </Link>
 
         <Link to={""} className={`botao1`}>

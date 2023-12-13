@@ -27,25 +27,32 @@ const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
     } else if (porcentagem < 50 && porcentagem > 0) {
       setPontos(pontos + 1);
     } else if (porcentagem == 0) return;
+
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [porcentagem]);
 
-  useEffect(() => {
+  
 
-    const user = localStorage.getItem("simplifica:user")!
-    const userObject = JSON.parse(user)
+    useEffect(() => {
+      const user = localStorage.getItem("simplifica:user")!
+      const userObject = JSON.parse(user)
+      
+      const idUser = Number(userObject.id_usuario)
+  
+      axios
+        .put("http://localhost:8000/api/points/updateDiamantes", { idUser, pontos })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+        console.log(pontos)
+  
+    }, [pontos])
     
-    const idUser = Number(userObject.id_usuario)
 
-    axios
-      .put("http://localhost:8000/api/points/updateDiamantes", { idUser, pontos })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [pontos]);
 
   return (
     <div className={styles.container}>

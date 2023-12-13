@@ -95,7 +95,7 @@ export const idPoints = async (req, res) => {
 export const selectDiamondsPoints = async (req, res) => {
   const { idUser } = req.body;
 
-  const points = await consulta(
+  await consulta(
     "SELECT pontuacao FROM pontuacaoq WHERE fk_id_usuario=$1",
     idUser,
     async (error, data) => {
@@ -104,12 +104,13 @@ export const selectDiamondsPoints = async (req, res) => {
 
         return res
           .status(500)
-          .json({ msg: "Servidor indisponível. Tente novamente mais tarde.1" });
+          .json({ msg: "Servidor indisponível. Tente novamente mais tarde." });
       } else {
+
         const resposta = await data.rows[0].pontuacao;
 
         return res.status(200).json({
-          msg: "Usuário logado com sucesso!",
+          msg: "Pontos atualizados!",
           data: { resposta },
         });
       }
@@ -119,9 +120,6 @@ export const selectDiamondsPoints = async (req, res) => {
 
 export const updateDiamantes = async (req, res) => {
   const { idUser, pontos } = req.body;
-
-  console.log("pontuacao:" + pontos)
-  console.log("id:" + idUser)
 
   await update(
     "UPDATE pontuacaoq SET pontuacao=$1 WHERE fk_id_usuario=$2",

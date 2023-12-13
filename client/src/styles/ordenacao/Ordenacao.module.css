@@ -1,0 +1,111 @@
+.ordenacao{
+    padding: 50px 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.miniHeader {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .miniHeader div {
+    display: flex;
+  
+    align-items: center;
+  }
+  
+  .barradeProgresso,
+  .progresso {
+    width: 95%;
+    border-radius: 13px;
+    height: 25px;
+    background-color: #e5e5e5;
+  }
+  
+  .progresso {
+    width: 30%;
+    background-color: #268aff;
+    transition: 0.3s all;
+  }
+
+
+  .ordenacao section{
+
+    width: 95%;
+
+  }
+
+  .ordenacao section .codigo{
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  .ordenacao section .codigo .linha{
+    padding: 15px 0;
+
+
+  }
+
+
+  .ordenacao section h2{
+    width: 85%;
+    margin: 50px auto;
+    text-align: center;
+    display: flex;
+  }
+
+
+
+
+  .botoes{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .botoes button{
+    background-color: #5B636D;
+    font-weight: bold;
+    color: #fff;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 3px 3px 0 #282D33;
+    transition: 0.2s all;
+  }
+
+  .botoes button:hover, .botoes button:focus{
+    transform: translateY(3px) translateX(3px);
+    box-shadow: none;
+  }
+
+  .opcoes{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+  }
+
+  .opcoes p{
+      color: #000000;
+      font-weight: bold;
+      background-color: #c4c4c4;
+      border-radius: 10px;
+      padding: 20px;
+      width: 95%;
+      height: 40px;
+      display: flex;
+      justify-content: initial;
+      align-items: center;
+  }

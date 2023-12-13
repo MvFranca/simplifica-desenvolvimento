@@ -9,7 +9,7 @@ const EstudoManual = () => {
   const [conteudos, setConteudos] = useState([]);
 
   async function api() {
-    const api = await fetch("http://127.0.0.1:5173/trilha/trilha.json");
+    const api = await fetch("http://localhost:5173/trilha/trilha.json");
     const json = await api.json();
     setConteudos(json);
   }
