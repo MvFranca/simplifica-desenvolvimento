@@ -1,7 +1,7 @@
 .linha{
     background-color: #268AFF;
     width: 100%;
-    height: 46px;
+    height: 50px;
     padding: 0 20px;
     color: #fff;
     display: flex;
@@ -10,15 +10,15 @@
     gap: 20px;
     border-radius: 8px;
     box-shadow: 5px 5px 0px #1564BE;
-    cursor: pointer;
     transition: 0.2s all;
+    font-size: 1.15em;
 }
 
 .linha img{
     height: 20px; 
 }
 
-.linha:hover{
+.linha:hover, .linha:focus{
     transform: translateY(5px) translateX(5px);
     box-shadow: none;
 }

@@ -1,11 +1,12 @@
 import styles from '../../styles/ordenacao/Ordenacao.module.css'
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import '../../styles/App.css';
 import { Link, useParams } from "react-router-dom";
 import Carregamento from "../../components/carregamento/Carregamento";
 import IconClose from '../../components/icons/IconClose';
 import Linha from '../../components/ordenacao/Linha';
+import Acertos from '../../components/acertos/Acertos';
 
 
 const reorder = (list: Iterable<unknown> | ArrayLike<unknown>, startIndex: number, endIndex: number) => {
@@ -19,26 +20,67 @@ const reorder = (list: Iterable<unknown> | ArrayLike<unknown>, startIndex: numbe
 };
 
  interface TypesLinhas{
-    linha: string;
-    pos: number 
+    id: string;
+    content: number 
+  }
+
+  interface TypesTitulos{
+    titulo: string;
+    assunto: string;
+    id: string 
   }
 
 const Ordenacao = () => {
 
+  const [fase, setFase] = useState(0)
+  const [acertos, setAcertos] = useState(0)
+  const [linhas, setLinhas] = useState<Array<TypesLinhas>>([])
+  const progresso = useRef<HTMLDivElement>(null);
+  const [quantidade, setQuantidade] = useState([])
+  const [Width, setWidth] = useState(10)
+  const [fim, setFim] = useState(false)
+  const [titulos, setTitulos] = useState<Array<TypesTitulos>>([])
 
-  const [linhas, setLinhas] = useState([])
-  
   const {id} = useParams()
   async function fetchLinhas(){
-    const api = (await fetch(`http://localhost:5173/ordenacao/${id}.json`)).json()
-    const teste = await api
-    setLinhas(teste[0])
+    const apiCodigo = (await fetch(`http://localhost:5173/ordenacao/codigos/${id}.json`)).json()
+    const teste = await apiCodigo
+    setQuantidade(teste)
+    setLinhas(teste[fase])
+    const apiTitulos = (await fetch(`http://localhost:5173/ordenacao/titulos/${id}.json`)).json()
+    setTitulos(await apiTitulos)
   }
+
   useEffect(() => {
     fetchLinhas()
-  }, [])
 
-  console.log(linhas)
+        
+    if(linhas.length-1 == fase){
+      console.log('entrei')
+      setFim(true)
+    }
+
+  }, [fase])
+
+  function progressBar() {
+    const porcentagemPorQues = 100 / (quantidade.length);
+    setWidth((prev) => prev + porcentagemPorQues);
+    console.log("entrei")
+}
+
+useEffect(() => {
+
+    progresso.current!.style.width = `${Width}%`;
+
+}, [Width])
+
+
+useEffect(() => {
+  setFim(false)
+    if(quantidade.length > 0){
+      progressBar()
+    }
+}, [])
 
 
   const onDragEnd = (result: { destination: { index: any; }; source: { index: any; }; }) => {
@@ -52,78 +94,151 @@ const Ordenacao = () => {
       result.destination.index
     );
 
-    console.log({ reorderedItems });
     setLinhas(reorderedItems);
   };
+
+
+  function verificar(){
+    
+    let res = true
+    progressBar()
+    linhas.forEach((item, index)=> {
+          const id = Number(item.id)
+          const posAtual =  Number(index) + 1
+
+          if(id !== posAtual){
+            res = false
+            return
+          }
+        })
+
+    
+   
+    if(res){
+      setFase((prev) => prev+1)
+      setAcertos((prev) => prev+1)
+      return 
+    }
+    
+    setFase((prev) => prev+1)
+
+
+  }
+
+  
 
   return (
     <div className={styles.ordenacao}>
                <div className={styles.miniHeader}>
+                <h2>
+                  REPETIÇÃO
+                </h2>
                 <div className={styles.barradeProgresso}>
-                  <div className={styles.progresso}></div>
+                  <div className={styles.progresso} ref={progresso}></div>
                 </div>
                 <Link to={"/"}>
                   <IconClose width={35} height={35} color="#000000" />
                 </Link>
               </div>
-      <DragDropContext onDragEnd={onDragEnd}>
-      <section>
-            <h2>
-                Seu código deve realizar a leitura de um inteiro digitado pelo usuário e, em seguida, calcular e exibir a tabuada de multiplicação até o valor 10.
-            </h2>
-        <Droppable droppableId="droppable">
-          {(provided, snapshot) => (
-            <div
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-              className={styles.codigo}
-            >
+      {
+      fim ?
+      <>
+      
+        <Acertos
+        acertos={acertos}
+        quantidadeQuestoes={3}
+        />
+        
+        <div className={styles.sair}>
+                <Link to={'/'}>
+                SAIR
+                </Link>
+            </div>   
+        </>
+      :
+        <DragDropContext onDragEnd={onDragEnd}>
+        <section>
               {
-              linhas ?
-              linhas.map((item, index) => (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
-                  {(provided, snapshot) => (
-
-                   <div
-                      className={styles.linha}
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                 
-                    >
-                      <Linha>
-                        {item.content}
-                      </Linha>
-                      
-                    </div>
-
+                titulos[0] ?
+                <h2>
+                 {titulos[fase].titulo}
+              </h2>
+              :
+              <p>
+                Carregando...
+              </p>
+              }
+              
+              <div className={styles.borda}/>
+          <Droppable droppableId="droppable">
+            {(provided) => (
+              <div
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+                className={styles.codigo}
+              >
+                {
+                linhas ?
+                linhas.map((item, index) => (
+                  <>
                   
-                  )} 
-                </Draggable>
-               
-              ))
-             :
-                <Carregamento/>}
-              {provided.placeholder}
+                <Draggable key={item.id} draggableId={item.id} index={index}>
+                    {(provided) => (
+
+                    <div
+                        className={styles.linha}
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        key={Number(item.id)}
+                      >
+
+                        <Linha>
+                          {item.content}
+                        </Linha>
+                        
+                      </div>
+
+                    
+                    )} 
+                  </Draggable>
+
+                  </>
+                ))
+              :
+                  <Carregamento/>}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+
+            <div className={styles.botoes}>
+                  <button
+                    onClick={fetchLinhas}
+                  >RESET</button>
+
+                    {
+                      linhas.length-2 == fase ?
+                      <button
+                        onClick={verificar}
+                      >
+                        FINALIZAR
+                      </button>
+                      :
+                      <button
+                        onClick={verificar}
+                      >
+                        VERIFICAR
+                      </button>
+                      
+                    }
+
             </div>
-          )}
-        </Droppable>
 
-          <div className={styles.botoes}>
-                <button>RESET</button>
+          </section>
+        </DragDropContext>
 
-                <button
-                  onClick={verificar}
-                >VERIFICAR</button>
-          </div>
-
-          <div className={styles.opcoes}>
-            <p>
-              Nota: Coloque o código na ordem correta
-            </p>
-          </div>
-        </section>
-      </DragDropContext>
+      }
     </div>
   );
 };

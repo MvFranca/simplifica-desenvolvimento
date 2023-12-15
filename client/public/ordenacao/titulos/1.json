@@ -1,0 +1,22 @@
+[
+    {
+        "titulo": "Seu código deve realizar a leitura de um inteiro digitado pelo usuário e, em seguida, calcular e exibir a tabuada de multiplicação até o valor 10.",
+        "assunto": "Repetição",
+        "id": "1"
+    },
+    {
+        "titulo": "Seu código deve realizar alguma coisa",
+        "assunto": "Repetição",
+        "id": "2"
+    },
+    {
+        "titulo": "Seu código deve realizar alguma outra coisa",
+        "assunto": "Repetição",
+        "id": "3"
+    },
+    {
+        "titulo": "Seu código deve realizar alguma outra coisa",
+        "assunto": "Repetição",
+        "id": "3"
+    }
+]

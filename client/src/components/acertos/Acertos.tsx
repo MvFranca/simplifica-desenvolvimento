@@ -14,7 +14,8 @@ const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
   const { pontos, setPontos } = useContext(pointContext);
 
   useEffect(() => {
-    setPorcentagem((acertos * 100) / quantidadeQuestoes);
+    let porcentagem = Math.trunc((acertos * 100) / quantidadeQuestoes)
+    setPorcentagem(porcentagem);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
