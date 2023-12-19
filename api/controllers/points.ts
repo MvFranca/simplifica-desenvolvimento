@@ -1,5 +1,6 @@
 import pg from "pg";
 import dotenv from "dotenv";
+import { Request, Response } from "express";
 
 const { Client } = pg;
 dotenv.config({ path: "./.env" });
@@ -9,7 +10,7 @@ async function insert(query, params, func) {
     user: process.env.DB_USER_POSTGRESS,
     password: process.env.DB_PASS,
     host: process.env.DB_HOST_POSTGRESS,
-    port: process.env.DB_PORT_POSTGRESS,
+    port: parseInt(process.env.DB_PORT_POSTGRESS || "5432"),
     database: process.env.DB,
   });
 
@@ -25,7 +26,7 @@ async function update(query, params, func) {
     user: process.env.DB_USER_POSTGRESS,
     password: process.env.DB_PASS,
     host: process.env.DB_HOST_POSTGRESS,
-    port: process.env.DB_PORT_POSTGRESS,
+    port: parseInt(process.env.DB_PORT_POSTGRESS || "5432"),
     database: process.env.DB,
   });
 
@@ -41,7 +42,7 @@ async function consulta(query, params, func) {
     user: process.env.DB_USER_POSTGRESS,
     password: process.env.DB_PASS,
     host: process.env.DB_HOST_POSTGRESS,
-    port: process.env.DB_PORT_POSTGRESS,
+    port: parseInt(process.env.DB_PORT_POSTGRESS || "5432"),
     database: process.env.DB,
   });
   await conn.connect();
@@ -51,7 +52,7 @@ async function consulta(query, params, func) {
   return conn;
 }
 
-export const idPoints = async (req, res) => {
+export const idPoints = async (req: Request, res: Response) => {
   const { email } = req.body;
   await consulta(
     "SELECT id_usuario FROM usuario WHERE email=$1",
@@ -92,7 +93,7 @@ export const idPoints = async (req, res) => {
   );
 };
 
-export const selectDiamondsPoints = async (req, res) => {
+export const selectDiamondsPoints = async (req: Request, res: Response) => {
   const { idUser } = req.body;
 
   await consulta(
@@ -106,7 +107,6 @@ export const selectDiamondsPoints = async (req, res) => {
           .status(500)
           .json({ msg: "Servidor indisponível. Tente novamente mais tarde." });
       } else {
-
         const resposta = await data.rows[0].pontuacao;
 
         return res.status(200).json({
@@ -118,7 +118,7 @@ export const selectDiamondsPoints = async (req, res) => {
   );
 };
 
-export const updateDiamantes = async (req, res) => {
+export const updateDiamantes = async (req: Request, res: Response) => {
   const { idUser, pontos } = req.body;
 
   await update(
