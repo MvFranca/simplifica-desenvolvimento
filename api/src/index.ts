@@ -13,6 +13,9 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors<Request>());
 
+app.get("/", (req, res) => {
+  res.json({ msg: "Olá, mundo!" });
+});
 app.use("/api/users/", userRouter);
 app.use("/api/auth/", authRouter);
 app.use("/api/points/", pointsRouter);
