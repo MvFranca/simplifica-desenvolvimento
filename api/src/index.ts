@@ -1,7 +1,7 @@
 import express from "express";
-import userRouter from "./routes/user.js";
-import authRouter from "./routes/auth.js";
-import pointsRouter from "./routes/points.js";
+import userRouter from "./routes/user";
+import authRouter from "./routes/auth";
+import pointsRouter from "./routes/points";
 import bodyParser from "body-parser";
 import cors from "cors";
 import { Request } from "express";

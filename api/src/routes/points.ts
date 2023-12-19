@@ -1,5 +1,9 @@
 import express from "express";
-import { selectDiamondsPoints, idPoints, updateDiamantes } from "../controllers/points.js";
+import {
+  selectDiamondsPoints,
+  idPoints,
+  updateDiamantes,
+} from "../controllers/points";
 
 const router = express.Router();
 
