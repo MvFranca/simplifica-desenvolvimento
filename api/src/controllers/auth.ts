@@ -12,7 +12,7 @@ async function consulta(query, params, func) {
     user: process.env.DB_USER_POSTGRESS,
     password: "Malandro123@",
     host: process.env.DB_HOST_POSTGRESS,
-    port: process.env.DB_PORT_POSTGRESS,
+    port: parseInt(process.env.DB_PORT_POSTGRESS || "5432"),
     database: process.env.DB,
   });
 
@@ -22,12 +22,11 @@ async function consulta(query, params, func) {
 }
 
 async function insert(query, params, func) {
-
   let conn = new Client({
     user: process.env.DB_USER_POSTGRESS,
     password: process.env.DB_PASS,
     host: process.env.DB_HOST_POSTGRESS,
-    port: process.env.DB_PORT_POSTGRESS,
+    port: parseInt(process.env.DB_PORT_POSTGRESS || "5432"),
     database: process.env.DB,
   });
 
@@ -41,7 +40,6 @@ async function insert(query, params, func) {
 
   await conn.query(query, values, func);
   return conn;
-
 }
 
 export const register = async (req, res) => {
@@ -89,7 +87,6 @@ export const register = async (req, res) => {
             }
           }
         );
-
       }
     }
   );
@@ -103,15 +100,14 @@ export const login = (req, res) => {
     "SELECT * FROM usuario WHERE email=$1",
     email,
     async (error, data) => {
-
       if (error) {
         console.log(error);
         return res
           .status(500)
           .json({ msg: "Servidor indisponível. Tente novamente mais tarde." });
       }
-      if(data.rows[0]) {
-        console.log(data)
+      if (data.rows[0]) {
+        console.log(data);
         var user = data.rows[0];
 
         const checkPassword = await bcrypt.compare(senha, user.senha);
@@ -145,9 +141,8 @@ export const login = (req, res) => {
             msg: "Servidor indisponível. Tente novamente mais tarde.",
           });
         }
-      }
-      else{
-          return res.status(404).json({ msg: "Usuário não encontrado." });
+      } else {
+        return res.status(404).json({ msg: "Usuário não encontrado." });
       }
     }
   );

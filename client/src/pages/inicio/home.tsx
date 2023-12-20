@@ -23,9 +23,7 @@ export default function Home() {
       .post("http://localhost:8000/api/points/diamantes", { idUser })
       .then((res) => {
         const pontuacao = res.data.data.resposta;
-        console.log("antes: ", pontuacao)
         setPontos(pontuacao);
-        console.log("\NDEPOIS: ", pontuacao)
       })
 
       .catch((err) => {

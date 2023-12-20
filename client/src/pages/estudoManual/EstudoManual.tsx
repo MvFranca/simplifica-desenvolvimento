@@ -5,8 +5,15 @@ import MenuTopo from "../../components/menuTopo/MenuTopo";
 import styles from "../../styles/estudoManual/EstudoManual.module.css";
 import { useEffect, useState } from "react";
 
+
+interface conteudos {
+  conteudo:string
+  descricao: string
+  id: number
+}
+
 const EstudoManual = () => {
-  const [conteudos, setConteudos] = useState([]);
+  const [conteudos, setConteudos] = useState<Array<conteudos>>([]);
 
   async function api() {
     const api = await fetch("http://localhost:5173/trilha/trilha.json");
