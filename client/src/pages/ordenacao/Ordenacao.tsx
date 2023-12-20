@@ -1,6 +1,6 @@
 import styles from '../../styles/ordenacao/Ordenacao.module.css'
 import { useEffect, useRef, useState } from "react";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd";
 import '../../styles/App.css';
 import { Link, useParams } from "react-router-dom";
 import Carregamento from "../../components/carregamento/Carregamento";
@@ -8,8 +8,12 @@ import IconClose from '../../components/icons/IconClose';
 import Linha from '../../components/ordenacao/Linha';
 import Acertos from '../../components/acertos/Acertos';
 
+interface TypesLinhas{
+    id: string;
+    content: string 
+  }
 
-const reorder = (list: Iterable<unknown> | ArrayLike<unknown>, startIndex: number, endIndex: number) => {
+const reorder = (list: Array<TypesLinhas> | ArrayLike<TypesLinhas>, startIndex: number, endIndex: number) => {
 
 
   const result = Array.from(list);
@@ -19,10 +23,7 @@ const reorder = (list: Iterable<unknown> | ArrayLike<unknown>, startIndex: numbe
   return result;
 };
 
- interface TypesLinhas{
-    id: string;
-    content: number 
-  }
+ 
 
   interface TypesTitulos{
     titulo: string;
@@ -30,11 +31,13 @@ const reorder = (list: Iterable<unknown> | ArrayLike<unknown>, startIndex: numbe
     id: string 
   }
 
+
+
 const Ordenacao = () => {
 
   const [fase, setFase] = useState(0)
   const [acertos, setAcertos] = useState(0)
-  const [linhas, setLinhas] = useState<Array<TypesLinhas>>([])
+  const [linhas, setLinhas] = useState<TypesLinhas[]>([])
   const progresso = useRef<HTMLDivElement>(null);
   const [quantidade, setQuantidade] = useState([])
   const [Width, setWidth] = useState(10)
@@ -56,7 +59,6 @@ const Ordenacao = () => {
 
         
     if(linhas.length-1 == fase){
-      console.log('entrei')
       setFim(true)
     }
 
@@ -65,8 +67,7 @@ const Ordenacao = () => {
   function progressBar() {
     const porcentagemPorQues = 100 / (quantidade.length);
     setWidth((prev) => prev + porcentagemPorQues);
-    console.log("entrei")
-}
+  }
 
 useEffect(() => {
 
@@ -83,17 +84,16 @@ useEffect(() => {
 }, [])
 
 
-  const onDragEnd = (result: { destination: { index: any; }; source: { index: any; }; }) => {
+  function onDragEnd(result: DropResult ) {
     if (!result.destination) {
       return;
     }
 
-    const reorderedItems = reorder(
+    const reorderedItems  = reorder(
       linhas,
       result.source.index,
       result.destination.index
     );
-
     setLinhas(reorderedItems);
   };
 
@@ -126,7 +126,6 @@ useEffect(() => {
   }
 
   
-
   return (
     <div className={styles.ordenacao}>
                <div className={styles.miniHeader}>
