@@ -12,6 +12,7 @@ const Botoes = ({ id }: props) => {
   const { setVariaveis, variaveis } = useContext(pointContext);
   const botoes = useRef<HTMLDivElement>(null);
 
+
   function play(id: string) {
     if (id == "1") {
       setVariaveis(true);
@@ -49,7 +50,7 @@ const Botoes = ({ id }: props) => {
           <img src="./bau.png" alt="Baú" />
         </Link>
 
-        <Link to={`/ordenacao/${id}`} className={`botao1`}>
+        <Link to={ `/ordenacao/${id}`} className={`botao1`}>
           <img src="./programar.png" alt="Icone de programação" />
         </Link>
 

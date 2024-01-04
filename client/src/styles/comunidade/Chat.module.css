@@ -1,10 +1,49 @@
 .chat{
+    max-width: 1050px;
     width: 100%;
     height: 100vh;
     display: flex;
-    flex-wrap: wrap;
-    padding: 80px 50px;
-    gap: 20px;
-    justify-content: center;
+    flex-direction: column;
+    padding: 60px 40px;
+    gap: 50px;
+}
+
+.infoDuvidas{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    }
+
+.infoDuvidas .infoData{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+    gap: 8px;
+}
+
+.infoData .data{
+    color: #828282;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.infoData .borda{
+    width: 30%;
+    height: 1.8px;
+    background-color: #828282;
+}
+
+.fullDuvidas{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    overflow-x: scroll;
+    gap: 80px;
+}
+
+.fullDuvidas::-webkit-scrollbar{
+    display: none;
 }

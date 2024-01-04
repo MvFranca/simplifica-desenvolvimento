@@ -1,12 +1,12 @@
 .container{
-    width: 100%;
+    width: 100vw;
     height: 100%;
     display: flex;
-    justify-content: space-between;
+    overflow-x: hidden;
 }
 
 .header{
-    width: 300px;
+    min-width: 250px;
     height: 100vh;
 }
 
@@ -16,12 +16,11 @@
 }
 
 .chat{
-    width: 70%;
+    width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 
 .criacao{

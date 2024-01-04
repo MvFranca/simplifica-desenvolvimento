@@ -16,9 +16,10 @@ app.use(cors<Request>());
 app.get("/", (req, res) => {
   res.json({ msg: "Olá, mundo!" });
 });
-app.use("/api/users/", userRouter);
-app.use("/api/auth/", authRouter);
-app.use("/api/points/", pointsRouter);
+
+// app.use("/api/users/", userRouter);
+app.use("/api/auth", authRouter);
+app.use("/api/points", pointsRouter);
 
 app.listen(8000, () => {
   console.log("Rodando na 8000");
