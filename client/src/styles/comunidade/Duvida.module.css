@@ -1,43 +1,52 @@
 .duvida{
-    width: 30%;
-    min-width: 200px;
+    width: 40%;
+    min-width: 43%;
     height: max-content;
     min-height: 180px;
     border-radius: 12px;
-    border: 2px solid #E1E1E1;
+    border: 3px solid #D9D9D9;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     text-align: initial;
+    padding: 20px;
 }
 
 .textos{
-    width: 90%;
+    width: 100%;
     text-align: initial;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    gap: 10px;
 }
 
 .textos h3{
     color: #268aff;
+    font-size: 1.3em;
+}
+
+.textos p{
+    font-size: 1.1em;
+
 }
 
 .duvida button{
-    width: 90%;
+    width: 100%;
     background-color: #268aff;
     color: #fff;
-    box-shadow: 0px 5px 0px 0.5px #1564be;
+    box-shadow: 4px 4px 0px 0.5px #1564be;
     padding: 10px;
     border: none;
-    border-radius: 15px;
-    margin-top: 20px;
+    border-radius: 8px;
+    margin-top: 10px;
     transition: 0.2s all;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .duvida button:hover{
-    transform: translateY(5px);
+    transform: translateY(4px) translateX(4px);
     box-shadow: none;
 }

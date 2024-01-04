@@ -7,9 +7,9 @@ const Duvida = () => {
                  <h3>
                     Váriáveis
                  </h3>
-                             <p>
-                    Tive problemas ao definir as váriaveis dentro do vscode...
-                             </p>
+                    <p>
+                        Tive problemas ao definir as váriaveis dentro do vscode...
+                    </p>
              </div>
             <button>VER DÚVIDA</button>
         </div>
