@@ -13,7 +13,8 @@ const FormChat = () => {
             
             {
                 form  &&
-                <div className={styles.containerForm}>             
+                <div className={styles.containerForm}>     
+                            
                     <form className={styles.form}>
                         
                         <div>

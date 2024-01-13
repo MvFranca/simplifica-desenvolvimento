@@ -15,50 +15,77 @@ const Chat = () => {
                 </div>
 
                 <div className={styles.fullDuvidas}>
-                    <Duvida/>
-                    <Duvida/>
-                    <Duvida/>
-                    <Duvida/>
+                    <span className={styles.setaEsquerda}>
+                        <img src="icon-arrow.png" alt="seta" />
+                    </span>
+                    <div>
+                        <Duvida/>
+                        <Duvida/>
+                        <Duvida/>
+                        <Duvida/>
+                    </div>
+                    <span className={styles.setaDireita}>
+                        <img src="icon-arrow.png" alt="seta"/>
+                    </span>
                 </div>
-
+                
             </section>
 
+            
             <section className={styles.infoDuvidas}>
                 
                 <div className={styles.infoData}>
                     <span className={styles.data}>
-                        04/01
+                        13/01
                     </span>
                     <span className={styles.borda}/>
                 </div>
 
                 <div className={styles.fullDuvidas}>
-                    <Duvida/>
-                    <Duvida/>
-                    <Duvida/>
-                    <Duvida/>
+                    <span className={styles.setaEsquerda}>
+                        <img src="icon-arrow.png" alt="seta" />
+                    </span>
+                    <div>
+                        <Duvida/>
+                        <Duvida/>
+                        <Duvida/>
+                        <Duvida/>
+                    </div>
+                    <span className={styles.setaDireita}>
+                        <img src="icon-arrow.png" alt="seta"/>
+                    </span>
                 </div>
-
+                
             </section>
+         
             <section className={styles.infoDuvidas}>
                 
                 <div className={styles.infoData}>
                     <span className={styles.data}>
-                        04/01
+                        07/01
                     </span>
                     <span className={styles.borda}/>
                 </div>
 
                 <div className={styles.fullDuvidas}>
-                    <Duvida/>
-                    <Duvida/>
-                    <Duvida/>
-                    <Duvida/>
+                    <span className={styles.setaEsquerda}>
+                        <img src="icon-arrow.png" alt="seta" />
+                    </span>
+                    <div>
+                        <Duvida/>
+                        <Duvida/>
+                        <Duvida/>
+                        <Duvida/>
+                    </div>
+                    <span className={styles.setaDireita}>
+                        <img src="icon-arrow.png" alt="seta"/>
+                    </span>
                 </div>
-
+                
             </section>
 
 
+            
 
         </div>
      );

@@ -9,6 +9,7 @@
 }
 
 .infoDuvidas{
+    flex-wrap: wrap;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -38,12 +39,58 @@
 
 .fullDuvidas{
     width: 100%;
+    max-width: 100%;
     display: flex;
-    justify-content: start;
-    overflow-x: scroll;
-    gap: 80px;
 }
 
-.fullDuvidas::-webkit-scrollbar{
+.fullDuvidas span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fullDuvidas div{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    gap: 10px;
+    scroll-snap-type: x mandatory;
+    overflow-x: scroll;
+}
+
+.setaDireita , .setaEsquerda {
+    position: relative;
+    height: 100%;
+    margin: 0 20px;
+    width: 30px;
+}
+
+
+.setaDireita img, .setaEsquerda img{
+
+    width: 30px;
+    height: 30px;
+}
+
+.setaEsquerda img{
+    transform: rotate(180deg);
+}
+
+.fullDuvidas div::-webkit-scrollbar{
     display: none;
+}
+
+@media screen and (max-width: 1000px) {
+    
+    .fullDuvidas span{
+        display: none;
+    }
+    
+}
+
+@media screen and (max-width: 800px) {
+
+    .chat{
+        margin-top: 100px;
+    }
 }

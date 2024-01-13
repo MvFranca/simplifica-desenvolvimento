@@ -1,6 +1,6 @@
 .duvida{
-    width: 40%;
-    min-width: 43%;
+    width: 50%;
+    min-width: 48.6%;
     height: max-content;
     min-height: 180px;
     border-radius: 12px;
@@ -11,6 +11,7 @@
     flex-direction: column;
     text-align: initial;
     padding: 20px;
+    scroll-snap-align: start;
 }
 
 .textos{
@@ -49,4 +50,19 @@
 .duvida button:hover{
     transform: translateY(4px) translateX(4px);
     box-shadow: none;
+}
+
+
+@media screen and (max-width: 1000px) {
+    .duvida{
+        width: 100%;
+
+        min-width: 100%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .duvida{
+        min-width: calc(100% - 30px);
+    }
 }

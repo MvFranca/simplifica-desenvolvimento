@@ -8,8 +8,8 @@
     background-color: #268AFF;
     box-shadow: 4px 4px 0px 0.5px #1564be;
     transition: 0.2s all;
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     font-size: 1px;
     font-weight: bold;
     position: fixed;
@@ -39,17 +39,18 @@
 }
 
 .form{
-    width: 80%;
-    height: 80%;
+    width: 60%;
+    height: 85%;
+    max-height: 550px;
     background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
     border-radius: 10px;
-    position: relative;
-    top: 25px;
-    right: 15px;
+    position: fixed;
+    right: 130px;
+    bottom: 45px;
     padding: 50px;
     gap: 20px;
 }
@@ -119,3 +120,48 @@
     transform: translateY(4px) translateX(4px);
     box-shadow: none;
 }
+
+@media screen and (max-width: 1000px) {
+    
+    .form{
+        width: 50%;
+        height: 85%;
+    }
+    
+    .abrir{
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    
+    .containerForm{
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .abrir{
+        bottom: 80px;
+        right: 23px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .form{
+        min-height: max-content;
+        height: 75%;
+        bottom: 130px;
+        right: 50%;
+        margin-right: -45%;
+        min-width: 90%;
+        padding: 10px 20px;
+    }
+
+    .anexar label{
+        padding: 10px;
+        text-align: center;
+        font-size: 0.9em;
+    }
+}
+

@@ -15,6 +15,12 @@ export default function Home() {
   const { setPontos } = useContext(pointContext);
 
   useEffect(() => {
+    const value = localStorage.getItem("simplifica:token");
+    console.log('aqui')
+    if (!value) router("/entrar");
+  }, [router]);
+
+  useEffect(() => {
     const user = localStorage.getItem("simplifica:user")!;
     const userObject = JSON.parse(user);
 
@@ -32,12 +38,7 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    const value = localStorage.getItem("simplifica:token");
-
-    if (!value) router("/entrar");
-  }, [router]);
-
+ 
   return (
     <div className={styles.container}>
       <Header />
