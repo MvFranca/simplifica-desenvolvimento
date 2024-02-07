@@ -32,17 +32,25 @@ npm i
 - Configurar variáveis de ambiente
   - Criar o arquivo `.env` com as credenciais do banco Postgres, baseado no `/api/.env.example`
 
-- Rodar versão de desenvolvimento com `nodemon`
+- Rodar banco PostgreSQL no Docker
+```
+docker-compose down
+```
+```
+docker-compose up -d
+```
+
+- Rodar versão de desenvolvimento com `nodemon` (na pasta client)
 ```
 npm run dev
 ```
 
-- gerar build (pasta `dist/`) do projeto
+- gerar build (pasta `dist/`) do projeto (na pasta client)
 ```
 npm run build
 ```
 
-- rodar build (pasta `dist/`)  do projeto
+- rodar build (pasta `dist/`)  do projeto na pasta (api)
 ```
 npm run start
 ```
