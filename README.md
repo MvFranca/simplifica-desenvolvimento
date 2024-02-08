@@ -50,7 +50,7 @@ npm run dev
 npm run build
 ```
 
-- rodar build (pasta `dist/`)  do projeto na pasta (api)
+- rodar build (pasta `dist/`)  do projeto (na pasta api)
 ```
 npm run start
 ```
