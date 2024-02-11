@@ -94,7 +94,11 @@ export const idPoints = async (req: Request, res: Response) => {
 };
 
 export const selectDiamondsPoints = async (req: Request, res: Response) => {
-  const { idUser } = req.body;
+
+  const idUser = req.params.idUser;
+
+  console.log("id: ")
+  console.log(idUser)
 
   await consulta(
     "SELECT pontuacao FROM pontuacaoq WHERE fk_id_usuario=$1",

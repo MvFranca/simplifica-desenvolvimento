@@ -7,6 +7,7 @@ import Registro from "../pages/auth/Cadastro";
 import EstudoManual from "../pages/estudoManual/EstudoManual";
 import Comunidade from "../pages/comunidade/comunidade";
 import Ordenacao from "../pages/ordenacao/Ordenacao";
+import Perfil from "../pages/perfil/Perfil.page";
 
 
 
@@ -31,6 +32,8 @@ const Rotas = () => {
         <Route path={`/estudomanual`} element={<EstudoManual />} />
 
         <Route path={`/comunidade`} element={<Comunidade />} />
+
+        <Route path={`/perfil`} element={<Perfil />} />
       </Routes>
     </>
   );

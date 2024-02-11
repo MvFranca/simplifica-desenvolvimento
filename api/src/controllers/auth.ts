@@ -43,9 +43,14 @@ async function insert(query, params, func) {
 }
 
 export const register = async (req, res) => {
-  const { fullName, username, email, senha, confirmPassword, url_image } = req.body;
+  const { username, email, senha, confirmPassword, url_image, full_name } = req.body;
 
-  if (!fullName) return res.status(422).json({ msg: "Nome completo é obrigatório!" });
+  console.log("\n\nfullname: ")
+  console.log(full_name)
+  console.log("\n\n")
+
+
+  if (!full_name) return res.status(422).json({ msg: "Nome completo é obrigatório!" });
   if (!username) return res.status(422).json({ msg: "Usuário é obrigatório!" });
   if (!email) return res.status(422).json({ msg: "O e-mail é obrigatório!" });
   if (!senha) return res.status(422).json({ msg: "A senha é obrigatória!" });
@@ -70,11 +75,11 @@ export const register = async (req, res) => {
         insert(
           `INSERT INTO usuario (full_name, username, email, senha, url_image) VALUES ($1, $2, $3, $4, &5)`,
           {
-            full_name: fullName,
             username: username,
             email: email,
             senha: passwordHash,
             url_image: url_image,
+            full_name: full_name,
           },
           (error) => {
             if (error) {

@@ -13,8 +13,10 @@ const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
   const [porcentagem, setPorcentagem] = useState(0);
   const { pontos, setPontos } = useContext(pointContext);
 
+  // const [res, setRes] = useState(false)
+
   useEffect(() => {
-    let porcentagem = Math.trunc((acertos * 100) / quantidadeQuestoes)
+    const porcentagem = Math.trunc((acertos * 100) / quantidadeQuestoes)
     setPorcentagem(porcentagem);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -22,13 +24,12 @@ const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
 
   useEffect(() => {
     if (porcentagem == 100) {
-      setPontos(pontos + 4);
+      setPontos(prev => prev + 4);
     } else if (porcentagem >= 50 && porcentagem < 100) {
-      setPontos(pontos + 2);
+      setPontos(prev => prev + 2);
     } else if (porcentagem < 50 && porcentagem > 0) {
-      setPontos(pontos + 1);
+      setPontos(prev => prev + 1);
     } else if (porcentagem == 0) return;
-
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [porcentagem]);
@@ -40,11 +41,12 @@ const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
       const userObject = JSON.parse(user)
       
       const idUser = Number(userObject.id_usuario)
-  
+
       axios
         .put("http://localhost:8000/api/points/updateDiamantes", { idUser, pontos })
         .then((res) => {
           console.log(res);
+          setRes(true)
         })
         .catch((err) => {
           console.log(err);

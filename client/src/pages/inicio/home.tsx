@@ -12,7 +12,7 @@ import { pointContext } from "../../context/context";
 
 export default function Home() {
   const router = useNavigate();
-  const { setPontos } = useContext(pointContext);
+  const { setPontos, pontos } = useContext(pointContext);
 
   useEffect(() => {
     const value = localStorage.getItem("simplifica:token");
@@ -20,23 +20,27 @@ export default function Home() {
     if (!value) router("/entrar");
   }, [router]);
 
-  useEffect(() => {
-    const user = localStorage.getItem("simplifica:user")!;
-    const userObject = JSON.parse(user);
+  // useEffect(() => {
+  //   const user = localStorage.getItem("simplifica:user")!;
+  //   const userObject = JSON.parse(user);
 
-    const idUser = Number(userObject.id_usuario);
-    axios
-      .post("http://localhost:8000/api/points/diamantes", { idUser })
-      .then((res) => {
-        const pontuacao = res.data.data.resposta;
-        setPontos(pontuacao);
-      })
+  //   const idUser = Number(userObject.id_usuario);
 
-      .catch((err) => {
-        console.log(err);
-      });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //   console.log("pontuação sendo atualizada: ")
+  //   console.log(pontos)
+
+  //   axios
+  //     .post("http://localhost:8000/api/points/diamantes", { idUser })
+  //     .then((res) => {
+  //       const pontuacao = res.data.data.resposta;
+  //       setPontos(pontuacao);
+  //     })
+
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [pontos]);
 
  
   return (

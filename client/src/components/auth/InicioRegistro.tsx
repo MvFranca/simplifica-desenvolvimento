@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const InicioRegistro = () => {
+  const [full_name, setFullName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setPassword] = useState("");
@@ -38,6 +39,7 @@ const InicioRegistro = () => {
         senha,
         confirmPassword,
         url_image,
+        full_name,
       })
       .then((res) => {
         setError("");
@@ -56,6 +58,7 @@ const InicioRegistro = () => {
       });
   }
 
+
   return (
     <>
       <div className={styles.container1}>
@@ -67,6 +70,25 @@ const InicioRegistro = () => {
             <p>Digite suas credenciais para se cadastrar:</p>
           </div>
           <form onSubmit={submitRegistro}>
+            <div>
+              <label htmlFor="FullName" className={styles.iconEmail}>
+                <IconUser
+                  width={20}
+                  height={20}
+                  className={styles.icones}
+                  color="#000000ad"
+                />
+              </label>
+              <input
+                type="FullName"
+                name="FullName"
+                id="FullName"
+                placeholder="Nome Completo"
+                onChange={(e) => {
+                  setFullName(e.currentTarget.value);
+                }}
+              />
+            </div>
             <div>
               <label htmlFor="User" className={styles.iconEmail}>
                 <IconUser
@@ -80,10 +102,11 @@ const InicioRegistro = () => {
                 type="User"
                 name="User"
                 id="User"
-                placeholder="Usuário"
+                placeholder="Username"
                 onChange={(e) => {
-                  setUsername(e.currentTarget.value);
+                  setUsername(e.target.value.replace(/\s/g, ''));
                 }}
+                value={username}
               />
             </div>
 
@@ -148,8 +171,8 @@ const InicioRegistro = () => {
 
               <input
                 type="password"
-                name="senha"
-                id="senha"
+                name="confirmSenha"
+                id="confirmSenha"
                 placeholder="Confirme sua senha"
                 onChange={(e) => {
                   setConfirmPassoword(e.currentTarget.value);
