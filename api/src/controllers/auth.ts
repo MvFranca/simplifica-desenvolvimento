@@ -26,7 +26,7 @@ async function insert(query, params, func) {
     user: process.env.DB_USER_POSTGRESS,
     password: process.env.DB_PASS,
     host: process.env.DB_HOST_POSTGRESS,
-    port: parseInt(process.env.DB_PORT_POSTGRESS || "5432"),
+    port: parseInt(process.env.DB_PORT_POSTGRESS),
     database: process.env.DB,
   });
 
@@ -43,9 +43,10 @@ async function insert(query, params, func) {
 }
 
 export const register = async (req, res) => {
-  const { username, email, senha, confirmPassword, url_image } = req.body;
+  const { fullName, username, email, senha, confirmPassword, url_image } = req.body;
 
-  if (!username) return res.status(422).json({ msg: "O nome é obrigatório!" });
+  if (!fullName) return res.status(422).json({ msg: "Nome completo é obrigatório!" });
+  if (!username) return res.status(422).json({ msg: "Usuário é obrigatório!" });
   if (!email) return res.status(422).json({ msg: "O e-mail é obrigatório!" });
   if (!senha) return res.status(422).json({ msg: "A senha é obrigatória!" });
   if (senha != confirmPassword)
@@ -67,8 +68,9 @@ export const register = async (req, res) => {
       else {
         const passwordHash = await bcrypt.hash(senha, 8);
         insert(
-          `INSERT INTO usuario (username, email, senha, url_image) VALUES ($1, $2, $3, $4)`,
+          `INSERT INTO usuario (full_name, username, email, senha, url_image) VALUES ($1, $2, $3, $4, &5)`,
           {
+            full_name: fullName,
             username: username,
             email: email,
             senha: passwordHash,
