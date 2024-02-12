@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const InicioRegistro = () => {
-  const [full_name, setFullName] = useState("");
+  const [fullname, setFullName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setPassword] = useState("");
@@ -39,7 +39,7 @@ const InicioRegistro = () => {
         senha,
         confirmPassword,
         url_image,
-        full_name,
+        fullname,
       })
       .then((res) => {
         setError("");
