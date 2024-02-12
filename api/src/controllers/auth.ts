@@ -70,11 +70,11 @@ export const register = async (req, res) => {
         insert(
           `INSERT INTO usuario (fullname, username, email, senha, url_image) VALUES ($1, $2, $3, $4, $5)`,
           {
+            fullname: fullname,
             username: username,
             email: email,
             senha: passwordHash,
-            url_image: url_image,
-            fullname: fullname,
+            url_image: url_image
           },
           (error) => {
             if (error) {
