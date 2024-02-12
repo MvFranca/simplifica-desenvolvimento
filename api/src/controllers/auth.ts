@@ -68,7 +68,7 @@ export const register = async (req, res) => {
       else {
         const passwordHash = await bcrypt.hash(senha, 8);
         insert(
-          `INSERT INTO usuario (fullname, username, email, senha, url_image) VALUES ($1, $2, $3, $4, &5)`,
+          `INSERT INTO usuario (fullname, username, email, senha, url_image) VALUES ($1, $2, $3, $4, $5)`,
           {
             username: username,
             email: email,
