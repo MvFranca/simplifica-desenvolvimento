@@ -8,6 +8,7 @@ import EstudoManual from "../pages/estudoManual/EstudoManual";
 import Comunidade from "../pages/comunidade/comunidade";
 import Ordenacao from "../pages/ordenacao/Ordenacao";
 import Perfil from "../pages/perfil/Perfil.page";
+import Ranking from "../pages/ranking/Ranking.page";
 
 
 
@@ -34,6 +35,10 @@ const Rotas = () => {
         <Route path={`/comunidade`} element={<Comunidade />} />
 
         <Route path={`/perfil`} element={<Perfil />} />
+
+        <Route path={`/ranking`} element={<Ranking />} />
+
+        <Route path={`*`} element={<div>página não encontrada - 404</div>} />
       </Routes>
     </>
   );

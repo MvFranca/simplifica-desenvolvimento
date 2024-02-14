@@ -21,6 +21,10 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRouter);
 app.use("/api/points", pointsRouter);
 
+Object.keys(require.cache).forEach(function(key) {
+  delete require.cache[key];
+});
+
 app.listen(8000, () => {
   console.log("Rodando na 8000");
 });
