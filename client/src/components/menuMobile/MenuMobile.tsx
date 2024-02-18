@@ -22,8 +22,8 @@ const MenuMobile = () => {
         <NavLink to={'/comunidade'}  className={styles.home}>
           <img src="./comunidade.png" alt="Comunidade" />
         </NavLink>
-        <NavLink to={'/perfil'}  className={styles.home}>
-          <img src="./perfil.png" alt="Perfil" />
+        <NavLink to={'/ranking'}  className={styles.home}>
+          <img src="./ranking.png" alt="Perfil" />
         </NavLink>
         <a onClick={sair} >
           <img src="./config.png" alt="Configurações" />

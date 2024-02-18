@@ -32,6 +32,7 @@ async function insert(query, params, func) {
 
   await conn.connect();
   const values = [
+    params.fullname,
     params.username,
     params.email,
     params.senha,
@@ -60,7 +61,7 @@ export const register = async (req, res) => {
         console.log(error);
         return res
           .status(500)
-          .json({ msg: "Servidor indisponível. Tente novamente mais tarde.1" });
+          .json({ msg: "Servidor indisponível. teste.1" });
       }
 
       if (data.length > 0)
@@ -74,13 +75,13 @@ export const register = async (req, res) => {
             username: username,
             email: email,
             senha: passwordHash,
-            url_image: url_image
+            url_image: url_image,
           },
           (error) => {
             if (error) {
               console.log(error);
               return res.status(500).json({
-                msg: "Servidor indisponível. Tente novamente mais tarde.",
+                msg: "Servidor indisponível. testee.",
               });
             } else {
               return res
@@ -106,7 +107,7 @@ export const login = (req, res) => {
         console.log(error);
         return res
           .status(500)
-          .json({ msg: "Servidor indisponível. Tente novamente mais tarde." });
+          .json({ msg: "Servidor indisponível. teste." });
       }
       if (data.rows[0]) {
         console.log(data);
@@ -140,7 +141,7 @@ export const login = (req, res) => {
         } catch (error) {
           console.log(error);
           return res.status(500).json({
-            msg: "Servidor indisponível. Tente novamente mais tarde.",
+            msg: "Servidor indisponível. teste.",
           });
         }
       } else {
