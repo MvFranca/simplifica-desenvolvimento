@@ -7,6 +7,7 @@
     display: flex;
     flex-direction: column;
     gap: 3rem;
+    
 }
 
 .cabecalho{
@@ -90,6 +91,9 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    background-color: #f4f4f4;
+    border: .0938rem solid #c7c7c7;
+    border-radius: .3125rem;
 }
 
 .tabela .cabecalho{
@@ -98,7 +102,7 @@
     padding: 0 1.875rem;
     border-radius: .25rem;
     display: flex;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
 }
 
 .tabela th{
@@ -113,7 +117,13 @@
     text-align: center;
     align-items: center;
     padding: 0 1.875rem;
-    height: 3rem;
+    height: 3.5rem;
+    border-bottom: 1.5px solid #969696;
+
+}
+
+.tabela .line:last-child{
+    border-bottom: 0;
 }
 
 .tabela th, .tabela td{
