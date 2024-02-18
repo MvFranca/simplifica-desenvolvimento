@@ -25,9 +25,9 @@ const Header = () => {
           <img src="./comunidade.png" alt="Comunidade" />
           <p>COMUNIDADE</p>
         </NavLink>
-        <NavLink to={"/perfil"}>
-          <img src="./perfil.png" alt="Perfil" />
-          <p>PERFIL</p>
+        <NavLink to={"/ranking"}>
+          <img src="./ranking.png" alt="Perfil" />
+          <p>Ranking</p>
         </NavLink>
         <NavLink onClick={sair} to={"/entrar"}>
           <img src="./config.png" alt="Configurações" />
