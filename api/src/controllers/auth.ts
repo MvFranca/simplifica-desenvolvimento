@@ -43,9 +43,10 @@ async function insert(query, params, func) {
 }
 
 export const register = async (req, res) => {
-  const { username, email, senha, confirmPassword, url_image, fullname } = req.body;
+  const { username, email, senha, confirmPassword, url_image, fullname, turma } = req.body;
 
   if (!fullname) return res.status(422).json({ msg: "Nome completo é obrigatório!" });
+  if (!turma) return res.status(422).json({ msg: "A turma é obrigatória!" });
   if (!username) return res.status(422).json({ msg: "Usuário é obrigatório!" });
   if (!email) return res.status(422).json({ msg: "O e-mail é obrigatório!" });
   if (!senha) return res.status(422).json({ msg: "A senha é obrigatória!" });
@@ -68,13 +69,14 @@ export const register = async (req, res) => {
       else {
         const passwordHash = await bcrypt.hash(senha, 8);
         insert(
-          `INSERT INTO usuario (fullname, username, email, senha, url_image) VALUES ($1, $2, $3, $4, $5)`,
+          `INSERT INTO usuario (fullname, username, email, senha, url_image, turma) VALUES ($1, $2, $3, $4, $5, $6)`,
           {
             fullname: fullname,
             username: username,
             email: email,
             senha: passwordHash,
-            url_image: url_image
+            url_image: url_image,
+            turma: turma,
           },
           (error) => {
             if (error) {
