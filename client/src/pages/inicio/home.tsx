@@ -35,7 +35,6 @@ export default function Home() {
 
   useEffect(() => {
     const value = localStorage.getItem("simplifica:token");
-    console.log('aqui')
     if (!value) router("/entrar");
   }, [router]);
 
