@@ -24,7 +24,7 @@ export const FullUsers = async (req: Request, res: Response) => {
   
 
     await consulta(
-      "SELECT * from usuario",
+      "SELECT id_usuario, username, turma, pontuacao FROM usuario INNER JOIN pontuacaoq ON usuario.id_usuario = pontuacaoq.fk_id_usuario",
       async (error, data) => {
         if (error) {
           console.log(error);
