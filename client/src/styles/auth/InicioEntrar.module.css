@@ -24,6 +24,11 @@
    
   }
 
+  .logo{
+    width: 5rem;
+    border-radius:20%;
+ }
+
   .icons{
     display: flex;
     align-items: center;
@@ -104,7 +109,7 @@
     margin: auto;
     background-color: #268AFF;
     color: #fff;
-    border-radius: 25px;
+    border-radius: 0.25rem;
     padding: 11px 50px;
     margin-top: 20px;
   }

@@ -1,8 +1,36 @@
+import { useEffect, useState } from 'react';
 import styles from '../../styles/ranking/Tabela.module.css'
 import IconDiamondd from '../icons/diamante.svg';
 import Lupa from '../icons/lupa.svg'
+import axios from 'axios';
 
 const Tabela = () => {
+
+    const [users, setUsers] = useState([])
+
+    async function usersTable(){
+        
+    axios
+      .get("http://localhost:8000/api/table/tableusers")
+      .then((res) => {
+        console.log('res')
+        console.log("aqui:" + res.data.data)
+        setUsers(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
+
+    useEffect(() => {
+        usersTable()
+    }, [])
+
+
+    useEffect(() => {
+        console.log(users)
+    }, [users])
+
     return ( 
         <div  className={styles.tableRanking}>
             <div className={styles.cabecalho}>

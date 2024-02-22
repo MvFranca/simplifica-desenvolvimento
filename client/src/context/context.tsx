@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, PropsWithChildren, useState } from "react";
+import { createContext, PropsWithChildren, useRef, useState } from "react";
 
 
 
@@ -13,8 +13,13 @@ interface pontuacao {
   setPontos: (number: number) => void;
   setFogo: (number: number) => void;
 
+  setInitialValuePontos: (number: boolean) => void;
+  initialValuePontos: boolean;
+
   variaveis: boolean;
   setVariaveis: (valor: boolean) => void;
+
+  teste: React.MutableRefObject<boolean>;
 
 }
 
@@ -28,8 +33,11 @@ const initialValue = {
   setPontos: () => {},
   setFogo: () => {},
   variaveis: false,
+  setInitialValuePontos: () => {},
+  initialValuePontos: false,
   setVariaveis: () => {},
-  setUsuario: () => {}
+  setUsuario: () => {},
+  teste: false
 };
 
 
@@ -39,14 +47,16 @@ const Context = ({children}: PropsWithChildren) => {
 
   const [pontos, setPontos] = useState(0);
   const [fogo, setFogo] = useState(0);
+  const [initialValuePontos, setInitialValuePontos ] = useState(false)
   const [variaveis, setVariaveis] = useState(false)
+  const teste = useRef<boolean>(false)
 
   const [userId, setUserId] = useState(0)
 
   
 
   return (
-    <pointContext.Provider value={{pontos, setPontos, fogo, setFogo, variaveis, setVariaveis, userId, setUserId}}>
+    <pointContext.Provider value={{teste, pontos, setPontos, fogo, setFogo, variaveis, setVariaveis, userId, setUserId, initialValuePontos, setInitialValuePontos}}>
         {children}
     </pointContext.Provider>
   );

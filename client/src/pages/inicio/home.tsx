@@ -5,14 +5,33 @@ import MenuMobile from "../../components/menuMobile/MenuMobile";
 import TrilhaeInfo from "../../components/trilhaInfo/TrilhaeInfo";
 import MenuTopo from "../../components/menuTopo/MenuTopo";
 import Header from "../../components/header/Header";
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { pointContext } from "../../context/context";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Home() {
+
+
   const router = useNavigate();
-  const { setPontos, pontos } = useContext(pointContext);
+  const { teste , pontos, initialValuePontos, setInitialValuePontos } = useContext(pointContext);
+  const notify = (dimas:number) => toast(`Parabéns! Agora você tem ${dimas} Diamantes`);
+
+
+
+  useEffect(() => {
+
+    if(teste.current){
+      notify(pontos)
+      console.log("entrei papai")
+      teste.current = false
+    }
+
+  }, [pontos])
+
+
 
   useEffect(() => {
     const value = localStorage.getItem("simplifica:token");
@@ -49,6 +68,8 @@ export default function Home() {
       <MenuTopo />
       <TrilhaeInfo />
       <MenuMobile />
+      <ToastContainer />
+
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import { Request, Response } from "express";
 import pg from "pg";
 const { Client } = pg;
 
@@ -18,8 +19,9 @@ async function consulta(query, func) {
 }
 
 
-
 export const FullUsers = async (req: Request, res: Response) => {
+
+  
 
     await consulta(
       "SELECT * from usuario",
@@ -35,7 +37,7 @@ export const FullUsers = async (req: Request, res: Response) => {
   
           return res.status(200).json({
             msg: "Pontos atualizados!",
-            data: { resposta },
+            data: { data },
           });
         }
       }
