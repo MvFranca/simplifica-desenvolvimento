@@ -5,7 +5,7 @@ import MenuMobile from "../../components/menuMobile/MenuMobile";
 import TrilhaeInfo from "../../components/trilhaInfo/TrilhaeInfo";
 import MenuTopo from "../../components/menuTopo/MenuTopo";
 import Header from "../../components/header/Header";
-import { useEffect, useContext, useRef, useState } from "react";
+import { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { pointContext } from "../../context/context";
@@ -16,7 +16,7 @@ export default function Home() {
 
 
   const router = useNavigate();
-  const { teste , pontos, initialValuePontos, setInitialValuePontos } = useContext(pointContext);
+  const { teste , pontos, setPontos } = useContext(pointContext);
   const notify = (dimas:number) => toast(`Parabéns! Agora você tem ${dimas} Diamantes`);
 
 
@@ -38,27 +38,28 @@ export default function Home() {
     if (!value) router("/entrar");
   }, [router]);
 
-  // useEffect(() => {
-  //   const user = localStorage.getItem("simplifica:user")!;
-  //   const userObject = JSON.parse(user);
+  useEffect(() => {
+    const user = localStorage.getItem("simplifica:user")!;
+    const userObject = JSON.parse(user);
 
-  //   const idUser = Number(userObject.id_usuario);
+    const idUser = Number(userObject.id_usuario);
 
-  //   console.log("pontuação sendo atualizada: ")
-  //   console.log(pontos)
+    console.log("pontuação sendo atualizada: ")
+    console.log(pontos)
 
-  //   axios
-  //     .post("http://localhost:8000/api/points/diamantes", { idUser })
-  //     .then((res) => {
-  //       const pontuacao = res.data.data.resposta;
-  //       setPontos(pontuacao);
-  //     })
+    axios
+      .post("http://localhost:8000/api/points/diamantes", { idUser })
+      .then((res) => {
+        const pontuacao = res.data.data.resposta;
+        setPontos(pontuacao.pontuacao);
+        console.log(res)
+      })
 
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [pontos]);
+      .catch((err) => {
+        console.log(err);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pontos]);
 
  
   return (

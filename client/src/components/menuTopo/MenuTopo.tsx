@@ -19,17 +19,19 @@ const MenuTopo = () => {
     console.log("pontuação sendo atualizada: ")
     console.log(pontos)
 
+    console.log('idUser:')
+    console.log(idUser)
 
-  axios
-  .post("http://localhost:8000/api/points/diamantes", { idUser })
-  .then((res) => {
-    const pontuacao = res.data.data.resposta;
-    setPontos(pontuacao);
-  })
+  // axios
+  // .post("http://localhost:8000/api/points/diamantes", { idUser })
+  // .then((res) => {
+  //   const pontuacao = res.data.data.resposta;
+  //   setPontos(pontuacao);
+  // })
 
-  .catch((err) => {
-    console.log(err);
-  });
+  // .catch((err) => {
+  //   console.log(err);
+  // });
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [pontos]);
 

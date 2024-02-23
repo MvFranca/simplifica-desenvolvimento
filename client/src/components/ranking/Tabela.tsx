@@ -13,11 +13,17 @@ const Tabela = () => {
     axios
       .get("http://localhost:8000/api/table/tableusers")
       .then((res) => {
-        console.log('res')
-        console.log("aqui:" + res.data.data)
-        setUsers(res.data.data);
+        console.log(res)
+        const usuarios = res.data.data.data.rows
+
+        usuarios.sort((a, b) => b.pontuacao - a.pontuacao);
+
+        console.log(usuarios)
+
+        setUsers(usuarios);
       })
       .catch((err) => {
+        console.log("to aqui")
         console.log(err);
       });
     }
@@ -28,7 +34,7 @@ const Tabela = () => {
 
 
     useEffect(() => {
-        console.log(users)
+          
     }, [users])
 
     return ( 
@@ -76,80 +82,26 @@ const Tabela = () => {
                     <th>Pontuação</th>
                     
                 </tr>
+                {
+                    users &&
+                    users.map((user, index) => {
+                        return(
+                            <tr className={styles.line}>
+                            <td className={styles.posicao}>{index + 1}</td>
+                            <td className={styles.username}>{ user.username }</td>
+                            <td>911</td>
+                            <td className={styles.movimentos}>-</td>
+                            <td className={styles.pontos}>
+                                {user.pontuacao}
+                                <img src={IconDiamondd} alt="Diamante" />
+                            </td>
+                        </tr>
+                        )
+                    })
+                }
 
-                <tr className={styles.line}>
-                    <td className={styles.posicao}>1</td>
-                    <td className={styles.username}>francisco_lindo</td>
-                    <td>911</td>
-                    <td className={styles.movimentos}>-</td>
-                    <td className={styles.pontos}>
-                        43
-                        <img src={IconDiamondd} alt="Diamante" />
-                    </td>
-                </tr>
 
-                <tr className={styles.line}>
-                    <td className={styles.posicao}>2</td>
-                    <td className={styles.username}>ruan_ranison</td>
-                    <td>921</td>
-                    <td className={styles.movimentos}>+1</td>
-                    <td className={styles.pontos}>
-                        38
-                        <img src={IconDiamondd} alt="Diamante" />
-                    </td>
-                </tr>
-
-                <tr className={styles.line}>
-                    <td className={styles.posicao}>3</td>
-                    <td className={styles.username}>guilherme</td>
-                    <td>921</td>
-                    <td className={styles.movimentos}>-1</td>
-                    <td className={styles.pontos}>
-                        31
-                        <img src={IconDiamondd} alt="Diamante" />
-                    </td>
-                </tr>
-                <tr className={styles.line}>
-                    <td className={styles.posicao}>3</td>
-                    <td className={styles.username}>guilherme</td>
-                    <td>921</td>
-                    <td className={styles.movimentos}>-1</td>
-                    <td className={styles.pontos}>
-                        31
-                        <img src={IconDiamondd} alt="Diamante" />
-                    </td>
-                </tr>
-                <tr className={styles.line}>
-                    <td className={styles.posicao}>3</td>
-                    <td className={styles.username}>guilherme</td>
-                    <td>921</td>
-                    <td className={styles.movimentos}>-1</td>
-                    <td className={styles.pontos}>
-                        31
-                        <img src={IconDiamondd} alt="Diamante" />
-                    </td>
-                </tr>
-                <tr className={styles.line}>
-                    <td className={styles.posicao}>3</td>
-                    <td className={styles.username}>guilherme</td>
-                    <td>921</td>
-                    <td className={styles.movimentos}>-1</td>
-                    <td className={styles.pontos}>
-                        31
-                        <img src={IconDiamondd} alt="Diamante" />
-                    </td>
-                </tr>
-                <tr className={styles.line}>
-                    <td className={styles.posicao}>3</td>
-                    <td className={styles.username}>guilherme</td>
-                    <td>921</td>
-                    <td className={styles.movimentos}>-1</td>
-                    <td className={styles.pontos}>
-                        31
-                        <img src={IconDiamondd} alt="Diamante" />
-                    </td>
-                </tr>
-
+              
             </table>
 
         </div>
