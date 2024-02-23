@@ -38,6 +38,8 @@ export default function Home() {
     if (!value) router("/entrar");
   }, [router]);
 
+  
+
   useEffect(() => {
     const user = localStorage.getItem("simplifica:user")!;
     const userObject = JSON.parse(user);
@@ -47,6 +49,7 @@ export default function Home() {
     console.log("pontuação sendo atualizada: ")
     console.log(pontos)
 
+    if(!teste.current){
     axios
       .post("http://localhost:8000/api/points/diamantes", { idUser })
       .then((res) => {
@@ -58,6 +61,7 @@ export default function Home() {
       .catch((err) => {
         console.log(err);
       });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pontos]);
 

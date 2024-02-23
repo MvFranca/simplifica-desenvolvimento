@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import styles from "../../styles/home/Acertos.module.css";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { pointContext } from "../../context/context";
 import axios from "axios";
@@ -12,8 +11,8 @@ type props = {
 
 const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
   const [porcentagem, setPorcentagem] = useState(0);
-  const { teste, pontos, setPontos, setInitialValuePontos } = useContext(pointContext);
-
+  const { teste, pontos, setPontos } = useContext(pointContext);
+  const points = useRef(pontos)
 
   // const [res, setRes] = useState(false)
 
@@ -32,7 +31,7 @@ const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
     } else if (porcentagem < 50 && porcentagem > 0) {
       setPontos(prev => prev + 1);
     } else if (porcentagem == 0) return;
-
+    points.current = pontos
     teste.current = true
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [porcentagem]);
@@ -40,6 +39,8 @@ const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
   
 
     useEffect(() => {
+      if(pontos !== points.current){
+        
       const user = localStorage.getItem("simplifica:user")!
       const userObject = JSON.parse(user)
       
@@ -49,11 +50,13 @@ const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
         .put("http://localhost:8000/api/points/updateDiamantes", { idUser, pontos })
         .then((res) => {
           console.log(res);
-          setRes(true)
+          // setRes(true)
         })
         .catch((err) => {
           console.log(err);
         });
+        
+      }
     }, [pontos])
     
 

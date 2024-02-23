@@ -4,10 +4,9 @@ import styles from "../../styles/home/MenuTopo/MenuTopo.module.css";
 
 import { pointContext } from "../../context/context";
 import { useContext, useEffect } from "react";
-import axios from "axios";
 
 const MenuTopo = () => {
-  const { pontos, setPontos } = useContext(pointContext);
+  const { pontos } = useContext(pointContext);
 
 
   useEffect(() => {
