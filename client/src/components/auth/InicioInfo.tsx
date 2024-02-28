@@ -10,6 +10,7 @@ const InicioInfo = ({opcao, caminho}: elementos) => {
     return(
         <div className={styles.container}>
             <div className={styles.informacoes}>
+                {/* <img src="./logo-simplifica.png" alt="Logo Simplifica" className={styles.logo}/> */}
                 <h1>
                     SIMPLIFICA
                 </h1>

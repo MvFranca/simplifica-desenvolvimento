@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import styles from "../../styles/home/Acertos.module.css";
-
+import 'react-toastify/dist/ReactToastify.css';
 import { pointContext } from "../../context/context";
 import axios from "axios";
 
@@ -11,7 +11,8 @@ type props = {
 
 const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
   const [porcentagem, setPorcentagem] = useState(0);
-  const { pontos, setPontos } = useContext(pointContext);
+  const { teste, pontos, setPontos } = useContext(pointContext);
+  const points = useRef(pontos)
 
   // const [res, setRes] = useState(false)
 
@@ -30,13 +31,16 @@ const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
     } else if (porcentagem < 50 && porcentagem > 0) {
       setPontos(prev => prev + 1);
     } else if (porcentagem == 0) return;
-
+    points.current = pontos
+    teste.current = true
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [porcentagem]);
 
   
 
     useEffect(() => {
+      if(pontos !== points.current){
+        
       const user = localStorage.getItem("simplifica:user")!
       const userObject = JSON.parse(user)
       
@@ -46,13 +50,13 @@ const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
         .put("http://localhost:8000/api/points/updateDiamantes", { idUser, pontos })
         .then((res) => {
           console.log(res);
-          setRes(true)
+          // setRes(true)
         })
         .catch((err) => {
           console.log(err);
         });
-        console.log(pontos)
-  
+        
+      }
     }, [pontos])
     
 
@@ -67,7 +71,6 @@ const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
             Seu aproveitamento foi de: <strong>{porcentagem}%</strong>
           </p>
         </div>
-
         <div className={styles.numeros}>
           <p className={styles.acertos}>
             <strong> {acertos}</strong>
@@ -79,6 +82,7 @@ const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
               <span>
                 <strong>{quantidadeQuestoes}</strong> POSSÍVEIS
               </span>
+               {/* <ToastContainer /> */}
             </p>
           </div>
         </div>

@@ -3,12 +3,29 @@ import styles from "../../styles/home/Opcoes.module.css";
 import IconFire from "../icons/IconFire";
 import IconDiamond from "../icons/IconDiamond";
 import { pointContext } from "../../context/context";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Opcoes = () => {
   const router = useNavigate();
   const { pontos, fogo } = useContext(pointContext);
+  const [username, setUsername] = useState("")
+
+  useEffect(() => {
+    const user = localStorage.getItem("simplifica:user")!;
+    const userObject = JSON.parse(user);
+
+    const idUser = Number(userObject.id_usuario);
+
+    console.log("pontuação sendo atualizada: ")
+    console.log(pontos)
+
+    console.log('idUser:')
+    console.log(user)
+    
+    setUsername(userObject.username)
+
+}, [pontos]);
 
   return (
     <aside className={styles.informacoes}>
@@ -24,6 +41,10 @@ const Opcoes = () => {
 
         <div>
           <img src="./perfil.png" alt="Perfil" />
+          {/* {
+            username &&
+             username
+          } */}
         </div>
       </div>
 

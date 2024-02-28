@@ -1,0 +1,274 @@
+.tableRanking{
+    width: calc(100% - 250px);
+    overflow: hidden;
+    box-sizing: border-box;
+    margin-left: 250px;
+    padding: 50px 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    
+}
+
+.cabecalho{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cabecalho h1{
+    color: #000;
+    font-size: 2.5rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.cabecalho h1 span{
+    width: 70%;
+    height: .3125rem;
+    background-color: #268AFF;
+    border-radius: .3125rem;
+}
+
+.searchInput{
+    display: flex;
+    border: 1.5px solid #777777;
+    border-radius: 1.25rem;
+    
+
+}
+
+.searchInput input{
+    border: none;
+    border-radius: 1.25rem;
+    padding-left: .75rem;
+    width: 200px;
+    outline: none;
+}
+
+.searchInput input::placeholder{
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.searchInput button{
+    background-color: #268AFF;
+    border-radius: 0 1.25rem 1.25rem 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+}
+
+.searchInput button img{
+    width: 2.1875rem;
+    margin-bottom: -0.5rem;
+
+}
+
+.pointsOptions{
+    width: 100%;
+    display: flex;
+
+    border-bottom: 1.5px solid #D9D9D9;
+
+}
+
+.pointsOptions span{
+    font-weight: bold;
+    width: 8rem;
+    height: 2rem;
+    text-align: center;
+    font-family: "Inter";
+}
+
+.pointsOptions .diamantes{
+    border-bottom: 3px solid #268AFF;
+}
+
+.tabela{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #f4f4f4;
+    border: .0938rem solid #c7c7c7;
+    border-radius: .3125rem;
+}
+
+.tabela .cabecalho{
+    background-color: #DDDDDD;
+    height: 2.875rem;
+    padding: 0 1.875rem;
+    border-radius: .25rem;
+    display: flex;
+    /* margin-bottom: 1rem; */
+}
+
+.tabela th{
+    font-weight: normal;
+}
+.tabela th img{
+    width: 1.5rem;
+}
+
+.tabela .line{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    padding: 0 1.875rem;
+    height: 3.5rem;
+    border-bottom: 1.5px solid #969696;
+
+}
+
+.tabela .line:last-child{
+    border-bottom: 0;
+}
+
+.tabela th, .tabela td{
+    width: 20%;
+}
+
+.tabela td{
+    color: #6D6D6D;
+    font-weight: bold;
+}
+
+.tabela .posicao{
+    color: #268AFF;
+    font-weight: bold;
+    font-size: 1.125rem;
+}
+
+.tabela .username{
+    font-weight: bold;
+    color: #000;
+}
+
+.tabela .pontos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tabela .pontos img{
+    width: 1.25rem;
+}
+
+.tabela .line{
+    width: 100%;
+}
+
+@media screen and (max-width: 71.875rem) {
+    .tableRanking{
+        padding: 3.125rem;
+    }
+}
+
+@media screen and (max-width: 62.5rem) {
+    .tableRanking{
+        padding: 1.875rem;
+    }
+
+    .tabela .line, .tabela .cabecalho{
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 56.25rem) {
+    .tabela th, .tabela td{
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 50rem) {
+    .tableRanking{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 4.375rem 0;
+    }
+    
+    .cabecalho h1{
+        font-size: 2.2rem;
+    }
+}
+
+@media screen and (max-width: 34.375rem) {
+
+    .searchInput input{
+        width: 10rem;
+    }
+
+    /* .searchInput button{
+        border-radius: 0.5rem;
+    } */
+
+    .tableRanking h1{
+        font-size: 2rem;
+    }
+
+    .tabela .line{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .tabela th, .tabela td{
+        width: 25%;
+        margin-left: -0.875rem;
+    }
+
+    .tableRanking{
+        padding: 1.875rem 1.25rem;
+    }
+
+    .tabela .username{
+        overflow: scroll;
+    }
+
+    .tabela .username::-webkit-scrollbar{
+        display: none;
+    }
+
+    .tabela th{
+        font-size: 0.8rem;
+    }
+
+    .movimentos{
+        display: none;
+    }
+
+    .tabela th img{
+        display: none;
+    }
+
+}
+
+@media screen and (max-width: 420px) {
+    /* .searchInput{
+        border: none;
+    } */
+
+    .searchInput input::placeholder{
+        font-size: 0.75rem;
+    }
+}
+
+
+@media screen and (max-width: 400px) {
+        .searchInput{
+        border: none;
+    }
+
+    .searchInput input{
+        display: none;
+    }
+
+    .searchInput button{
+        border-radius: .5rem;
+        height: 2.5rem;
+        width: 2.5rem;
+    }
+}

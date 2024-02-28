@@ -24,6 +24,11 @@
    
   }
 
+  .logo{
+    width: 5rem;
+    border-radius:20%;
+ }
+
   .icons{
     display: flex;
     align-items: center;
@@ -68,6 +73,21 @@
     cursor: pointer;
   }
 
+  .classSelect{
+    background-color: #E8E8E8;
+    height: 50px;
+    width: 100%;
+    outline: none;
+    border: none;
+    color: #757575;
+
+    padding: 0 10px;
+  }
+
+  .classSelect option{
+    color: #757575;
+  }
+
   #senha{
     padding: 12px;
     cursor: pointer;
@@ -104,7 +124,7 @@
     margin: auto;
     background-color: #268AFF;
     color: #fff;
-    border-radius: 25px;
+    border-radius: 0.25rem;
     padding: 11px 50px;
     margin-top: 20px;
   }

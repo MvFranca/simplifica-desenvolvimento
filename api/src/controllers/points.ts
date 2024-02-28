@@ -95,7 +95,8 @@ export const idPoints = async (req: Request, res: Response) => {
 
 export const selectDiamondsPoints = async (req: Request, res: Response) => {
 
-  const idUser = req.params.idUser;
+  const { idUser } = req.body;
+
 
   console.log("id: ")
   console.log(idUser)
@@ -111,7 +112,9 @@ export const selectDiamondsPoints = async (req: Request, res: Response) => {
           .status(500)
           .json({ msg: "Servidor indisponível. Tente novamente mais tarde." });
       } else {
-        const resposta = await data.rows[0].pontuacao;
+        const resposta = await data.rows[0];
+        console.log("resposta: ")
+        console.log(resposta)
 
         return res.status(200).json({
           msg: "Pontos atualizados!",

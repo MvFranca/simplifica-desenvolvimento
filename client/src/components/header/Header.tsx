@@ -27,7 +27,7 @@ const Header = () => {
         </NavLink>
         <NavLink to={"/ranking"}>
           <img src="./ranking.png" alt="Perfil" />
-          <p>Ranking</p>
+          <p>RANKING</p>
         </NavLink>
         <NavLink onClick={sair} to={"/entrar"}>
           <img src="./config.png" alt="Configurações" />

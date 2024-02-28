@@ -5,12 +5,14 @@ import IconUser from "../../icons/IconUser";
 import styles from "../../styles/auth/InicioEntrar.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import IconGoogleClassroom from "../icons/iconClass";
 
 const InicioRegistro = () => {
   const [fullname, setFullName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setPassword] = useState("");
+  const [turma, setTurma] = useState("921")
   const [confirmPassword, setConfirmPassoword] = useState("");
   const [error, setError] = useState("");
   const [sucess, setSucess] = useState("");
@@ -32,6 +34,8 @@ const InicioRegistro = () => {
 
   function submitRegistro(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    console.log('turma:')
+    console.log(turma)
     axios
       .post("http://localhost:8000/api/auth/register", {
         username,
@@ -40,6 +44,7 @@ const InicioRegistro = () => {
         confirmPassword,
         url_image,
         fullname,
+        turma,
       })
       .then((res) => {
         setError("");
@@ -58,6 +63,10 @@ const InicioRegistro = () => {
       });
   }
 
+
+  // const turmas = [
+
+  // ]
 
   return (
     <>
@@ -89,6 +98,7 @@ const InicioRegistro = () => {
                 }}
               />
             </div>
+            
             <div>
               <label htmlFor="User" className={styles.iconEmail}>
                 <IconUser
@@ -110,6 +120,36 @@ const InicioRegistro = () => {
               />
             </div>
 
+            <div>
+
+              <label htmlFor="turma" className={styles.iconEmail}>
+                <IconGoogleClassroom
+                  width={20}
+                  height={20}
+                  className={styles.icones}
+                  color="#000000ad"
+                />
+              </label>
+
+             <select className={styles.classSelect} name="turma" id="turma" 
+             onChange={(e) => {
+              setTurma(e.target.value.replace(/\s/g, ''));
+            }}>
+                <option value="921">
+                  921
+                </option>
+                <option value="911">
+                  911
+                </option>
+                <option value="922">
+                  922
+                </option>
+                <option value="912">
+                  912
+                </option>
+             </select>
+
+            </div>
             <div>
               <label htmlFor="email" className={styles.iconEmail}>
                 <IconEmail

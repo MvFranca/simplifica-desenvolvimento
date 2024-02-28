@@ -32,10 +32,12 @@ async function insert(query, params, func) {
 
   await conn.connect();
   const values = [
+    params.fullname,
     params.username,
     params.email,
     params.senha,
     params.url_image,
+    params.turma,
   ];
 
   await conn.query(query, values, func);
@@ -53,19 +55,22 @@ export const register = async (req, res) => {
   if (senha != confirmPassword)
     return res.status(422).json({ msg: "As senhas não são iguais" });
 
+    console.log('oiii')
+
   const conn = await consulta(
-    "SELECT email FROM usuario WHERE email=$1",
+    `SELECT email FROM usuario WHERE email=$1`,
     email,
     async (error, data) => {
+
+
       if (error) {
         console.log(error);
         return res
           .status(500)
-          .json({ msg: "Servidor indisponível. Tente novamente mais tarde.1" });
+          .json({ msg: "Servidor indisponível. teste.1" });
       }
 
-      if (data.length > 0)
-        return res.status(500).json({ msg: "E-mail já existente." });
+      if (data.rows.length > 0) return res.status(500).json({ msg: "O E-mail já existente." });
       else {
         const passwordHash = await bcrypt.hash(senha, 8);
         insert(
@@ -82,7 +87,7 @@ export const register = async (req, res) => {
             if (error) {
               console.log(error);
               return res.status(500).json({
-                msg: "Servidor indisponível. Tente novamente mais tarde.",
+                msg: "Servidor indisponível. testee.",
               });
             } else {
               return res
@@ -108,7 +113,7 @@ export const login = (req, res) => {
         console.log(error);
         return res
           .status(500)
-          .json({ msg: "Servidor indisponível. Tente novamente mais tarde." });
+          .json({ msg: "Servidor indisponível. teste." });
       }
       if (data.rows[0]) {
         console.log(data);
@@ -142,7 +147,7 @@ export const login = (req, res) => {
         } catch (error) {
           console.log(error);
           return res.status(500).json({
-            msg: "Servidor indisponível. Tente novamente mais tarde.",
+            msg: "Servidor indisponível. teste.",
           });
         }
       } else {

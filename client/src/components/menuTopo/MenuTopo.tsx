@@ -3,12 +3,11 @@ import IconFire from "../icons/IconFire";
 import styles from "../../styles/home/MenuTopo/MenuTopo.module.css";
 
 import { pointContext } from "../../context/context";
-import { useContext, useEffect } from "react";
-import axios from "axios";
+import { useContext, useEffect, useState } from "react";
 
 const MenuTopo = () => {
-  const { pontos, setPontos } = useContext(pointContext);
-
+  const { pontos } = useContext(pointContext);
+  const [username, setUsername] = useState("")
 
   useEffect(() => {
     const user = localStorage.getItem("simplifica:user")!;
@@ -19,20 +18,21 @@ const MenuTopo = () => {
     console.log("pontuação sendo atualizada: ")
     console.log(pontos)
 
+    console.log('idUser:')
+    console.log(user)
+    setUsername(user.username)
+  // axios
+  // .post("http://localhost:8000/api/points/diamantes", { idUser })
+  // .then((res) => {
+  //   const pontuacao = res.data.data.resposta;
+  //   setPontos(pontuacao);
+  // })
 
-  axios
-  .post("http://localhost:8000/api/points/diamantes", { idUser })
-  .then((res) => {
-    const pontuacao = res.data.data.resposta;
-    setPontos(pontuacao);
-  })
-
-  .catch((err) => {
-    console.log(err);
-  });
+  // .catch((err) => {
+  //   console.log(err);
+  // });
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [pontos]);
-
 
 
   return (

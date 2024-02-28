@@ -48,6 +48,8 @@ const InicioForm = () => {
     <>
       <div className={styles.container}>
         <div id={styles.formulario}>
+        {/* <img src="./logo-simplifica.png" alt="Logo Simplifica" className={styles.logo}/> */}
+    
           <div>
             <h1>Entrar na Conta</h1>
           </div>
@@ -59,6 +61,7 @@ const InicioForm = () => {
           <div>
             <p>Digite suas credenciais para entrar:</p>
           </div>
+          
 
           <form onSubmit={submitLogin}>
             <div>
