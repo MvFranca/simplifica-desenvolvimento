@@ -89,7 +89,7 @@ const Tabela = () => {
                             <tr className={styles.line}>
                             <td className={styles.posicao}>{index + 1}</td>
                             <td className={styles.username}>{ user.username }</td>
-                            <td>911</td>
+                            <td>{user.turma}</td>
                             <td className={styles.movimentos}>-</td>
                             <td className={styles.pontos}>
                                 {user.pontuacao}

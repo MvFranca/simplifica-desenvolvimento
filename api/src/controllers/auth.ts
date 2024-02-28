@@ -37,6 +37,7 @@ async function insert(query, params, func) {
     params.email,
     params.senha,
     params.url_image,
+    params.turma,
   ];
 
   await conn.query(query, values, func);
@@ -44,7 +45,7 @@ async function insert(query, params, func) {
 }
 
 export const register = async (req, res) => {
-  const { username, email, senha, confirmPassword, url_image, fullname } = req.body;
+  const { username, email, senha, confirmPassword, url_image, fullname, turma } = req.body;
 
   if (!fullname) return res.status(422).json({ msg: "Nome completo é obrigatório!" });
   if (!username) return res.status(422).json({ msg: "Usuário é obrigatório!" });
@@ -53,10 +54,14 @@ export const register = async (req, res) => {
   if (senha != confirmPassword)
     return res.status(422).json({ msg: "As senhas não são iguais" });
 
+    console.log('oiii')
+
   const conn = await consulta(
-    "SELECT email FROM usuario WHERE email=$1",
+    `SELECT email FROM usuario WHERE email=$1`,
     email,
     async (error, data) => {
+
+
       if (error) {
         console.log(error);
         return res
@@ -64,18 +69,18 @@ export const register = async (req, res) => {
           .json({ msg: "Servidor indisponível. teste.1" });
       }
 
-      if (data.length > 0)
-        return res.status(500).json({ msg: "E-mail já existente." });
+      if (data.rows.length > 0) return res.status(500).json({ msg: "O E-mail já existente." });
       else {
         const passwordHash = await bcrypt.hash(senha, 8);
         insert(
-          `INSERT INTO usuario (fullname, username, email, senha, url_image) VALUES ($1, $2, $3, $4, $5)`,
+          `INSERT INTO usuario (fullname, username, email, senha, url_image, turma) VALUES ($1, $2, $3, $4, $5, $6)`,
           {
             fullname: fullname,
             username: username,
             email: email,
             senha: passwordHash,
             url_image: url_image,
+            turma: turma,
           },
           (error) => {
             if (error) {

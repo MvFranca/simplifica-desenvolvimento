@@ -53,6 +53,15 @@ const Context = ({children}: PropsWithChildren) => {
 
   const [userId, setUserId] = useState(0)
 
+
+  const [dataUser, setDataUser] = useState(
+    {
+      name: "",
+      username: "",
+      urlImg: ""
+    }
+  )
+
   
 
   return (

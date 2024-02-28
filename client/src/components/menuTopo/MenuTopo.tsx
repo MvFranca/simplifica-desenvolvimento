@@ -3,11 +3,11 @@ import IconFire from "../icons/IconFire";
 import styles from "../../styles/home/MenuTopo/MenuTopo.module.css";
 
 import { pointContext } from "../../context/context";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const MenuTopo = () => {
   const { pontos } = useContext(pointContext);
-
+  const [username, setUsername] = useState("")
 
   useEffect(() => {
     const user = localStorage.getItem("simplifica:user")!;
@@ -19,8 +19,8 @@ const MenuTopo = () => {
     console.log(pontos)
 
     console.log('idUser:')
-    console.log(idUser)
-
+    console.log(user)
+    setUsername(user.username)
   // axios
   // .post("http://localhost:8000/api/points/diamantes", { idUser })
   // .then((res) => {
@@ -33,7 +33,6 @@ const MenuTopo = () => {
   // });
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [pontos]);
-
 
 
   return (

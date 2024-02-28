@@ -73,6 +73,21 @@
     cursor: pointer;
   }
 
+  .classSelect{
+    background-color: #E8E8E8;
+    height: 50px;
+    width: 100%;
+    outline: none;
+    border: none;
+    color: #757575;
+
+    padding: 0 10px;
+  }
+
+  .classSelect option{
+    color: #757575;
+  }
+
   #senha{
     padding: 12px;
     cursor: pointer;

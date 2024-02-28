@@ -11,13 +11,24 @@ import axios from "axios";
 import { pointContext } from "../../context/context";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import IconDiamond from "../../components/icons/IconDiamond";
 
 export default function Home() {
 
 
   const router = useNavigate();
   const { teste , pontos, setPontos } = useContext(pointContext);
-  const notify = (dimas:number) => toast(`Parabéns! Agora você tem ${dimas} Diamantes`);
+  const notify = (dimas:number) => toast(`Parabéns! Agora você tem ${dimas} diamantes!}`, {
+    position: "bottom-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    
+    });
 
 
 
@@ -72,7 +83,9 @@ export default function Home() {
       <MenuTopo />
       <TrilhaeInfo />
       <MenuMobile />
-      <ToastContainer />
+      <ToastContainer 
+      
+      />
 
     </div>
   );
