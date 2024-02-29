@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, PropsWithChildren, useRef, useState } from "react";
-
+import { Dispatch, SetStateAction } from 'react';
 
 
 interface pontuacao {
@@ -10,7 +10,7 @@ interface pontuacao {
   userId: number;
   setUserId:  (number: number) => void;
 
-  setPontos: (number: number) => void;
+  setPontos: Dispatch<SetStateAction<number>>;
   setFogo: (number: number) => void;
 
   setInitialValuePontos: (number: boolean) => void;
@@ -37,7 +37,7 @@ const initialValue = {
   initialValuePontos: false,
   setVariaveis: () => {},
   setUsuario: () => {},
-  teste: false
+  teste: { current: false },
 };
 
 
@@ -54,13 +54,13 @@ const Context = ({children}: PropsWithChildren) => {
   const [userId, setUserId] = useState(0)
 
 
-  const [dataUser, setDataUser] = useState(
-    {
-      name: "",
-      username: "",
-      urlImg: ""
-    }
-  )
+  // const [dataUser, setDataUser] = useState(
+  //   {
+  //     name: "",
+  //     username: "",
+  //     urlImg: ""
+  //   }
+  // )
 
   
 

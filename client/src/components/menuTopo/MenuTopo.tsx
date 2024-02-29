@@ -3,24 +3,24 @@ import IconFire from "../icons/IconFire";
 import styles from "../../styles/home/MenuTopo/MenuTopo.module.css";
 
 import { pointContext } from "../../context/context";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 
 const MenuTopo = () => {
   const { pontos } = useContext(pointContext);
-  const [username, setUsername] = useState("")
+  // const [username, setUsername] = useState("")
 
   useEffect(() => {
-    const user = localStorage.getItem("simplifica:user")!;
-    const userObject = JSON.parse(user);
+    // const user = localStorage.getItem("simplifica:user")!;
+    // const userObject = JSON.parse(user);
 
-    const idUser = Number(userObject.id_usuario);
+    // const idUser = Number(userObject.id_usuario);
 
     console.log("pontuação sendo atualizada: ")
     console.log(pontos)
 
     console.log('idUser:')
-    console.log(user)
-    setUsername(user.username)
+    // console.log(user)
+    // setUsername(user.username)
   // axios
   // .post("http://localhost:8000/api/points/diamantes", { idUser })
   // .then((res) => {

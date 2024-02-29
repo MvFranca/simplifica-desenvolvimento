@@ -4,9 +4,15 @@ import IconDiamondd from '../icons/diamante.svg';
 import Lupa from '../icons/lupa.svg'
 import axios from 'axios';
 
+interface users {
+    username: string,
+    turma: number,
+    pontuacao:string
+}
+
 const Tabela = () => {
 
-    const [users, setUsers] = useState([])
+    const [users, setUsers] = useState<Array<users>>([])
 
     async function usersTable(){
         
@@ -16,7 +22,7 @@ const Tabela = () => {
         console.log(res)
         const usuarios = res.data.data.data.rows
 
-        usuarios.sort((a, b) => b.pontuacao - a.pontuacao);
+        usuarios.sort((a: { pontuacao: number; }, b: { pontuacao: number; }) => b.pontuacao - a.pontuacao);
 
         console.log(usuarios)
 

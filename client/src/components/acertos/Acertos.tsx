@@ -25,11 +25,11 @@ const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
 
   useEffect(() => {
     if (porcentagem == 100) {
-      setPontos(prev => prev + 4);
+      setPontos((prev: number) => prev + 4);
     } else if (porcentagem >= 50 && porcentagem < 100) {
-      setPontos(prev => prev + 2);
+      setPontos((prev: number) => prev + 2);
     } else if (porcentagem < 50 && porcentagem > 0) {
-      setPontos(prev => prev + 1);
+      setPontos((prev: number) => prev + 1);
     } else if (porcentagem == 0) return;
     points.current = pontos
     teste.current = true

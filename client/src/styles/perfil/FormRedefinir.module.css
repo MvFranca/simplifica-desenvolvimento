@@ -1,0 +1,13 @@
+.form_redefinicao{
+
+}
+
+.form_redefinicao h1{
+    font-size: 1.5625rem ;
+}
+
+.form_redefinicao .redefinicao{
+    display: flex;
+
+}
+

@@ -11,7 +11,7 @@ import axios from "axios";
 import { pointContext } from "../../context/context";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import IconDiamond from "../../components/icons/IconDiamond";
+// import IconDiamond from "../../components/icons/IconDiamond";
 
 export default function Home() {
 
