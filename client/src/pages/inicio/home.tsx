@@ -17,8 +17,10 @@ export default function Home() {
 
 
   const router = useNavigate();
+
   const { teste , pontos, setPontos } = useContext(pointContext);
-  const notify = (dimas:number) => toast(`Parabéns! Agora você tem ${dimas} diamantes!}`, {
+
+  const notify = (dimas:number) => toast(`Parabéns! Agora você tem ${dimas} diamantes!`, {
     position: "bottom-right",
     autoClose: 5000,
     hideProgressBar: false,

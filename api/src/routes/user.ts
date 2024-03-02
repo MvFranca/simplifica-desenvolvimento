@@ -1,8 +1,10 @@
 import express from "express";
-import { getUser } from "../controllers/users";
+import { ImgAtt, ImgGet } from "../controllers/users";
 
 const router = express.Router();
 
-router.get("/teste", getUser);
+
+router.post("/img_att" ,ImgAtt);
+router.get("/img_get", ImgGet);
 
 export default router;

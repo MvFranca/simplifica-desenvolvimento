@@ -1,13 +1,68 @@
 .form_redefinicao{
-
-}
-
-.form_redefinicao h1{
-    font-size: 1.5625rem ;
-}
-
-.form_redefinicao .redefinicao{
+    width: 100%;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 3rem;
+}
+
+.form_redefinicao .container_form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
 }
 
+.form_redefinicao .botoes, .form_redefinicao .container_form{
+    width: 60%;
+    min-width: 700px;
+}
+
+.form_redefinicao .botoes{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: .5rem;
+}
+
+.form_redefinicao .column{
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    }
+
+.form_redefinicao .column .input{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.form_redefinicao .column .input label{
+    font-weight: bold;
+}
+
+.form_redefinicao .column .input input{
+    height: 2.5rem;
+    width: 18.75rem;
+    background-color: #E6E6E6;
+    border-radius: .625rem;
+    border: none;
+    outline: none;
+    padding-left: 10px;
+
+}
+
+.form_redefinicao .botoes .sair{
+    background-color: #575757;
+    font-weight: bold;
+    color: #fff;
+}
+
+.form_redefinicao .botoes .redefinir_button{
+    background-color: #FF0000;
+    color: #FFF;
+    font-weight: bold;
+}

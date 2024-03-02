@@ -10,6 +10,7 @@ import axios from "axios";
 
 
 const InicioForm = () => {
+
   const [email, setEmail] = useState<string>("");
   const [senha, setPassword] = useState<string>("");
   const [error, setError] = useState("");
@@ -17,6 +18,7 @@ const InicioForm = () => {
   const router = useNavigate();
 
   function submitLogin(event: React.FormEvent<HTMLFormElement>) {
+    
     event.preventDefault();
     axios
       .post("http://localhost:8000/api/auth/login", { email, senha })
