@@ -30,3 +30,4 @@ Object.keys(require.cache).forEach(function(key) {
 app.listen(8000, () => {
   console.log("Rodando na 8000");
 });
+

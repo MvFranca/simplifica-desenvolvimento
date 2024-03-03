@@ -3,18 +3,14 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 import pg from "pg";
+import { getClient } from "../services/connectDB";
 
 const { Client } = pg;
 dotenv.config({ path: "./.env" });
 
 async function consulta(query, params, func) {
-  let conn = new Client({
-    user: process.env.DB_USER_POSTGRESS,
-    password: process.env.DB_PASS,
-    host: process.env.DB_HOST_POSTGRESS,
-    port: parseInt(process.env.DB_PORT_POSTGRESS),
-    database: process.env.DB,
-  });
+    const conn = await getClient();
+
 
   await conn.connect();
   await conn.query(query, [params], func);
@@ -22,13 +18,8 @@ async function consulta(query, params, func) {
 }
 
 async function insert(query, params, func) {
-  let conn = new Client({
-    user: process.env.DB_USER_POSTGRESS,
-    password: process.env.DB_PASS,
-    host: process.env.DB_HOST_POSTGRESS,
-    port: parseInt(process.env.DB_PORT_POSTGRESS),
-    database: process.env.DB,
-  });
+    const conn = await getClient();
+
 
   await conn.connect();
   const values = [
@@ -99,13 +90,15 @@ export const register = async (req, res) => {
       }
     }
   );
+  await conn.end()
+  
   console.log(conn);
 };
 
-export const login = (req, res) => {
+export const login = async (req, res) => {
   const { email, senha } = req.body;
 
-  consulta(
+  const conn = consulta(
     "SELECT * FROM usuario WHERE email=$1",
     email,
     async (error, data) => {
@@ -155,4 +148,6 @@ export const login = (req, res) => {
       }
     }
   );
+
+  (await conn).end()
 };

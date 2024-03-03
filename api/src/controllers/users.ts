@@ -1,17 +1,11 @@
 import { Request, Response } from "express";
 
 import pg from "pg";
+import { getClient } from "../services/connectDB";
 const { Client } = pg;
 
 async function updateImage(query, params, func) {
-  let conn = new Client({
-    user: process.env.DB_USER_POSTGRESS,
-    password: process.env.DB_PASS,
-    host: process.env.DB_HOST_POSTGRESS,
-    port: parseInt(process.env.DB_PORT_POSTGRESS),
-    database: process.env.DB,
-  });
-
+  const conn = await getClient();
   await conn.connect();
   const values = [
     params.url_image,
@@ -53,13 +47,7 @@ export const ImgAtt = (req: Request, res: Response) => {
 export const ImgGet = async (req: Request, res: Response) => {
   const { idUser } = req.params;
 
-  let conn = new Client({
-    user: process.env.DB_USER_POSTGRESS,
-    password: process.env.DB_PASS,
-    host: process.env.DB_HOST_POSTGRESS,
-    port: parseInt(process.env.DB_PORT_POSTGRESS),
-    database: process.env.DB,
-  });
+  const conn = await getClient();
 
   await conn.connect(); // Conecte-se ao banco de dados
 
