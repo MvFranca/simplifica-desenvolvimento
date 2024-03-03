@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "build": "rmdir /s /q dist && tsc",
+    "build": "rd /s /q dist && tsc",
     "start": "nodemon dist/index.js",
     "dev": "nodemon --watch 'src/' --exec 'ts-node src/index.ts' -e ts",
     "postinstall": "tsc"
