@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import IconFire from '../icons/IconFire';
 import IconDiamond from '../icons/IconDiamond';
 import FormRedefinir from './FormRedefinir';
-import { resizeFile } from 'react-image-file-resizer'; 
+// import { resizeFile } from 'react-image-file-resizer'; 
 // import IconCamera from '../icons/IconEdit';
 import IconEdit2 from '../icons/IconEdit';
 import axios from 'axios';
@@ -35,25 +35,25 @@ const HeaderProfile = () => {
 
     }
 
-    const resizeImage = (file, maxWidth, maxHeight) => {
-    return new Promise((resolve, reject) => {
-        resizeFile(file, maxWidth, maxHeight, 'JPEG', 80, 0, (resizedImage) => {
-          resolve(resizedImage);
-        }, 'blob');
-      });
-    };
+    // const resizeImage = (file, maxWidth, maxHeight) => {
+    // return new Promise((resolve, reject) => {
+    //     resizeFile(file, maxWidth, maxHeight, 'JPEG', 80, 0, (resizedImage) => {
+    //       resolve(resizedImage);
+    //     }, 'blob');
+    //   });
+    // };
   
     // Função para converter a imagem redimensionada para uma URL de dados
-    const convertToDataURL = (blob) => {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => {
-          resolve(reader.result);
-        };
-        reader.onerror = reject;
-        reader.readAsDataURL(blob);
-      });
-    };
+    // const convertToDataURL = (blob) => {
+    //   return new Promise((resolve, reject) => {
+    //     const reader = new FileReader();
+    //     reader.onload = () => {
+    //       resolve(reader.result);
+    //     };
+    //     reader.onerror = reject;
+    //     reader.readAsDataURL(blob);
+    //   });
+    // };
 
     
 
@@ -143,13 +143,13 @@ const HeaderProfile = () => {
                         </h2>
                         <div className={styles.pontos}>
                             <span>
-                                {pontos}
                                 <IconDiamond width={23} height={23} color="rgb(255, 0, 0)" />
+                                {pontos}
                             </span>
                 
                             <span>
-                                {fogo}
                                 <IconFire width={23} height={23} color="rgb(255, 126, 66)" />
+                                {fogo}
                             </span>
                         </div>
                     </div>

@@ -12,7 +12,7 @@ async function consulta(query, params, func) {
     const conn = await getClient();
 
 
-  await conn.connect();
+  // await conn.connect();
   await conn.query(query, [params], func);
   return conn;
 }
@@ -21,7 +21,7 @@ async function insert(query, params, func) {
     const conn = await getClient();
 
 
-  await conn.connect();
+  // await conn.connect();
   const values = [
     params.fullname,
     params.username,
@@ -90,7 +90,6 @@ export const register = async (req, res) => {
       }
     }
   );
-  await conn.end()
   
   console.log(conn);
 };
@@ -98,7 +97,7 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   const { email, senha } = req.body;
 
-  const conn = consulta(
+  const conn = await consulta(
     "SELECT * FROM usuario WHERE email=$1",
     email,
     async (error, data) => {
@@ -137,11 +136,15 @@ export const login = async (req, res) => {
             msg: "Usuário logado com sucesso!",
             data: { user, token: { token, refreshToken } },
           });
+          
         } catch (error) {
           console.log(error);
           return res.status(500).json({
             msg: "Servidor indisponível. teste.",
           });
+        }
+        finally{
+          conn.end()
         }
       } else {
         return res.status(404).json({ msg: "Usuário não encontrado." });
@@ -149,5 +152,5 @@ export const login = async (req, res) => {
     }
   );
 
-  (await conn).end()
+
 };
