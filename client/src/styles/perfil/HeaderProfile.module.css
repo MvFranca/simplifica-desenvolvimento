@@ -8,9 +8,10 @@
 }
 
 .header_profile .container{
-    margin: 2rem 1.875rem;
+    margin: 0rem 1.875rem;
     width: 100%;
     border-radius: 1.25rem;
+    padding-bottom: 3.125rem;
     /* overflow: hidden; */
     box-shadow: 0 2px 4px  #0000002f;
     height: max-content;
