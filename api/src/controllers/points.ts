@@ -56,12 +56,12 @@ export const idPoints = async (req: Request, res: Response) => {
           }
         );
 
-        await client.end();
+        // await client.end();
 
       }
     }
   );
-  await client.end()
+  // await client.end()
 };
 
 export const selectDiamondsPoints = async (req: Request, res: Response) => {

@@ -7,7 +7,7 @@ const { Client } = pg;
 async function consulta(query, func) {
   const conn = await getClient();
 
-  await conn.connect();
+  // await conn.connect();
   
   await conn.query(query, func);
   

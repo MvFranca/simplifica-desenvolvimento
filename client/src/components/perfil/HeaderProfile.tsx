@@ -109,7 +109,7 @@ const HeaderProfile = () => {
                                 <img src={imgUrl} alt="Imagem de Perfil" />
                                 <input type="file" id='img' name='img' onChange={handleImageChange} accept="image/*" />
                                 <div className={styles.edit_img}>
-                                    <IconEdit2 width={18} color='#fff' height={18} color='#fff'/>
+                                    <IconEdit2 width={18} color='#fff' height={18}/>
                                 </div>
                             {/* </button> */}
                         </label>
