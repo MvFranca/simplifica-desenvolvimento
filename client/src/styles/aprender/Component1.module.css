@@ -3,6 +3,7 @@
     flex-direction: column;
     gap: 3.125rem;
     margin: 1.5rem 0;
+    height: 500px;
 }
 
 .component1 .header{
@@ -23,7 +24,8 @@
     align-items: start;
     justify-content: space-between;
     gap: 4rem;
-    height: max-content;
+    height: 300px;
+    min-height: 300px;
 }
 
 .component1 .explicacao h3{
@@ -45,7 +47,7 @@
 
 .component1 .explicacao .barra{
     width: .375rem;
-    min-height: 20rem;
+    min-height: 100% ;
     background-color: gray;
 }
 
@@ -55,4 +57,18 @@
     gap: 1rem;
     font-size: 1.25rem;
     margin-top: 1.875rem;
+}
+
+
+@media screen and (max-width: 1200px) {
+
+    .component1 .explicacao .esquerda .imagem{
+        width: 26.875rem;
+    }
+
+    .component1 .explicacao .direita{
+        margin-top: 0;
+        font-size: 1.1rem;
+
+    }
 }

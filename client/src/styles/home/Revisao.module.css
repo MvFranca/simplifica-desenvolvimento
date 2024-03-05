@@ -8,7 +8,7 @@
 }
 
 .conteudo {
-  width: 70%;
+  width: 75%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -141,6 +141,15 @@ h1 {
 
   .informacoes p {
     font-size: 1.3em;
+
+  }
+
+}
+
+@media screen and (max-width: 1340px) {
+
+  .conteudo{
+    width: 85%;
 
   }
 

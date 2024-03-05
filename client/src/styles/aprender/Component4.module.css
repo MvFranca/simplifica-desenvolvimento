@@ -1,0 +1,30 @@
+.component4{
+    width: 100%;
+    min-height: 60vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1.875rem 0;
+}
+
+.component4 .barra{
+    height: 21.875rem;
+    width: .1rem;
+    background-color: gray;
+}
+
+.component4 .conteudo{
+    display: flex;
+    flex-direction: column;
+    padding: 0 3.125rem;
+    gap: 1rem;
+}
+
+.component4 .conteudo h2{
+    font-size: 1.875rem;
+}
+
+.component4 .conteudo p{
+    font-size: 1.2rem;
+}

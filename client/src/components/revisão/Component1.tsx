@@ -30,11 +30,11 @@ const Component1 = () => {
 
                 </h3>
 
-                <img src="/aprenda/imagem-teste.png" alt="" />
+                <img src="/aprenda/imagem-teste.png" alt="" className={styles.imagem}/>
 
             </div>
 
-            <span className={styles.barra}/>
+            <div className={styles.barra}/>
 
             <div className={styles.direita}>
 

@@ -1,0 +1,35 @@
+.component3{
+    display: flex;
+    min-height: 70vh;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.component3 .esquerda, .component3 .direita{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.component3 .esquerda h2, .component3 .direita h2{
+    font-size: 1.8rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.component3 .esquerda  p, .component3 .direita p{
+    font-size: 1.2rem;
+}
+
+
+.component3 .esquerda h2 img, .component3 .direita h2 img{
+    width: 15.625rem;
+}
+
+.component3 .barra{
+    height: 400px;
+    width: .1rem;
+    background-color: gray;
+}
