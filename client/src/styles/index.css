@@ -13,6 +13,11 @@
   font-weight: 400;
 }
 
+body{
+  overflow-x: hidden;
+
+}
+
 a{
   text-decoration: inherit;
 }

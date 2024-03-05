@@ -1,8 +1,5 @@
 .container{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    width: 100vw;
     height: 20%;
     min-height: 100px;
     display: flex;
@@ -13,7 +10,7 @@
 }
 
 .conteudo{
-    width: 80%;
+    width: 70%;
     height: 100%;
     display: flex;
     justify-content: space-between;

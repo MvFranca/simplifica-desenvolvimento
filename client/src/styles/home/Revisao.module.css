@@ -8,13 +8,15 @@
 }
 
 .conteudo {
-  width: 80%;
+  width: 70%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 20px;
+  margin: auto;
+  margin-top: 2.5rem;
 }
 
 h1 {
@@ -28,12 +30,18 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1.25rem;
 }
 
 .miniHeader div {
   display: flex;
 
   align-items: center;
+}
+
+.miniHeader h1{
+  font-size: 2rem;
+  margin: 0;
 }
 
 .barradeProgresso,

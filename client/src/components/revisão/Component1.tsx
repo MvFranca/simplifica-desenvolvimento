@@ -1,11 +1,14 @@
+import styles from '../../styles/aprender/Component1.module.css'
+
 const Component1 = () => {
     return ( 
-        <div>
+        <div className={styles.component1}>
            
-           <div>
+           <div className={styles.header}>
 
                 <h2>
                     Estruturas de Repetição
+
                 </h2>
 
                 <p>
@@ -16,21 +19,24 @@ const Component1 = () => {
            </div>
 
 
-           <div>
+           <div className={styles.explicacao}>
 
 
-            <div>
+            <div className={styles.esquerda}>
 
                 <h3>
                 Laço de repetição FOR
+                <img src="/aprenda/retangulo.png" alt="Retangulo abaixo do título" />
+
                 </h3>
 
-                <img src="" alt="" />
+                <img src="/aprenda/imagem-teste.png" alt="" />
 
             </div>
 
+            <span className={styles.barra}/>
 
-            <div>
+            <div className={styles.direita}>
 
                 <p>
                 O laço FOR é composto por três parâmetros.
