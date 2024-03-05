@@ -1,26 +1,12 @@
 import { Request, Response } from "express";
 import pg from "pg";
-import { getClient } from "../services/connectDB";
+import { consulta, getClient } from "../services/connectDB";
 const { Client } = pg;
 
-
-async function consulta(query, func) {
-  const conn = await getClient();
-
-  // await conn.connect();
-  
-  await conn.query(query, func);
-  
-  return conn;
-}
-
-
 export const FullUsers = async (req: Request, res: Response) => {
-
-  
-
     await consulta(
       "SELECT id_usuario, username, turma, pontuacao FROM usuario INNER JOIN pontuacaoq ON usuario.id_usuario = pontuacaoq.fk_id_usuario",
+      [],
       async (error, data) => {
         if (error) {
           console.log(error);

@@ -12,4 +12,16 @@ export async function getClient() {
     await conn.connect();
     return conn;
   }
-  
+
+export async function consulta(query, values, func) {
+  const conn = await getClient();
+  try {
+    await conn.query(query, values, func);
+  } catch (error) {
+    console.log(error);
+  }
+  finally{
+    conn.end()
+  }
+  return conn;
+}

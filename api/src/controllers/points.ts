@@ -1,32 +1,13 @@
 import pg from "pg";
 import dotenv from "dotenv";
 import { Request, Response } from "express";
-import { getClient } from "../services/connectDB";
+import { consulta, getClient } from "../services/connectDB";
 const { Client } = pg;
 dotenv.config({ path: "./.env" });
 
-
-async function insert(query, values, func) {
-  const conn = await getClient();
-  await conn.query(query, values, func);
-  return conn;
-}
-
-async function update(query, values, func) {
-  const conn = await getClient();
-  await conn.query(query, values, func);
-  return conn;
-}
-
-async function consulta(query, values, func) {
-  const conn = await getClient();
-  await conn.query(query, values, func);
-  return conn;
-}
-
 export const idPoints = async (req: Request, res: Response) => {
   const { email } = req.body;
-  const client = await consulta(
+  await consulta(
     "SELECT id_usuario FROM usuario WHERE email=$1",
     [email],
     async (error, data) => {
@@ -38,7 +19,7 @@ export const idPoints = async (req: Request, res: Response) => {
       } else {
         const id = data.rows[0].id_usuario;
         const pontuacaoInicial = 0;
-        const client = await insert(
+        await consulta(
           `INSERT INTO pontuacaoq (fk_id_usuario, pontuacao) VALUES ($1, $2)`,
           [id, pontuacaoInicial],
           async (error) => {
@@ -55,13 +36,9 @@ export const idPoints = async (req: Request, res: Response) => {
             }
           }
         );
-
-        // await client.end();
-
       }
     }
   );
-  // await client.end()
 };
 
 export const selectDiamondsPoints = async (req: Request, res: Response) => {
@@ -90,7 +67,7 @@ export const selectDiamondsPoints = async (req: Request, res: Response) => {
 export const updateDiamantes = async (req: Request, res: Response) => {
   const { idUser, pontos } = req.body;
 
-  await update(
+  await consulta(
     "UPDATE pontuacaoq SET pontuacao=$1 WHERE fk_id_usuario=$2",
     [pontos, idUser],
     async (error, data) => {

@@ -3,37 +3,10 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 import pg from "pg";
-import { getClient } from "../services/connectDB";
+import { consulta, getClient } from "../services/connectDB";
 
 const { Client } = pg;
 dotenv.config({ path: "./.env" });
-
-async function consulta(query, params, func) {
-    const conn = await getClient();
-
-
-  // await conn.connect();
-  await conn.query(query, [params], func);
-  return conn;
-}
-
-async function insert(query, params, func) {
-    const conn = await getClient();
-
-
-  // await conn.connect();
-  const values = [
-    params.fullname,
-    params.username,
-    params.email,
-    params.senha,
-    params.url_image,
-    params.turma,
-  ];
-
-  await conn.query(query, values, func);
-  return conn;
-}
 
 export const register = async (req, res) => {
   const { username, email, senha, confirmPassword, url_image, fullname, turma } = req.body;
@@ -46,39 +19,35 @@ export const register = async (req, res) => {
   if (senha != confirmPassword)
     return res.status(422).json({ msg: "As senhas não são iguais" });
 
-    console.log('oiii')
-
   const conn = await consulta(
     `SELECT email FROM usuario WHERE email=$1`,
-    email,
+    [email],
     async (error, data) => {
-
-
       if (error) {
         console.log(error);
         return res
           .status(500)
-          .json({ msg: "Servidor indisponível. teste.1" });
+          .json({ msg: "Servidor indisponível." });
       }
 
-      if (data.rows.length > 0) return res.status(500).json({ msg: "O E-mail já existente." });
+      if (data.rows.length > 0) return res.status(500).json({ msg: "E-mail já existente." });
       else {
         const passwordHash = await bcrypt.hash(senha, 8);
-        insert(
+        await consulta(
           `INSERT INTO usuario (fullname, username, email, senha, url_image, turma) VALUES ($1, $2, $3, $4, $5, $6)`,
-          {
-            fullname: fullname,
-            username: username,
-            email: email,
-            senha: passwordHash,
-            url_image: url_image,
-            turma: turma,
-          },
+          [
+            fullname,
+            username,
+            email,
+            passwordHash,
+            url_image,
+            turma
+          ],
           (error) => {
             if (error) {
               console.log(error);
               return res.status(500).json({
-                msg: "Servidor indisponível. testee.",
+                msg: "Servidor indisponível.",
               });
             } else {
               return res
@@ -90,8 +59,6 @@ export const register = async (req, res) => {
       }
     }
   );
-  
-  console.log(conn);
 };
 
 export const login = async (req, res) => {
@@ -99,13 +66,13 @@ export const login = async (req, res) => {
 
   const conn = await consulta(
     "SELECT * FROM usuario WHERE email=$1",
-    email,
+    [email],
     async (error, data) => {
       if (error) {
         console.log(error);
         return res
           .status(500)
-          .json({ msg: "Servidor indisponível. teste." });
+          .json({ msg: "Servidor indisponível." });
       }
       if (data.rows[0]) {
         console.log(data);
@@ -140,7 +107,7 @@ export const login = async (req, res) => {
         } catch (error) {
           console.log(error);
           return res.status(500).json({
-            msg: "Servidor indisponível. teste.",
+            msg: "Servidor indisponível.",
           });
         }
         finally{
