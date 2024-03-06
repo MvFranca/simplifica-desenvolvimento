@@ -8,10 +8,12 @@ import cors from "cors";
 import { Request } from "express";
 
 const app = express();
-app.use(express.json());
+app.use(express.json({limit: '500mb'}));
+app.use(express.urlencoded({limit: '500mb', extended: true, parameterLimit: 500000}));
 
 //permite utilizar diversos tipos de requisição no postman, não somente em json
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({limit: '500mb'}));
+app.use(bodyParser.urlencoded({ limit: '500mb', extended: false }));
 app.use(cors<Request>());
 
 app.get("/", (req, res) => {

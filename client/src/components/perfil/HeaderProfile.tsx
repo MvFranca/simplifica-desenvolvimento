@@ -67,25 +67,22 @@ const HeaderProfile = () => {
     
 
         if (file) {
-          const reader = new FileReader();
-          reader.onload = () => {
-            setImgUrl(reader.result);
+            const reader = new FileReader();
+            reader.onload = () => {
+                setImgUrl(reader.result);
+                console.log(reader.result)
+                const urlImg = reader.result;
+                axios
+                .post("http://localhost:8000/api/users/img_att", { urlImg, idUser })
+                .then((res) => {
+                    console.log(res)
+                })
 
-            const urlImg = reader.result
-
-            console.log(urlImg)
-
-            axios
-            .post("http://localhost:8000/api/users/img_att", { urlImg, idUser })
-            .then((res) => {
-              console.log(res)
-            })
-      
-            .catch((err) => {
-              console.log(err);
-            });
-          };
-          reader.readAsDataURL(file);
+                .catch((err) => {
+                    console.log(err);
+                });
+            };
+            reader.readAsDataURL(file);
         }
       };
 

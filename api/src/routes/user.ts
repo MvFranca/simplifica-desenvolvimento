@@ -1,5 +1,5 @@
 import express from "express";
-import { GetUser, ImgAtt, ImgGet } from "../controllers/users";
+import { AttUser, GetUser, ImgAtt, ImgGet } from "../controllers/users";
 
 const router = express.Router();
 

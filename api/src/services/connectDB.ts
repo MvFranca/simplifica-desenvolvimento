@@ -20,8 +20,5 @@ export async function consulta(query, values, func) {
   } catch (error) {
     console.log(error);
   }
-  finally{
-    conn.end()
-  }
   return conn;
 }

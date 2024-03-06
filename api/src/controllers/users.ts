@@ -102,13 +102,14 @@ export const ImgAtt = async (req: Request, res: Response) => {
 
 export const ImgGet = async (req: Request, res: Response) => {
   const { idUser } = req.params;
-
+  console.log("idUser: ", idUser);
   await consulta(
-    "SELECT * FROM usuario WHERE id_usuario=$1",
+    "SELECT url_image FROM usuario WHERE id_usuario=$1",
     [idUser],
     async (error, data) => {
       if (error) {
         console.log(error);
+        console.log("error");
         return res
           .status(500)
           .json({ msg: "Servidor indisponível. Tente novamente mais tarde." });
