@@ -29,7 +29,7 @@ const Aprender = () => {
   const router = useNavigate()
 
   async function conteudos() {
-    const api = await fetch(`https://simplificaa.vercel.app/aprenda/${id}.json`);
+    const api = await fetch(`https://simplifica-desenvolvimento.vercel.app/aprenda/${id}.json`);
     const data = await api.json();
     setConteudo(data);
   }

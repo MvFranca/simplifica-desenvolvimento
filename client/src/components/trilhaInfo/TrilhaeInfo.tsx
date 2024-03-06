@@ -8,7 +8,7 @@ const TrilhaeInfo = () => {
   const [conteudos, setConteudos] = useState([]);
 
   async function api() {
-    const conteudos = await fetch("https://simplificaa.vercel.app/trilha/trilha.json");
+    const conteudos = await fetch("https://simplifica-desenvolvimento.vercel.app/trilha/trilha.json");
     const data = await conteudos.json();
     setConteudos(data);
   }
