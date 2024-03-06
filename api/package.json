@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "build": "rimraf dist && tsc",
+    "build": "rd /s /q dist && tsc",
     "start": "nodemon dist/index.js",
     "dev": "nodemon --watch 'src/' --exec 'ts-node src/index.ts' -e ts",
     "postinstall": "tsc"
@@ -33,7 +33,6 @@
     "@types/pg": "^8.10.9",
     "@typescript-eslint/parser": "^6.15.0",
     "nodemon": "^3.0.1",
-    "rimraf": "^5.0.5",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.3.3"

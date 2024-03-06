@@ -22,7 +22,7 @@ const MenuTopo = () => {
     // console.log(user)
     // setUsername(user.username)
   // axios
-  // .post("http://localhost:8000/api/points/diamantes", { idUser })
+  // .post("https://simplifica-desenvolvimento.onrender.com/api/points/diamantes", { idUser })
   // .then((res) => {
   //   const pontuacao = res.data.data.resposta;
   //   setPontos(pontuacao);

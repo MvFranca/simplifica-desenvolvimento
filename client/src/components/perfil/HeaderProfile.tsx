@@ -29,7 +29,7 @@ const HeaderProfile = () => {
         setUser(userObject)
 
         await axios
-            .get(`http://localhost:8000/api/users/img_get?idUser=${userObject.id_usuario}`)
+            .get(`https://simplifica-desenvolvimento.onrender.com/api/users/img_get?idUser=${userObject.id_usuario}`)
             .then((res) => {
             
             setImgUrl(res.data.data.resposta.url_image);
@@ -81,7 +81,7 @@ const HeaderProfile = () => {
                 console.log(reader.result)
                 const urlImg = reader.result;
                 axios
-                .post("http://localhost:8000/api/users/img_att", { urlImg, idUser })
+                .post("https://simplifica-desenvolvimento.onrender.com/api/users/img_att", { urlImg, idUser })
                 .then((res) => {
                     console.log(res)
                 })

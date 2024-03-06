@@ -8,7 +8,7 @@ export function consultaId() {
   const { userId } = useContext(pointContext);
 
   axios
-    .post("http://localhost:8000/api/points/diamantes", { userId })
+    .post("https://simplifica-desenvolvimento.onrender.com/api/points/diamantes", { userId })
     .then((res) => {
       console.log(res);
     })
