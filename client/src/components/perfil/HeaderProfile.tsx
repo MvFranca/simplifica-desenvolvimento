@@ -8,11 +8,19 @@ import FormRedefinir from './FormRedefinir';
 // import IconCamera from '../icons/IconEdit';
 import IconEdit2 from '../icons/IconEdit';
 import axios from 'axios';
+import { ChangeEvent } from 'react';
+
+
+interface TypesUser {
+    username: string;
+    email: string;
+    turma: string
+}
 
 const HeaderProfile = () => {
 
     const { pontos, fogo,  } = useContext(pointContext);
-    const [user, setUser] = useState()
+    const [user, setUser] = useState<TypesUser>()
     const [imgUrl, setImgUrl] = useState('./perfil-padrao.png');
 
     async function userData(){
@@ -56,8 +64,9 @@ const HeaderProfile = () => {
 
     
 
-    const handleImageChange = (event) => {
-        const file = event.target.files[0];
+    const handleImageChange = (event:ChangeEvent<HTMLInputElement>) => {
+
+        const file = event.target.files![0]
 
         const user = localStorage.getItem("simplifica:user")!;
         const userObject = JSON.parse(user);
@@ -68,7 +77,7 @@ const HeaderProfile = () => {
         if (file) {
             const reader = new FileReader();
             reader.onload = () => {
-                setImgUrl(reader.result);
+                setImgUrl(String(reader.result));
                 console.log(reader.result)
                 const urlImg = reader.result;
                 axios
