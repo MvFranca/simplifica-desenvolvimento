@@ -46,11 +46,11 @@ const Ordenacao = () => {
 
   const {id} = useParams()
   async function fetchLinhas(){
-    const apiCodigo = (await fetch(`http://localhost:5173/ordenacao/codigos/${id}.json`)).json()
+    const apiCodigo = (await fetch(`https://simplifica-desenvolvimento.vercel.app/ordenacao/codigos/${id}.json`)).json()
     const teste = await apiCodigo
     setQuantidade(teste)
     setLinhas(teste[fase])
-    const apiTitulos = (await fetch(`http://localhost:5173/ordenacao/titulos/${id}.json`)).json()
+    const apiTitulos = (await fetch(`https://simplifica-desenvolvimento.vercel.app/ordenacao/titulos/${id}.json`)).json()
     setTitulos(await apiTitulos)
   }
 

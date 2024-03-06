@@ -16,7 +16,7 @@ const EstudoManual = () => {
   const [conteudos, setConteudos] = useState<Array<conteudos>>([]);
 
   async function api() {
-    const api = await fetch("http://localhost:5173/trilha/trilha.json");
+    const api = await fetch("https://simplifica-desenvolvimento.vercel.app/trilha/trilha.json");
     const json = await api.json();
     setConteudos(json);
   }
