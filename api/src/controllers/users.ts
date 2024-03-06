@@ -5,7 +5,7 @@ import { consulta, getClient } from "../services/connectDB";
 const { Client } = pg;
 
 export const GetUser = async (req: Request, res: Response) => {
-  const { idUser } = req.params;
+  const  idUser  = req.params.idUser;
   const conn = await getClient();
 
   await conn.connect();
@@ -95,13 +95,14 @@ export const ImgAtt = async (req: Request, res: Response) => {
     }
   );
 
-  res.status(200).json({ msg: "funcionando!!" });
+  // res.status(200).json({ msg: "funcionando!!" });
 
 };
 
 
-export const ImgGet = async (req, res) => {
-  const { idUser } = req.params;
+export const ImgGet = async (req: Request, res: Response) => {
+  const {idUser}  = req.query;
+
   console.log("idUser: ", idUser);
   await consulta(
     "SELECT url_image FROM usuario WHERE id_usuario=$1",

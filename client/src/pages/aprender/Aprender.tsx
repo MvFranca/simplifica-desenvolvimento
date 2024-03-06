@@ -9,9 +9,9 @@ import styles from "../../styles/home/Revisao.module.css";
 
 import { pointContext } from "../../context/context";
 import OpcoesAprender from "../../components/revisão/OpcoesAprender";
-import Component2 from "../../components/revisão/Component2";
-import Component3 from "../../components/revisão/Component3";
-import Component4 from "../../components/revisão/Component4";
+// import Component2 from "../../components/revisão/Component2";
+// import Component3 from "../../components/revisão/Component3";
+// import Component4 from "../../components/revisão/Component4";
 
 
 const Aprender = () => {
@@ -98,13 +98,13 @@ const Aprender = () => {
       // conteudo={conteudo}
       // /> */}
 
-      {/* <Component1/> */}
+      <Component1/>
 
       {/* <Component2/> */}
 
       {/* <Component3/> */}
 
-      <Component4/>
+      {/* <Component4/> */}
 
       <OpcoesAprender
             avancar={avancar}

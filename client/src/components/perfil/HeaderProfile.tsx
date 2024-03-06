@@ -20,8 +20,8 @@ const HeaderProfile = () => {
         const userObject = await JSON.parse(user);
         setUser(userObject)
 
-        axios
-            .post(`http://localhost:8000/api/users/img_get?idUser=${userObject.id_usuario}`)
+        await axios
+            .get(`http://localhost:8000/api/users/img_get?idUser=${userObject.id_usuario}`)
             .then((res) => {
             
             setImgUrl(res.data.data.resposta.url_image);
