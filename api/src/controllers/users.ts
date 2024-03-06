@@ -100,7 +100,7 @@ export const ImgAtt = async (req: Request, res: Response) => {
 };
 
 
-export const ImgGet = async (req: Request, res: Response) => {
+export const ImgGet = async (req, res) => {
   const { idUser } = req.params;
   console.log("idUser: ", idUser);
   await consulta(
@@ -114,8 +114,7 @@ export const ImgGet = async (req: Request, res: Response) => {
           .status(500)
           .json({ msg: "Servidor indisponível. Tente novamente mais tarde." });
       } else {
-        // const resposta = await data.rows[0];
-        const resposta = await data;
+        const resposta = await data.rows[0];
         console.log("resposta: ", resposta);
         return res.status(200).json({
           msg: "Imagem Carregada!",

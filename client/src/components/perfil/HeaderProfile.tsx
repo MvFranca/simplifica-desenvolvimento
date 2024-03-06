@@ -24,9 +24,8 @@ const HeaderProfile = () => {
             .post(`http://localhost:8000/api/users/img_get?idUser=${userObject.id_usuario}`)
             .then((res) => {
             
-            setImgUrl(res)
-            //   setPontos(pontuacao.pontuacao);
-              console.log(res)
+            setImgUrl(res.data.data.resposta.url_image);
+              console.log(res.data.data.resposta.url_image)
             })
       
             .catch((err) => {
