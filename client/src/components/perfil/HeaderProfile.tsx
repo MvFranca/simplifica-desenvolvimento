@@ -18,7 +18,7 @@ interface TypesUser {
 }
 
 const HeaderProfile = () => {
-
+    console.log("oi")
     const { pontos, fogo,  } = useContext(pointContext);
     const [user, setUser] = useState<TypesUser>()
     const [imgUrl, setImgUrl] = useState('./perfil-padrao.png');
