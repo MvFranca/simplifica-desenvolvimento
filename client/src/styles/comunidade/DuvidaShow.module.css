@@ -1,0 +1,41 @@
+.containerBox {
+  width: 50%;
+  min-width: 48.6%;
+  height: max-content;
+  min-height: 180px;
+  border-radius: 12px;
+  border: 3px solid #d9d9d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: initial;
+  padding: 20px;
+  scroll-snap-align: start;
+}
+
+.container {
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  overflow-x: hidden;
+}
+
+.header {
+  min-width: 250px;
+  height: 100vh;
+}
+
+.content {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 800px) {
+  .header {
+    display: none;
+  }
+}

@@ -9,12 +9,9 @@ import Comunidade from "../pages/comunidade/comunidade";
 import Ordenacao from "../pages/ordenacao/Ordenacao";
 import Perfil from "../pages/perfil/Perfil.page";
 import Ranking from "../pages/ranking/Ranking.page";
-
-
+import ShowDuvida from "../pages/comunidade/ShowDuvida";
 
 const Rotas = () => {
-
-
   return (
     <>
       <Routes>
@@ -33,6 +30,8 @@ const Rotas = () => {
         <Route path={`/estudomanual`} element={<EstudoManual />} />
 
         <Route path={`/comunidade`} element={<Comunidade />} />
+
+        <Route path={`/comunidade/duvida/:id`} element={<ShowDuvida />} />
 
         <Route path={`/perfil`} element={<Perfil />} />
 

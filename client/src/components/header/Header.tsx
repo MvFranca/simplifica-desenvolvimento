@@ -13,28 +13,28 @@ const Header = () => {
     <header className={styles.cabecalho}>
       <h1>SIMPLIFICA</h1>
       <nav>
-        <NavLink  to={"/"}>
-          <img src="./home.png" alt="Home" />
+        <NavLink to={"/"}>
+          <img src="/home.png" alt="Home" />
           <p>APRENDER</p>
         </NavLink>
         <NavLink to={"/estudomanual"}>
-          <img src="./book.png" alt="Praticar" />
+          <img src="/book.png" alt="Praticar" />
           <p>PRATICAR</p>
         </NavLink>
         <NavLink to={"/comunidade"}>
-          <img src="./comunidade.png" alt="Comunidade" />
+          <img src="/comunidade.png" alt="Comunidade" />
           <p>COMUNIDADE</p>
         </NavLink>
         <NavLink to={"/ranking"}>
-          <img src="./ranking.png" alt="Ranking" />
+          <img src="/ranking.png" alt="Ranking" />
           <p>RANKING</p>
         </NavLink>
         <NavLink to={"/perfil"}>
-          <img src="./perfil.png" alt="Perfil" />
+          <img src="/perfil.png" alt="Perfil" />
           <p>Perfil</p>
         </NavLink>
         <NavLink onClick={sair} to={"/entrar"}>
-          <img src="./config.png" alt="Configurações" />
+          <img src="/config.png" alt="Configurações" />
           <p>SAIR</p>
         </NavLink>
       </nav>
