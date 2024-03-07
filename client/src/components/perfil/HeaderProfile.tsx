@@ -14,13 +14,20 @@ import { ChangeEvent } from 'react';
 interface TypesUser {
     username: string;
     email: string;
-    turma: string
+    turma: string;
+    fullname: string;
 }
 
 const HeaderProfile = () => {
     console.log("oi")
     const { pontos, fogo,  } = useContext(pointContext);
-    const [user, setUser] = useState<TypesUser>()
+    const [user, setUser] = useState<TypesUser>({
+        username: "",
+        email: "",
+        turma: "",
+        fullname: ""
+    })
+    
     const [imgUrl, setImgUrl] = useState('./perfil-padrao.png');
 
     async function userData(){
@@ -168,7 +175,9 @@ const HeaderProfile = () => {
                     <h1>
                         Redefinir Dados
                     </h1>
-                    <FormRedefinir />
+                    <FormRedefinir 
+                        user={user}
+                    />
                 </div>
                 
             </div>

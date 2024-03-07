@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from '../../styles/comunidade/Duvida.module.css'
 
 const Duvida = () => {
@@ -11,7 +12,7 @@ const Duvida = () => {
                         Tive problemas ao definir as váriaveis dentro do vscode...
                     </p>
              </div>
-            <button>VER DÚVIDA</button>
+            <Link to={'/teste'}>VER DÚVIDA</Link>
         </div>
      );
 }

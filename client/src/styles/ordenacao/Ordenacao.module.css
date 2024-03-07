@@ -65,11 +65,13 @@
   .ordenacao section .codigo{
     display: flex;
     flex-direction: column;
-    
+    /* background-color: #dededec9; */
+    padding: 20px;
+    border-radius: 10px;
   }
 
   .ordenacao section .codigo .linha{
-    padding: 15px 0;
+    padding: 20px 0;
 
 
   }
@@ -88,11 +90,12 @@
 
   .ordenacao section .borda{
     margin: auto;
-    height: 3px;
-    width: 85%;
-    background-color: #7b7b7bbc;
+    height: .0938rem;
+    width: 80%;
+    /* background-color: #7b7b7bbc; */
+    background-color: transparent;
     margin-bottom: 30px;
-    border-radius: 30%;
+    border-radius: 10%;
   }
 
 

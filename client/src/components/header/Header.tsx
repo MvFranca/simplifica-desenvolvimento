@@ -1,13 +1,13 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "../../styles/home/Header.module.css";
 
 const Header = () => {
-  const router = useNavigate();
+  // const router = useNavigate();
 
-  function sair() {
-    localStorage.removeItem("simplifica:token");
-    router("/entrar");
-  }
+  // function sair() {
+  //   localStorage.removeItem("simplifica:token");
+  //   router("/entrar");
+  // }
 
   return (
     <header className={styles.cabecalho}>
@@ -33,10 +33,10 @@ const Header = () => {
           <img src="./perfil.png" alt="Perfil" />
           <p>Perfil</p>
         </NavLink>
-        <NavLink onClick={sair} to={"/entrar"}>
+        {/* <NavLink onClick={sair} to={"/entrar"}>
           <img src="./config.png" alt="Configurações" />
           <p>SAIR</p>
-        </NavLink>
+        </NavLink> */}
       </nav>
     </header>
   );

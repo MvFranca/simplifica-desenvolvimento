@@ -4,7 +4,7 @@ import IconFire from "../icons/IconFire";
 import IconDiamond from "../icons/IconDiamond";
 import { pointContext } from "../../context/context";
 import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Opcoes = () => {
   const router = useNavigate();
@@ -89,7 +89,7 @@ const Opcoes = () => {
             responder.
           </p>
         </div>
-        <button className={styles.botao}>CLIQUE AQUI PARA ACESSAR</button>
+        <Link to={"/comunidade"}><button className={styles.botao}>CLIQUE AQUI PARA ACESSAR</button></Link>
       </div>
       <div className={styles.progresso}>
         <h2>PROGRESSO</h2>
