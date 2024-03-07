@@ -5,7 +5,6 @@ import styles from "../../styles/comunidade/DuvidaShow.module.css";
 import MenuMobile from "../../components/menuMobile/MenuMobile";
 import MenuTopo from "../../components/menuTopo/MenuTopo";
 import Header from "../../components/header/Header";
-import Chat from "../../components/chat/chat";
 import FormChat from "../../components/chat/FormChat";
 
 const ShowDuvida = () => {

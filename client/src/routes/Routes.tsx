@@ -10,6 +10,7 @@ import Ordenacao from "../pages/ordenacao/Ordenacao";
 import Perfil from "../pages/perfil/Perfil.page";
 import Ranking from "../pages/ranking/Ranking.page";
 import ShowDuvida from "../pages/comunidade/ShowDuvida";
+import PageDuvida from "../pages/comunidade/pageDuvida";
 
 const Rotas = () => {
   return (
@@ -36,6 +37,8 @@ const Rotas = () => {
         <Route path={`/perfil`} element={<Perfil />} />
 
         <Route path={`/ranking`} element={<Ranking />} />
+
+        <Route path={`/teste`} element={<PageDuvida />} />
 
         <Route path={`*`} element={<div>página não encontrada - 404</div>} />
       </Routes>

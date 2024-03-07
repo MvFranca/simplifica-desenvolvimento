@@ -21,7 +21,7 @@ const InicioForm = () => {
     
     event.preventDefault();
     axios
-      .post("http://localhost:8000/api/auth/login", { email, senha })
+      .post("https://simplifica-desenvolvimento.onrender.com/api/auth/login", { email, senha })
       .then((res) => {
         setError("");
         setSucess(res.data.msg);

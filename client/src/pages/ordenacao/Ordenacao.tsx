@@ -14,8 +14,6 @@ interface TypesLinhas{
   }
 
 const reorder = (list: Array<TypesLinhas> | ArrayLike<TypesLinhas>, startIndex: number, endIndex: number) => {
-
-
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
@@ -23,15 +21,11 @@ const reorder = (list: Array<TypesLinhas> | ArrayLike<TypesLinhas>, startIndex: 
   return result;
 };
 
- 
-
   interface TypesTitulos{
     titulo: string;
     assunto: string;
     id: string 
   }
-
-
 
 const Ordenacao = () => {
 
@@ -46,11 +40,11 @@ const Ordenacao = () => {
 
   const {id} = useParams()
   async function fetchLinhas(){
-    const apiCodigo = (await fetch(`http://localhost:5173/ordenacao/codigos/${id}.json`)).json()
+    const apiCodigo = (await fetch(`https://simplifica-desenvolvimento.vercel.app/ordenacao/codigos/${id}.json`)).json()
     const teste = await apiCodigo
     setQuantidade(teste)
     setLinhas(teste[fase])
-    const apiTitulos = (await fetch(`http://localhost:5173/ordenacao/titulos/${id}.json`)).json()
+    const apiTitulos = (await fetch(`https://simplifica-desenvolvimento.vercel.app/ordenacao/titulos/${id}.json`)).json()
     setTitulos(await apiTitulos)
   }
 
@@ -112,8 +106,6 @@ useEffect(() => {
           }
         })
 
-    
-   
     if(res){
       setFase((prev) => prev+1)
       setAcertos((prev) => prev+1)
@@ -121,7 +113,6 @@ useEffect(() => {
     }
     
     setFase((prev) => prev+1)
-
 
   }
 
@@ -180,6 +171,7 @@ useEffect(() => {
                 linhas ?
                 linhas.map((item, index) => (
                   <>
+                      <hr />
                   
                 <Draggable key={item.id} draggableId={item.id} index={index}>
                     {(provided) => (
@@ -201,7 +193,6 @@ useEffect(() => {
                     
                     )} 
                   </Draggable>
-
                   </>
                 ))
               :
@@ -210,6 +201,7 @@ useEffect(() => {
               </div>
             )}
           </Droppable>
+         
 
             <div className={styles.botoes}>
                   <button

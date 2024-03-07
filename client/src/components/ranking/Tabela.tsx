@@ -17,7 +17,7 @@ const Tabela = () => {
     async function usersTable(){
         
     axios
-      .get("http://localhost:8000/api/table/tableusers")
+      .get("https://simplifica-desenvolvimento.onrender.com/api/table/tableusers")
       .then((res) => {
         console.log(res)
         const usuarios = res.data.data.data.rows

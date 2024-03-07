@@ -8,11 +8,26 @@ import FormRedefinir from './FormRedefinir';
 // import IconCamera from '../icons/IconEdit';
 import IconEdit2 from '../icons/IconEdit';
 import axios from 'axios';
+import { ChangeEvent } from 'react';
+
+
+interface TypesUser {
+    username: string;
+    email: string;
+    turma: string;
+    fullname: string;
+}
 
 const HeaderProfile = () => {
-
+    console.log("oi")
     const { pontos, fogo,  } = useContext(pointContext);
-    const [user, setUser] = useState()
+    const [user, setUser] = useState<TypesUser>({
+        username: "",
+        email: "",
+        turma: "",
+        fullname: ""
+    })
+    
     const [imgUrl, setImgUrl] = useState('./perfil-padrao.png');
 
     async function userData(){
@@ -20,8 +35,8 @@ const HeaderProfile = () => {
         const userObject = await JSON.parse(user);
         setUser(userObject)
 
-        axios
-            .post(`http://localhost:8000/api/users/img_get?idUser=${userObject.id_usuario}`)
+        await axios
+            .get(`https://simplifica-desenvolvimento.onrender.com/api/users/img_get?idUser=${userObject.id_usuario}`)
             .then((res) => {
             
             setImgUrl(res.data.data.resposta.url_image);
@@ -56,8 +71,9 @@ const HeaderProfile = () => {
 
     
 
-    const handleImageChange = (event) => {
-        const file = event.target.files[0];
+    const handleImageChange = (event:ChangeEvent<HTMLInputElement>) => {
+
+        const file = event.target.files![0]
 
         const user = localStorage.getItem("simplifica:user")!;
         const userObject = JSON.parse(user);
@@ -68,11 +84,11 @@ const HeaderProfile = () => {
         if (file) {
             const reader = new FileReader();
             reader.onload = () => {
-                setImgUrl(reader.result);
+                setImgUrl(String(reader.result));
                 console.log(reader.result)
                 const urlImg = reader.result;
                 axios
-                .post("http://localhost:8000/api/users/img_att", { urlImg, idUser })
+                .post("https://simplifica-desenvolvimento.onrender.com/api/users/img_att", { urlImg, idUser })
                 .then((res) => {
                     console.log(res)
                 })
@@ -159,7 +175,9 @@ const HeaderProfile = () => {
                     <h1>
                         Redefinir Dados
                     </h1>
-                    <FormRedefinir />
+                    <FormRedefinir 
+                        user={user}
+                    />
                 </div>
                 
             </div>

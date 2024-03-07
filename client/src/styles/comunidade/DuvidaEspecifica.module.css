@@ -1,0 +1,112 @@
+.duvidaEspecifica{
+    margin-left: 15.625rem;
+    padding: 0 6.25rem;
+    width: calc(100% - 15.625rem);
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 1.875rem;
+}
+
+.duvidaEspecifica .cabecalho{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #D9D9D9;
+    border-radius: .75rem;
+    min-height: 10.8125rem;
+    padding: 1.25rem;
+    margin-top: 3.125rem;
+
+}
+
+.duvidaEspecifica .esquerda, .duvidaEspecifica .direita {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.duvidaEspecifica .esquerda div{
+    color: #5C5C5C;
+}
+
+
+.duvidaEspecifica .direita div{
+    font-weight: bold;
+    color: #268AFF;
+    
+}
+
+.duvidaEspecifica .direita div span{
+    font-weight: bold;
+    color: #5C5C5C;
+
+}
+
+.duvidaEspecifica .esquerda span{
+    font-weight: bold;
+}
+
+.duvidaEspecifica .direita .visto{
+    background-color: #D9D9D9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .625rem;
+    height: 2.5625rem;
+    font-weight: bold;
+    color: #268AFF;
+}
+
+.duvidaEspecifica .duvida{
+    width: 100%;
+    margin-top: 3.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.duvidaEspecifica .duvida h1{
+    font-size: 1.5625rem;
+    width: 100%;
+    text-align: start;
+    color: #000;
+}
+
+.duvidaEspecifica .duvida p{
+    font-size: 1.25rem;
+}
+
+.duvidaEspecifica .duvida hr{
+    width: 100%;
+    margin: 2.5rem 0;
+
+}
+
+.duvidaEspecifica .duvida img{
+    width: 70%;
+}
+
+.duvidaEspecifica .botoes{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.duvidaEspecifica .botoes button{
+    width: 100%;
+    max-width: 17.5rem;
+    height: 3.5625rem;
+    color: #fff;
+    font-weight: bold;
+    
+}
+
+.duvidaEspecifica .botoes .ver{
+    background-color: #268AFF;
+    box-shadow: 6px 6px 0px #1E6AC2;
+}

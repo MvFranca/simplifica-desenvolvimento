@@ -17,7 +17,7 @@ const PrivateRoutes = () => {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8000/api/points/diamantes", { userId })
+      .post("https://simplifica-desenvolvimento.onrender.com/api/points/diamantes", { userId })
       .then((res) => {
         const pontuacao = res.data.data.resposta.pontuacao;
         setPontos(pontuacao);

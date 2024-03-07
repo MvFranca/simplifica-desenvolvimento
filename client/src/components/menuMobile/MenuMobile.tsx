@@ -1,14 +1,14 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "../../styles/home/MenuMobile.module.css";
 
 const MenuMobile = () => {
 
-  const router = useNavigate()
+  // const router = useNavigate()
 
-  const sair = () => {
-    router('/entrar')
-    localStorage.removeItem("simplifica:token")
-  }
+  // const sair = () => {
+  //   router('/entrar')
+  //   localStorage.removeItem("simplifica:token")
+  // }
 
   return (
     <div className={styles.container}>
@@ -23,11 +23,14 @@ const MenuMobile = () => {
           <img src="./comunidade.png" alt="Comunidade" />
         </NavLink>
         <NavLink to={'/ranking'}  className={styles.home}>
-          <img src="./ranking.png" alt="Perfil" />
+          <img src="./ranking.png" alt="Ranking" />
         </NavLink>
-        <a onClick={sair} >
+        <NavLink to={'/perfil'}  className={styles.home}>
+          <img src="./perfil.png" alt="Perfil" />
+        </NavLink>
+        {/* <a onClick={sair} >
           <img src="./config.png" alt="Configurações" />
-        </a>
+        </a> */}
       </nav>
     </div>
   );
