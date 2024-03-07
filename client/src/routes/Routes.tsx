@@ -10,6 +10,7 @@ import Ordenacao from "../pages/ordenacao/Ordenacao";
 import Perfil from "../pages/perfil/Perfil.page";
 import Ranking from "../pages/ranking/Ranking.page";
 import PageDuvida from "../pages/comunidade/pageDuvida";
+import LayoutMenus from "../components/layout/LayoutMenus";
 
 
 
@@ -22,26 +23,35 @@ const Rotas = () => {
         <Route path="/registrar" element={<Registro />} />
 
         <Route path="/entrar" element={<LoginMobile />} />
+      
+        <Route element={<LayoutMenus/>}>
 
-        <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
 
-        <Route path={`/aprender/:id`} element={<Aprender />} />
+          <Route path={`/ranking`} element={<Ranking />} />
 
-        <Route path={`/jogar/:id`} element={<Jogar />} />
+          <Route path={`/teste`} element={<PageDuvida />} />
+     
+          <Route path={`/estudomanual`} element={<EstudoManual />} />
 
-        <Route path={`/ordenacao/:id`} element={<Ordenacao />} />
+          <Route path={`/comunidade`} element={<Comunidade />} />
 
-        <Route path={`/estudomanual`} element={<EstudoManual />} />
+          <Route path={`/perfil`} element={<Perfil />} />
 
-        <Route path={`/comunidade`} element={<Comunidade />} />
+        </Route>
 
-      <Route path={`/perfil`} element={<Perfil />} />
 
-        <Route path={`/ranking`} element={<Ranking />} />
+          <Route path={`/aprender/:id`} element={<Aprender />} />
 
-        <Route path={`/teste`} element={<PageDuvida />} />
+          <Route path={`/jogar/:id`} element={<Jogar />} />
 
-        <Route path={`*`} element={<div>página não encontrada - 404</div>} />
+          <Route path={`/ordenacao/:id`} element={<Ordenacao />} />
+
+
+
+          <Route path={`*`} element={<div>página não encontrada - 404</div>} />
+
+
       </Routes>
     </>
   );

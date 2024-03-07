@@ -1,7 +1,4 @@
 import Conteudo from "../../components/estudoManual/conteudo";
-import Header from "../../components/header/Header";
-import MenuMobile from "../../components/menuMobile/MenuMobile";
-import MenuTopo from "../../components/menuTopo/MenuTopo";
 import styles from "../../styles/estudoManual/EstudoManual.module.css";
 import { useEffect, useState } from "react";
 
@@ -28,7 +25,6 @@ const EstudoManual = () => {
   return (
     <div className={styles.container}>
       <div className={styles.menu}>
-        <Header />
       </div>
       <div className={styles.conteudos}>
         {conteudos.map((conteudo) => {
@@ -41,9 +37,6 @@ const EstudoManual = () => {
           );
         })}
       </div>
-
-      <MenuTopo />
-      <MenuMobile />
     </div>
   );
 };
