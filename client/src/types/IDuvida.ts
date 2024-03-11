@@ -8,5 +8,6 @@ export interface IDuvida {
   titulo?: string;
   descricao?: string;
   data: Date;
+  url_image?: string;
   respostas?: IResposta[];
 }

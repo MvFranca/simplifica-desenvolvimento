@@ -1,17 +1,96 @@
+.spaceBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .containerBox {
-  width: 50%;
-  min-width: 48.6%;
-  height: max-content;
-  min-height: 180px;
+  width: 100%;
+  height: 10.81rem;
   border-radius: 12px;
   border: 3px solid #d9d9d9;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: initial;
+  padding: 2.5rem 2.5rem 2.5rem 2.5rem;
+}
+
+.containerBox .infoLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.containerBox .infoRight {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 1.5rem;
+}
+
+.btnGray,
+.btnBlue,
+.btnBlack {
+  font-size: 1.25rem;
+  display: flex;
+  font-weight: bold;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  text-align: initial;
-  padding: 20px;
-  scroll-snap-align: start;
+  text-align: center;
+  transition: 100ms;
+}
+
+.btnGray {
+  width: 12.37rem;
+  height: 2.56rem;
+  background-color: #d9d9d9;
+  color: #1c74da;
+}
+
+.btnBlue {
+  width: 17.75rem;
+  height: 3.56rem;
+  background-color: #1c74da;
+  color: white;
+}
+
+.btnBlack {
+  width: 17.75rem;
+  height: 3.56rem;
+  background-color: black;
+  color: white;
+}
+
+.btn:hover {
+  background-color: #b7b7b7;
+}
+
+.username {
+  font-weight: bold;
+  font-size: 1.43rem;
+  color: black;
+}
+
+.dataLabel,
+.respostaDataLabel {
+  font-size: 1.25rem;
+  color: #5c5c5c;
+  width: fit-content;
+}
+
+.dataLabel span {
+  font-weight: bold;
+}
+
+.dataLabel a {
+  font-weight: bold;
+  color: #268aff;
+}
+
+.respostaDataLabel {
+  width: 7.18rem;
+  text-align: center;
 }
 
 .container {
@@ -30,8 +109,64 @@
   width: 100%;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  padding: 4.25rem 4.25rem 0 4.25rem;
+  gap: 4rem;
+  justify-content: start;
   align-items: center;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  text-align: left;
+  color: black;
+}
+
+.caixaDuvidaContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+
+.caixaDuvidaContainer .description {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.line {
+  background-color: #c9c9c9;
+  width: 100%;
+  height: 3px;
+}
+
+.image {
+  border-radius: 8px;
+  height: 16.875rem;
+  object-fit: cover;
+  transition: 100ms;
+}
+
+.image:hover {
+  filter: brightness(50%);
+}
+
+.respostaContainer {
+  width: 100%;
+  border: 3px solid #d9d9d9;
+  border-radius: 12px;
+  padding: 2.25rem 3.5rem 2.25rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+
+.respostaRightInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2.5rem;
 }
 
 @media screen and (max-width: 800px) {
