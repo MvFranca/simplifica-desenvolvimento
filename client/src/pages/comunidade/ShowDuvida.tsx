@@ -35,10 +35,18 @@ const ShowDuvida = () => {
         },
         respostas: [
           {
-            user: "usuario",
+            user: "joaozinho_gameplay",
             data: new Date(),
             descricao:
-              "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio totam vero sequi dignissimos, iure rem hic tempora. Et tempora asperiores tempore molestias? Non voluptatum reprehenderit repellat, velit est ullam sapiente!",
+              "Eu sei qual é o problema. é que lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio totam vero sequi dignissimos, iure rem hic tempora. Et tempora asperiores tempore molestias? Non voluptatum reprehenderit repellat, velit est ullam sapiente!",
+            url_image:
+              "https://media.licdn.com/dms/image/D4D12AQH84dbg2sIFug/article-cover_image-shrink_720_1280/0/1691554879476?e=2147483647&v=beta&t=NW9dW-FK2spqCOYI1RYuBp5wmE_f2ouFxWZzXncPN5g",
+          },
+          {
+            user: "ruanranison",
+            data: new Date(),
+            descricao:
+              "Eu concordo, pois acho que non voluptatum reprehenderit repellat, velit est ullam sapiente!",
             url_image:
               "https://media.licdn.com/dms/image/D4D12AQH84dbg2sIFug/article-cover_image-shrink_720_1280/0/1691554879476?e=2147483647&v=beta&t=NW9dW-FK2spqCOYI1RYuBp5wmE_f2ouFxWZzXncPN5g",
           },
@@ -122,6 +130,7 @@ const ShowDuvida = () => {
                   </div>
                 </div>
                 <div className={styles.line}></div>
+                <p className={styles.description}>{resposta.descricao}</p>
                 <img
                   className={styles.image}
                   src={resposta.url_image}
