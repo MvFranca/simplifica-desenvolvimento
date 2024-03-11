@@ -6,6 +6,7 @@ import MenuMobile from "../../components/menuMobile/MenuMobile";
 import MenuTopo from "../../components/menuTopo/MenuTopo";
 import Header from "../../components/header/Header";
 import FormChat from "../../components/chat/FormChat";
+import ImagemComModal from "../../components/ImagemComModal";
 
 const ShowDuvida = () => {
   //* hooks
@@ -20,11 +21,12 @@ const ShowDuvida = () => {
       const response = {
         id: parseInt(duvidaId || ""),
         data: new Date(),
-        descricao: "alguma coisa",
+        descricao:
+          "Estou com um problema no JS, toda vez o seguinte erro aparece. Odio totam vero sequi dignissimos, iure rem hic tempora. Et tempora asperiores tempore molestias? Non voluptatum reprehenderit repellat, velit est ullam sapiente!",
         titulo: "Código JavaScript sem funcionar",
         tituloConteudo: "Variáveis",
         url_image:
-          "https://media.licdn.com/dms/image/D4D12AQH84dbg2sIFug/article-cover_image-shrink_720_1280/0/1691554879476?e=2147483647&v=beta&t=NW9dW-FK2spqCOYI1RYuBp5wmE_f2ouFxWZzXncPN5g",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlmPQhBUuccn8lAWFzUrpMvCdfLfg7QqIUEw&usqp=CAU",
         user: {
           id_usuario: 1234,
           email: "joao@email.com",
@@ -48,7 +50,7 @@ const ShowDuvida = () => {
             descricao:
               "Eu concordo, pois acho que non voluptatum reprehenderit repellat, velit est ullam sapiente!",
             url_image:
-              "https://media.licdn.com/dms/image/D4D12AQH84dbg2sIFug/article-cover_image-shrink_720_1280/0/1691554879476?e=2147483647&v=beta&t=NW9dW-FK2spqCOYI1RYuBp5wmE_f2ouFxWZzXncPN5g",
+              "https://2.bp.blogspot.com/-07ZR_-8VFEQ/UuwCi5KyUrI/AAAAAAAACCI/jB49-X71td4/s1600/2014-01-31-174430_1366x768_scrot.png",
           },
         ],
       } as IDuvida;
@@ -95,12 +97,16 @@ const ShowDuvida = () => {
             <div className={styles.line}></div>
           </div>
           <div className={styles.caixaDuvidaContainer}>
-            <img
-              className={styles.image}
-              src={duvida?.url_image}
-              alt={duvida?.titulo}
-            />
-            <div className={styles.line}></div>
+            {duvida?.url_image && (
+              <>
+                <ImagemComModal
+                  src={duvida?.url_image}
+                  alt={duvida?.titulo}
+                  classNameImagem={styles.image}
+                />
+                <div className={styles.line}></div>
+              </>
+            )}
           </div>
           <div className={styles.spaceBetween}>
             <button className={styles.btnBlue}>
@@ -131,11 +137,13 @@ const ShowDuvida = () => {
                 </div>
                 <div className={styles.line}></div>
                 <p className={styles.description}>{resposta.descricao}</p>
-                <img
-                  className={styles.image}
-                  src={resposta.url_image}
-                  alt={resposta.user + "image"}
-                />
+                {resposta.url_image && (
+                  <ImagemComModal
+                    src={resposta.url_image}
+                    alt={resposta.user + " image"}
+                    classNameImagem={styles.image}
+                  />
+                )}
               </div>
             );
           })}
