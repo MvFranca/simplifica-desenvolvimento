@@ -66,6 +66,14 @@
   background-color: #b7b7b7;
 }
 
+.btnBlue:hover {
+  background-color: #145aaa;
+}
+
+.btnBlack:hover {
+  background-color: rgb(50, 50, 50);
+}
+
 .username {
   font-weight: bold;
   font-size: 1.43rem;
@@ -149,6 +157,7 @@
 }
 
 .image:hover {
+  cursor: pointer;
   filter: brightness(50%);
 }
 
