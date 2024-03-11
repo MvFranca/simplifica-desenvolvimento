@@ -63,12 +63,6 @@ const ShowDuvida = () => {
   //* render
   return (
     <div className={styles.container}>
-      <MenuMobile />
-      <MenuTopo />
-      <div className={styles.header}>
-        <Header />
-      </div>
-
       <div className={styles.content}>
         <div className={styles.containerBox}>
           <div className={styles.infoLeft}>
@@ -148,7 +142,6 @@ const ShowDuvida = () => {
             );
           })}
       </div>
-      <FormChat />
     </div>
   );
 };

@@ -75,6 +75,7 @@ useEffect(() => {
     if(quantidade.length > 0){
       progressBar()
     }
+// eslint-disable-next-line react-hooks/exhaustive-deps
 }, [])
 
 
@@ -89,6 +90,7 @@ useEffect(() => {
       result.destination.index
     );
     setLinhas(reorderedItems);
+  // eslint-disable-next-line no-extra-semi
   };
 
 
@@ -175,8 +177,8 @@ useEffect(() => {
                   
                 <Draggable key={item.id} draggableId={item.id} index={index}>
                     {(provided) => (
-
-                    <div
+                      
+                    <code
                         className={styles.linha}
                         ref={provided.innerRef}
                         {...provided.draggableProps}
@@ -188,7 +190,7 @@ useEffect(() => {
                           {item.content}
                         </Linha>
                         
-                      </div>
+                      </code>
 
                     
                     )} 

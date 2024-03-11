@@ -21,6 +21,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 250px
 }
 
 .criacao{
@@ -31,5 +32,9 @@
 @media screen and (max-width: 800px) {
     .header{
         display: none;
+    }
+
+    .chat{
+        margin-left: 0;
     }
 }
