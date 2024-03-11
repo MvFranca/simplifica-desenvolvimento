@@ -2,11 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IDuvida } from "../../types/IDuvida";
 import styles from "../../styles/comunidade/DuvidaShow.module.css";
-import MenuMobile from "../../components/menuMobile/MenuMobile";
-import MenuTopo from "../../components/menuTopo/MenuTopo";
-import Header from "../../components/header/Header";
-import FormChat from "../../components/chat/FormChat";
 import ImagemComModal from "../../components/ImagemComModal";
+import { formatDate } from "../../helpers/formatDate";
 
 const ShowDuvida = () => {
   //* hooks
@@ -68,7 +65,7 @@ const ShowDuvida = () => {
           <div className={styles.infoLeft}>
             <h3 className={styles.username}>{duvida?.user.username}</h3>
             <p className={styles.dataLabel}>
-              <span>Data:</span> {duvida?.data.toLocaleString()}
+              <span>Data:</span> {duvida?.data && formatDate(duvida?.data)}
             </p>
             <p className={styles.dataLabel}>
               <span>Turma:</span> {duvida?.user.turma}
@@ -122,7 +119,7 @@ const ShowDuvida = () => {
                   <h3 className={styles.title}>Resposta</h3>
                   <div className={styles.respostaRightInfo}>
                     <p className={styles.respostaDataLabel}>
-                      {resposta.data && resposta.data.toLocaleString()}
+                      {resposta.data && formatDate(resposta.data)}
                     </p>
                     <p className={styles.username}>
                       <span>{resposta.user}</span>
