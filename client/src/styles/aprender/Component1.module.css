@@ -3,7 +3,7 @@
     flex-direction: column;
     gap: 3.125rem;
     margin: 1.5rem 0;
-    height: 500px;
+    max-width: 100%;
 }
 
 .component1 .header{
@@ -39,16 +39,24 @@
     width: 15.625rem;
 }
 
+
+
+.component1 .explicacao .barra{
+    width: 2px;
+    min-height: 100% ;
+    background-color: gray;
+}
+
 .component1 .explicacao .esquerda{
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
+    width: 45%;
+    box-sizing: border-box;
 }
 
-.component1 .explicacao .barra{
-    width: .375rem;
-    min-height: 100% ;
-    background-color: gray;
+.component1 .explicacao .esquerda p{
+    max-width: 100%;
 }
 
 .component1 .explicacao .direita{
@@ -57,13 +65,19 @@
     gap: 1rem;
     font-size: 1.25rem;
     margin-top: 1.875rem;
+    width: 45%;
+    
+}
+
+.component1 .teste{
+    min-width: 100% !important;
 }
 
 
 @media screen and (max-width: 1200px) {
 
     .component1 .explicacao .esquerda .imagem{
-        width: 26.875rem;
+        width: 100%;
     }
 
     .component1 .explicacao .direita{
@@ -71,4 +85,41 @@
         font-size: 1.1rem;
 
     }
+}
+
+
+
+@media screen and (max-width: 850px) {
+
+    .component1 .header h2{
+        font-size: 1.675rem;
+    }
+
+    .component1 .explicacao h3 img{
+        width: 60%;
+        max-width: 15rem;
+    }
+    
+    .component1 .header p{
+        font-size: 1.05rem;
+    }
+
+    .component1 .explicacao{
+        overflow-x: scroll;
+        min-height: max-content;
+        height: max-content;
+        scroll-snap-type: x mandatory ;
+    }
+
+    .component1 .explicacao .barra{
+        display: none;
+    }
+
+
+    .component1 .explicacao .direita, .component1 .explicacao .esquerda{
+        min-width: 100%;
+        scroll-snap-align: start;
+
+    }
+  
 }

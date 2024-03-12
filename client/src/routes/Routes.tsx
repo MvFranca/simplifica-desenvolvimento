@@ -20,6 +20,7 @@ const Rotas = () => {
   return (
     <>
       <Routes>
+
         <Route path="/registrar" element={<Registro />} />
 
         <Route path="/entrar" element={<LoginMobile />} />
@@ -38,8 +39,9 @@ const Rotas = () => {
 
           <Route path={`/perfil`} element={<Perfil />} />
 
-        </Route>
+          <Route path={`/teste1`} element={'teste 1'} />
 
+        </Route>
 
           <Route path={`/aprender/:id`} element={<Aprender />} />
 
@@ -47,10 +49,7 @@ const Rotas = () => {
 
           <Route path={`/ordenacao/:id`} element={<Ordenacao />} />
 
-
-
           <Route path={`*`} element={<div>página não encontrada - 404</div>} />
-
 
       </Routes>
     </>
