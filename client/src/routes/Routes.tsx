@@ -35,6 +35,15 @@ const Rotas = () => {
           <Route path={`/perfil`} element={<Perfil />} />
 
           <Route path={`/comunidade/duvida/:id`} element={<ShowDuvida />} />
+
+          <Route path={`/aprender/:id`} element={<Aprender />} />
+
+          <Route path={`/jogar/:id`} element={<Jogar />} />
+
+          <Route path={`/ordenacao/:id`} element={<Ordenacao />} />
+
+          <Route path={`*`} element={<div>página não encontrada - 404</div>} />
+          <Route path={`/teste1`} element={"teste 1"} />
         </Route>
 
         <Route path={`/aprender/:id`} element={<Aprender />} />

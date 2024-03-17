@@ -21,7 +21,7 @@ const InicioRegistro = () => {
 
   function adicionarIdPontuacao() {
     axios
-      .post("https://simplifica-desenvolvimento.onrender.com/api/points/insertIdPoints", {
+      .post("http://localhost:8000/api/points/insertIdPoints", {
         email,
       })
       .then((res) => {
