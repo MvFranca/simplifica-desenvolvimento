@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IDuvida } from "../../types/IDuvida";
-import styles from "../../styles/comunidade/DuvidaShow.module.css";
+import styles from "../../styles/comunidade/ShowDuvida.module.css";
 import ImagemComModal from "../../components/ImagemComModal";
 import { formatDate } from "../../helpers/formatDate";
 
