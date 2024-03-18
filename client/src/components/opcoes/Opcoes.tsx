@@ -17,15 +17,14 @@ const Opcoes = () => {
 
     // const idUser = Number(userObject.id_usuario);
 
-    console.log("pontuação sendo atualizada: ")
-    console.log(pontos)
+    console.log("pontuação sendo atualizada: ");
+    console.log(pontos);
 
-    console.log('idUser:')
+    console.log("idUser:");
     // console.log(user)
-    
-    // setUsername(userObject.username)
 
-}, [pontos]);
+    // setUsername(userObject.username)
+  }, [pontos]);
 
   return (
     <aside className={styles.informacoes}>
@@ -89,7 +88,9 @@ const Opcoes = () => {
             responder.
           </p>
         </div>
-        <Link to={"/comunidade"}><button className={styles.botao}>CLIQUE AQUI PARA ACESSAR</button></Link>
+        <Link to={"/comunidade"}>
+          <button className={styles.botao}>CLIQUE AQUI PARA ACESSAR</button>
+        </Link>
       </div>
       <div className={styles.progresso}>
         <h2>PROGRESSO</h2>
