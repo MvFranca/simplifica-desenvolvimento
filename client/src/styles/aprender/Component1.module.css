@@ -4,6 +4,8 @@
     gap: 3.125rem;
     margin: 1.5rem 0;
     max-width: 100%;
+    height: 100%;
+    justify-content: center;
 }
 
 .component1 .header{

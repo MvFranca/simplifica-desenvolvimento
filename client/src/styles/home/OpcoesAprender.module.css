@@ -1,12 +1,12 @@
 .container{
     width: 100vw;
-    height: 20%;
+    height: 5rem;
     min-height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-top: 1.8px solid #0000002d;
-    background-color: #fff;
+    /* background-color: #fff; */
 }
 
 .conteudo{

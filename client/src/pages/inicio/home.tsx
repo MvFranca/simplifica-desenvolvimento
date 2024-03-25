@@ -61,7 +61,7 @@ export default function Home() {
 
     if(!teste.current){
     axios
-      .post("https://simplifica-desenvolvimento.onrender.com/api/points/diamantes", { idUser })
+      .post("http://localhost:8000/api/points/diamantes", { idUser })
       .then((res) => {
         const pontuacao = res.data.data.resposta;
         setPontos(pontuacao.pontuacao);

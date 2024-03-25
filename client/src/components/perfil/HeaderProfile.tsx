@@ -36,7 +36,7 @@ const HeaderProfile = () => {
         setUser(userObject)
 
         await axios
-            .get(`https://simplifica-desenvolvimento.onrender.com/api/users/img_get?idUser=${userObject.id_usuario}`)
+            .get(`http://localhost:8000/api/users/img_get?idUser=${userObject.id_usuario}`)
             .then((res) => {
             
             setImgUrl(res.data.data.resposta.url_image);

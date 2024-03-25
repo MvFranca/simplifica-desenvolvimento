@@ -4,7 +4,8 @@
     "subtitulo": "O QUE SÃO VARIÁVEIS?",
     "paragrafo1": "Uma variável é um nome que definimos para armazenar dados de forma simples.",
     "paragrafo2": "Na, estamos armazenando o valor '1' dentro da variável 'numero' e pedindo para que seu valor seja exibido a partir do 'console.log'.",
-    "src": "../aprenda/parte-1.png"
+    "src": "../aprenda/parte-1.png",
+    "tipo": "1"
   },
   {
     "titulo": "VARIÁVEIS",
