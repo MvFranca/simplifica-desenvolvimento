@@ -3,8 +3,9 @@ import styles from "../../styles/home/Opcoes.module.css";
 import IconFire from "../icons/IconFire";
 import IconDiamond from "../icons/IconDiamond";
 import { pointContext } from "../../context/context";
-import { useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { GetImgUser } from "../../../services/apiUrl";
 
 const Opcoes = () => {
   const router = useNavigate();
@@ -27,6 +28,22 @@ const Opcoes = () => {
 
 }, [pontos]);
 
+
+
+  const [img, setImg] = useState('')
+
+    
+  const imgUrl = async () => {
+    const ImgUrl = await GetImgUser()
+    setImg(ImgUrl)
+  }
+
+
+  useEffect(() => {
+    imgUrl()
+  }, [])
+
+
   return (
     <aside className={styles.informacoes}>
       <div className={styles.pontuacao}>
@@ -39,13 +56,18 @@ const Opcoes = () => {
           <p>{pontos}</p>
         </div>
 
-        <div>
-          <img src="./perfil.png" alt="Perfil" />
-          {/* {
-            username &&
-             username
-          } */}
-        </div>
+        <NavLink to={'/perfil'}>
+          <div>
+            {
+              img &&
+              <img src={img} alt="Perfil" className={styles.myImage}/>
+            }
+            {/* {
+              username &&
+               username
+            } */}
+          </div>
+        </NavLink>
       </div>
 
       <div className={styles.estudoManual}>

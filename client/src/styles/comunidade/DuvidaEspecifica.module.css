@@ -110,3 +110,14 @@
     background-color: #268AFF;
     box-shadow: 6px 6px 0px #1E6AC2;
 }
+
+
+
+@media screen and (max-width: 800px) {
+    .duvidaEspecifica{
+        margin: 80px 0;
+        width: 100%;
+        padding: 0 1.25remy;
+    }
+       
+}

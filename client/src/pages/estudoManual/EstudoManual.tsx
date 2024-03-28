@@ -37,6 +37,7 @@ const EstudoManual = () => {
           );
         })}
       </div>
+        
     </div>
   );
 };

@@ -60,3 +60,7 @@
         display: none;
     }
 }
+
+.cabecalho .myImage{
+  border-radius: 50%;
+}

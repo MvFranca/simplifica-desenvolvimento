@@ -22,3 +22,16 @@
     transform: translateY(5px) translateX(5px);
     box-shadow: none;
 }
+
+
+@media screen and (max-width: 700px) {
+
+    .linha {
+        padding: 0 10px;
+    }
+
+
+    .linha p{
+        font-size: 1rem;
+    }
+  }

@@ -41,5 +41,10 @@
 }
 
 
-
+@media screen and (max-width: 925px) {
+    
+    .container{
+        padding: 15px;
+    }
+}
 

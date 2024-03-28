@@ -52,7 +52,7 @@ const Context = ({children}: PropsWithChildren) => {
   const teste = useRef<boolean>(false)
 
   const [userId, setUserId] = useState(0)
-
+  const [img, setImg] = useState('')
 
   // const [dataUser, setDataUser] = useState(
   //   {
@@ -62,7 +62,6 @@ const Context = ({children}: PropsWithChildren) => {
   //   }
   // )
 
-  
 
   return (
     <pointContext.Provider value={{teste, pontos, setPontos, fogo, setFogo, variaveis, setVariaveis, userId, setUserId, initialValuePontos, setInitialValuePontos}}>

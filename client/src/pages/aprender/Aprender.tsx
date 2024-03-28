@@ -99,13 +99,13 @@ const Aprender = () => {
             </div>
 
 
-                  {/* <Component1/> */}
+                  <Component1/>
             
                   {/* <Component2/> */}
             
                   {/* <Component3/> */}
             
-                  <Component4/>
+                  {/* <Component4/> */}
             
                     <OpcoesAprender
               avancar={avancar}

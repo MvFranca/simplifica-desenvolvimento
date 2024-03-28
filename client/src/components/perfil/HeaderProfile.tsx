@@ -88,7 +88,7 @@ const HeaderProfile = () => {
                 console.log(reader.result)
                 const urlImg = reader.result;
                 axios
-                .post("https://simplifica-desenvolvimento.onrender.com/api/users/img_att", { urlImg, idUser })
+                .post("http://localhost:8000/api/users/img_att", { urlImg, idUser })
                 .then((res) => {
                     console.log(res)
                 })
