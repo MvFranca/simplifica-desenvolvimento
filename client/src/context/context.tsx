@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, PropsWithChildren, useRef, useState } from "react";
+import { createContext, PropsWithChildren, useEffect, useRef, useState } from "react";
 import { Dispatch, SetStateAction } from 'react';
+import { GetImgUser } from "../../services/apiUrl";
 
 
 interface pontuacao {
@@ -21,6 +22,8 @@ interface pontuacao {
 
   teste: React.MutableRefObject<boolean>;
 
+  img: string;
+  setImg: (string: string) => void;
 }
 
 const initialValue = {
@@ -38,6 +41,9 @@ const initialValue = {
   setVariaveis: () => {},
   setUsuario: () => {},
   teste: { current: false },
+
+  img: '',
+  setImg: () => {},
 };
 
 
@@ -54,17 +60,21 @@ const Context = ({children}: PropsWithChildren) => {
   const [userId, setUserId] = useState(0)
   const [img, setImg] = useState('')
 
-  // const [dataUser, setDataUser] = useState(
-  //   {
-  //     name: "",
-  //     username: "",
-  //     urlImg: ""
-  //   }
-  // )
+  
+  const imgUrl = async () => {
+    const ImgUrl = await GetImgUser()
+    setImg(ImgUrl)
+  }
+
+
+  useEffect(() => {
+    imgUrl()
+  }, [])
+
 
 
   return (
-    <pointContext.Provider value={{teste, pontos, setPontos, fogo, setFogo, variaveis, setVariaveis, userId, setUserId, initialValuePontos, setInitialValuePontos}}>
+    <pointContext.Provider value={{teste, pontos, setPontos, fogo, setFogo, variaveis, setVariaveis, userId, setUserId, initialValuePontos, setInitialValuePontos, img, setImg}}>
         {children}
     </pointContext.Provider>
   );

@@ -1,31 +1,11 @@
 import { NavLink } from "react-router-dom";
 import styles from "../../styles/home/MenuMobile.module.css";
-import { useEffect, useState } from "react";
-import { GetImgUser } from "../../../services/apiUrl";
+import { useContext } from "react";
+import { pointContext } from "../../context/context";
 
 const MenuMobile = () => {
 
-  // const router = useNavigate()
-
-  // const sair = () => {
-  //   router('/entrar')
-  //   localStorage.removeItem("simplifica:token")
-  // }
-
-  
-  const [img, setImg] = useState('')
-
-  
-  const imgUrl = async () => {
-    const ImgUrl = await GetImgUser()
-    setImg(ImgUrl)
-  }
-
-
-  useEffect(() => {
-    imgUrl()
-  }, [])
-
+  const {img} = useContext(pointContext)
 
   return (
     <div className={styles.container}>

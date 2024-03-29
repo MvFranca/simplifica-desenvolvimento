@@ -1,28 +1,12 @@
 import { NavLink } from "react-router-dom";
 import styles from "../../styles/home/Header.module.css";
-import { useEffect, useState } from "react";
-import { GetImgUser } from "../../../services/apiUrl";
+import { useContext } from "react";
+import { pointContext } from "../../context/context";
 
 const Header = () => {
-  // const router = useNavigate();
-
-  // function sair() {
-  //   localStorage.removeItem("simplifica:token");
-  //   router("/entrar");
-  // }
-
-  const [img, setImg] = useState('')
-
-  
-  const imgUrl = async () => {
-    const ImgUrl = await GetImgUser()
-    setImg(ImgUrl)
-  }
 
 
-  useEffect(() => {
-    imgUrl()
-  }, [])
+  const { img } = useContext(pointContext)
 
   return (
     <header className={styles.cabecalho}>

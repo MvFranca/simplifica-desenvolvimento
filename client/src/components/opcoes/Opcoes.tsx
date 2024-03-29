@@ -3,13 +3,13 @@ import styles from "../../styles/home/Opcoes.module.css";
 import IconFire from "../icons/IconFire";
 import IconDiamond from "../icons/IconDiamond";
 import { pointContext } from "../../context/context";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { GetImgUser } from "../../../services/apiUrl";
+
 
 const Opcoes = () => {
   const router = useNavigate();
-  const { pontos, fogo } = useContext(pointContext);
+  const { pontos, fogo, img } = useContext(pointContext);
   // const [username, setUsername] = useState("")
 
   useEffect(() => {
@@ -27,21 +27,6 @@ const Opcoes = () => {
     // setUsername(userObject.username)
 
 }, [pontos]);
-
-
-
-  const [img, setImg] = useState('')
-
-    
-  const imgUrl = async () => {
-    const ImgUrl = await GetImgUser()
-    setImg(ImgUrl)
-  }
-
-
-  useEffect(() => {
-    imgUrl()
-  }, [])
 
 
   return (
