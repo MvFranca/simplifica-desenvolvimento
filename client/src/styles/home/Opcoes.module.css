@@ -10,6 +10,10 @@
   box-sizing: border-box;
 }
 
+.informacoes .myImage{
+  border-radius: 50%;
+}
+
 .pontuacao {
   height: 40px;
   width: 100%;

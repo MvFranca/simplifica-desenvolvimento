@@ -55,7 +55,9 @@
 
 
 @media screen and (max-width: 925px) {
+    
     .conteudo{
        flex-direction: column;
+       width: 100%;
     }
 }

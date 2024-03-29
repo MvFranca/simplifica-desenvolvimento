@@ -9,4 +9,24 @@ const ApiUrl = axios.create({
     },
 });
 
+
+export async function GetImgUser(){
+    const user = localStorage.getItem("simplifica:user")!;
+    const userObject = await JSON.parse(user);
+
+    return await axios
+        .get(`http://localhost:8000/api/users/img_get?idUser=${userObject.id_usuario}`)
+        .then((res) => {
+        
+        return res.data.data.resposta.url_image
+        })
+  
+        .catch((err) => {
+          console.log(err);
+        });
+
+}
+
+
+
 export default ApiUrl;

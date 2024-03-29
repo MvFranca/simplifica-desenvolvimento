@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .container {
   position: fixed;
   top: 0;
@@ -10,6 +11,21 @@
   background-color: #fff;
   box-shadow: 0px 5px 5px #0000000b;
   overflow: hidden;
+=======
+.container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    box-shadow: 0px 5px 5px #0000000b;
+    overflow: hidden;
+    z-index: 99999;
+>>>>>>> master
 }
 
 .container h1 {

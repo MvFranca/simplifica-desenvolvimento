@@ -17,7 +17,10 @@ const Main = ({ conteudo, descricao, id, src }: props) => {
       </div>
 
       <div className={styles.containerBotoes}>
-        <Botoes id={id} />
+        <Botoes 
+          id={id}
+          conteudo ={conteudo} 
+        />
 
         <img
           src={src}

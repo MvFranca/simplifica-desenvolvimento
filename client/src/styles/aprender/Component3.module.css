@@ -33,3 +33,29 @@
     width: .1rem;
     background-color: gray;
 }
+
+@media screen and (max-width: 900px) {
+    .component3 .esquerda h2, .component3 .direita h2{
+        font-size: 1.4rem;
+    }
+
+    .component3 .esquerda  p, .component3 .direita p{
+        font-size: 1rem;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    
+    .component3{
+        overflow-x: scroll;
+        gap: .5rem;
+        scroll-snap-type: x mandatory;
+    }
+    
+    .component3 .esquerda, .component3 .direita{
+        width: 100%;
+        scroll-snap-align: start;
+    }
+
+}

@@ -60,3 +60,63 @@
 #muitoCurvado {
   margin-left: -150px;
 }
+
+.modal{
+  background-color: #268bff14;
+}
+
+
+.modal .rodal-dialog{
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+  flex-direction: column;
+  gap: .5rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.modal .rodal-dialog h2{
+  font-size: 1.2rem;
+  font-weight: normal;
+}
+
+.modal .rodal-dialog p{
+  font-size: .9rem;
+}
+
+@keyframes moveDown {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: calc(100% + 120px);
+  }
+}
+
+.modal .rodal-dialog img{
+  height: 100px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateY();
+  animation: moveDown 3s ease-in-out forwards;
+}
+
+.modal .rodal-dialog strong{
+  color: #268aff;
+}
+
+@media screen and (max-width:433px) {
+
+  .modal .rodal-dialog h2{
+    font-size: 1.1rem;
+  }
+  
+
+  .modal .rodal-dialog{
+    max-width: 300px !important;
+  }
+
+}

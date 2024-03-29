@@ -1,3 +1,4 @@
+import styles from "../../styles/home/Aprender.module.css";
 import { useContext, useEffect, useRef, useState } from "react";
 // import Revisao from "../../components/revisão/Revisao";
 import { conteudos } from "../../types/conteudos";
@@ -5,11 +6,12 @@ import Carregamento from "../../components/carregamento/Carregamento";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Component1 from "../../components/revisão/Component1";
 import IconClose from "../../components/icons/IconClose";
-import styles from "../../styles/home/Revisao.module.css";
 
 import { pointContext } from "../../context/context";
 import OpcoesAprender from "../../components/revisão/OpcoesAprender";
-// import Component2 from "../../components/revisão/Component2";
+import Component2 from "../../components/revisão/Component2";
+import Component3 from "../../components/revisão/Component3";
+import Component4 from "../../components/revisão/Component4";
 // import Component3 from "../../components/revisão/Component3";
 // import Component4 from "../../components/revisão/Component4";
 
@@ -74,6 +76,7 @@ const Aprender = () => {
 
   return (
     <>
+<<<<<<< HEAD
       {conteudo[0] ? (
         <div className={styles.conteudo}>
           <div className={styles.miniHeader}>
@@ -108,6 +111,46 @@ const Aprender = () => {
       ) : (
         <Carregamento />
       )}
+=======
+      
+      {conteudo[0] ? 
+      <div className={styles.container_conteudo}>
+          <div className={styles.conteudo}>
+            <div className={styles.miniHeader}>
+                <h1>{conteudo[assuntoAtual].titulo}</h1>
+                <div className={styles.barradeProgresso}>
+                  <div className={styles.progresso} ref={barra}></div>
+                </div>
+                <Link to={"/"}>
+                  <IconClose width={30} height={30} color="#000000" />
+              </Link>
+            </div>
+
+
+                  <Component1/>
+            
+                  {/* <Component2/> */}
+            
+                  {/* <Component3/> */}
+            
+                  {/* <Component4/> */}
+            
+                    <OpcoesAprender
+              avancar={avancar}
+              voltar={voltar}
+              assuntoAtual={assuntoAtual}
+              conteudo={conteudo}
+              finalizar={finalizar}
+            />
+          </div>
+
+
+      </div>
+       :
+       <Carregamento/>  
+    }
+      
+>>>>>>> master
     </>
   );
 };

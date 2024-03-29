@@ -1,6 +1,18 @@
 .ordenacao{
-    padding: 20px 150px;
+    /* padding: 20px 150px; */
     width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2.5rem;
+    padding: 20px;
+}
+
+.ordenacao .conteudo{
+    width: 100%;
+    max-width: 1200px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -91,6 +103,7 @@
   .ordenacao section .borda{
     margin: auto;
     height: .0938rem;
+    display: none;
     width: 80%;
     /* background-color: #7b7b7bbc; */
     background-color: transparent;
@@ -169,3 +182,18 @@
     transform: translateY(2px);
     box-shadow: none;
   }
+
+
+@media screen and (max-width: 700px) {
+
+  .miniHeader h2 {
+  
+    display: none;
+  }
+
+  .ordenacao section h2{
+    font-size: 1.44rem;
+    margin: 0;
+  }
+
+}

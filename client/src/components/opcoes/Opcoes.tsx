@@ -4,11 +4,12 @@ import IconFire from "../icons/IconFire";
 import IconDiamond from "../icons/IconDiamond";
 import { pointContext } from "../../context/context";
 import { useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+
 
 const Opcoes = () => {
   const router = useNavigate();
-  const { pontos, fogo } = useContext(pointContext);
+  const { pontos, fogo, img } = useContext(pointContext);
   // const [username, setUsername] = useState("")
 
   useEffect(() => {
@@ -26,6 +27,7 @@ const Opcoes = () => {
     // setUsername(userObject.username)
   }, [pontos]);
 
+
   return (
     <aside className={styles.informacoes}>
       <div className={styles.pontuacao}>
@@ -38,13 +40,18 @@ const Opcoes = () => {
           <p>{pontos}</p>
         </div>
 
-        <div>
-          <img src="./perfil.png" alt="Perfil" />
-          {/* {
-            username &&
-             username
-          } */}
-        </div>
+        <NavLink to={'/perfil'}>
+          <div>
+            {
+              img &&
+              <img src={img} alt="Perfil" className={styles.myImage}/>
+            }
+            {/* {
+              username &&
+               username
+            } */}
+          </div>
+        </NavLink>
       </div>
 
       <div className={styles.estudoManual}>

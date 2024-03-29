@@ -5,6 +5,7 @@ import { Outlet } from "react-router-dom";
 import styles from "../../styles/home/Layout.module.css";
 
 const LayoutMenus = () => {
+<<<<<<< HEAD
 
   return (
     <>
@@ -21,3 +22,18 @@ const LayoutMenus = () => {
 };
 
 export default LayoutMenus;
+=======
+    return ( 
+        <>
+            <Header />
+            <MenuTopo />
+            
+            <Outlet/>
+            
+            <MenuMobile />
+        </>
+     );
+}
+ 
+export default LayoutMenus;
+>>>>>>> master

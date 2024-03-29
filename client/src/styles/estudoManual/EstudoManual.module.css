@@ -31,3 +31,15 @@
     padding: 20px 0 100px 0;
   }
 }
+<<<<<<< HEAD
+=======
+
+
+@media screen and (max-width: 925px) {
+    
+    .container{
+        padding: 15px;
+    }
+}
+
+>>>>>>> master

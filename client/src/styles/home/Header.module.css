@@ -47,6 +47,7 @@
   color: #777777;
 }
 
+<<<<<<< HEAD
 .cabecalho nav a:hover {
   background-color: #e1efff;
 }
@@ -56,3 +57,14 @@
     display: none;
   }
 }
+=======
+  @media screen and (max-width: 800px) {
+    .cabecalho{
+        display: none;
+    }
+}
+
+.cabecalho .myImage{
+  border-radius: 50%;
+}
+>>>>>>> master

@@ -45,9 +45,9 @@ const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
       const userObject = JSON.parse(user)
       
       const idUser = Number(userObject.id_usuario)
-
+      // .put("https://simplifica-desenvolvimento.onrender.com/api/points/updateDiamantes", { idUser, pontos })
       axios
-        .put("https://simplifica-desenvolvimento.onrender.com/api/points/updateDiamantes", { idUser, pontos })
+        .put("http://localhost:8000/api/points/updateDiamantes", { idUser, pontos })
         .then((res) => {
           console.log(res);
           // setRes(true)

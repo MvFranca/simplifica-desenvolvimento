@@ -29,6 +29,10 @@
   padding: 3px;
 }
 
+.container .myImage{
+        border-radius: 50%;
+}
+
 @media screen and (max-width: 800px) {
   .container {
     display: flex;
