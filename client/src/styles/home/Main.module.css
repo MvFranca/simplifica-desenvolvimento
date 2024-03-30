@@ -46,6 +46,11 @@
         align-items: center;
         
     }
+
+    .container:first-child{
+        margin-top: 80px;
+    }
+
     .imagem{
         display: none;
     }

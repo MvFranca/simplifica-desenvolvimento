@@ -58,6 +58,7 @@ const Context = ({children}: PropsWithChildren) => {
 
   const [userId, setUserId] = useState(0)
   const [img, setImg] = useState('')
+  const user = localStorage.getItem("simplifica:user")!;
 
   
   const imgUrl = async () => {
@@ -66,7 +67,7 @@ const Context = ({children}: PropsWithChildren) => {
 
     
     const user = localStorage.getItem("simplifica:user")!;
-    const userObject = JSON.parse(user);
+    const userObject = await JSON.parse(user);
 
     const urlImg = await userObject.url_image
     setImg(urlImg)
@@ -75,7 +76,9 @@ const Context = ({children}: PropsWithChildren) => {
 
   useEffect(() => {
     imgUrl()
-  }, [])
+    console.log('img:')
+    console.log(img)
+  }, [img, user])
 
 
 

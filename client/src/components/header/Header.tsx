@@ -1,12 +1,18 @@
 import { NavLink } from "react-router-dom";
 import styles from "../../styles/home/Header.module.css";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { pointContext } from "../../context/context";
 
 const Header = () => {
 
 
   const { img } = useContext(pointContext)
+
+  const [myImg, setImg] = useState('')
+  
+  useEffect(() => {
+    setImg(img)
+  }, [img])
 
   return (
     <header className={styles.cabecalho}>
@@ -31,7 +37,7 @@ const Header = () => {
         <NavLink to={"/perfil"}>
           {
             img ?
-            <img src={img} alt="Perfil" className={styles.myImage}/>
+            <img src={myImg} alt="Perfil" className={styles.myImage}/>
             :
             <img src="./perfil.png" alt="Perfil" />
           }
