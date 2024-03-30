@@ -1,9 +1,8 @@
 .tableRanking{
-    width: calc(100% - 250px);
+    width: 100% ;
     overflow: hidden;
     box-sizing: border-box;
-    margin-left: 250px;
-    padding: 50px 100px;
+    padding: 50px 0px;
     display: flex;
     flex-direction: column;
     gap: 3rem;
@@ -189,8 +188,10 @@
         display: flex;
         justify-content: center;
         margin: 4.375rem 0;
+        padding: 1.875rem 0;
+
     }
-    
+
     .cabecalho h1{
         font-size: 2.2rem;
     }
@@ -221,7 +222,7 @@
     }
 
     .tableRanking{
-        padding: 1.875rem 1.25rem;
+        padding: 1.875rem 0;
     }
 
     .tabela .username{

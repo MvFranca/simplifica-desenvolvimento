@@ -11,6 +11,7 @@ import Perfil from "../pages/perfil/Perfil.page";
 import Ranking from "../pages/ranking/Ranking.page";
 import PageDuvida from "../pages/comunidade/pageDuvida";
 import LayoutMenus from "../components/layout/LayoutMenus";
+import ShowDuvida from "../pages/comunidade/ShowDuvida";
 
 
 
@@ -32,7 +33,7 @@ const Rotas = () => {
           <Route path={`/ranking`} element={<Ranking />} />
 
           <Route path={`/teste`} element={<PageDuvida />} />
-     
+          <Route path={`/comunidade/duvida/:id`} element={<ShowDuvida />} />
           <Route path={`/estudomanual`} element={<EstudoManual />} />
 
           <Route path={`/comunidade`} element={<Comunidade />} />

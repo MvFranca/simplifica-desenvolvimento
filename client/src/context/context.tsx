@@ -1,7 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, PropsWithChildren, useEffect, useRef, useState } from "react";
 import { Dispatch, SetStateAction } from 'react';
-import { GetImgUser } from "../../services/apiUrl";
 
 
 interface pontuacao {
@@ -62,8 +61,15 @@ const Context = ({children}: PropsWithChildren) => {
 
   
   const imgUrl = async () => {
-    const ImgUrl = await GetImgUser()
-    setImg(ImgUrl)
+    // const ImgUrl = await GetImgUser()
+    // setImg(ImgUrl)
+
+    
+    const user = localStorage.getItem("simplifica:user")!;
+    const userObject = JSON.parse(user);
+
+    const urlImg = await userObject.url_image
+    setImg(urlImg)
   }
 
 

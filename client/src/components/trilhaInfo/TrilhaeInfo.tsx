@@ -18,21 +18,25 @@ const TrilhaeInfo = () => {
   }, []);
 
   return (
-    <main className={styles.main}>
-      {conteudos.map((assunto) => {
-        const { conteudo, descricao, id, src } = assunto;
-        return (
-          <Main
-            conteudo={conteudo}
-            descricao={descricao}
-            key={id}
-            id={id}
-            src={src}
-          />
-        );
-      })}
+   <main className={styles.main}>
+      <div className={styles.conteudoContainer}>
+        {conteudos.map((assunto) => {
+          const { conteudo, descricao, id, src } = assunto;
+          return (
+            <Main
+              conteudo={conteudo}
+              descricao={descricao}
+              key={id}
+              id={id}
+              src={src}
+            />
+          );
+        })}
+      </div>
 
-      <Opcoes />
+      <div className={styles.opcoes}>
+        <Opcoes />
+      </div>
     </main>
   );
 };

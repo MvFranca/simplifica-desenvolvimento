@@ -1,7 +1,12 @@
 .container{
-    width: 67%;
- 
+    width: 100%;
+    /* margin-top: 90px; */
 }
+
+.container:first-child{
+    margin-top: 80px;
+}
+
 
 .titulo{
     margin-top: 40px;
@@ -10,7 +15,6 @@
     color: #fff;
     border-radius: 13px;
     padding: 30px;
-    margin-right: 30px;
 
 }
 
@@ -28,14 +32,14 @@
 
 @media screen and (max-width: 1280px) {
     .container{
-      width: 80%;
+      width: 100%;
     }
   }
   
 
 @media screen and (max-width: 800px) {
     .container{
-        width: 85vw;
+        width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -50,6 +54,6 @@
     }
     .titulo{
         margin-right: 0px;
-    
+        width: 100%;
     }
 }

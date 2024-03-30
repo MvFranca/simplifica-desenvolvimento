@@ -18,6 +18,7 @@ const FormRedefinir = ( {user}: props) => {
 
     function sair() {
         localStorage.removeItem("simplifica:token");
+        localStorage.removeItem("simplifica:user");
         router("/entrar");
       }
 

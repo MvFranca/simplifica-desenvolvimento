@@ -4,7 +4,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 60px 40px;
+    padding: 60px 0px;
     gap: 50px;
 }
 
@@ -91,6 +91,7 @@
 @media screen and (max-width: 800px) {
 
     .chat{
-        margin-top: 100px;
+        padding: 0px;
+        margin: 100px 0;
     }
 }

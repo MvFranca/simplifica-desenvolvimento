@@ -1,29 +1,45 @@
 .main{
-    margin: 50px 0 0px 281px;
+    /* margin: 50px 0 0px 0; */
     width: 100%;
     display: flex;
     justify-content: center;
-    overflow: hidden;
-    flex-direction: column;
     padding-bottom: 100px;
+    padding-right: 40px;
+    /* background-color: aqua; */
+    gap: 2rem;
+    position: relative;
 
 }
 
+.main .conteudoContainer{
+  width: 67%;
+}
+
+
+
+.main .opcoes{
+  width: 33%;
+  position: relative;
+}
+
+
 
 @media screen and (max-width: 1280px) {
-    .main{
-      align-items: center;
-      margin: 50px 0px 0px 280px;
+    
+    .main .conteudoContainer{
+      width: 100%;
+    }
+
+    .main .opcoes{
+      display: none;
     }
   }
   
 
-@media screen and (max-width: 800px) {
-    .main{
-        margin: 50px 0px 0px 0px; 
-        display: flex;
-        
-        align-items: center;
+  @media screen and (max-width: 800px) {
+    
+    .main {
+      padding: 0;
     }
-}
-
+  }
+  

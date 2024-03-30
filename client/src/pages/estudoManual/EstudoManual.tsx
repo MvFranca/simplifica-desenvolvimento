@@ -24,8 +24,6 @@ const EstudoManual = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.menu}>
-      </div>
       <div className={styles.conteudos}>
         {conteudos.map((conteudo) => {
           return (

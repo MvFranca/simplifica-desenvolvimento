@@ -1,19 +1,18 @@
 .header_profile{
-    margin-left: 15.625rem;
     display: flex;
     justify-content: center;
     align-items: center;
     height: max-content;
-    width: calc(100% - 250px);
+    width: 100%;
 }
 
 .header_profile .container{
-    margin: 0rem 1.875rem;
     width: 100%;
     border-radius: 1.25rem;
     padding-bottom: 3.125rem;
     /* overflow: hidden; */
-    box-shadow: 0 2px 4px  #0000002f;
+    /* box-shadow: 0 2px 4px  #0000002f; */
+    border: 1px solid #0000004c;
     height: max-content;
 }
 
@@ -48,6 +47,8 @@
     width: 9.375rem;
     height: 9.375rem;
     transform: translateY(-1.875rem);
+    box-shadow: 0px 3px 3px 3px #00000013;
+
 }
 
 .header_profile .user_data .container_img{
