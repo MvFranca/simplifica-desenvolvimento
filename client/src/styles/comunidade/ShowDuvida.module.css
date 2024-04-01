@@ -13,7 +13,7 @@
     justify-content: space-between;
     align-items: center;
     text-align: initial;
-    padding: 2.5rem 2.5rem 2.5rem 2.5rem;
+    padding: 2.5rem;
   }
   
   .containerBox .infoLeft {
@@ -197,6 +197,10 @@
       font-size: 1.2rem;
       overflow-x: scroll;
     }
+
+    .username::-webkit-scrollbar{
+      display: none;
+    }
     
     .dataLabel,
     .respostaDataLabel {
@@ -216,6 +220,10 @@
 
     .content {
       padding: 2.25rem 2.25rem 0 2.25rem;
+    }
+
+    .containerBox {
+      padding: 1rem;
     }
 
   }
@@ -238,8 +246,12 @@
     }
 
 
-    .description,  .respostaRightInfo,   .username {
+    .description,  .respostaRightInfo {
       font-size: 1rem;
+    }
+
+    .username {
+      font-size: 1.2rem;
     }
     
     .dataLabel,
@@ -252,6 +264,7 @@
     .btnBlack {
       font-size: .9rem;
       width: 48%;
+      height: 3rem;
     }
 
   }
