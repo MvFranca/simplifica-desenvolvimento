@@ -49,13 +49,24 @@ const HeaderProfile = () => {
         if (file) {
             const reader = new FileReader();
             reader.onload = () => {
-                setImg(String(reader.result));
-                console.log(reader.result)
+
+
                 const urlImg = reader.result;
+                    
+                    
                 axios
                 .post("http://localhost:8000/api/users/img_att", { urlImg, idUser })
                 .then((res) => {
                     console.log(res)
+
+                    const userDataJSON = localStorage.getItem("simplifica:user");
+                    if(userDataJSON) {
+                        const userData = JSON.parse(userDataJSON);
+                        userData.url_image = urlImg;
+                        localStorage.setItem("simplifica:user", JSON.stringify(userData));
+                        setImg(String(urlImg))
+                
+                    }
                 })
 
                 .catch((err) => {
