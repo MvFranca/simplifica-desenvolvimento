@@ -32,13 +32,13 @@
   .btnGray,
   .btnBlue,
   .btnBlack {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     display: flex;
     font-weight: bold;
     justify-content: center;
     align-items: center;
     text-align: center;
-    transition: 100ms;
+    transition: 200ms;
   }
   
   .btnGray {
@@ -49,16 +49,18 @@
   }
   
   .btnBlue {
-    width: 17.75rem;
-    height: 3.56rem;
+    width: 15rem;
+    height: 3.2rem;
     background-color: #1c74da;
+    box-shadow: 5px 5px 0px 0px #145aaa;
     color: white;
   }
   
   .btnBlack {
-    width: 17.75rem;
-    height: 3.56rem;
-    background-color: black;
+    width: 15rem;
+    height: 3.2rem;
+    background-color: rgb(30, 30, 30);
+    box-shadow: 5px 5px 0px 0px #3a3838;
     color: white;
   }
   
@@ -66,17 +68,22 @@
     background-color: #b7b7b7;
   }
   
-  .btnBlue:hover {
-    background-color: #145aaa;
+  .btnBlue:hover{
+    margin-left: 5px;
+    transform: translateY(5px);
+    box-shadow: none;
   }
-  
-  .btnBlack:hover {
-    background-color: rgb(50, 50, 50);
+
+   
+  .btnBlack:hover{
+    margin-left: 5px;
+    transform: translateY(5px);
+    box-shadow: none;
   }
   
   .username {
     font-weight: bold;
-    font-size: 1.43rem;
+    font-size: 1.3rem;
     color: black;
   }
   
@@ -128,7 +135,7 @@
   }
   
   .title {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     font-weight: bold;
     text-align: left;
     color: black;
@@ -138,11 +145,11 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 2.25rem;
+    gap: 2rem;
   }
   
   .description {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 400;
   }
   
@@ -217,6 +224,7 @@
     .btnBlack {
       width: 13.75rem;
     }
+
 
     .content {
       padding: 2.25rem 2.25rem 0 2.25rem;
