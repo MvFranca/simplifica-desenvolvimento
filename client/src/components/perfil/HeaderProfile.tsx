@@ -20,7 +20,7 @@ interface TypesUser {
 
 const HeaderProfile = () => {
     console.log("oi")
-    const { pontos, fogo,  } = useContext(pointContext);
+    const { pontos, fogo, img, setImg } = useContext(pointContext);
     const [user, setUser] = useState<TypesUser>({
         username: "",
         email: "",
@@ -28,48 +28,13 @@ const HeaderProfile = () => {
         fullname: ""
     })
     
-    const [imgUrl, setImgUrl] = useState('./perfil-padrao.png');
 
     async function userData(){
         const user = await localStorage.getItem("simplifica:user")!;
         const userObject = await JSON.parse(user);
         setUser(userObject)
 
-        await axios
-            .get(`https://simplifica-desenvolvimento.onrender.com/api/users/img_get?idUser=${userObject.id_usuario}`)
-            .then((res) => {
-            
-            setImgUrl(res.data.data.resposta.url_image);
-              console.log(res.data.data.resposta.url_image)
-            })
-      
-            .catch((err) => {
-              console.log(err);
-            });
-
     }
-
-    // const resizeImage = (file, maxWidth, maxHeight) => {
-    // return new Promise((resolve, reject) => {
-    //     resizeFile(file, maxWidth, maxHeight, 'JPEG', 80, 0, (resizedImage) => {
-    //       resolve(resizedImage);
-    //     }, 'blob');
-    //   });
-    // };
-  
-    // Função para converter a imagem redimensionada para uma URL de dados
-    // const convertToDataURL = (blob) => {
-    //   return new Promise((resolve, reject) => {
-    //     const reader = new FileReader();
-    //     reader.onload = () => {
-    //       resolve(reader.result);
-    //     };
-    //     reader.onerror = reject;
-    //     reader.readAsDataURL(blob);
-    //   });
-    // };
-
-    
 
     const handleImageChange = (event:ChangeEvent<HTMLInputElement>) => {
 
@@ -84,13 +49,24 @@ const HeaderProfile = () => {
         if (file) {
             const reader = new FileReader();
             reader.onload = () => {
-                setImgUrl(String(reader.result));
-                console.log(reader.result)
+
+
                 const urlImg = reader.result;
+                    
+                    
                 axios
-                .post("https://simplifica-desenvolvimento.onrender.com/api/users/img_att", { urlImg, idUser })
+                .post("http://localhost:8000/api/users/img_att", { urlImg, idUser })
                 .then((res) => {
                     console.log(res)
+
+                    const userDataJSON = localStorage.getItem("simplifica:user");
+                    if(userDataJSON) {
+                        const userData = JSON.parse(userDataJSON);
+                        userData.url_image = urlImg;
+                        localStorage.setItem("simplifica:user", JSON.stringify(userData));
+                        setImg(String(urlImg))
+                
+                    }
                 })
 
                 .catch((err) => {
@@ -118,7 +94,7 @@ const HeaderProfile = () => {
                     <div className={styles.user}>
                         <label htmlFor='img' className={styles.container_img}>
                             {/* <button> */}
-                                <img src={imgUrl} alt="Imagem de Perfil" />
+                                <img src={img} alt="Imagem de Perfil" />
                                 <input type="file" id='img' name='img' onChange={handleImageChange} accept="image/*" />
                                 <div className={styles.edit_img}>
                                     <IconEdit2 width={18} color='#fff' height={18}/>

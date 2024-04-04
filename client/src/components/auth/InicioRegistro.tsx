@@ -37,7 +37,7 @@ const InicioRegistro = () => {
     console.log('turma:')
     console.log(turma)
     axios
-      .post("https://simplifica-desenvolvimento.onrender.com/api/auth/register", {
+      .post("http://localhost:8000/api/auth/register", {
         username,
         email,
         senha,

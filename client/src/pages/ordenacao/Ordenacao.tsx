@@ -121,117 +121,116 @@ useEffect(() => {
   
   return (
     <div className={styles.ordenacao}>
-               <div className={styles.miniHeader}>
-                <h2>
-                  REPETIÇÃO
-                </h2>
-                <div className={styles.barradeProgresso}>
-                  <div className={styles.progresso} ref={progresso}></div>
-                </div>
-                <Link to={"/"}>
-                  <IconClose width={35} height={35} color="#000000" />
-                </Link>
-              </div>
-      {
-      fim ?
-      <>
-      
-        <Acertos
-        acertos={acertos}
-        quantidadeQuestoes={3}
-        />
-        
-        <div className={styles.sair}>
-                <Link to={'/'}>
-                SAIR
-                </Link>
-            </div>   
-        </>
-      :
-        <DragDropContext onDragEnd={onDragEnd}>
-        <section>
-              {
-                titulos[0] ?
-                <h2>
-                 {titulos[fase].titulo}
-              </h2>
-              :
-              <p>
-                Carregando...
-              </p>
-              }
-              
-              <div className={styles.borda}/>
-          <Droppable droppableId="droppable">
-            {(provided) => (
-              <div
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-                className={styles.codigo}
-              >
+        <div className={styles.conteudo}>
+          <div className={styles.miniHeader}>
+          <h2>
+            REPETIÇÃO
+          </h2>
+          <div className={styles.barradeProgresso}>
+            <div className={styles.progresso} ref={progresso}></div>
+          </div>
+          <Link to={"/"}>
+            <IconClose width={35} height={35} color="#000000" />
+          </Link>
+                        </div>
                 {
-                linhas ?
-                linhas.map((item, index) => (
-                  <>
-                      <hr />
+                fim ?
+                <>
+                
+                  <Acertos
+                  acertos={acertos}
+                  quantidadeQuestoes={3}
+                  />
                   
-                <Draggable key={item.id} draggableId={item.id} index={index}>
-                    {(provided) => (
-                      
-                    <code
-                        className={styles.linha}
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        key={Number(item.id)}
-                      >
-
-                        <Linha>
-                          {item.content}
-                        </Linha>
-                        
-                      </code>
-
-                    
-                    )} 
-                  </Draggable>
+                  <div className={styles.sair}>
+          <Link to={'/'}>
+          SAIR
+          </Link>
+                      </div>   
                   </>
-                ))
-              :
-                  <Carregamento/>}
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
-         
-
-            <div className={styles.botoes}>
-                  <button
-                    onClick={fetchLinhas}
-                  >RESET</button>
-
-                    {
-                      linhas.length-2 == fase ?
-                      <button
-                        onClick={verificar}
-                      >
-                        FINALIZAR
-                      </button>
-                      :
-                      <button
-                        onClick={verificar}
-                      >
-                        VERIFICAR
-                      </button>
-                      
-                    }
-
-            </div>
-
-          </section>
-        </DragDropContext>
-
-      }
+                :
+                  <DragDropContext onDragEnd={onDragEnd}>
+                  <section>
+                        {
+          titulos[0] ?
+          <h2>
+            {titulos[fase].titulo}
+                        </h2>
+                        :
+                        <p>
+          Carregando...
+                        </p>
+                        }
+                        
+                        <div className={styles.borda}/>
+                    <Droppable droppableId="droppable">
+                      {(provided) => (
+                        <div
+          {...provided.droppableProps}
+          ref={provided.innerRef}
+          className={styles.codigo}
+                        >
+          {
+          linhas ?
+          linhas.map((item, index) => (
+            <>
+                <hr />
+          
+          <Draggable key={item.id} draggableId={item.id} index={index}>
+              {(provided) => (
+          
+              <code
+                  className={styles.linha}
+                  ref={provided.innerRef}
+                  {...provided.draggableProps}
+                  {...provided.dragHandleProps}
+                  key={Number(item.id)}
+                >
+                  <Linha>
+                    {item.content}
+                  </Linha>
+          
+                </code>
+          
+              )}
+            </Draggable>
+            </>
+          ))
+                        :
+            <Carregamento/>}
+          {provided.placeholder}
+                        </div>
+                      )}
+                    </Droppable>
+                  
+          
+                      <div className={styles.botoes}>
+            <button
+              onClick={fetchLinhas}
+            >RESET</button>
+              {
+                linhas.length-2 == fase ?
+                <button
+                  onClick={verificar}
+                >
+                  FINALIZAR
+                </button>
+                :
+                <button
+                  onClick={verificar}
+                >
+                  VERIFICAR
+                </button>
+          
+              }
+          
+                      </div>
+          
+                    </section>
+                  </DragDropContext>
+          
+                }
+        </div>
     </div>
   );
 };

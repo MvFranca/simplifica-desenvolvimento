@@ -2,6 +2,7 @@
     {
         "conteudo": "Váriáveis",
         "descricao": "Aprenda o que são variáveis e como elas funcionam.",
+        "descricaoModal": "Aqui você aprenderá ",
         "id": 1,
         "src": "./trilha/teste.gif"
     },

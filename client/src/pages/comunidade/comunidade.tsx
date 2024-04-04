@@ -7,7 +7,7 @@ const Comunidade = () => {
   return (
     <div className={styles.container}>
       <div className={styles.chat}>
-        <Chat />
+      <Chat />
       </div>
       <FormChat/>
 

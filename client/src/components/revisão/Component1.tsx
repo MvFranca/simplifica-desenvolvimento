@@ -1,7 +1,5 @@
-import { Carousel } from 'react-responsive-carousel';
 
 import styles from '../../styles/aprender/Component1.module.css'
-import { Swiper, SwiperSlide } from 'swiper/react';
 
 const Component1 = () => {
     return ( 

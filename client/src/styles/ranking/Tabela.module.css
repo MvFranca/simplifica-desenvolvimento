@@ -215,6 +215,9 @@
     width: 25%;
     margin-left: -0.875rem;
   }
+  .tableRanking {
+    padding: 1.875rem 0;
+  }
 
   .tableRanking {
     padding: 1.875rem 1.25rem;

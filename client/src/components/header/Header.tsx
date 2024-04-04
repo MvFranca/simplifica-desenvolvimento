@@ -1,13 +1,16 @@
 import { NavLink } from "react-router-dom";
 import styles from "../../styles/home/Header.module.css";
+import { useContext, useEffect, useState } from "react";
+import { pointContext } from "../../context/context";
 
 const Header = () => {
-  // const router = useNavigate();
+  const { img } = useContext(pointContext);
 
-  // function sair() {
-  //   localStorage.removeItem("simplifica:token");
-  //   router("/entrar");
-  // }
+  const [myImg, setImg] = useState("");
+
+  useEffect(() => {
+    setImg(img);
+  }, [img]);
 
   return (
     <header className={styles.cabecalho}>
@@ -30,7 +33,11 @@ const Header = () => {
           <p>RANKING</p>
         </NavLink>
         <NavLink to={"/perfil"}>
-          <img src="/perfil.png" alt="Perfil" />
+          {img ? (
+            <img src={myImg} alt="Perfil" className={styles.myImage} />
+          ) : (
+            <img src="./perfil.png" alt="Perfil" />
+          )}
           <p>Perfil</p>
         </NavLink>
         {/* <NavLink onClick={sair} to={"/entrar"}>

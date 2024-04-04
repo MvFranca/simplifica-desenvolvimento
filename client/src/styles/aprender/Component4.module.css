@@ -28,3 +28,36 @@
 .component4 .conteudo p{
     font-size: 1.2rem;
 }
+
+@media screen and (max-width: 850px) {
+    .component4 .conteudo h2{
+        font-size: 1.5rem;
+    }
+    
+    .component4 .conteudo p{
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    .component4 .conteudo{
+        padding: 0 1.5rem;
+    }
+
+    .paragrafos{
+        display: flex;
+        overflow: scroll;
+        gap: 1rem;
+        scroll-snap-type: x mandatory;
+    }
+
+    .paragrafos p{
+        min-width: 100%;
+        scroll-snap-align: start;
+    }
+
+    .component4 .barra{
+        height: 20.625rem;
+    }
+}

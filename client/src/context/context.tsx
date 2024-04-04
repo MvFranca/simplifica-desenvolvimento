@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, PropsWithChildren, useRef, useState } from "react";
+import { createContext, PropsWithChildren, useEffect, useRef, useState } from "react";
 import { Dispatch, SetStateAction } from 'react';
 
 
@@ -21,6 +21,8 @@ interface pontuacao {
 
   teste: React.MutableRefObject<boolean>;
 
+  img: string;
+  setImg: (string: string) => void;
 }
 
 const initialValue = {
@@ -38,6 +40,9 @@ const initialValue = {
   setVariaveis: () => {},
   setUsuario: () => {},
   teste: { current: false },
+
+  img: '',
+  setImg: () => {},
 };
 
 
@@ -52,20 +57,33 @@ const Context = ({children}: PropsWithChildren) => {
   const teste = useRef<boolean>(false)
 
   const [userId, setUserId] = useState(0)
-
-
-  // const [dataUser, setDataUser] = useState(
-  //   {
-  //     name: "",
-  //     username: "",
-  //     urlImg: ""
-  //   }
-  // )
+  const [img, setImg] = useState('')
+  const user = localStorage.getItem("simplifica:user")!;
 
   
+  const imgUrl = async () => {
+    // const ImgUrl = await GetImgUser()
+    // setImg(ImgUrl)
+
+    
+    const user = localStorage.getItem("simplifica:user")!;
+    const userObject = await JSON.parse(user);
+
+    const urlImg = await userObject.url_image
+    setImg(urlImg)
+  }
+
+
+  useEffect(() => {
+    imgUrl()
+    console.log('img:')
+    console.log(img)
+  }, [img, user])
+
+
 
   return (
-    <pointContext.Provider value={{teste, pontos, setPontos, fogo, setFogo, variaveis, setVariaveis, userId, setUserId, initialValuePontos, setInitialValuePontos}}>
+    <pointContext.Provider value={{teste, pontos, setPontos, fogo, setFogo, variaveis, setVariaveis, userId, setUserId, initialValuePontos, setInitialValuePontos, img, setImg}}>
         {children}
     </pointContext.Provider>
   );

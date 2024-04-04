@@ -4,7 +4,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 60px 40px;
+    padding: 60px 0px;
     gap: 50px;
 }
 
@@ -14,7 +14,8 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
-    }
+}
+
 
 .infoDuvidas .infoData{
     width: 100%;
@@ -40,8 +41,14 @@
 .fullDuvidas{
     width: 100%;
     max-width: 100%;
+    align-items: center;
     display: flex;
 }
+
+.fullDuvidas:last-child{
+    margin-bottom: 5rem;
+}
+
 
 .fullDuvidas span{
     display: flex;
@@ -58,11 +65,29 @@
     overflow-x: scroll;
 }
 
+.setaEsquerda svg{
+    rotate: 180deg;
+}
+
 .setaDireita , .setaEsquerda {
     position: relative;
-    height: 100%;
+    height: 50px;
     margin: 0 20px;
-    width: 30px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: #268AFF;
+    box-shadow: 3px 3px 0px 0px #1564BE;
+    transition: 0.3s all;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.setaDireita:hover , .setaEsquerda:hover{
+    transform: translateX(3px);
+    transform: translateY(3px);
+    box-shadow: none;
+    font-size: 1.3rem;
+
 }
 
 
@@ -91,6 +116,7 @@
 @media screen and (max-width: 800px) {
 
     .chat{
-        margin-top: 100px;
+        padding: 0px;
+        margin: 100px 0;
     }
 }

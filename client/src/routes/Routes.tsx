@@ -12,6 +12,7 @@ import Ranking from "../pages/ranking/Ranking.page";
 import ShowDuvida from "../pages/comunidade/ShowDuvida";
 import PageDuvida from "../pages/comunidade/pageDuvida";
 import LayoutMenus from "../components/layout/LayoutMenus";
+import ShowDuvida from "../pages/comunidade/ShowDuvida";
 
 const Rotas = () => {
   return (
@@ -27,7 +28,6 @@ const Rotas = () => {
           <Route path={`/ranking`} element={<Ranking />} />
 
           <Route path={`/teste`} element={<PageDuvida />} />
-
           <Route path={`/estudomanual`} element={<EstudoManual />} />
 
           <Route path={`/comunidade`} element={<Comunidade />} />

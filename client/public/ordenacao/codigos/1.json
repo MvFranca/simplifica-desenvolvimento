@@ -6,7 +6,7 @@
     },
     {
     "id": "3",
-    "content": "        mult = num * 1"
+    "content": "        mult = num * i"
     },
     {
     "id": "2",

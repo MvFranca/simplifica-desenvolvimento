@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Link, useNavigate } from "react-router-dom";
-import styles from "../../styles/home/Revisao.module.css";
+import styles from "../../styles/home/Aprender.module.css";
 import { conteudos } from "../../types/conteudos";
 import IconClose from "../icons/IconClose";
 import OpcoesAprender from "./OpcoesAprender";

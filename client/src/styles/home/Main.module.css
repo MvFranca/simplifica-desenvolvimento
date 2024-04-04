@@ -1,5 +1,10 @@
 .container {
   width: 100%;
+  /* margin-top: 90px; */
+}
+
+.container:first-child {
+  margin-top: 90px;
 }
 
 .titulo {
@@ -9,7 +14,6 @@
   color: #fff;
   border-radius: 13px;
   padding: 30px;
-  margin-right: 30px;
 }
 
 .titulo p {
@@ -25,7 +29,7 @@
 
 @media screen and (max-width: 1280px) {
   .container {
-    width: 80%;
+    width: 100%;
   }
 }
 
@@ -37,6 +41,11 @@
     justify-content: center;
     align-items: center;
   }
+
+  .container:first-child {
+    margin-top: 80px;
+  }
+
   .imagem {
     display: none;
   }
@@ -45,5 +54,6 @@
   }
   .titulo {
     margin-right: 0px;
+    width: 100%;
   }
 }

@@ -6,8 +6,17 @@
   position: relative;
   top: 0;
   right: 0;
-  margin: 20px 20px;
+  margin: 20px 0px;
   box-sizing: border-box;
+}
+
+.informacoes .teste{
+  position: fixed;
+  padding-right: 1.5625rem;
+}
+
+.informacoes .myImage{
+  border-radius: 50%;
 }
 
 .pontuacao {

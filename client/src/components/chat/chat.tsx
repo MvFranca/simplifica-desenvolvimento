@@ -1,5 +1,6 @@
 import styles from "../../styles/comunidade/Chat.module.css";
 import DuvidaCard from "./duvida";
+import { IoIosArrowForward } from "react-icons/io";
 
 const Chat = () => {
   return (
@@ -12,7 +13,8 @@ const Chat = () => {
 
         <div className={styles.fullDuvidas}>
           <span className={styles.setaEsquerda}>
-            <img src="icon-arrow.png" alt="seta" />
+            {/* <img src="icon-arrow.png" alt="seta" /> */}
+            <IoIosArrowForward color="#fff" />
           </span>
           <div>
             <DuvidaCard
@@ -24,28 +26,30 @@ const Chat = () => {
             />
             <DuvidaCard
               duvida={{
-                id: 1,
+                id: 2,
                 titulo: "Variáveis",
                 descricao: "tive problemas ao definir as variáveis no vscode",
               }}
             />
             <DuvidaCard
               duvida={{
-                id: 1,
+                id: 3,
                 titulo: "Variáveis",
                 descricao: "tive problemas ao definir as variáveis no vscode",
               }}
             />
             <DuvidaCard
               duvida={{
-                id: 1,
+                id: 4,
                 titulo: "Variáveis",
                 descricao: "tive problemas ao definir as variáveis no vscode",
               }}
             />
           </div>
           <span className={styles.setaDireita}>
-            <img src="icon-arrow.png" alt="seta" />
+            {/* <img src="icon-arrow.png" alt="seta" /> */}
+
+            <IoIosArrowForward color="#fff" />
           </span>
         </div>
       </section>
@@ -58,7 +62,9 @@ const Chat = () => {
 
         <div className={styles.fullDuvidas}>
           <span className={styles.setaEsquerda}>
-            <img src="icon-arrow.png" alt="seta" />
+            {/* <img src="icon-arrow.png" alt="seta" /> */}
+
+            <IoIosArrowForward color="#fff" />
           </span>
           <div>
             <DuvidaCard
@@ -91,7 +97,9 @@ const Chat = () => {
             />
           </div>
           <span className={styles.setaDireita}>
-            <img src="icon-arrow.png" alt="seta" />
+            {/* <img src="icon-arrow.png" alt="seta" /> */}
+
+            <IoIosArrowForward color="#fff" />
           </span>
         </div>
       </section>
@@ -104,7 +112,9 @@ const Chat = () => {
 
         <div className={styles.fullDuvidas}>
           <span className={styles.setaEsquerda}>
-            <img src="icon-arrow.png" alt="seta" />
+            {/* <img src="icon-arrow.png" alt="seta" /> */}
+
+            <IoIosArrowForward color="#fff" />
           </span>
           <div>
             <DuvidaCard
@@ -137,7 +147,9 @@ const Chat = () => {
             />
           </div>
           <span className={styles.setaDireita}>
-            <img src="icon-arrow.png" alt="seta" />
+            {/* <img src="icon-arrow.png" alt="seta" /> */}
+
+            <IoIosArrowForward color="#fff" />
           </span>
         </div>
       </section>

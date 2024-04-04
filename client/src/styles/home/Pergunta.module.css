@@ -1,6 +1,7 @@
 .container{
     width: 100vw;
     height: 100vh;
+    padding: 20px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -10,7 +11,8 @@
 }
 
 .conteudo{
-    width: 70%;
+    width: 100%;
+    max-width: 1200px;
     height: 70%;
     display: flex;
     justify-content: center;

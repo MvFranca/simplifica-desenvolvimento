@@ -1,16 +1,29 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import "../../styles/home/Botoes.css";
 import IconPlayFill from "../icons/IconPlay";
 import { Link } from "react-router-dom";
 import { pointContext } from "../../context/context";
+import Rodal from 'rodal';
+import 'rodal/lib/rodal.css';
 
 type props = {
   id: string;
+  conteudo: string;
 };
 
-const Botoes = ({ id }: props) => {
+const Botoes = ({ id, conteudo }: props) => {
   const { setVariaveis, variaveis } = useContext(pointContext);
   const botoes = useRef<HTMLDivElement>(null);
+
+  const [visible, setVisible] = useState(false);
+
+  const show = () => {
+    setVisible(true);
+  }
+
+  const hide = () => {
+    setVisible(false);
+  }
 
 
   function play(id: string) {
@@ -18,6 +31,7 @@ const Botoes = ({ id }: props) => {
       setVariaveis(true);
     }
   }
+
 
   useEffect(() => {
     if (variaveis) {
@@ -34,9 +48,19 @@ const Botoes = ({ id }: props) => {
   return (
     <div>
       <div className="botoes" ref={botoes}>
-        <Link to={""} className={`botao${id}`} onClick={() => play(id)}>
+
+
+        <Link to={""} className={`botao${id}`} onClick={() => show()} >
           <IconPlayFill width={30} height={30} />
         </Link>
+
+        <Rodal visible={visible} onClose={hide} className="modal">
+          <h2>Bem-Vindo ao módulo de <strong>{conteudo}</strong></h2>
+          <p>
+           Este será o primeiro módulo de muitos, prepare-se para ingressar neste universo incrível! 
+          </p>
+          <img src="./trilha/modal-gif.gif" alt="" />
+        </Rodal>
 
         <Link to={`/aprender/${id}`} className={`botao1`} id="poucoCurvado">
           <img src="./livro.png" alt="Livro" />
