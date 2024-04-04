@@ -36,9 +36,7 @@ const TrilhaeInfo = () => {
         })}
       </div>
 
-      <div className={styles.opcoes}>
-        <Opcoes />
-      </div>
+      <Opcoes />
     </main>
   );
 };

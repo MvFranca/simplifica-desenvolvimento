@@ -1,6 +1,6 @@
 .informacoes {
   height: 100%;
-  width: 100%;
+  width: 70%;
   color: #4b4b4b;
   margin-bottom: 20px;
   position: relative;
@@ -10,12 +10,7 @@
   box-sizing: border-box;
 }
 
-.informacoes .teste{
-  position: fixed;
-  padding-right: 1.5625rem;
-}
-
-.informacoes .myImage{
+.informacoes .myImage {
   border-radius: 50%;
 }
 

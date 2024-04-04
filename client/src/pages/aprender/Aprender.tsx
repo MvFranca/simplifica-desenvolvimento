@@ -9,9 +9,9 @@ import IconClose from "../../components/icons/IconClose";
 
 import { pointContext } from "../../context/context";
 import OpcoesAprender from "../../components/revisão/OpcoesAprender";
-import Component2 from "../../components/revisão/Component2";
-import Component3 from "../../components/revisão/Component3";
-import Component4 from "../../components/revisão/Component4";
+// import Component2 from "../../components/revisão/Component2";
+// import Component3 from "../../components/revisão/Component3";
+// import Component4 from "../../components/revisão/Component4";
 // import Component3 from "../../components/revisão/Component3";
 // import Component4 from "../../components/revisão/Component4";
 
