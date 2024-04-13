@@ -6,9 +6,11 @@ type props = {
   descricao: string;
   id: string;
   src: string;
+  iniciado: boolean;
+  avanco: number
 };
 
-const Main = ({ conteudo, descricao, id, src }: props) => {
+const Main = ({ conteudo, descricao, id, src, iniciado, avanco }: props) => {
   return (
     <main className={styles.container}>
       <div className={styles.titulo}>
@@ -20,6 +22,8 @@ const Main = ({ conteudo, descricao, id, src }: props) => {
         <Botoes 
           id={id}
           conteudo ={conteudo} 
+          iniciado = {iniciado}
+          avanco = {avanco}
         />
 
         <img

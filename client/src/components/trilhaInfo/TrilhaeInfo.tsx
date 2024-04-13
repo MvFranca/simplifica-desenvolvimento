@@ -8,7 +8,7 @@ const TrilhaeInfo = () => {
   const [conteudos, setConteudos] = useState([]);
 
   async function api() {
-    const conteudos = await fetch("https://simplifica-desenvolvimento.vercel.app/trilha/trilha.json");
+    const conteudos = await fetch("http://localhost:5173/trilha/trilha.json");
     const data = await conteudos.json();
     setConteudos(data);
   }
@@ -21,7 +21,7 @@ const TrilhaeInfo = () => {
    <main className={styles.main}>
       <div className={styles.conteudoContainer}>
         {conteudos.map((assunto) => {
-          const { conteudo, descricao, id, src } = assunto;
+          const { conteudo, descricao, id, src, iniciado, avanco } = assunto;
           return (
             <Main
               conteudo={conteudo}
@@ -29,6 +29,8 @@ const TrilhaeInfo = () => {
               key={id}
               id={id}
               src={src}
+              iniciado = {iniciado}
+              avanco = {avanco}
             />
           );
         })}

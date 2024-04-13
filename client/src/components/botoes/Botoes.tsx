@@ -9,16 +9,86 @@ import 'rodal/lib/rodal.css';
 type props = {
   id: string;
   conteudo: string;
+  iniciado: boolean
+  avanco: number
 };
 
-const Botoes = ({ id, conteudo }: props) => {
+const Botoes = ({ id, conteudo, iniciado, avanco }: props) => {
   const { setVariaveis, variaveis } = useContext(pointContext);
+
+  const [status, setStatus] = useState(false)
+  const [progressoBotoes, setProgressoBotoes] = useState(0)
+
+  useEffect(() => {
+
+    setStatus(iniciado)
+
+  },[iniciado])
+
+  useEffect(() => {
+
+    setProgressoBotoes(avanco)
+
+  },[avanco])
+
+
+
+  const listaBotoes = [
+    {
+      to: `/aprender/${id}`,
+      id: "poucoCurvado",
+      src: "",
+      alt: ""
+    },
+    {
+      to: `/aprender/${id}`,
+      id: "poucoCurvado",
+      src: "./livro.png",
+      alt: "Livro"
+    },
+    {
+      to: `/jogar/${id}`,
+      id: "muitoCurvado",
+      src: "./cerebro.png",
+      alt: "Cérebro"
+    },
+    {
+      to: "",
+      id: "poucoCurvado",
+      src: "./bau.png",
+      alt: "Baú"
+    },
+    {
+      to:  `/ordenacao/${id}`,
+      id: "",
+      src: "./programar.png",
+      alt: "Ícone de programação"
+    },
+    {
+      to: "",
+      id: "",
+      src: "./trofeu.png",
+      alt: "Troféu"
+    },
+
+  ]
+
   const botoes = useRef<HTMLDivElement>(null);
+
 
   const [visible, setVisible] = useState(false);
 
   const show = () => {
-    setVisible(true);
+    if(iniciado){
+      setVisible(true);
+      setProgressoBotoes(prev => prev + 1)
+   }
+  }
+
+  function avancar(disponivel: boolean) {
+    if(disponivel){
+      setProgressoBotoes(prev => prev + 1)
+    }
   }
 
   const hide = () => {
@@ -48,12 +118,6 @@ const Botoes = ({ id, conteudo }: props) => {
   return (
     <div>
       <div className="botoes" ref={botoes}>
-
-
-        <Link to={""} className={`botao${id}`} onClick={() => show()} >
-          <IconPlayFill width={30} height={30} />
-        </Link>
-
         <Rodal visible={visible} onClose={hide} className="modal">
           <h2>Bem-Vindo ao módulo de <strong>{conteudo}</strong></h2>
           <p>
@@ -62,25 +126,28 @@ const Botoes = ({ id, conteudo }: props) => {
           <img src="./trilha/modal-gif.gif" alt="" />
         </Rodal>
 
-        <Link to={`/aprender/${id}`} className={`botao1`} id="poucoCurvado">
-          <img src="./livro.png" alt="Livro" />
-        </Link>
+        {
 
-        <Link to={`/jogar/${id}`} className={`botao1`} id="muitoCurvado">
-          <img src="./cerebro.png" alt="Cérebro" />
-        </Link>
+        listaBotoes.map( (botao, index) => {
 
-        <Link to={""} className={`botao1`} id="poucoCurvado">
-          <img src="./bau.png" alt="Baú" />
-        </Link>
+          const url = status && progressoBotoes >= index ? botao.to : ''
+          const classe = status && progressoBotoes >= index  ? "botao-habilitado" : "botao-desabilitado"
+          const disponivel = status && progressoBotoes >= index
 
-        <Link to={ `/ordenacao/${id}`} className={`botao1`}>
-          <img src="./programar.png" alt="Icone de programação" />
-        </Link>
+          return(
+            index != 0 ?
+            <Link to={url} id={botao.id}  className={classe} onClick={() => avancar(disponivel)} >
+              <img src={botao.src} alt={botao.alt} />
+            </Link>
+            :
+            <Link to={""} className={classe} onClick={() => show()} >
+              <IconPlayFill width={30} height={30} />
+            </Link>
+          )
+        })
 
-        <Link to={""} className={`botao1`}>
-          <img src="./trofeu.png" alt="Troféu" />
-        </Link>
+        }
+
       </div>
     </div>
   );
