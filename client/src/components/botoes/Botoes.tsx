@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { pointContext } from "../../context/context";
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
+import {updateProgress} from '../../../services/apiUrl'
 
 type props = {
   id: number;
@@ -13,10 +14,12 @@ type props = {
 
 const Botoes = ({ id, conteudo}: props) => {
 
-  //progresso dos botões, que também virá do db
-  // esse estado será atualizado com o valor que está no db
-  const { setVariaveis, variaveis,  myProgress, setMyProgress, progressoBotoes, setProgressoBotoes } = useContext(pointContext);
+  const user = localStorage.getItem("simplifica:user")!;
+  const userObject = JSON.parse(user);
+  const idUser = Number(userObject.id_usuario);
 
+
+  const { setVariaveis, variaveis,  myProgress, setMyProgress, progressoBotoes, setProgressoBotoes, teste, controle } = useContext(pointContext);
 
   // useEffect(() => {
 
@@ -29,8 +32,6 @@ const Botoes = ({ id, conteudo}: props) => {
   //   setProgressoBotoes(avanco)
 
   // },[avanco])
-
-
 
   const listaBotoes = [
     {
@@ -73,20 +74,20 @@ const Botoes = ({ id, conteudo}: props) => {
   ]
 
   const botoes = useRef<HTMLDivElement>(null);
-
-
   const [visible, setVisible] = useState(false);
 
   const show = (disponivel: boolean, indice:number) => {
     if(disponivel && indice == progressoBotoes){
       setVisible(true);
-      setProgressoBotoes(progressoBotoes + 1)
+      controle.current = true
+      setProgressoBotoes(prev => prev  +1)
    }
   }
 
   function avancar(disponivel: boolean, indice:number) {
     if(disponivel && indice == progressoBotoes){
-      setProgressoBotoes(progressoBotoes + 1)
+      setProgressoBotoes(prev => prev + 1)
+      controle.current = true
 
       if(indice == listaBotoes.length-1){
         setMyProgress(myProgress + 1)
@@ -106,13 +107,6 @@ const Botoes = ({ id, conteudo}: props) => {
   }
 
 
-  function play(id: string) {
-    if (id == "1") {
-      setVariaveis(true);
-    }
-  }
-
-
   useEffect(() => {
     if (variaveis) {
       const teste = Array.from(botoes.current?.getElementsByTagName("a") ?? []);
@@ -124,6 +118,16 @@ const Botoes = ({ id, conteudo}: props) => {
       });
     }
   }, [variaveis]);
+
+
+//  useEffect(() => {
+
+//     if(controle.current){
+//       updateProgress(myProgress, idUser, progressoBotoes)
+//       controle.current = false
+//     }
+
+//  }, [myProgress, progressoBotoes])
 
   return (
     <div>

@@ -12,10 +12,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function Home() {
 
+  const user = localStorage.getItem("simplifica:user")!;
+  const userObject = JSON.parse(user);
+
+  const idUser = Number(userObject.id_usuario);
 
   const router = useNavigate();
 
-  const { teste , pontos, setPontos } = useContext(pointContext);
+  const { teste , pontos, setPontos, setMyProgress, setProgressoBotoes} = useContext(pointContext);
 
   const notify = (dimas:number) => toast(`Parabéns! Agora você tem ${dimas} diamantes!`, {
     position: "bottom-right",
@@ -51,11 +55,7 @@ export default function Home() {
   
 
   useEffect(() => {
-    const user = localStorage.getItem("simplifica:user")!;
-    const userObject = JSON.parse(user);
-
-    const idUser = Number(userObject.id_usuario);
-
+   
     console.log("pontuação sendo atualizada: ")
     console.log(pontos)
 
@@ -74,6 +74,24 @@ export default function Home() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pontos]);
+
+  useEffect(() => {
+    if(!teste.current){
+    axios
+      .get(`http://localhost:8000/api/content/getProgress?idUser=${ idUser }`)
+      .then((res) => {
+        const resposta = res.data.data.resposta;
+        setMyProgress(resposta.id_progresso)
+        setProgressoBotoes(resposta.avanco)
+      })
+
+      .catch((err) => {
+        console.log(err);
+      });
+    }
+  }, [])
+
+
 
  
   return (

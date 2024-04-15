@@ -28,5 +28,18 @@ export async function GetImgUser(){
 }
 
 
+export async function updateProgress ( myProgress:number, idUser:number, progressoBotoes:number){
+
+    
+        axios.put("http://localhost:8000/api/content/updateProgress", { myProgress, idUser, progressoBotoes }).then((res) =>{
+    
+          console.log(res)
+        }).catch((error) => {
+          console.log('error:')
+          console.log(error)
+        })
+}
+
+
 
 export default ApiUrl;

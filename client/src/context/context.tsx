@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, PropsWithChildren, useEffect, useRef, useState } from "react";
 import { Dispatch, SetStateAction } from 'react';
+import {updateProgress} from '../../services/apiUrl'
 
 
 interface pontuacao {
@@ -20,15 +21,15 @@ interface pontuacao {
   setVariaveis: (valor: boolean) => void;
 
   teste: React.MutableRefObject<boolean>;
-
+  controle: React.MutableRefObject<boolean>;
   img: string;
   setImg: (string: string) => void;
 
   myProgress: number;
-  setMyProgress:  (number: number) => void;
+  setMyProgress:  Dispatch<SetStateAction<number>>;
 
   progressoBotoes: number;
-  setProgressoBotoes:  (number: number) => void;
+  setProgressoBotoes:  Dispatch<SetStateAction<number>>;
 }
 
 const initialValue = {
@@ -46,7 +47,7 @@ const initialValue = {
   setVariaveis: () => {},
   setUsuario: () => {},
   teste: { current: false },
-
+  controle: {currente: false},
   img: '',
   setImg: () => {},
 
@@ -68,10 +69,13 @@ const Context = ({children}: PropsWithChildren) => {
   const [initialValuePontos, setInitialValuePontos ] = useState(false)
   const [variaveis, setVariaveis] = useState(false)
   const teste = useRef<boolean>(false)
+  const controle = useRef<boolean>(false)
 
   const [userId, setUserId] = useState(0)
   const [img, setImg] = useState('')
   const user = localStorage.getItem("simplifica:user")!;
+  const userObject = JSON.parse(user);
+  const idUser = Number(userObject.id_usuario);
 
   const [myProgress, setMyProgress] = useState(1)
   const [progressoBotoes, setProgressoBotoes] = useState(0)
@@ -96,9 +100,17 @@ const Context = ({children}: PropsWithChildren) => {
   }, [img, user])
 
 
+ useEffect(() => {
+
+  if(controle.current){
+    updateProgress(myProgress, idUser, progressoBotoes)
+    controle.current = false
+  }
+
+}, [myProgress, progressoBotoes])
 
   return (
-    <pointContext.Provider value={{teste, pontos, setPontos, fogo, setFogo, variaveis, setVariaveis, userId, setUserId, initialValuePontos, setInitialValuePontos, img, setImg, myProgress, setMyProgress, progressoBotoes, setProgressoBotoes}}>
+    <pointContext.Provider value={{teste, pontos, setPontos, fogo, setFogo, variaveis, setVariaveis, userId, setUserId, initialValuePontos, setInitialValuePontos, img, setImg, myProgress, setMyProgress, progressoBotoes, setProgressoBotoes, controle}}>
         {children}
     </pointContext.Provider>
   );
