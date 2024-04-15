@@ -21,7 +21,7 @@ const TrilhaeInfo = () => {
    <main className={styles.main}>
       <div className={styles.conteudoContainer}>
         {conteudos.map((assunto) => {
-          const { conteudo, descricao, id, src, iniciado, avanco } = assunto;
+          const { conteudo, descricao, id, src } = assunto;
           return (
             <Main
               conteudo={conteudo}
@@ -29,8 +29,6 @@ const TrilhaeInfo = () => {
               key={id}
               id={id}
               src={src}
-              iniciado = {iniciado}
-              avanco = {avanco}
             />
           );
         })}

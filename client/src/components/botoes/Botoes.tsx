@@ -7,29 +7,28 @@ import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
 
 type props = {
-  id: string;
+  id: number;
   conteudo: string;
-  iniciado: boolean
-  avanco: number
 };
 
-const Botoes = ({ id, conteudo, iniciado, avanco }: props) => {
-  const { setVariaveis, variaveis } = useContext(pointContext);
+const Botoes = ({ id, conteudo}: props) => {
 
-  const [status, setStatus] = useState(false)
-  const [progressoBotoes, setProgressoBotoes] = useState(0)
+  //progresso dos botões, que também virá do db
+  // esse estado será atualizado com o valor que está no db
+  const { setVariaveis, variaveis,  myProgress, setMyProgress, progressoBotoes, setProgressoBotoes } = useContext(pointContext);
 
-  useEffect(() => {
 
-    setStatus(iniciado)
+  // useEffect(() => {
 
-  },[iniciado])
+  //   setStatus(iniciado)
 
-  useEffect(() => {
+  // },[iniciado])
 
-    setProgressoBotoes(avanco)
+  // useEffect(() => {
 
-  },[avanco])
+  //   setProgressoBotoes(avanco)
+
+  // },[avanco])
 
 
 
@@ -78,18 +77,29 @@ const Botoes = ({ id, conteudo, iniciado, avanco }: props) => {
 
   const [visible, setVisible] = useState(false);
 
-  const show = () => {
-    if(iniciado){
+  const show = (disponivel: boolean, indice:number) => {
+    if(disponivel && indice == progressoBotoes){
       setVisible(true);
-      setProgressoBotoes(prev => prev + 1)
+      setProgressoBotoes(progressoBotoes + 1)
    }
   }
 
-  function avancar(disponivel: boolean) {
-    if(disponivel){
-      setProgressoBotoes(prev => prev + 1)
+  function avancar(disponivel: boolean, indice:number) {
+    if(disponivel && indice == progressoBotoes){
+      setProgressoBotoes(progressoBotoes + 1)
+
+      if(indice == listaBotoes.length-1){
+        setMyProgress(myProgress + 1)
+        setProgressoBotoes(0)
+      }
+
     }
   }
+
+  useEffect(() => {
+    console.log(myProgress)
+  }, [myProgress])
+
 
   const hide = () => {
     setVisible(false);
@@ -129,18 +139,22 @@ const Botoes = ({ id, conteudo, iniciado, avanco }: props) => {
         {
 
         listaBotoes.map( (botao, index) => {
+          // progressoBotoes >= index ? botao.to :
+          // progressoBotoes >= index  ? "botao-habilitado" : 
 
-          const url = status && progressoBotoes >= index ? botao.to : ''
-          const classe = status && progressoBotoes >= index  ? "botao-habilitado" : "botao-desabilitado"
-          const disponivel = status && progressoBotoes >= index
+          const url =  myProgress > id  ? botao.to : myProgress == id && progressoBotoes >= index ?  botao.to : ''
+
+          const classe =  myProgress > id  ? "botao-habilitado" : myProgress == id && progressoBotoes >= index ? "botao-habilitado" : "botao-desabilitado"
+
+          const disponivel =  myProgress >= id  && progressoBotoes >= index
 
           return(
             index != 0 ?
-            <Link to={url} id={botao.id}  className={classe} onClick={() => avancar(disponivel)} >
+            <Link to={url} id={botao.id}  className={classe} onClick={() => avancar(disponivel, index)} >
               <img src={botao.src} alt={botao.alt} />
             </Link>
             :
-            <Link to={""} className={classe} onClick={() => show()} >
+            <Link to={""} className={classe} onClick={() => show(disponivel, index)} >
               <IconPlayFill width={30} height={30} />
             </Link>
           )

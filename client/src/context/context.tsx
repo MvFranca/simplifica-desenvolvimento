@@ -23,6 +23,12 @@ interface pontuacao {
 
   img: string;
   setImg: (string: string) => void;
+
+  myProgress: number;
+  setMyProgress:  (number: number) => void;
+
+  progressoBotoes: number;
+  setProgressoBotoes:  (number: number) => void;
 }
 
 const initialValue = {
@@ -43,6 +49,13 @@ const initialValue = {
 
   img: '',
   setImg: () => {},
+
+  myProgress: 1,
+  setMyProgress:   () => {},
+
+  progressoBotoes: 1,
+  setProgressoBotoes:   () => {},
+
 };
 
 
@@ -60,6 +73,8 @@ const Context = ({children}: PropsWithChildren) => {
   const [img, setImg] = useState('')
   const user = localStorage.getItem("simplifica:user")!;
 
+  const [myProgress, setMyProgress] = useState(1)
+  const [progressoBotoes, setProgressoBotoes] = useState(0)
   
   const imgUrl = async () => {
     // const ImgUrl = await GetImgUser()
@@ -83,7 +98,7 @@ const Context = ({children}: PropsWithChildren) => {
 
 
   return (
-    <pointContext.Provider value={{teste, pontos, setPontos, fogo, setFogo, variaveis, setVariaveis, userId, setUserId, initialValuePontos, setInitialValuePontos, img, setImg}}>
+    <pointContext.Provider value={{teste, pontos, setPontos, fogo, setFogo, variaveis, setVariaveis, userId, setUserId, initialValuePontos, setInitialValuePontos, img, setImg, myProgress, setMyProgress, progressoBotoes, setProgressoBotoes}}>
         {children}
     </pointContext.Provider>
   );

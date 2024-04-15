@@ -4,25 +4,22 @@
         "descricao": "Aprenda o que são variáveis e como elas funcionam.",
         "descricaoModal": "Aqui você aprenderá ",
         "id": 1,
-        "src": "./trilha/teste.gif",
-        "iniciado": true,
-        "avanco": 0
+        "src": "./trilha/teste.gif"
+
         
     },
     {
         "conteudo": "Condicionais",
         "descricao": "Aprenda o que são condicionais e como utilizá-las.",
         "id": 2,
-        "src": "./trilha/teste2.gif",
-        "iniciado": false,
-        "avanco": 0
+        "src": "./trilha/teste2.gif"
+
     },
     {
         "conteudo": "Laços de Repetição",
         "descricao": "Entenda a importância da repetição nos programas atuais.",
         "id": 3,
-        "src": "./trilha/teste2.gif",
-        "iniciado": false,
-        "avanco": 0
+        "src": "./trilha/teste2.gif"
+
     }
 ]
