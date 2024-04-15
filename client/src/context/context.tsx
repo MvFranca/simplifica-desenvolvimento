@@ -22,6 +22,7 @@ interface pontuacao {
 
   teste: React.MutableRefObject<boolean>;
   controle: React.MutableRefObject<boolean>;
+  
   img: string;
   setImg: (string: string) => void;
 

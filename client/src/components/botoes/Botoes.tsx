@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { pointContext } from "../../context/context";
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
-import {updateProgress} from '../../../services/apiUrl'
 
 type props = {
   id: number;
@@ -14,12 +13,12 @@ type props = {
 
 const Botoes = ({ id, conteudo}: props) => {
 
-  const user = localStorage.getItem("simplifica:user")!;
-  const userObject = JSON.parse(user);
-  const idUser = Number(userObject.id_usuario);
+  // const user = localStorage.getItem("simplifica:user")!;
+  // const userObject = JSON.parse(user);
+  // const idUser = Number(userObject.id_usuario);
 
 
-  const { setVariaveis, variaveis,  myProgress, setMyProgress, progressoBotoes, setProgressoBotoes, teste, controle } = useContext(pointContext);
+  const { variaveis,  myProgress, setMyProgress, progressoBotoes, setProgressoBotoes, controle } = useContext(pointContext);
 
   // useEffect(() => {
 
