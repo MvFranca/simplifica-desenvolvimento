@@ -71,12 +71,11 @@ const Context = ({children}: PropsWithChildren) => {
   const [variaveis, setVariaveis] = useState(false)
   const teste = useRef<boolean>(false)
   const controle = useRef<boolean>(false)
+  const user = localStorage.getItem("simplifica:user")!;
 
   const [userId, setUserId] = useState(0)
   const [img, setImg] = useState('')
-  const user = localStorage.getItem("simplifica:user")!;
-  const userObject = JSON.parse(user);
-  const idUser = Number(userObject.id_usuario);
+  
 
   const [myProgress, setMyProgress] = useState(1)
   const [progressoBotoes, setProgressoBotoes] = useState(0)
@@ -96,14 +95,15 @@ const Context = ({children}: PropsWithChildren) => {
 
   useEffect(() => {
     imgUrl()
-    console.log('img:')
-    console.log(img)
   }, [img, user])
 
 
  useEffect(() => {
 
-  if(controle.current){
+  if(controle.current && user){
+    const userObject = JSON.parse(user);
+    const idUser = Number(userObject.id_usuario);
+
     updateProgress(myProgress, idUser, progressoBotoes)
     controle.current = false
   }
