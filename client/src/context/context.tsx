@@ -48,7 +48,7 @@ const initialValue = {
   setVariaveis: () => {},
   setUsuario: () => {},
   teste: { current: false },
-  controle: {currente: false},
+  controle: {current: false},
   img: '',
   setImg: () => {},
 
@@ -108,7 +108,7 @@ const Context = ({children}: PropsWithChildren) => {
     controle.current = false
   }
 
-}, [myProgress, progressoBotoes])
+}, [myProgress, progressoBotoes, user])
 
   return (
     <pointContext.Provider value={{teste, pontos, setPontos, fogo, setFogo, variaveis, setVariaveis, userId, setUserId, initialValuePontos, setInitialValuePontos, img, setImg, myProgress, setMyProgress, progressoBotoes, setProgressoBotoes, controle}}>
