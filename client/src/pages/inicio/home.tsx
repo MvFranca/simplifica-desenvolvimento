@@ -15,7 +15,6 @@ export default function Home() {
   const user = localStorage.getItem("simplifica:user")!;
   const userObject = JSON.parse(user);
 
-  const idUser = Number(userObject.id_usuario);
 
   const router = useNavigate();
 
@@ -58,8 +57,9 @@ export default function Home() {
    
     console.log("pontuação sendo atualizada: ")
     console.log(pontos)
+    const idUser = Number(userObject.id_usuario);
 
-    if(!teste.current){
+    if(!teste.current && user){
     axios
       .post("http://localhost:8000/api/points/diamantes", { idUser })
       .then((res) => {
@@ -73,10 +73,12 @@ export default function Home() {
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pontos]);
+  }, [pontos, user]);
 
   useEffect(() => {
-    if(!teste.current){
+    const idUser = Number(userObject.id_usuario);
+
+    if(!teste.current && user){
     axios
       .get(`http://localhost:8000/api/content/getProgress?idUser=${ idUser }`)
       .then((res) => {
@@ -89,7 +91,7 @@ export default function Home() {
         console.log(err);
       });
     }
-  }, [])
+  }, [user])
 
 
 
