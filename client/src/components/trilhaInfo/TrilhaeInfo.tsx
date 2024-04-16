@@ -1,11 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Main from "../main/Main";
 import Opcoes from "../opcoes/Opcoes";
 import styles from "../../styles/home/TrilhaeInfo.module.css";
 import axios from "axios";
-import { updateProgress } from "../../../services/apiUrl";
 //import PopUp from "./popup/PopUp";
-import { pointContext } from "../../context/context";
 
 const TrilhaeInfo = () => {
   const [conteudos, setConteudos] = useState([]);

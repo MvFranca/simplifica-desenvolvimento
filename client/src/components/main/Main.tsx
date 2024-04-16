@@ -1,5 +1,7 @@
-import styles from "../../styles/home/Main.module.css";
+import { useEffect, useState, useContext } from "react";
+import "../../styles/home/Main.css";
 import Botoes from "../botoes/Botoes";
+import { pointContext } from "../../context/context";
 
 type props = {
   conteudo: string;
@@ -9,15 +11,37 @@ type props = {
 
 };
 
+
+
+
 const Main = ({ conteudo, descricao, id, src }: props) => {
+
+  const { myProgress, progressoBotoes } = useContext(pointContext)
+  const [classe, setClasse] = useState('titulo')
+
+  useEffect(() => {
+  
+    if(id && myProgress >= id ){
+
+      setClasse("titulo")
+
+    }
+
+    else{
+      setClasse("titulo-block")
+    }
+
+  }, [id, myProgress])
+  
   return (
-    <main className={styles.container}>
-      <div className={styles.titulo}>
+    <main className={"container"}>
+
+      <div className={classe}>
         <h2>{conteudo}</h2>
         <p>{descricao}</p>
       </div>
 
-      <div className={styles.containerBotoes}>
+      <div className={"containerBotoes"}>
         <Botoes 
           id={id}
           conteudo ={conteudo} 
@@ -29,7 +53,7 @@ const Main = ({ conteudo, descricao, id, src }: props) => {
           alt="programador"
           width={260}
           height={200}
-          className={styles.imagem}
+          className={"imagem"}
         />
       </div>
     </main>

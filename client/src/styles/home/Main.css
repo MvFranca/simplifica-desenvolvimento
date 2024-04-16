@@ -8,7 +8,7 @@
 }
 
 
-.titulo{
+.titulo,.titulo-block{
     margin-top: 40px;
     height: max-content;
     background-color: #268AFF;
@@ -16,6 +16,10 @@
     border-radius: 13px;
     padding: 30px;
 
+}
+
+.titulo-block{
+    background-color: #959EAA;
 }
 
 .titulo p{
