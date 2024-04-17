@@ -11,8 +11,8 @@ type props = {
 
 const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
   const [porcentagem, setPorcentagem] = useState(0);
-  const { teste, pontos, setPontos } = useContext(pointContext);
-  const points = useRef(pontos)
+  const { teste, fogo, setFogo } = useContext(pointContext);
+  const points = useRef(fogo)
 
   // const [res, setRes] = useState(false)
 
@@ -25,13 +25,13 @@ const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
 
   useEffect(() => {
     if (porcentagem == 100) {
-      setPontos((prev: number) => prev + 4);
+      setFogo((prev: number) => prev + 4);
     } else if (porcentagem >= 50 && porcentagem < 100) {
-      setPontos((prev: number) => prev + 2);
+      setFogo((prev: number) => prev + 2);
     } else if (porcentagem < 50 && porcentagem > 0) {
-      setPontos((prev: number) => prev + 1);
+      setFogo((prev: number) => prev + 1);
     } else if (porcentagem == 0) return;
-    points.current = pontos
+    points.current = fogo
     teste.current = true
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [porcentagem]);
@@ -39,7 +39,7 @@ const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
   
 
     useEffect(() => {
-      if(pontos !== points.current){
+      if(fogo !== points.current){
         
       const user = localStorage.getItem("simplifica:user")!
       const userObject = JSON.parse(user)
@@ -47,7 +47,7 @@ const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
       const idUser = Number(userObject.id_usuario)
       // .put("https://simplifica-desenvolvimento.onrender.com/api/points/updateDiamantes", { idUser, pontos })
       axios
-        .put("http://localhost:8000/api/points/updateDiamantes", { idUser, pontos })
+        .put("http://localhost:8000/api/points/updateFogo", { idUser, fogo })
         .then((res) => {
           console.log(res);
           // setRes(true)
@@ -57,7 +57,7 @@ const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
         });
         
       }
-    }, [pontos])
+    }, [fogo])
     
 
 

@@ -18,9 +18,9 @@ export default function Home() {
 
   const router = useNavigate();
 
-  const { teste , pontos, setPontos, setFogo, setMyProgress, setProgressoBotoes} = useContext(pointContext);
+  const { teste , fogo, pontos, setPontos, setFogo, setMyProgress, setProgressoBotoes} = useContext(pointContext);
 
-  const notify = (dimas:number) => toast(`Parabéns! Agora você tem ${dimas} diamantes!`, {
+  const notify = (dimas:number) => toast(`Parabéns! Agora você tem ${dimas} Fires!`, {
     position: "bottom-right",
     autoClose: 5000,
     hideProgressBar: false,
@@ -37,11 +37,11 @@ export default function Home() {
   useEffect(() => {
 
     if(teste.current){
-      notify(pontos)
+      notify(fogo)
       teste.current = false
     }
 
-  }, [pontos])
+  }, [fogo])
 
 
 
@@ -74,7 +74,7 @@ export default function Home() {
 
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pontos, user]);
+  }, [fogo,pontos, user]);
 
   useEffect(() => {
     const idUser = Number(userObject.id_usuario);
