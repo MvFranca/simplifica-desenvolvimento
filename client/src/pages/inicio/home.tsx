@@ -18,7 +18,7 @@ export default function Home() {
 
   const router = useNavigate();
 
-  const { teste , pontos, setPontos, setMyProgress, setProgressoBotoes} = useContext(pointContext);
+  const { teste , pontos, setPontos, setFogo, setMyProgress, setProgressoBotoes} = useContext(pointContext);
 
   const notify = (dimas:number) => toast(`Parabéns! Agora você tem ${dimas} diamantes!`, {
     position: "bottom-right",
@@ -38,7 +38,6 @@ export default function Home() {
 
     if(teste.current){
       notify(pontos)
-      console.log("entrei papai")
       teste.current = false
     }
 
@@ -55,16 +54,15 @@ export default function Home() {
 
   useEffect(() => {
    
-    console.log("pontuação sendo atualizada: ")
-    console.log(pontos)
     const idUser = Number(userObject.id_usuario);
 
     if(!teste.current && user){
     axios
-      .post("http://localhost:8000/api/points/diamantes", { idUser })
+      .get(`http://localhost:8000/api/points/pontuacao?idUser=${idUser}`)
       .then((res) => {
         const pontuacao = res.data.data.resposta;
         setPontos(pontuacao.pontuacao);
+        setFogo(pontuacao.fogo);
         console.log(res)
       })
 
@@ -72,6 +70,9 @@ export default function Home() {
         console.log(err);
       });
     }
+
+
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pontos, user]);
 
@@ -92,9 +93,6 @@ export default function Home() {
       });
     }
   }, [user])
-
-
-
 
 
  

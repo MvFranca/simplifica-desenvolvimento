@@ -178,6 +178,9 @@
   transition: 0.25s all;
   animation: moveBau 1s ease-in-out forwards;
   animation-delay: 1s;
+
+  position: relative;
+  z-index: 999999999;
 }
 
 .modal .rodal-dialog strong{
@@ -193,8 +196,7 @@
   .modal-bau .bau-aberto{
     width: 95px;
     height: 95px;
-    position: relative;
-    z-index: 999999999;
+
   }
 
   .modal .rodal-dialog{

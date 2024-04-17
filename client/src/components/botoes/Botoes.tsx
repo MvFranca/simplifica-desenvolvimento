@@ -6,6 +6,7 @@ import { pointContext } from "../../context/context";
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
 import IconFire from "../icons/IconFire";
+import axios from "axios";
 
 type props = {
   id: number;
@@ -14,7 +15,7 @@ type props = {
 
 const Botoes = ({ id, conteudo}: props) => {
 
-  const { variaveis,  myProgress, setMyProgress, progressoBotoes, setProgressoBotoes, controle } = useContext(pointContext);
+  const { variaveis,  myProgress, setMyProgress, progressoBotoes, setProgressoBotoes, controle, setFogo, fogo } = useContext(pointContext);
 
   const listaBotoes = [
     {
@@ -62,6 +63,8 @@ const Botoes = ({ id, conteudo}: props) => {
 
   const [modalBau, setModalBau] = useState(false)
 
+  const [ganhoFogo, setGanhoFogo] = useState(0)
+
   const show = (disponivel: boolean, indice:number) => {
     if(disponivel && indice == progressoBotoes){
       setVisible(true);
@@ -72,8 +75,37 @@ const Botoes = ({ id, conteudo}: props) => {
 
   
   function abrirBau(){
+
+    const pontosGanhos = 3
+
+    setGanhoFogo(pontosGanhos)
+
     setModalBau(true)
+
+
+    setFogo(fogo + pontosGanhos)
+
   }
+
+
+  useEffect(() => {
+ 
+
+    if(modalBau){
+      const user = localStorage.getItem("simplifica:user")!;
+      const userObject = JSON.parse(user);
+      const idUser = Number(userObject.id_usuario);
+
+      
+      axios.put("http://localhost:8000/api/points/updateFogo", {idUser, fogo}).then((res) => {
+        console.log(res)
+      }).catch((err:Error) => {
+        console.log(err)
+      })
+
+    } 
+
+  }, [fogo, modalBau])
 
   function avancar(disponivel: boolean, indice:number, alt: string) {
     if(disponivel && indice == progressoBotoes){
@@ -102,6 +134,7 @@ const Botoes = ({ id, conteudo}: props) => {
   const hide = () => {
     setVisible(false);
     setModalBau(false)
+    setGanhoFogo(0)
   }
 
 
@@ -140,7 +173,7 @@ const Botoes = ({ id, conteudo}: props) => {
 
               <strong>
                 <IconFire width={25} height={25} color="rgb(255, 126, 66)" />
-                2
+                {ganhoFogo}
               </strong>
 
             </div>

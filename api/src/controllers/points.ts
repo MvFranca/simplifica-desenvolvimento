@@ -41,11 +41,11 @@ export const idPoints = async (req: Request, res: Response) => {
   );
 };
 
-export const selectDiamondsPoints = async (req: Request, res: Response) => {
-  const { idUser } = req.body;
+export const selectPontuacao = async (req: Request, res: Response) => {
+  const { idUser } = req.query;
 
   await consulta(
-    "SELECT pontuacao FROM pontuacaoq WHERE fk_id_usuario=$1",
+    "SELECT pontuacao, fogo FROM pontuacaoq WHERE fk_id_usuario=$1",
     [idUser],
     async (error, data) => {
       if (error) {
@@ -88,4 +88,29 @@ export const updateDiamantes = async (req: Request, res: Response) => {
   );
 };
 
-export const pointsFire = () => {};
+
+export const updateFogo = async (req: Request, res: Response) => {
+
+  const { idUser, fogo } = req.body;
+
+  await consulta(
+    "UPDATE pontuacaoq SET fogo=$1 WHERE fk_id_usuario=$2",
+    [fogo, idUser],
+    async (error, data) => {
+      if (error) {
+        console.log(error);
+        return res.status(500).json({
+          msg: "Servidor indisponível. Tente novamente mais tarde.",
+        });
+      } else {
+        const resposta = data;
+        console.log(resposta);
+        return res.status(200).json({
+          msg: "Atualização realizada!!",
+          data: { resposta },
+        });
+      }
+    }
+  );
+
+};

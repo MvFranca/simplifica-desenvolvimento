@@ -1,14 +1,18 @@
 import express from "express";
 import {
-  selectDiamondsPoints,
   idPoints,
   updateDiamantes,
+  updateFogo,
+  selectPontuacao,
 } from "../controllers/points";
 
 const router = express.Router();
 
-router.post("/diamantes", selectDiamondsPoints);
+router.get("/pontuacao", selectPontuacao);
+
 router.put("/updateDiamantes", updateDiamantes);
+router.put("/updateFogo", updateFogo);
+
 router.post("/insertIdPoints", idPoints);
 //router.post("/fogo", pointsFire);
 
