@@ -1,4 +1,4 @@
-.botoes .botao-habilitado, .botoes .botao-desabilitado
+.botoes .botao-habilitado, .botoes .botao-desabilitado, .botoes .botao-atual
 {
   background-color: #268aff;
   display: flex;
@@ -15,6 +15,36 @@
   background-color: #959eaa;
   box-shadow: 0px 6.5px 0px 0.5px #494949;
 
+
+}
+
+@keyframes buttonAtual {
+  0% {
+    background-color: #268aff;
+    transform: translateY(0);
+  transition: 0.5s all;
+
+  }
+
+  50%{
+      background-color: rgb(52, 170, 255);
+      transform: translateY(5px);
+      transition: 0.5s all;
+
+  }
+
+  100% {
+    background-color: #268aff;
+    transform: translateY(0);
+    transition: 0.5s all;
+  }
+}
+
+
+
+.botoes .botao-atual{
+
+  animation: buttonAtual 1.5s infinite linear;
 }
 
 .botoes a {
@@ -29,10 +59,6 @@
   transition: 0.2s all;
 }
 
-.botao11 {
-  background-color: #aaaaaa;
-  box-shadow: 0px 6.5px 0px 0.5px #808080;
-}
 
 .botoes img {
   width: 28px;

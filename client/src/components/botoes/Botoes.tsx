@@ -187,9 +187,10 @@ const Botoes = ({ id, conteudo}: props) => {
 
           const url =  myProgress > id  ? botao.to : myProgress == id && progressoBotoes >= index ?  botao.to : ''
 
-          const classe =  myProgress > id  ? "botao-habilitado" : myProgress == id && progressoBotoes >= index ? "botao-habilitado" : "botao-desabilitado"
+          const classe =  myProgress > id  ? "botao-habilitado" : myProgress == id && progressoBotoes == index && index !=0 ? 'botao-atual' : myProgress == id && progressoBotoes >= index  ? `botao-habilitado`: "botao-desabilitado"
 
           const disponivel =  myProgress >= id  && progressoBotoes >= index
+
 
           return(
             index != 0 ?
@@ -206,6 +207,7 @@ const Botoes = ({ id, conteudo}: props) => {
         }
 
       </div>
+      
     </div>
   );
 };
