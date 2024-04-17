@@ -68,13 +68,24 @@
   background-color: #268bff14;
 }
 
+.modal-bau h2{
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-bau h2 strong{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(255, 126, 66) !important;
+}
 
 .modal .rodal-dialog{
   display: flex;
   justify-content: center;  
   align-items: center;
   flex-direction: column;
-  gap: .5rem;
+  gap: .8rem;
   text-align: center;
   overflow: hidden;
 }
@@ -97,7 +108,7 @@
   }
 }
 
-.modal .rodal-dialog img{
+.modal .rodal-dialog .confetes{
   height: 100px;
   position: absolute;
   top: 0;
@@ -105,6 +116,68 @@
   height: 100%;
   transform: translateY();
   animation: moveDown 3s ease-in-out forwards;
+}
+
+.modal-bau .ganhos{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+
+@keyframes moveFogo {
+  0% {
+    opacity: 0;
+    transform: translateX(0px);
+    border: none;
+  }
+
+  70%{
+    opacity: 60%;
+    background-color: transparent;
+  }
+
+  100% {
+    opacity: 100%;
+    transform: translateX(60px);
+    background-color: #ffe6d9;
+    padding: 0 10px;
+    border-radius: 8px;
+  }
+}
+
+
+.modal-bau .ganhos strong{
+  position: absolute;
+  z-index: 0;
+  font-size: 1.7rem;
+  opacity: 0;
+  animation: moveFogo 1s ease-in-out forwards;
+  animation-delay: 1s;
+  display: flex;
+  align-items: center;
+  gap: .1rem;
+  color: rgb(255, 126, 66) !important;
+}
+
+
+@keyframes moveBau {
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(-30px);
+  }
+}
+
+.modal-bau .bau-aberto{
+  width: 100px;
+  height: 100px ;
+  transition: 0.25s all;
+  animation: moveBau 1s ease-in-out forwards;
+  animation-delay: 1s;
 }
 
 .modal .rodal-dialog strong{
@@ -117,6 +190,12 @@
     font-size: 1.1rem;
   }
   
+  .modal-bau .bau-aberto{
+    width: 95px;
+    height: 95px;
+    position: relative;
+    z-index: 999999999;
+  }
 
   .modal .rodal-dialog{
     max-width: 300px !important;

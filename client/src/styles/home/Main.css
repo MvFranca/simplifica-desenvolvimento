@@ -19,10 +19,10 @@
 }
 
 .titulo-block{
-    background-color: #959EAA;
+    background-color: #959eaa;
 }
 
-.titulo p{
+.titulo p, .titulo-block p{
     margin-top: 10px;
 }
 
@@ -61,7 +61,7 @@
     .containerBotoes{
         margin-right: 0;
     }
-    .titulo{
+    .titulo, .titulo-block{
         margin-right: 0px;
         width: 100%;
     }

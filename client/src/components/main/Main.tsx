@@ -16,7 +16,7 @@ type props = {
 
 const Main = ({ conteudo, descricao, id, src }: props) => {
 
-  const { myProgress, progressoBotoes } = useContext(pointContext)
+  const { myProgress } = useContext(pointContext)
   const [classe, setClasse] = useState('titulo')
 
   useEffect(() => {

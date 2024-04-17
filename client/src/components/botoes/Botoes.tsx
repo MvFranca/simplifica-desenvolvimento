@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { pointContext } from "../../context/context";
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
+import IconFire from "../icons/IconFire";
 
 type props = {
   id: number;
@@ -13,24 +14,7 @@ type props = {
 
 const Botoes = ({ id, conteudo}: props) => {
 
-  // const user = localStorage.getItem("simplifica:user")!;
-  // const userObject = JSON.parse(user);
-  // const idUser = Number(userObject.id_usuario);
-
-
   const { variaveis,  myProgress, setMyProgress, progressoBotoes, setProgressoBotoes, controle } = useContext(pointContext);
-
-  // useEffect(() => {
-
-  //   setStatus(iniciado)
-
-  // },[iniciado])
-
-  // useEffect(() => {
-
-  //   setProgressoBotoes(avanco)
-
-  // },[avanco])
 
   const listaBotoes = [
     {
@@ -73,7 +57,10 @@ const Botoes = ({ id, conteudo}: props) => {
   ]
 
   const botoes = useRef<HTMLDivElement>(null);
+
   const [visible, setVisible] = useState(false);
+
+  const [modalBau, setModalBau] = useState(false)
 
   const show = (disponivel: boolean, indice:number) => {
     if(disponivel && indice == progressoBotoes){
@@ -83,15 +70,26 @@ const Botoes = ({ id, conteudo}: props) => {
    }
   }
 
-  function avancar(disponivel: boolean, indice:number) {
+  
+  function abrirBau(){
+    setModalBau(true)
+  }
+
+  function avancar(disponivel: boolean, indice:number, alt: string) {
     if(disponivel && indice == progressoBotoes){
       setProgressoBotoes(prev => prev + 1)
       controle.current = true
+      
+      if(alt == 'Baú'){
+        abrirBau()
+      }
 
       if(indice == listaBotoes.length-1){
         setMyProgress(myProgress + 1)
         setProgressoBotoes(0)
       }
+
+
 
     }
   }
@@ -103,6 +101,7 @@ const Botoes = ({ id, conteudo}: props) => {
 
   const hide = () => {
     setVisible(false);
+    setModalBau(false)
   }
 
 
@@ -119,31 +118,39 @@ const Botoes = ({ id, conteudo}: props) => {
   }, [variaveis]);
 
 
-//  useEffect(() => {
-
-//     if(controle.current){
-//       updateProgress(myProgress, idUser, progressoBotoes)
-//       controle.current = false
-//     }
-
-//  }, [myProgress, progressoBotoes])
-
   return (
     <div>
       <div className="botoes" ref={botoes}>
+
         <Rodal visible={visible} onClose={hide} className="modal">
           <h2>Bem-Vindo ao módulo de <strong>{conteudo}</strong></h2>
           <p>
            Este será o primeiro módulo de muitos, prepare-se para ingressar neste universo incrível! 
           </p>
-          <img src="./trilha/modal-gif.gif" alt="" />
+          <img src="./trilha/modal-gif.gif" alt="confetes" className="confetes"/>
+        </Rodal>
+
+        <Rodal visible={modalBau} onClose={hide} className="modal modal-bau">
+          <h2>
+            Parabéns por chegar até aqui!<strong> Você acabou de ganhar </strong>
+          </h2>
+
+          <div className="ganhos">
+              <img src="./bau-aberto.webp" alt="Baú Aberto" className="bau-aberto"/>
+
+              <strong>
+                <IconFire width={25} height={25} color="rgb(255, 126, 66)" />
+                2
+              </strong>
+
+            </div>
+
+          <img src="./trilha/modal-gif.gif" alt="" className="confetes" />
         </Rodal>
 
         {
 
         listaBotoes.map( (botao, index) => {
-          // progressoBotoes >= index ? botao.to :
-          // progressoBotoes >= index  ? "botao-habilitado" : 
 
           const url =  myProgress > id  ? botao.to : myProgress == id && progressoBotoes >= index ?  botao.to : ''
 
@@ -153,7 +160,7 @@ const Botoes = ({ id, conteudo}: props) => {
 
           return(
             index != 0 ?
-            <Link to={url} id={botao.id}  className={classe} onClick={() => avancar(disponivel, index)} >
+            <Link to={url} id={botao.id}  className={classe} onClick={() => avancar(disponivel, index, botao.alt)} >
               <img src={botao.src} alt={botao.alt} />
             </Link>
             :
