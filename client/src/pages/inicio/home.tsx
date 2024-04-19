@@ -74,7 +74,7 @@ export default function Home() {
 
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fogo,pontos, user]);
+  }, []);
 
   useEffect(() => {
     const idUser = Number(userObject.id_usuario);

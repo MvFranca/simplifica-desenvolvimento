@@ -7,6 +7,7 @@ import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
 import IconFire from "../icons/IconFire";
 import axios from "axios";
+import IconDiamond from "../icons/IconDiamond";
 
 type props = {
   id: number;
@@ -15,7 +16,7 @@ type props = {
 
 const Botoes = ({ id, conteudo}: props) => {
 
-  const { variaveis,  myProgress, setMyProgress, progressoBotoes, setProgressoBotoes, controle, setFogo, fogo } = useContext(pointContext);
+  const { variaveis,  myProgress, setMyProgress, progressoBotoes, setProgressoBotoes, controle, setFogo, fogo, setPontos, pontos } = useContext(pointContext);
 
   const listaBotoes = [
     {
@@ -61,9 +62,12 @@ const Botoes = ({ id, conteudo}: props) => {
 
   const [visible, setVisible] = useState(false);
 
-  const [modalBau, setModalBau] = useState(false)
+  const [modalBau, setModalBau] = useState(false);
+
+  const [modalTrofeu, setModalTrofeu] = useState(false);
 
   const [ganhoFogo, setGanhoFogo] = useState(0)
+  const [ganhoDiamante, setGanhoDiamante] = useState(0)
 
   const show = (disponivel: boolean, indice:number) => {
     if(disponivel && indice == progressoBotoes){
@@ -84,18 +88,30 @@ const Botoes = ({ id, conteudo}: props) => {
 
 
     setFogo(fogo + pontosGanhos)
+  }
 
+
+
+  function abrirTrofeu(){
+    const pontosGanhos = 3
+
+    setModalTrofeu(true)
+
+    setGanhoFogo(pontosGanhos)
+    setGanhoDiamante(pontosGanhos)
+
+    setFogo(fogo + pontosGanhos)
+    setPontos(pontos + pontosGanhos)
   }
 
 
   useEffect(() => {
  
-
+   
     if(modalBau){
       const user = localStorage.getItem("simplifica:user")!;
       const userObject = JSON.parse(user);
       const idUser = Number(userObject.id_usuario);
-
       
       axios.put("http://localhost:8000/api/points/updateFogo", {idUser, fogo}).then((res) => {
         console.log(res)
@@ -106,6 +122,34 @@ const Botoes = ({ id, conteudo}: props) => {
     } 
 
   }, [fogo, modalBau])
+
+
+
+
+  useEffect(()=> {
+
+
+    if(modalTrofeu){
+      const user = localStorage.getItem("simplifica:user")!;
+      const userObject = JSON.parse(user);
+      const idUser = Number(userObject.id_usuario);
+
+      axios.put("http://localhost:8000/api/points/updateDiamantes", {idUser, pontos}).then((res) => {
+        console.log(res)
+      }).catch((err:Error) => {
+        console.log(err)
+      })
+
+      axios.put("http://localhost:8000/api/points/updateFogo", {idUser, fogo}).then((res) => {
+        console.log(res)
+      }).catch((err:Error) => {
+        console.log(err)
+      })
+    }
+
+  }, [ pontos, modalTrofeu])
+
+
 
   function avancar(disponivel: boolean, indice:number, alt: string) {
     if(disponivel && indice == progressoBotoes){
@@ -119,6 +163,7 @@ const Botoes = ({ id, conteudo}: props) => {
       if(indice == listaBotoes.length-1){
         setMyProgress(myProgress + 1)
         setProgressoBotoes(0)
+        abrirTrofeu()
       }
 
 
@@ -134,6 +179,7 @@ const Botoes = ({ id, conteudo}: props) => {
   const hide = () => {
     setVisible(false);
     setModalBau(false)
+    setModalTrofeu(false)
     setGanhoFogo(0)
   }
 
@@ -171,10 +217,36 @@ const Botoes = ({ id, conteudo}: props) => {
           <div className="ganhos">
               <img src="./bau-aberto.webp" alt="Baú Aberto" className="bau-aberto"/>
 
-              <strong>
+              <div>
                 <IconFire width={25} height={25} color="rgb(255, 126, 66)" />
                 {ganhoFogo}
-              </strong>
+              </div>
+
+            </div>
+
+          <img src="./trilha/modal-gif.gif" alt="" className="confetes" />
+        </Rodal>
+
+        <Rodal visible={modalTrofeu} onClose={hide}  className="modal modal-trofeu">
+          <h2>
+            Parabéns por chegar até aqui!<strong> Você acabou de ganhar </strong>
+          </h2>
+
+          <div className="ganhos-trofeu">
+              <img src="./bau-aberto.webp" alt="Baú Aberto" className="bau-aberto"/>
+
+              <div className="pontos-ganhos">
+
+                <strong className="fogo">
+                  <IconFire width={25} height={25} color="rgb(255, 126, 66)" />
+                  {ganhoFogo} 
+                </strong>
+                <strong className="diamante">
+                  <IconDiamond width={25} height={25}  />
+                  {ganhoDiamante} 
+                </strong>
+
+              </div>
 
             </div>
 
