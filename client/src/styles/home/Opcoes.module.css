@@ -39,6 +39,12 @@
   gap: 5px;
 }
 
+.pontuacao div a{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .pontuacao div img {
   width: 30px;
   height: 30px;

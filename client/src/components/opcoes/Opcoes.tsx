@@ -39,12 +39,14 @@ const Opcoes = () => {
             <p>{pontos}</p>
           </div>
           <div>
-          {
-            img ?
-            <img src={img} alt="Perfil" className={styles.myImage}/>
-            :
-            <img src="./perfil.png" alt="Perfil" />
-          }
+            <Link to={'/perfil'}>
+            {
+              img ?
+              <img src={img} alt="Perfil" className={styles.myImage}/>
+              :
+              <img src="./perfil.png" alt="Perfil" />
+            }
+            </Link>
           </div>
         </div>
         <div className={styles.estudoManual}>
