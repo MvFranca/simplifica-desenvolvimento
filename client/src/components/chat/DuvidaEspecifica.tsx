@@ -1,6 +1,22 @@
+import { useEffect } from 'react';
 import styles from '../../styles/comunidade/DuvidaEspecifica.module.css'
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const DuvidaEspecifica = () => {
+
+    const { id } = useParams()
+
+    useEffect(() => {
+
+        axios.get(`http://localhost:8000/api/community/duvidas?id_duvida=${id}`).then((res) => {
+            console.log(res)
+        }).catch((err:Error) => {
+            console.log(err)
+        })
+
+    }, [])
+
     return ( 
         <div className={styles.duvidaEspecifica}>
 
@@ -8,7 +24,7 @@ const DuvidaEspecifica = () => {
 
                 <div className={styles.esquerda}>
                     <h3>
-                    marcos_vinicius
+                    marcos_vinicius oi
                     </h3>
                     
                     <div className={styles.dados}>

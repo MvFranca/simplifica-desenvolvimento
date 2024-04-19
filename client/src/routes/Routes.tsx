@@ -33,7 +33,9 @@ const Rotas = () => {
           <Route path={`/ranking`} element={<Ranking />} />
 
           <Route path={`/teste`} element={<PageDuvida />} />
+          
           <Route path={`/comunidade/duvida/:id`} element={<ShowDuvida />} />
+
           <Route path={`/estudomanual`} element={<EstudoManual />} />
 
           <Route path={`/comunidade`} element={<Comunidade />} />

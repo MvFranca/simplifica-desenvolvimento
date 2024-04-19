@@ -3,10 +3,16 @@ import { Request, Response } from "express";
 
 export const GetDuvidas = async (req: Request, res: Response) => {
   
+    const {id_duvida} = req.query
+
+    
+    const select  = id_duvida ? 
+    "SELECT duvida.*, usuario.username, usuario.turma FROM duvida JOIN usuario ON duvida.fk_id_usuario = usuario.id_usuario WHERE duvida.id_duvida = $1 AND usuario.id_usuario = 2; " : "SELECT * from duvida"
+    const values = id_duvida ? [id_duvida] : []
+    
     await consulta(
-      "SELECT * from duvida",
-      []
-      ,
+        select,
+        values,
       async (error, data) => {
         if (error) {
           console.log(error);

@@ -73,13 +73,12 @@ const Chat = () => {
                 {
                   duvidas.map((duvida) =>{
                     if(duvida.data == data){
-                      const descricao = duvida.descricao.slice(0, 30)
                       return (
                         <DuvidaCard
                         duvida={{
                           id: duvida.id_duvida,
                           titulo: duvida.conteudo,
-                          descricao: descricao,
+                          descricao: duvida.descricao,
                         }}
                       />
                       )
