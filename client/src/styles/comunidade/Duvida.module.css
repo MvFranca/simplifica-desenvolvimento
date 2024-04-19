@@ -1,5 +1,6 @@
 .duvida{
     width: 50%;
+    max-width: 50%;
     min-width: 48.6%;
     height: max-content;
     min-height: 180px;
@@ -26,11 +27,15 @@
 .textos h3{
     color: #268aff;
     font-size: 1.3em;
+    height: 30px;
+    overflow: hidden;
 }
 
 .textos p{
     font-size: 1.1em;
-
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
 }
 
 .duvida a{
@@ -57,7 +62,7 @@
 @media screen and (max-width: 1000px) {
     .duvida{
         width: 100%;
-
+        max-width: 100%;
         min-width: 100%;
     }
 }

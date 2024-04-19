@@ -4,6 +4,7 @@ import authRouter from "./routes/auth";
 import pointsRouter from "./routes/points";
 import tableRanking from "./routes/table"
 import content from "./routes/content"
+import community from "./routes/community"
 import bodyParser from "body-parser";
 import cors from "cors";
 import { Request } from "express";
@@ -26,6 +27,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/points", pointsRouter);
 app.use("/api/table", tableRanking);
 app.use("/api/content", content);
+app.use("/api/community", community);
 
 Object.keys(require.cache).forEach(function(key) {
   delete require.cache[key];
