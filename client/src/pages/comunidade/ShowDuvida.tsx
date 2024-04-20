@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { IDuvida } from "../../types/IDuvida";
+import { IComentario, IDuvida } from "../../types/IDuvida";
 import styles from "../../styles/comunidade/ShowDuvida.module.css";
 import ImagemComModal from "../../components/ImagemComModal";
 // import { formatDate } from "../../helpers/formatDate";
@@ -12,7 +12,7 @@ const ShowDuvida = () => {
 
   //* states
   const [duvida, setDuvida] = useState<IDuvida>();
-  const [comentarios, setComentarios] = useState([])
+  const [comentarios, setComentarios] = useState<IComentario[]>([])
 
   //* effects
   // useEffect(() => {
@@ -139,12 +139,12 @@ const ShowDuvida = () => {
           </div>
           <div className={styles.spaceBetween}>
             <button className={styles.btnBlue}>
-              {/* {duvida?.respostas?.length} Ver a
-              {duvida?.respostas && duvida?.respostas?.length > 1 ? "s" : ""}{" "}
+              {comentarios.length} Ver a
+              {comentarios && comentarios.length > 1 ? "s" : ""}{" "}
               resposta
-              {duvida?.respostas && duvida?.respostas?.length > 1
+              {comentarios && comentarios.length > 1
                 ? "s"
-                : ""}{" "} */}
+                : ""}{" "}
             </button>
             <button className={styles.btnBlack}>Responder</button>
           </div>

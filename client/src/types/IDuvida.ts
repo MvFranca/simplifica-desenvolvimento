@@ -15,3 +15,19 @@ export interface IDuvida {
   url_img_duvida?: string;
   respostas_duvida?: IResposta[];
 }
+
+export interface IComentario {
+  id_duvida: number;
+  user: IUser;
+  username:string;
+  tituloConteudo?: string;
+  titulo_comentario?: string;
+  turma: string;
+  conteudo: string;
+  descricao_comentario?: string;
+  // data: Date;
+  hora_comentario: string;
+  data_comentario: string;
+  url_img_comentario?: string;
+  respostas_comentario?: IResposta[];
+}
