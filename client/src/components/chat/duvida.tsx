@@ -10,10 +10,10 @@ const DuvidaCard = ({ duvida }: DuvidaCardProps) => {
   return (
     <div className={styles.duvida}>
       <div className={styles.textos}>
-        <h3>{duvida.titulo}</h3>
-        <p>{duvida.descricao}.</p>
+        <h3>{duvida.titulo_duvida}</h3>
+        <p>{duvida.descricao_duvida}.</p>
       </div>
-      <Link to={"/comunidade/duvida/" + duvida.id}>VER DÚVIDA</Link>
+      <Link to={"/comunidade/duvida/" + duvida.id_duvida}>VER DÚVIDA</Link>
     </div>
   );
 };

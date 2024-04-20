@@ -6,12 +6,12 @@ import axios from "axios";
 
 interface Duvidas {
   id_duvida: number;
-  titulo: string,
-  descricao: string,
-  url_img: string,
+  titulo_duvida: string,
+  descricao_duvida: string,
+  url_img_duvida: string,
   conteudo: string,
-  data: string,
-  hora: string,
+  data_duvida: string,
+  hora_duvida: string,
   idUser: number
 }
 
@@ -40,7 +40,7 @@ const Chat = () => {
 
 
       duvidas.forEach((duvida) => {
-        datasUnicasSet.add(duvida.data);
+        datasUnicasSet.add(duvida.data_duvida);
       });
 
 
@@ -72,13 +72,13 @@ const Chat = () => {
               <div>
                 {
                   duvidas.map((duvida) =>{
-                    if(duvida.data == data){
+                    if(duvida.data_duvida == data){
                       return (
                         <DuvidaCard
                         duvida={{
-                          id: duvida.id_duvida,
-                          titulo: duvida.conteudo,
-                          descricao: duvida.descricao,
+                          id_duvida: duvida.id_duvida,
+                          titulo_duvida: duvida.conteudo,
+                          descricao_duvida: duvida.descricao_duvida,
                         }}
                       />
                       )

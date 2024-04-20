@@ -6,12 +6,12 @@ export interface IDuvida {
   user: IUser;
   username:string;
   tituloConteudo?: string;
-  titulo?: string;
+  titulo_duvida?: string;
   turma: string;
   conteudo: string;
-  descricao?: string;
+  descricao_duvida?: string;
   // data: Date;
-  data: string;
-  url_img?: string;
-  respostas?: IResposta[];
+  data_duvida: string;
+  url_img_duvida?: string;
+  respostas_duvida?: IResposta[];
 }

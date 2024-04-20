@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { IDuvida } from "../../types/IDuvida";
 import styles from "../../styles/comunidade/ShowDuvida.module.css";
 import ImagemComModal from "../../components/ImagemComModal";
-import { formatDate } from "../../helpers/formatDate";
+// import { formatDate } from "../../helpers/formatDate";
 import axios from "axios";
 
 const ShowDuvida = () => {
@@ -12,6 +12,7 @@ const ShowDuvida = () => {
 
   //* states
   const [duvida, setDuvida] = useState<IDuvida>();
+  const [comentarios, setComentarios] = useState([])
 
   //* effects
   // useEffect(() => {
@@ -61,16 +62,34 @@ const ShowDuvida = () => {
   //* render
 
 
-  useEffect(() => {
-    console.log("id:")
-    console.log(id)
-      axios.get(`http://localhost:8000/api/community/duvidas?id_duvida=${id}`).then((res) => {
-          setDuvida(res.data.data.resposta[0])
-          console.log(res.data.data)
+  async function respostas(id_duvida:string) {
+    try{
+      const res = await axios.get(`http://localhost:8000/api/community/comentarios?id_duvida=${id_duvida}`)
+      setComentarios(await res.data.data.resposta)
+    }
+    catch(error){
+      console.log(error)
+    }
+  }
 
-      }).catch((err:Error) => {
-          console.log(err)
-      })
+  async function dadosDuvida(id_duvida: string) {
+      try{
+        const res = await axios.get(`http://localhost:8000/api/community/duvidas?id_duvida=${id_duvida}`)
+        setDuvida(await res.data.data.resposta[0])
+      }
+      catch(error){
+        console.log(error)
+      }
+  }
+
+
+  useEffect(() => {
+    respostas(id!)
+  }, [id])
+
+  useEffect(() => {
+    
+    dadosDuvida(id!)
 
   }, [id])
 
@@ -83,7 +102,7 @@ const ShowDuvida = () => {
             <h3 className={styles.username}>{duvida?.username}</h3>
             <p className={styles.dataLabel}>
               {/* <span>Data:</span> {duvida?.data && formatDate(duvida?.data)} */}
-              <span>Data: {duvida?.data}</span> 
+              <span>Data: {duvida?.data_duvida}</span> 
               
             </p>
             <p className={styles.dataLabel}>
@@ -102,16 +121,16 @@ const ShowDuvida = () => {
         </div>
         <div className={styles.caixaDuvidaContainer}>
           <div className={styles.caixaDuvidaContainer}>
-            <h1 className={styles.title}>{duvida?.titulo}</h1>
-            <p className={styles.description}>{duvida?.descricao}</p>
+            <h1 className={styles.title}>{duvida?.titulo_duvida}</h1>
+            <p className={styles.description}>{duvida?.descricao_duvida}</p>
             <div className={styles.line}></div>
           </div>
           <div className={styles.caixaDuvidaContainer}>
-            {duvida?.url_img && (
+            {duvida?.url_img_duvida && (
               <>
                 <ImagemComModal
-                  src={duvida?.url_img}
-                  alt={duvida?.titulo}
+                  src={duvida?.url_img_duvida}
+                  alt={duvida?.titulo_duvida}
                   classNameImagem={styles.image}
                 />
                 <div className={styles.line}></div>
@@ -130,27 +149,30 @@ const ShowDuvida = () => {
             <button className={styles.btnBlack}>Responder</button>
           </div>
         </div>
-        {duvida?.respostas &&
-          duvida?.respostas.map((resposta) => {
+        {comentarios &&
+          comentarios.map((resposta) => {
             return (
               <div className={styles.respostaContainer}>
                 <div className={styles.spaceBetween}>
                   <h3 className={styles.title}>Resposta</h3>
                   <div className={styles.respostaRightInfo}>
                     <p className={styles.respostaDataLabel}>
-                      {resposta.data && formatDate(resposta.data)}
+                      {/* {resposta.data && formatDate(resposta.data)} */}
+                      {
+                        resposta.hora_comentario
+                      }
                     </p>
                     <p className={styles.username}>
-                      <span>{resposta.user}</span>
+                      <span>{resposta.username}</span>
                     </p>
                   </div>
                 </div>
                 <div className={styles.line}></div>
-                <p className={styles.description}>{resposta.descricao}</p>
-                {resposta.url_image && (
+                <p className={styles.description}>{resposta.descricao_comentario}</p>
+                {resposta.url_img_comentario && (
                   <ImagemComModal
-                    src={resposta.url_image}
-                    alt={resposta.user + " image"}
+                    src={resposta.url_img_comentario}
+                    alt={resposta.username + " image"}
                     classNameImagem={styles.image}
                   />
                 )}
