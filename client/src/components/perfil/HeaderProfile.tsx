@@ -52,7 +52,7 @@ const HeaderProfile = () => {
 
 
                 const urlImg = reader.result;
-                    
+                console.log(urlImg)
                     
                 axios
                 .post("http://localhost:8000/api/users/img_att", { urlImg, idUser })
@@ -105,7 +105,7 @@ const HeaderProfile = () => {
                             <h2>
                             {/* @zeze_dicamargo */}
                             @
-                            {
+                                {
                                     user &&
                                     user.username
                                 }

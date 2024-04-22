@@ -18,7 +18,7 @@ export default function Home() {
 
   const router = useNavigate();
 
-  const { teste , fogo, pontos, setPontos, setFogo, setMyProgress, setProgressoBotoes} = useContext(pointContext);
+  const { teste , fogo, setPontos, setFogo, setMyProgress, setProgressoBotoes} = useContext(pointContext);
 
   const notify = (dimas:number) => toast(`Parabéns! Agora você tem ${dimas} Fires!`, {
     position: "bottom-right",

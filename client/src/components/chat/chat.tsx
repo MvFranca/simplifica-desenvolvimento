@@ -96,53 +96,6 @@ const Chat = () => {
       })
       }
 
-      {/* <section className={styles.infoDuvidas}>
-        <div className={styles.infoData}>
-          <span className={styles.data}>18/01</span>
-          <span className={styles.borda} />
-        </div>
-
-        <div className={styles.fullDuvidas}>
-          <span className={styles.setaEsquerda}>
-            <IoIosArrowForward color="#fff"/>
-          </span>
-          <div>
-            <DuvidaCard
-              duvida={{
-                id: 1,
-                titulo: "Variáveis",
-                descricao: "tive problemas ao definir as variáveis no vscode",
-              }}
-            />
-            <DuvidaCard
-              duvida={{
-                id: 2,
-                titulo: "Variáveis",
-                descricao: "tive problemas ao definir as variáveis no vscode",
-              }}
-            />
-            <DuvidaCard
-              duvida={{
-                id: 3,
-                titulo: "Variáveis",
-                descricao: "tive problemas ao definir as variáveis no vscode",
-              }}
-            />
-            <DuvidaCard
-              duvida={{
-                id: 4,
-                titulo: "Variáveis",
-                descricao: "tive problemas ao definir as variáveis no vscode",
-              }}
-            />
-          </div>
-          <span className={styles.setaDireita}>
-            <IoIosArrowForward color="#fff"/>
-          </span>
-        </div>
-      </section> */}
-
-
     </div>
   );
 };
