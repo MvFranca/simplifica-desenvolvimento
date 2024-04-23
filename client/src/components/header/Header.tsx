@@ -41,7 +41,7 @@ const Header = () => {
             :
             <img src="./perfil.png" alt="Perfil" />
           }
-          <p>Perfil</p>
+          <p>PERFIL</p>
         </NavLink>
         {/* <NavLink onClick={sair} to={"/entrar"}>
           <img src="./config.png" alt="Configurações" />
