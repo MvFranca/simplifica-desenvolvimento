@@ -102,17 +102,15 @@ export const PostDuvidas = async (req:Request, res: Response) => {
 };
 
   export const PostComentario = async (req:Request, res: Response) => {
-    const { titulo, descricao, url_img, data, hora, id_duvida, idUser } = req.body;
+    const { descricao, url_img, data, hora, id_duvida, idUser } = req.body;
   
-    if (!titulo) return res.status(422).json({ msg: "O título é obrigatório!" });
-    if (!descricao) return res.status(422).json({ msg: "A descrição é obrigatória!" });
     if (!descricao) return res.status(422).json({ msg: "A descrição é obrigatória!" });
 
     await consulta(
     `INSERT INTO comentarios (fk_id_usuario, titulo_comentario, descricao_comentario, url_img_comentario, data_comentario, hora_comentario, fk_id_duvida) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
     [
         idUser,
-        titulo,
+        '',
         descricao,
         url_img,
         data,

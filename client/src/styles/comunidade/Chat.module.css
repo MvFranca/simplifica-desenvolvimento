@@ -55,7 +55,7 @@
     align-items: center;
 }
 
-.fullDuvidas div{
+.fullDuvidas .scroll{
     width: 100%;
     display: flex;
     justify-content: start;
@@ -100,7 +100,7 @@
     transform: rotate(180deg);
 }
 
-.fullDuvidas div::-webkit-scrollbar{
+.fullDuvidas .scroll::-webkit-scrollbar{
     display: none;
 }
 

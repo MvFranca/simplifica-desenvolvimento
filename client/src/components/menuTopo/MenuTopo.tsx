@@ -6,7 +6,7 @@ import { pointContext } from "../../context/context";
 import { useContext, useEffect } from "react";
 
 const MenuTopo = () => {
-  const { pontos } = useContext(pointContext);
+  const { pontos, fogo } = useContext(pointContext);
   // const [username, setUsername] = useState("")
 
   useEffect(() => {
@@ -38,13 +38,15 @@ const MenuTopo = () => {
   return (
     <div className={styles.container}>
       <h1>SIMPLIFICA</h1>
-      <div>
-        <IconFire width={23} height={23} color="rgb(255, 126, 66)" />
-        <p>0</p>
-      </div>
-      <div>
-        <IconDiamond width={23} height={23} color="rgb(255, 0, 0)" />
-        <p>{pontos}</p>
+      <div className={styles.pontuacao}>
+        <div>
+          <IconFire width={23} height={23} color="rgb(255, 126, 66)" />
+          <p>{fogo}</p>
+        </div>
+        <div>
+          <IconDiamond width={23} height={23} color="rgb(255, 0, 0)" />
+          <p>{pontos}</p>
+        </div>
       </div>
     </div>
   );

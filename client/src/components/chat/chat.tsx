@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "../../styles/comunidade/Chat.module.css";
 import DuvidaCard from "./duvida";
 import { IoIosArrowForward } from "react-icons/io";
@@ -20,6 +20,7 @@ const Chat = () => {
   const [datas, setDatas] = useState<string[]>([])
   const [duvidas, setDuvidas] = useState<Array<Duvidas>>([])
 
+  const duvidasScroll = useRef<HTMLDivElement>(null)
   useEffect(() => {
 
     axios.get("http://localhost:8000/api/community/duvidas").then((res) => {
@@ -43,13 +44,12 @@ const Chat = () => {
         datasUnicasSet.add(duvida.data_duvida);
       });
 
+      const datasUnicasArray =  Array.from(datasUnicasSet).map(data => String(data)).reverse()
 
-      const datasUnicasArray =  Array.from(datasUnicasSet).map(data => String(data));
       setDatas(datasUnicasArray)
     }
 
   }, [duvidas])
-
 
   return (
     <div className={styles.chat}>
@@ -69,9 +69,9 @@ const Chat = () => {
               <span className={styles.setaEsquerda}>
                 <IoIosArrowForward color="#fff"/>
               </span>
-              <div>
+              <div className={styles.scroll} ref={duvidasScroll} id="teste">
                 {
-                  duvidas.map((duvida) =>{
+                  duvidas.slice().reverse().map((duvida) =>{
                     if(duvida.data_duvida == data){
                       return (
                         <DuvidaCard
@@ -79,6 +79,7 @@ const Chat = () => {
                           id_duvida: duvida.id_duvida,
                           titulo_duvida: duvida.conteudo,
                           descricao_duvida: duvida.descricao_duvida,
+
                         }}
                       />
                       )
@@ -87,7 +88,7 @@ const Chat = () => {
                   })
                 }
               </div>
-              <span className={styles.setaDireita}>
+              <span className={styles.setaDireita} >
                 <IoIosArrowForward color="#fff"/>
               </span>
             </div>

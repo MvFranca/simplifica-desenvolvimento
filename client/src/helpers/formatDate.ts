@@ -9,3 +9,13 @@ export const formatDate = (date: Date) => {
   
     return `${day}/${month}/${year}`;
   };
+
+
+export const hour = () => { 
+    const currentDate = new Date();
+    const hour = currentDate.getHours();
+    const minute = currentDate.getMinutes();
+    const formattedTime = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+    
+    return formattedTime
+}

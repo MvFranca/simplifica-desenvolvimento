@@ -1,0 +1,118 @@
+@keyframes abrirResposta {
+    0%{
+        transform: translateY(-200px);
+    }
+}
+
+.box_resposta{
+    width: 100%;
+    border: 3px solid #B9B9B9;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    padding: 2.25rem 3.5rem 2.25rem 3.5rem;
+    gap: 1rem;
+    background-color: #F5F5F5 ;
+    opacity: 0%;
+    transition: 0.7s all;
+    margin-left: 0;
+  }
+
+
+.box_resposta .spaceBetween {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.box_resposta .spaceBetween div{
+    width: max-content;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: left;
+    color: black;
+}
+
+.line {
+    background-color: #c9c9c9;
+    width: 100%;
+    height: 3px;
+  }
+
+  .description textarea, .description textarea::placeholder {
+    font-size: 1.2rem;
+    font-weight: 400;
+
+    color: #6A6A6A;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+
+  .description textarea{
+    color: #000;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .anexar{
+    background-color: #E4E4E4;
+    height: 100px;
+    border-radius: 10px;
+    min-width: 50%;
+    display: flex;
+    border: 1px dashed #000;
+    justify-content: center;
+    align-items: center;
+}
+
+.img_url{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 16.875rem;
+    overflow: hidden;
+    border: 1.5px solid #0000006d;
+    border-radius: 8px;
+    transition: 0.2s all;
+}
+
+.img_url img{
+    transition: all 100ms ;
+    
+}
+
+.img_url:hover {
+    cursor: pointer;
+    object-fit: cover;
+    /* border: #268aff 1px solid; */
+    box-shadow: 0px 0px 2px 2px #00000026;
+}
+
+
+.anexar input{
+    
+    display: none;
+}
+
+.anexar label{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button_resposta{
+    width: 100%;
+    background-color: #268aff;
+    color: #fff;
+    transition: 0.2s all;
+    box-shadow: 4px 4px 0px 0.5px #1564be;
+}

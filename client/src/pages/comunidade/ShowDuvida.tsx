@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IComentario, IDuvida } from "../../types/IDuvida";
 import styles from "../../styles/comunidade/ShowDuvida.module.css";
 import ImagemComModal from "../../components/ImagemComModal";
 // import { formatDate } from "../../helpers/formatDate";
 import axios from "axios";
+import FormResposta from "./FormReposta";
 
 const ShowDuvida = () => {
   //* hooks
@@ -13,6 +14,10 @@ const ShowDuvida = () => {
   //* states
   const [duvida, setDuvida] = useState<IDuvida>();
   const [comentarios, setComentarios] = useState<IComentario[]>([])
+
+  const [formRespostas, setFormRespostas] = useState(false)
+
+  const [novaResposta, setNovaResposta] = useState(false)
 
   //* effects
   // useEffect(() => {
@@ -84,8 +89,13 @@ const ShowDuvida = () => {
 
 
   useEffect(() => {
+
     respostas(id!)
-  }, [id])
+
+    if(novaResposta){
+      setNovaResposta(false)
+    }
+  }, [id, novaResposta])
 
   useEffect(() => {
     
@@ -93,6 +103,28 @@ const ShowDuvida = () => {
 
   }, [id])
 
+  const abrirFormResposta = () => setFormRespostas(!formRespostas)
+
+  // const responder = useRef<HTMLDivElement>(null)
+
+  // useEffect(() => {
+
+  //   if(formRespostas){
+  //     responder.current!.style.opacity = "100%"
+  //     responder.current!.style.height = "100%"
+  //     responder.current!.style.transform = "translateY(0px)"
+  //   }
+
+  //   else{
+  //     responder.current!.style.transition = "all 0.4s "
+  //     responder.current!.style.opacity = "0%"
+  //     responder.current!.style.height = "0"
+  //     responder.current!.style.transform = "translateY(200px)"
+      
+  //   }
+
+
+  // }, [formRespostas])
 
   return (
     <div >
@@ -111,7 +143,12 @@ const ShowDuvida = () => {
           </div>
           <div className={styles.infoRight}>
             <button className={styles.btnGray}>
-              <span>Visto</span>
+              {
+                comentarios.length > 0 ?
+                <span>Visto</span>
+                :
+                <span style={{color: "red"}}>Não visto</span>
+              }
             </button>
             <p className={styles.dataLabel}>
               <span>Conteúdo:</span>
@@ -146,11 +183,23 @@ const ShowDuvida = () => {
                 ? "s"
                 : ""}{" "}
             </button>
-            <button className={styles.btnBlack}>Responder</button>
+            <button className={styles.btnBlack} onClick={abrirFormResposta}>Responder</button>
           </div>
         </div>
+        
+       
+        {/* <div className={styles.form_respostas} ref={responder}> */}
+          {
+            formRespostas &&
+                <FormResposta
+                  state={setFormRespostas}
+                  novaResposta={setNovaResposta}
+                  formRespostas = {formRespostas}
+                />
+          }
+        {/* </div> */}
         {comentarios &&
-          comentarios.map((resposta) => {
+          comentarios.slice().reverse().map((resposta) => {
             return (
               <div className={styles.respostaContainer}>
                 <div className={styles.spaceBetween}>

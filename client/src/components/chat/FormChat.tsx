@@ -1,9 +1,9 @@
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import styles from '../../styles/comunidade/FormChat.module.css'
 import IconAddOutline from '../icons/IconAdd';
 import IconClose from '../icons/IconClose';
 import axios from 'axios';
-import { formatDate } from '../../helpers/formatDate';
+import { formatDate, hour } from '../../helpers/formatDate';
 // import { z } from 'zod';
 
 // const schema = z.object({
@@ -26,14 +26,6 @@ const FormChat = () => {
     const user = localStorage.getItem("simplifica:user")!;
     const userObject = JSON.parse(user);
   
-    const hour = () => { 
-        const currentDate = new Date();
-        const hour = currentDate.getHours();
-        const minute = currentDate.getMinutes();
-        const formattedTime = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
-        
-        return formattedTime
-    }
 
     const handleImageChange = (event:ChangeEvent<HTMLInputElement>) => {
 
