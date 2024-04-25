@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import styles from '../../styles/comunidade/FormResposta.module.css'
 import ImagemComModal from '../../components/ImagemComModal';
 import axios from 'axios';
@@ -20,8 +20,9 @@ const FormResposta = ({state, novaResposta, formRespostas}: props) => {
     const input_image = useRef<HTMLInputElement>(null)
 
     const {id} = useParams()
+    const Url = useRef('')
 
-    function anexarImagem(){
+    function anexarImagem(event:ChangeEvent<HTMLInputElement>){
 
         const [file] = input_image.current!.files
 
@@ -29,6 +30,19 @@ const FormResposta = ({state, novaResposta, formRespostas}: props) => {
             const url = URL.createObjectURL(file)
             setUrl(url)
 
+        }
+
+
+        const files = event.target.files![0]
+
+        if (files) {
+            const reader = new FileReader();
+            reader.onload = () => {
+
+                const urlImg = reader.result;
+                Url.current = String(urlImg)
+            };
+            reader.readAsDataURL(file);
         }
 
     }
@@ -41,7 +55,7 @@ const FormResposta = ({state, novaResposta, formRespostas}: props) => {
         axios.post("http://localhost:8000/api/community/post_comentarios", {
             idUser,
             descricao: descricao,
-            url_img: url,
+            url_img: String(Url.current),
             data: String(formatDate(new Date())),
             hora: hour(),
             id_duvida: id
