@@ -166,7 +166,7 @@ const ShowDuvida = () => {
             {duvida?.url_img_duvida && (
               <>
                 <ImagemComModal
-                  src={duvida?.url_img_duvida}
+                  src={duvida.url_img_duvida}
                   alt={duvida?.titulo_duvida}
                   classNameImagem={styles.image}
                 />
