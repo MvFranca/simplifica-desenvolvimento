@@ -61,14 +61,15 @@ const Chat = () => {
         return(
           <section className={styles.infoDuvidas}>
             <div className={styles.infoData}>
-              <span className={styles.data}>{data}</span>
+              {/* <span className={styles.data}>{data}</span> */}
+              <span className={styles.data}>Ontem</span>
               <span className={styles.borda} />
             </div>
 
             <div className={styles.fullDuvidas}>
-              <span className={styles.setaEsquerda}>
+              {/* <span className={styles.setaEsquerda}>
                 <IoIosArrowForward color="#fff"/>
-              </span>
+              </span> */}
               <div className={styles.scroll} ref={duvidasScroll} id="teste">
                 {
                   duvidas.slice().reverse().map((duvida) =>{
@@ -88,9 +89,9 @@ const Chat = () => {
                   })
                 }
               </div>
-              <span className={styles.setaDireita} >
+              {/* <span className={styles.setaDireita} >
                 <IoIosArrowForward color="#fff"/>
-              </span>
+              </span> */}
             </div>
           </section>
         )
