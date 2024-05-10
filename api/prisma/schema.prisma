@@ -1,0 +1,142 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id              Int             @default(autoincrement()) @id
+  username        String          @unique  
+  email           String          @unique
+  senha           String
+  url_image       String?
+  turma           String   
+  fullname        String
+  pontuacao       Pontuacao?
+  duvida          Duvida?
+  comentario      Comentario?
+  progresso       Progresso?
+  createdAt       DateTime        @default(now()) @map("created_at")
+  updatedAt       DateTime?       @updatedAt      @map("updated_at")
+
+  @@map(name: "usuario")
+}
+
+model Conteudo {
+  id               Int      @default(autoincrement()) @id
+  titulo           String
+  subtitulo        String
+  paragrafo        String?
+
+  img1_titulo      String?
+  img1_url         String?
+  img1_alt         String?
+  img1_descricao   String?
+
+  img2_titulo      String?
+  img2_url         String?
+  img2_alt         String?
+  img2_descricao   String?
+
+  createdAt       DateTime        @default(now()) @map("created_at")
+  updatedAt       DateTime?       @updatedAt      @map("updated_at")
+
+ @@map(name: "conteudo")
+}
+
+model Questao {
+  id             Int        @default(autoincrement()) @id
+  assunto        String
+  pergunta       String
+  id_grupo       Int
+  respostas      Respostas?
+  createdAt       DateTime        @default(now()) @map("created_at")
+  updatedAt       DateTime?       @updatedAt      @map("updated_at")
+
+  @@map(name: "questao")
+}
+
+model Respostas {
+  id                  Int     @default(autoincrement()) @id
+  alternativa1        String
+  alternativa2        String
+  alternativa3        String
+  alternativa4        String
+  alternativa_correta Int
+  questao             Questao? @relation(fields: [questaoId], references: [id])
+  questaoId           Int?     @unique
+  createdAt       DateTime        @default(now()) @map("created_at")
+  updatedAt       DateTime?       @updatedAt      @map("updated_at")
+
+  @@map(name: "respostas")
+}
+
+model Pontuacao {
+  id         Int      @default(autoincrement()) @id
+  pontuacao  Int      @default(0)
+  fogo       Int      @default(0)
+  usuario    Usuario? @relation(fields: [usuarioId], references: [id])
+  usuarioId  Int?     @unique
+  createdAt  DateTime        @default(now()) @map("created_at")
+  updatedAt  DateTime?       @updatedAt      @map("updated_at")
+
+  @@map(name: "pontuacao")
+}
+
+model Duvida {
+  id         Int        @default(autoincrement()) @id
+  titulo     String
+  descricao  String
+  img_url    String
+  conteudo   String
+  usuario    Usuario?   @relation(fields: [usuarioId], references: [id])
+  usuarioId  Int?       @unique
+  createdAt  DateTime   @default(now()) @map("created_at")
+  updatedAt  DateTime?  @updatedAt      @map("updated_at")
+
+  @@map(name: "duvida")
+}
+
+model Comentario {
+  id         Int        @default(autoincrement()) @id
+  titulo     String
+  descricao  String     
+  img_url    String
+  usuario    Usuario?   @relation(fields: [usuarioId], references: [id])
+  usuarioId  Int?       @unique
+  createdAt  DateTime   @default(now()) @map("created_at")
+  updatedAt  DateTime?  @updatedAt      @map("updated_at")
+
+  @@map(name: "comentario")
+}
+
+model Trilha {
+  id             Int        @default(autoincrement()) @id
+  conteudo       String
+  descricao      String
+  descricaoModal String
+  img_url        String
+  createdAt      DateTime   @default(now()) @map("created_at")
+  updatedAt      DateTime?  @updatedAt      @map("updated_at")
+
+  @@map(name: "trilha")
+}
+
+model Progresso {
+  id          Int       @default(autoincrement()) @id
+  conteudoId  Int       @default(1)
+  avanco      Int       @default(0)
+  usuario     Usuario?  @relation(fields: [usuarioId], references: [id])
+  usuarioId   Int?      @unique
+
+  @@map(name: "progresso")
+}
