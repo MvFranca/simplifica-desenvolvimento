@@ -10,7 +10,6 @@ const Comunidade = () => {
       <Chat />
       </div>
       <FormChat/>
-
     </div>
   );
 };

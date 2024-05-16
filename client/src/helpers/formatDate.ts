@@ -1,3 +1,8 @@
+import { format, isBefore, parse, subDays } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
+
+const dataAtual = new Date();
+
 export const formatDate = (date: Date) => {
     const rawDay = date.getDate().toString();
     const day = rawDay.length > 1 ? rawDay : "0" + rawDay;
@@ -18,4 +23,30 @@ export const hour = () => {
     const formattedTime = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
     
     return formattedTime
+}
+
+export function obterDiaDeHoje() {
+  const dia = String(dataAtual.getDate()).padStart(2, '0');
+  const mes = String(dataAtual.getMonth() + 1).padStart(2, '0');
+  const ano = String(dataAtual.getFullYear());
+  return `${dia}/${mes}/${ano}`;
+}
+
+
+export function obterDiaDaSemana(data:string) {
+
+  const date = parse(data, 'dd/MM/yyyy', new Date());
+
+  const dataAtual = new Date();
+
+
+  const dataLimite = subDays(dataAtual, 4);
+
+
+  if (isBefore(date, dataLimite)) {
+      return data; 
+  } else {
+      const diaDaSemana = format(date, 'EEEE', { locale: ptBR });
+      return String(diaDaSemana);
+  }
 }

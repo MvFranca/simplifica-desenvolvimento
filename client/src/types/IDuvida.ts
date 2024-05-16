@@ -31,3 +31,14 @@ export interface IComentario {
   url_img_comentario?: string;
   respostas_comentario?: IResposta[];
 }
+
+export interface Duvidas {
+  id_duvida: number;
+  titulo_duvida: string,
+  descricao_duvida: string,
+  url_img_duvida: string,
+  conteudo: string,
+  data_duvida: string,
+  hora_duvida: string,
+  idUser: number
+}

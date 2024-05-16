@@ -2,6 +2,7 @@
 import { createContext, PropsWithChildren, useEffect, useRef, useState } from "react";
 import { Dispatch, SetStateAction } from 'react';
 import {updateProgress} from '../../services/apiUrl'
+import { Duvidas } from "../types/IDuvida";
 
 
 interface pontuacao {
@@ -19,6 +20,10 @@ interface pontuacao {
 
   variaveis: boolean;
   setVariaveis: (valor: boolean) => void;
+
+  
+  duvidas: Array<Duvidas>;
+  setDuvidas: Dispatch<SetStateAction<Array<Duvidas>>>;
 
   teste: React.MutableRefObject<boolean>;
   controle: React.MutableRefObject<boolean>;
@@ -51,6 +56,10 @@ const initialValue = {
   controle: {current: false},
   img: '',
   setImg: () => {},
+  
+  duvidas: [] ,
+
+  setDuvidas: () => {},
 
   myProgress: 1,
   setMyProgress:   () => {},
@@ -60,6 +69,10 @@ const initialValue = {
 
 };
 
+
+interface User {
+  url_image: string
+}
 
 export const pointContext = createContext<pontuacao>(initialValue);
 
@@ -71,6 +84,9 @@ const Context = ({children}: PropsWithChildren) => {
   const [variaveis, setVariaveis] = useState(false)
   const teste = useRef<boolean>(false)
   const controle = useRef<boolean>(false)
+
+  const [duvidas, setDuvidas] = useState<Array<Duvidas>>([]);
+
   const user = localStorage.getItem("simplifica:user")!;
 
   const [userId, setUserId] = useState(0)
@@ -83,18 +99,19 @@ const Context = ({children}: PropsWithChildren) => {
   const imgUrl = async () => {
     // const ImgUrl = await GetImgUser()
     // setImg(ImgUrl)
+    if(user){
+      const userObject:User = await JSON.parse(user);
 
-    
-    const user = localStorage.getItem("simplifica:user")!;
-    const userObject = await JSON.parse(user);
-
-    const urlImg = await userObject.url_image
-    setImg(urlImg)
+        const urlImg = await userObject.url_image
+        setImg(urlImg)
+    }
+   
   }
 
 
   useEffect(() => {
-    imgUrl()
+  
+      imgUrl()
   }, [img, user])
 
 
@@ -111,7 +128,7 @@ const Context = ({children}: PropsWithChildren) => {
 }, [myProgress, progressoBotoes, user])
 
   return (
-    <pointContext.Provider value={{teste, pontos, setPontos, fogo, setFogo, variaveis, setVariaveis, userId, setUserId, initialValuePontos, setInitialValuePontos, img, setImg, myProgress, setMyProgress, progressoBotoes, setProgressoBotoes, controle}}>
+    <pointContext.Provider value={{teste, pontos, setPontos, fogo, setFogo, variaveis, setVariaveis, userId, setUserId, initialValuePontos, setInitialValuePontos, img, setImg, myProgress, setMyProgress, progressoBotoes, setProgressoBotoes, controle, duvidas, setDuvidas}}>
         {children}
     </pointContext.Provider>
   );

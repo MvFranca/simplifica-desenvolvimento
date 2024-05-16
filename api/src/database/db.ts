@@ -21,8 +21,8 @@ export async function connect() {
   const client = await db.connect();
   console.log("criou o pool de conexão");
 
-  const res = await client.query("select * from questoes");
-  console.log(res.rows[0]);
+  // const res = await client.query("select * from questoes");
+  // console.log(res.rows[0]);
   client.release();
 
   global.connection = db;

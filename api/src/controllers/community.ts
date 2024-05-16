@@ -61,7 +61,7 @@ export const PostDuvidas = async (req:Request, res: Response) => {
         } else {
         return res
             .status(200)
-            .json({ msg: "Dúvida cadastrada com sucesso!" });
+            .json({ msg: "Dúvida cadastrada com sucesso!"});
         }
     }
     );

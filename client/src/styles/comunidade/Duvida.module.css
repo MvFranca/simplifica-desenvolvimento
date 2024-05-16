@@ -1,7 +1,5 @@
-.duvida{
-    width: 33%;
-    max-width: 33%;
-    min-width: 33%;
+.duvida {
+    width: calc(33% - 10px); /* 50% da largura - metade do espaço entre as divs */
     height: max-content;
     min-height: 180px;
     border-radius: 12px;
@@ -13,8 +11,8 @@
     text-align: initial;
     padding: 20px;
     scroll-snap-align: start;
+    box-sizing: border-box;
 }
-
 .textos{
     width: 100%;
     text-align: initial;
@@ -58,6 +56,13 @@
     box-shadow: none;
 }
 
+@media screen and (max-width: 1400px) {
+    
+    .duvida{
+        width: calc(50% - 10px);
+    }
+    
+}
 
 @media screen and (max-width: 1000px) {
     .duvida{

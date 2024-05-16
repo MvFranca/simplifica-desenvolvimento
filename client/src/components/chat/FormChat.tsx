@@ -1,9 +1,13 @@
-import { ChangeEvent, useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState, useContext } from 'react';
 import styles from '../../styles/comunidade/FormChat.module.css'
 import IconAddOutline from '../icons/IconAdd';
 import IconClose from '../icons/IconClose';
 import axios from 'axios';
 import { formatDate, hour } from '../../helpers/formatDate';
+
+import { pointContext } from '../../context/context';
+import { Duvidas } from '../../types/IDuvida';
+
 // import { z } from 'zod';
 
 // const schema = z.object({
@@ -26,6 +30,7 @@ const FormChat = () => {
     const user = localStorage.getItem("simplifica:user")!;
     const userObject = JSON.parse(user);
   
+    const { duvidas, setDuvidas } = useContext(pointContext)
 
     const handleImageChange = (event:ChangeEvent<HTMLInputElement>) => {
 
@@ -46,22 +51,36 @@ const FormChat = () => {
     async function submit(e: React.FormEvent<HTMLFormElement>){
         e.preventDefault()
 
-        console.log('url')
-        console.log(url)
-
         const idUser = Number(userObject.id_usuario);
-        axios.post("http://localhost:8000/api/community/post_duvidas", 
-        {   titulo, 
+        
+        const duvida = {
+            titulo, 
             descricao, 
             url_img: String(url.current), 
             conteudo, 
             data: String(formatDate(new Date())), 
             hora: hour(), 
             idUser 
-        }
-    ).then((res) => 
+    }
+
+        axios.post("http://localhost:8000/api/community/post_duvidas", duvida).
+        then(() => 
             {
-                console.log(res)
+
+                const duvidasAtt: Duvidas[] = [...duvidas, {
+                    id_duvida: duvida.idUser,   
+                    titulo_duvida: duvida.titulo,
+                    descricao_duvida: duvida.descricao,
+                    url_img_duvida: duvida.url_img || '',
+                    conteudo: duvida.conteudo,
+                    data_duvida: duvida.data,
+                    hora_duvida: duvida.hora,
+                    idUser: duvida.idUser  // Adicionei esta linha assumindo que idUser também é parte do objeto duvida
+                }];
+
+                console.log(duvidasAtt)
+
+                setDuvidas(duvidasAtt)
                 setForm(false)
             }
         ). catch((err: Error) => 

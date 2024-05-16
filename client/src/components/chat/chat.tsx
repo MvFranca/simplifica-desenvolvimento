@@ -1,27 +1,22 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useContext, useRef, useState } from "react";
 import styles from "../../styles/comunidade/Chat.module.css";
 import DuvidaCard from "./duvida";
-import { IoIosArrowForward } from "react-icons/io";
+// import { IoIosArrowForward } from "react-icons/io";
 import axios from "axios";
+import { pointContext } from "../../context/context";
 
-interface Duvidas {
-  id_duvida: number;
-  titulo_duvida: string,
-  descricao_duvida: string,
-  url_img_duvida: string,
-  conteudo: string,
-  data_duvida: string,
-  hora_duvida: string,
-  idUser: number
-}
+import { obterDiaDaSemana, obterDiaDeHoje } from "../../helpers/formatDate";
 
 const Chat = () => {
 
   const [datas, setDatas] = useState<string[]>([])
-  const [duvidas, setDuvidas] = useState<Array<Duvidas>>([])
 
   const duvidasScroll = useRef<HTMLDivElement>(null)
+
+  const { setDuvidas, duvidas  } = useContext(pointContext)
+  
   useEffect(() => {
+
 
     axios.get("http://localhost:8000/api/community/duvidas").then((res) => {
 
@@ -46,6 +41,7 @@ const Chat = () => {
 
       const datasUnicasArray =  Array.from(datasUnicasSet).map(data => String(data)).reverse()
 
+
       setDatas(datasUnicasArray)
     }
 
@@ -61,8 +57,16 @@ const Chat = () => {
         return(
           <section className={styles.infoDuvidas}>
             <div className={styles.infoData}>
-              {/* <span className={styles.data}>{data}</span> */}
-              <span className={styles.data}>Ontem</span>
+
+              
+
+              <span className={styles.data}>
+                {
+
+                  data == obterDiaDeHoje() ? "Hoje" 
+                  : obterDiaDaSemana(data)
+                }
+              </span>
               <span className={styles.borda} />
             </div>
 
@@ -73,6 +77,8 @@ const Chat = () => {
               <div className={styles.scroll} ref={duvidasScroll} id="teste">
                 {
                   duvidas.slice().reverse().map((duvida) =>{
+
+
                     if(duvida.data_duvida == data){
                       return (
                         <DuvidaCard
