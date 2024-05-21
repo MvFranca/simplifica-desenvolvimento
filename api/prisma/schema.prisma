@@ -81,13 +81,13 @@ model Respostas {
 }
 
 model Pontuacao {
-  id         Int      @default(autoincrement()) @id
-  pontuacao  Int      @default(0)
-  fogo       Int      @default(0)
-  usuario    Usuario? @relation(fields: [usuarioId], references: [id])
-  usuarioId  Int?     @unique
-  createdAt  DateTime        @default(now()) @map("created_at")
-  updatedAt  DateTime?       @updatedAt      @map("updated_at")
+  id         Int        @default(autoincrement()) @id
+  pontuacao  Int        @default(0)
+  fogo       Int        @default(0)
+  usuario    Usuario    @relation(fields: [usuarioId], references: [id])
+  usuarioId  Int        @unique
+  createdAt  DateTime   @default(now()) @map("created_at")
+  updatedAt  DateTime?  @updatedAt      @map("updated_at")
 
   @@map(name: "pontuacao")
 }
@@ -138,8 +138,8 @@ model Progresso {
   id          Int       @default(autoincrement()) @id
   conteudoId  Int       @default(1)
   avanco      Int       @default(0)
-  usuario     Usuario?  @relation(fields: [usuarioId], references: [id])
-  usuarioId   Int?      @unique
+  usuario     Usuario   @relation(fields: [usuarioId], references: [id])
+  usuarioId   Int       @unique
 
   @@map(name: "progresso")
 }
