@@ -8,12 +8,10 @@ import {
 
 const router = express.Router();
 
-router.get("/pontuacao", selectPontuacao);
-
-router.put("/updateDiamantes", updateDiamantes);
-router.put("/updateFogo", updateFogo);
+router.get("/user/:id_usuario/pontuacao", selectPontuacao);
+router.put("/user/:id_usuario/pontuacao", updateDiamantes);
+router.put("/user/:id_usuario/pontuacao", updateFogo);
 
 router.post("/insertIdPoints", idPoints);
-//router.post("/fogo", pointsFire);
 
 export default router;

@@ -1,8 +1,8 @@
-import pg from "pg";
 import dotenv from "dotenv";
 import { Request, Response } from "express";
-import { consulta, getClient } from "../services/connectDB";
-const { Client } = pg;
+import { consulta } from "../services/connectDB";
+import { PrismaClient } from "@prisma/client";
+
 dotenv.config({ path: "./.env" });
 
 export const idPoints = async (req: Request, res: Response) => {
@@ -42,75 +42,111 @@ export const idPoints = async (req: Request, res: Response) => {
 };
 
 export const selectPontuacao = async (req: Request, res: Response) => {
-  const { idUser } = req.query;
+  try {
+    const { id_usuario } = req.params;
 
-  await consulta(
-    "SELECT pontuacao, fogo FROM pontuacaoq WHERE fk_id_usuario=$1",
-    [idUser],
-    async (error, data) => {
-      if (error) {
-        console.log(error);
-        return res.status(500).json({
-          msg: "Servidor indisponível. Tente novamente mais tarde.",
-        });
-      } else {
-        const resposta = data.rows[0];
-        return res.status(200).json({
-          msg: "Pontos atualizados!",
-          data: { resposta },
-        });
-      }
+    const idUserInt = parseInt(id_usuario as string);
+
+    if (isNaN(idUserInt)) {
+      return res
+        .status(422)
+        .json({ msg: `'id_usuario' informado não é um número (NaN).` });
     }
-  );
+
+    const prisma = new PrismaClient();
+
+    const data = await prisma.pontuacao.findFirst({
+      where: {
+        usuarioId: idUserInt,
+      },
+    });
+
+    return res.status(200).json({
+      data,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      msg: "Servidor indisponível.",
+    });
+  }
 };
 
 export const updateDiamantes = async (req: Request, res: Response) => {
-  const { idUser, pontos } = req.body;
+  try {
+    const { pontos } = req.body;
+    const { id_usuario } = req.params;
 
-  await consulta(
-    "UPDATE pontuacaoq SET pontuacao=$1 WHERE fk_id_usuario=$2",
-    [pontos, idUser],
-    async (error, data) => {
-      if (error) {
-        console.log(error);
-        return res.status(500).json({
-          msg: "Servidor indisponível. Tente novamente mais tarde.",
-        });
-      } else {
-        const resposta = data;
-        console.log(resposta);
-        return res.status(200).json({
-          msg: "Atualização realizada!!",
-          data: { resposta },
-        });
-      }
+    const idUserInt = parseInt(id_usuario as string);
+    const pontosInt = parseInt(pontos as string);
+
+    if (isNaN(idUserInt)) {
+      return res
+        .status(422)
+        .json({ msg: `'id_usuario' informado não é um número (NaN).` });
     }
-  );
+
+    if (isNaN(pontosInt)) {
+      return res
+        .status(422)
+        .json({ msg: `'pontos' informado não é um número (NaN).` });
+    }
+
+    const prisma = new PrismaClient();
+
+    const data = await prisma.pontuacao.update({
+      where: { usuarioId: idUserInt },
+      data: {
+        pontuacao: pontosInt,
+      },
+    });
+
+    return res.status(200).json({
+      msg: "Atualização realizada!!",
+      data,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      msg: "Servidor indisponível.",
+    });
+  }
 };
 
-
 export const updateFogo = async (req: Request, res: Response) => {
+  try {
+    const { fogo } = req.body;
+    const { id_usuario } = req.params;
 
-  const { idUser, fogo } = req.body;
+    const idUserInt = parseInt(id_usuario as string);
+    const fogoInt = parseInt(fogo as string);
 
-  await consulta(
-    "UPDATE pontuacaoq SET fogo=$1 WHERE fk_id_usuario=$2",
-    [fogo, idUser],
-    async (error, data) => {
-      if (error) {
-        console.log(error);
-        return res.status(500).json({
-          msg: "Servidor indisponível. Tente novamente mais tarde.",
-        });
-      } else {
-        const resposta = data;
-        console.log(resposta);
-        return res.status(200).json({
-          msg: "Atualização realizada!!",
-          data: { resposta },
-        });
-      }
+    if (isNaN(idUserInt)) {
+      return res
+        .status(422)
+        .json({ msg: `'id_usuario' informado não é um número (NaN).` });
     }
-  );
 
+    if (isNaN(fogoInt)) {
+      return res
+        .status(422)
+        .json({ msg: `'fogo' informado não é um número (NaN).` });
+    }
+
+    const prisma = new PrismaClient();
+
+    const data = await prisma.pontuacao.update({
+      where: { usuarioId: idUserInt },
+      data: {
+        fogo: fogoInt,
+      },
+    });
+
+    return res.status(200).json({
+      msg: "Atualização realizada!!",
+      data,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      msg: "Servidor indisponível.",
+    });
+  }
 };
