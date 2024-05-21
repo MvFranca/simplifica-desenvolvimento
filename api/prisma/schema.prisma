@@ -22,8 +22,8 @@ model Usuario {
   turma           String   
   fullname        String
   pontuacao       Pontuacao?
-  duvida          Duvida?
-  comentario      Comentario?
+  duvidas         Duvida[]
+  comentario      Comentario[]
   progresso       Progresso?
   createdAt       DateTime        @default(now()) @map("created_at")
   updatedAt       DateTime?       @updatedAt      @map("updated_at")
@@ -93,15 +93,16 @@ model Pontuacao {
 }
 
 model Duvida {
-  id         Int        @default(autoincrement()) @id
-  titulo     String
-  descricao  String
-  img_url    String
-  conteudo   String
-  usuario    Usuario?   @relation(fields: [usuarioId], references: [id])
-  usuarioId  Int?       @unique
-  createdAt  DateTime   @default(now()) @map("created_at")
-  updatedAt  DateTime?  @updatedAt      @map("updated_at")
+  id          Int        @default(autoincrement()) @id
+  titulo      String
+  descricao   String
+  img_url     String
+  conteudo    String
+  usuario     Usuario    @relation(fields: [usuarioId], references: [id])
+  usuarioId   Int       
+  comentarios Comentario[]
+  createdAt   DateTime   @default(now()) @map("created_at")
+  updatedAt   DateTime?  @updatedAt      @map("updated_at")
 
   @@map(name: "duvida")
 }
@@ -111,8 +112,10 @@ model Comentario {
   titulo     String
   descricao  String     
   img_url    String
-  usuario    Usuario?   @relation(fields: [usuarioId], references: [id])
-  usuarioId  Int?       @unique
+  usuario    Usuario    @relation(fields: [usuarioId], references: [id])
+  usuarioId  Int
+  duvida     Duvida     @relation(fields: [duvidaId], references: [id])
+  duvidaId   Int       
   createdAt  DateTime   @default(now()) @map("created_at")
   updatedAt  DateTime?  @updatedAt      @map("updated_at")
 
