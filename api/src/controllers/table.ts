@@ -1,28 +1,20 @@
 import { Request, Response } from "express";
-import pg from "pg";
-import { consulta, getClient } from "../services/connectDB";
-const { Client } = pg;
+import { PrismaClient } from "@prisma/client";
 
 export const FullUsers = async (req: Request, res: Response) => {
-    await consulta(
-      "SELECT id_usuario, username, turma, pontuacao FROM usuario INNER JOIN pontuacaoq ON usuario.id_usuario = pontuacaoq.fk_id_usuario",
-      [],
-      async (error, data) => {
-        if (error) {
-          console.log(error);
-  
-          return res
-            .status(500)
-            .json({ msg: "Servidor indisponível. Tente novamente mais tarde." });
-        } else {
-          const resposta = await data.rows[0].pontuacao;
-  
-          return res.status(200).json({
-            msg: "Pontos atualizados!",
-            data: { data },
-          });
-        }
-      }
-    );
-  };
-  
+  try {
+    const prisma = new PrismaClient();
+
+    const data = await prisma.usuario.findMany({
+      include: {
+        pontuacao: true,
+      },
+    });
+
+    return res.status(200).json({
+      data,
+    });
+  } catch (error) {
+    return res.status(500).json({ msg: "Servidor indisponível." });
+  }
+};
