@@ -1,12 +1,21 @@
 import express from "express";
-import { GetDuvidas, GetRespostas, PostComentario, PostDuvidas } from "../controllers/community";
+import {
+  FindDuvidaById,
+  FindAllDuvidas,
+  FindAllComentarios,
+  PostComentario,
+  PostDuvida,
+  FindComentarioById,
+} from "../controllers/community";
 
 const router = express.Router();
 
-router.get("/duvidas", GetDuvidas);
-router.post("/post_duvidas", PostDuvidas);
+router.get("/duvidas", FindAllDuvidas);
+router.get("/duvidas/:id", FindDuvidaById);
+router.post("/post_duvidas", PostDuvida);
 
-router.get("/comentarios", GetRespostas);
+router.get("/duvidas/:id_duvida/comentarios", FindAllComentarios);
+router.get("/duvidas/:id_duvida/comentarios/:id", FindComentarioById);
 router.post("/post_comentarios", PostComentario);
 
 export default router;

@@ -1,134 +1,218 @@
-import { consulta } from "../services/connectDB";
+import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
 
-export const GetDuvidas = async (req: Request, res: Response) => {
-  
-  const {id_duvida} = req.query
-  
-  const select  = id_duvida ? 
-  "SELECT duvida.*, usuario.username, usuario.turma FROM duvida JOIN usuario ON duvida.fk_id_usuario = usuario.id_usuario WHERE duvida.id_duvida = $1 AND usuario.id_usuario = duvida.fk_id_usuario; " : "SELECT * from duvida"
-  const values = id_duvida ? [id_duvida] : []
-  
-  await consulta(
-      select,
-      values,
-    async (error, data) => {
-      if (error) {
-        console.log(error);
-        console.log("error");
-        return res
-          .status(500)
-          .json({ msg: "Servidor indisponível. Tente novamente mais tarde." });
-      } else {
-        
-        const resposta = await data.rows;
-        console.log("resposta: ", resposta);
-        
-        return res.status(200).json({
-          msg: "Comentários carregadas com sucessso!",
-          data: { resposta },
-        });
-      }
+export const FindDuvidaById = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const prisma = new PrismaClient();
+
+    const id_duvidaInt = parseInt(id as string);
+
+    if (isNaN(id_duvidaInt)) {
+      return res
+        .status(422)
+        .json({ msg: `'id' informado não é um número (NaN).` });
     }
-  );
+
+    const data = await prisma.duvida.findFirst({
+      where: {
+        id: id_duvidaInt,
+      },
+      include: {
+        usuario: {
+          select: {
+            username: true,
+            turma: true,
+          },
+        },
+      },
+    });
+
+    return res.status(200).json({
+      msg: "Dúvida carregada com sucessso!",
+      data,
+    });
+  } catch (error) {
+    return res.status(500).json({ msg: "Servidor indisponível.", error });
+  }
 };
 
-export const PostDuvidas = async (req:Request, res: Response) => {
-    const { titulo, descricao, url_img, conteudo, data, hora, idUser } = req.body;
-  
-    if (!titulo) return res.status(422).json({ msg: "O título é obrigatório!" });
-    if (!descricao) return res.status(422).json({ msg: "A descrição é obrigatória!" });
-    if (!conteudo) return res.status(422).json({ msg: "O conteúdo é obrigatório!" });
-    if (!descricao) return res.status(422).json({ msg: "A descrição é obrigatória!" });
+export const FindAllDuvidas = async (req: Request, res: Response) => {
+  try {
+    const prisma = new PrismaClient();
 
-    await consulta(
-    `INSERT INTO duvida (titulo_duvida, descricao_duvida, url_img_duvida, conteudo, data_duvida, hora_duvida, fk_id_usuario) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-    [
+    const data = await prisma.duvida.findMany();
+
+    return res.status(200).json({
+      msg: "Dúvidas carregadas com sucessso!",
+      data,
+    });
+  } catch (error) {
+    return res.status(500).json({ msg: "Servidor indisponível.", error });
+  }
+};
+
+export const PostDuvida = async (req: Request, res: Response) => {
+  try {
+    const { titulo, descricao, url_img, conteudo, /*, data, hora,*/ idUser } =
+      req.body;
+
+    if (!titulo)
+      return res.status(422).json({ msg: "O título é obrigatório!" });
+    if (!descricao)
+      return res.status(422).json({ msg: "A descrição é obrigatória!" });
+    if (!conteudo)
+      return res.status(422).json({ msg: "O conteúdo é obrigatório!" });
+    if (!descricao)
+      return res.status(422).json({ msg: "A descrição é obrigatória!" });
+
+    const prisma = new PrismaClient();
+
+    const duvidaData = await prisma.duvida.create({
+      data: {
         titulo,
         descricao,
-        url_img,
+        img_url: url_img,
         conteudo,
-        data,
-        hora,
-        idUser
-    ],
-    (error) => {
-        if (error) {
-        console.log(error);
-        return res.status(500).json({
-            msg: "Servidor indisponível.",
-        });
-        } else {
-        return res
-            .status(200)
-            .json({ msg: "Dúvida cadastrada com sucesso!"});
-        }
-    }
-    );
-  };
+        usuarioId: idUser,
+      },
+    });
 
-
-  export const GetRespostas = async (req: Request, res: Response) => {
-  
-    const {id_duvida} = req.query
-
-    
-    const select  = id_duvida ? 
-    "SELECT comentarios.*, usuario.username FROM comentarios JOIN usuario ON comentarios.fk_id_usuario = usuario.id_usuario WHERE comentarios.fk_id_duvida = $1; " : "SELECT * from duvida"
-    const values = id_duvida ? [id_duvida] : []
-    
-    await consulta(
-        select,
-        values,
-      async (error, data) => {
-        if (error) {
-          console.log(error);
-          console.log("error");
-          return res
-            .status(500)
-            .json({ msg: "Servidor indisponível. Tente novamente mais tarde." });
-        } else {
-          
-          const resposta = await data.rows;
-          console.log("resposta: ", resposta);
-          
-          return res.status(200).json({
-            msg: "Dúvidas carregadas com sucessso!",
-            data: { resposta },
-          });
-        }
-      }
-    );
+    return res
+      .status(200)
+      .json({ msg: "Dúvida cadastrada com sucesso!", data: duvidaData });
+  } catch (error) {
+    return res.status(500).json({
+      msg: "Servidor indisponível.",
+      error,
+    });
+  }
 };
 
-  export const PostComentario = async (req:Request, res: Response) => {
-    const { descricao, url_img, data, hora, id_duvida, idUser } = req.body;
-  
-    if (!descricao) return res.status(422).json({ msg: "A descrição é obrigatória!" });
+export const FindAllComentarios = async (req: Request, res: Response) => {
+  try {
+    const { id_duvida } = req.params;
 
-    await consulta(
-    `INSERT INTO comentarios (fk_id_usuario, titulo_comentario, descricao_comentario, url_img_comentario, data_comentario, hora_comentario, fk_id_duvida) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-    [
-        idUser,
-        '',
-        descricao,
-        url_img,
-        data,
-        hora,
-        id_duvida
-    ],
-    (error) => {
-        if (error) {
-        console.log(error);
-        return res.status(500).json({
-            msg: "Servidor indisponível.",
-        });
-        } else {
-        return res
-            .status(200)
-            .json({ msg: "Comentário enviado com sucesso!" });
-        }
+    const prisma = new PrismaClient();
+
+    if (!id_duvida) {
+      return res.status(422).json({ msg: `'id_duvida' não informado.` });
     }
-    );
-  };
-  
+
+    const id_duvidaInt = parseInt(id_duvida as string);
+
+    if (isNaN(id_duvidaInt)) {
+      return res
+        .status(422)
+        .json({ msg: `'id_duvida' informado não é um número (NaN).` });
+    }
+
+    const data = await prisma.comentario.findMany({
+      where: {
+        duvidaId: id_duvidaInt,
+      },
+      include: {
+        usuario: {
+          select: {
+            username: true,
+          },
+        },
+      },
+    });
+
+    return res.status(200).json({
+      msg: "Comentários encontrados com sucesso!",
+      data,
+    });
+  } catch (error) {
+    return res.status(500).json({ msg: "Servidor indisponível.", error });
+  }
+};
+
+export const FindComentarioById = async (req: Request, res: Response) => {
+  try {
+    const { id_duvida, id } = req.params;
+
+    const prisma = new PrismaClient();
+
+    const id_duvidaInt = parseInt(id_duvida as string);
+    const idInt = parseInt(id as string);
+
+    if (isNaN(id_duvidaInt)) {
+      return res
+        .status(422)
+        .json({ msg: `'id_duvida' informado não é um número (NaN).` });
+    }
+
+    if (isNaN(idInt)) {
+      return res
+        .status(422)
+        .json({ msg: `'id' [de comentário] informado não é um número (NaN).` });
+    }
+
+    const data = await prisma.comentario.findFirst({
+      where: {
+        duvidaId: id_duvidaInt,
+        id: idInt,
+      },
+      include: {
+        usuario: {
+          select: {
+            username: true,
+          },
+        },
+      },
+    });
+
+    return res.status(200).json({
+      msg: "Comentários encontrados com sucesso!",
+      data,
+    });
+  } catch (error) {
+    return res.status(500).json({ msg: "Servidor indisponível.", error });
+  }
+};
+
+export const PostComentario = async (req: Request, res: Response) => {
+  const { descricao, titulo, url_img, /* data, hora,*/ id_duvida, idUser } =
+    req.body;
+
+  if (!titulo) return res.status(422).json({ msg: "O título é obrigatório!" });
+  if (!descricao)
+    return res.status(422).json({ msg: "A descrição é obrigatória!" });
+  if (!id_duvida)
+    return res.status(422).json({ msg: `'id_duvida' não informado.` });
+
+  const id_duvidaInt = parseInt(id_duvida as string);
+
+  if (isNaN(id_duvidaInt)) {
+    return res
+      .status(422)
+      .json({ msg: `'id_duvida' informado não é um número (NaN).` });
+  }
+
+  if (!idUser) return res.status(422).json({ msg: `'idUser' não informado.` });
+
+  const idUserInt = parseInt(idUser as string);
+
+  if (isNaN(idUserInt)) {
+    return res
+      .status(422)
+      .json({ msg: `'idUser' informado não é um número (NaN).` });
+  }
+
+  const prisma = new PrismaClient();
+
+  const data = await prisma.comentario.create({
+    data: {
+      descricao,
+      img_url: url_img,
+      usuarioId: idUserInt,
+      duvidaId: id_duvidaInt,
+      titulo: titulo,
+    },
+  });
+
+  return res.status(200).json({ msg: "Comentário enviado com sucesso!", data });
+};
