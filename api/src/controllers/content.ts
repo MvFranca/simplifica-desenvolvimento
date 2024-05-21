@@ -1,77 +1,79 @@
-import { consulta } from "../services/connectDB";
+import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
 
-export const trilha = async (req: Request, res: Response) => {
-  
-    await consulta(
-      "SELECT * from trilha",
-      []
-      ,
-      async (error, data) => {
-        if (error) {
-          console.log(error);
-          console.log("error");
-          return res
-            .status(500)
-            .json({ msg: "Servidor indisponível. Tente novamente mais tarde." });
-        } else {
-          const resposta = await data.rows;
-          console.log("resposta: ", resposta);
-          return res.status(200).json({
-            msg: "Dados carregados com sucessso!",
-            data: { resposta },
-          });
-        }
-      }
-    );
+export const findAllTrilha = async (req: Request, res: Response) => {
+  try {
+    const prisma = new PrismaClient();
+
+    const data = await prisma.trilha.findMany();
+
+    return res.status(200).json({
+      msg: "Dados carregados com sucesso!",
+      data,
+    });
+  } catch (error) {
+    return res.status(500).json({ msg: "Servidor indisponível." });
+  }
 };
 
-
 export const getProgress = async (req: Request, res: Response) => {
+  try {
+    const { id_usuario } = req.params;
 
-    const {idUser}  = req.query;
+    const idUserInt = parseInt(id_usuario as string);
 
-    await consulta(
-      "SELECT * FROM progresso WHERE fk_id_usuario=$1",
-      [idUser],
-      async (error, data) => {
-        if (error) {
-          console.log(error);
-          return res.status(500).json({
-            msg: "Servidor indisponível. Tente novamente mais tarde.",
-          });
-        } else {
-          const resposta = data.rows[0];
-          return res.status(200).json({
-            msg: "Progresso encontrado!",
-            data: { resposta },
-          });
-        }
-      }
-    );
+    if (isNaN(idUserInt)) {
+      return res
+        .status(422)
+        .json({ msg: `'id_usuario' informado não é um número (NaN).` });
+    }
 
-}
+    const prisma = new PrismaClient();
 
+    const data = await prisma.progresso.findFirst({
+      where: {
+        usuarioId: idUserInt,
+      },
+    });
+
+    return res.status(200).json({
+      msg: "Progresso encontrado!",
+      data,
+    });
+  } catch (error) {
+    return res.status(500).json({ msg: "Servidor indisponível." });
+  }
+};
 
 export const updateProgress = async (req: Request, res: Response) => {
+  try {
+    const { id_usuario } = req.params;
+    const { myProgress, progressoBotoes } = req.body;
 
-    const {idUser, myProgress, progressoBotoes}  = req.body;
+    const idUserInt = parseInt(id_usuario as string);
 
-    await consulta(
-        'UPDATE progresso SET id_progresso = $1, avanco = $2 WHERE fk_id_usuario = $3',
-        [myProgress, progressoBotoes, idUser],
-        (error) => {
-          if (error) {
-            console.log(error);
-            return res.status(500).json({
-              msg: "Servidor indisponível. Tente novamente.",
-            });
-          } else {
-            return res
-              .status(200)
-              .json({ msg: "Progresso atualizado com sucesso!" });
-          }
-        }
-      );
+    if (isNaN(idUserInt)) {
+      return res
+        .status(422)
+        .json({ msg: `'id_usuario' informado não é um número (NaN).` });
+    }
 
-}
+    const prisma = new PrismaClient();
+
+    const data = await prisma.progresso.update({
+      where: {
+        usuarioId: idUserInt,
+      },
+      data: {
+        conteudoId: myProgress,
+        avanco: progressoBotoes,
+      },
+    });
+
+    return res
+      .status(200)
+      .json({ msg: "Progresso atualizado com sucesso!", data });
+  } catch (error) {
+    return res.status(500).json({ msg: "Servidor indisponível." });
+  }
+};

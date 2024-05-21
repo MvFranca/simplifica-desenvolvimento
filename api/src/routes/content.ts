@@ -1,10 +1,14 @@
 import express from "express";
-import { trilha, getProgress, updateProgress } from "../controllers/content";
+import {
+  findAllTrilha,
+  getProgress,
+  updateProgress,
+} from "../controllers/content";
 
 const router = express.Router();
 
-router.get("/trilha", trilha);
-router.get("/getProgress", getProgress);
-router.put("/updateProgress", updateProgress);
+router.get("/trilha", findAllTrilha);
+router.get("/user/:id_usuario/progresso", getProgress);
+router.put("/user/:id_usuario/progresso", updateProgress);
 
 export default router;
