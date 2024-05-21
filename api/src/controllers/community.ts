@@ -5,8 +5,6 @@ export const FindDuvidaById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    const prisma = new PrismaClient();
-
     const id_duvidaInt = parseInt(id as string);
 
     if (isNaN(id_duvidaInt)) {
@@ -14,6 +12,8 @@ export const FindDuvidaById = async (req: Request, res: Response) => {
         .status(422)
         .json({ msg: `'id' informado não é um número (NaN).` });
     }
+
+    const prisma = new PrismaClient();
 
     const data = await prisma.duvida.findFirst({
       where: {
@@ -94,8 +94,6 @@ export const FindAllComentarios = async (req: Request, res: Response) => {
   try {
     const { id_duvida } = req.params;
 
-    const prisma = new PrismaClient();
-
     if (!id_duvida) {
       return res.status(422).json({ msg: `'id_duvida' não informado.` });
     }
@@ -107,6 +105,8 @@ export const FindAllComentarios = async (req: Request, res: Response) => {
         .status(422)
         .json({ msg: `'id_duvida' informado não é um número (NaN).` });
     }
+
+    const prisma = new PrismaClient();
 
     const data = await prisma.comentario.findMany({
       where: {
@@ -134,8 +134,6 @@ export const FindComentarioById = async (req: Request, res: Response) => {
   try {
     const { id_duvida, id } = req.params;
 
-    const prisma = new PrismaClient();
-
     const id_duvidaInt = parseInt(id_duvida as string);
     const idInt = parseInt(id as string);
 
@@ -150,6 +148,8 @@ export const FindComentarioById = async (req: Request, res: Response) => {
         .status(422)
         .json({ msg: `'id' [de comentário] informado não é um número (NaN).` });
     }
+
+    const prisma = new PrismaClient();
 
     const data = await prisma.comentario.findFirst({
       where: {
