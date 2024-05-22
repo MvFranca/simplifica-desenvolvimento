@@ -12,7 +12,7 @@ export const findAllTrilha = async (req: Request, res: Response) => {
       data,
     });
   } catch (error) {
-    return res.status(500).json({ msg: "Servidor indisponível." });
+    return res.status(500).json({ msg: "Servidor indisponível.", error });
   }
 };
 
@@ -41,7 +41,7 @@ export const getProgress = async (req: Request, res: Response) => {
       data,
     });
   } catch (error) {
-    return res.status(500).json({ msg: "Servidor indisponível." });
+    return res.status(500).json({ msg: "Servidor indisponível.", error });
   }
 };
 
@@ -74,6 +74,6 @@ export const updateProgress = async (req: Request, res: Response) => {
       .status(200)
       .json({ msg: "Progresso atualizado com sucesso!", data });
   } catch (error) {
-    return res.status(500).json({ msg: "Servidor indisponível." });
+    return res.status(500).json({ msg: "Servidor indisponível.", error });
   }
 };

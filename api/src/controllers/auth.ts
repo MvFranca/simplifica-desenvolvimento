@@ -54,9 +54,7 @@ export const register = async (req: Request, res: Response) => {
       .status(200)
       .json({ msg: "Cadastro realizado com sucesso!", data });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ msg: "Servidor indisponível. " + (error as Error).message });
+    return res.status(500).json({ msg: "Servidor indisponível. ", error });
   }
 };
 
@@ -103,6 +101,6 @@ export const login = async (req: Request, res: Response) => {
       return res.status(404).json({ msg: "Usuário não encontrado." });
     }
   } catch (error) {
-    return res.status(500).json({ msg: "Servidor indisponível." });
+    return res.status(500).json({ msg: "Servidor indisponível.", error });
   }
 };

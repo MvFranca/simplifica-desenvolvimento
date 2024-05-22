@@ -67,6 +67,7 @@ export const selectPontuacao = async (req: Request, res: Response) => {
   } catch (error) {
     return res.status(500).json({
       msg: "Servidor indisponível.",
+      error,
     });
   }
 };
@@ -107,6 +108,7 @@ export const updateDiamantes = async (req: Request, res: Response) => {
   } catch (error) {
     return res.status(500).json({
       msg: "Servidor indisponível.",
+      error,
     });
   }
 };
@@ -147,6 +149,7 @@ export const updateFogo = async (req: Request, res: Response) => {
   } catch (error) {
     return res.status(500).json({
       msg: "Servidor indisponível.",
+      error,
     });
   }
 };
