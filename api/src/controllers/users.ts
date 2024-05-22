@@ -1,127 +1,161 @@
 import { Request, Response } from "express";
 
-import pg from "pg";
-import { consulta, getClient } from "../services/connectDB";
-const { Client } = pg;
+import { PrismaClient } from "@prisma/client";
 
-export const GetUser = async (req: Request, res: Response) => {
-  const  idUser  = req.params.idUser;
-  const conn = await getClient();
+export const GetUserById = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
 
-  await conn.connect();
-  await conn.query(
-    "SELECT * FROM usuario WHERE id_usuario=$1",
-    [idUser],
-    async (error, data) => {
-      if (error) {
-        console.log(error);
-        return res
-          .status(500)
-          .json({ msg: "Servidor indisponível. Tente novamente mais tarde." });
-      } else {
-        const resposta = await data;
-        return res.status(200).json({
-          msg: "Usuário buscado com sucesso!",
-          data: { resposta },
-        });
-      }
+    const idInt = parseInt(id as string);
+
+    if (isNaN(idInt)) {
+      return res
+        .status(422)
+        .json({ msg: `'id' informado não é um número (NaN).` });
     }
-  );
+
+    const prisma = new PrismaClient();
+
+    const data = await prisma.usuario.findFirst({
+      where: {
+        id: idInt,
+      },
+    });
+
+    return res.status(200).json({
+      data,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      msg: "Servidor indisponível.",
+      error,
+    });
+  }
 };
 
 export const AttUser = async (req: Request, res: Response) => {
-  const { idUser, fullname, username, email, turma } = req.body
+  try {
+    const { id_usuario } = req.params;
+    const { fullname, username, email, turma } = req.body;
 
-  await consulta(
-    `SELECT email FROM usuario WHERE email=$1`,
-    [email],
-    async (error, data) => {
-      if (error) {
-        console.log(error);
-        return res
-          .status(500)
-          .json({ msg: "Servidor indisponível." });
-      }
+    const idUserInt = parseInt(id_usuario as string);
 
-      if (data.rows.length > 0) return res.status(500).json({ msg: "E-mail já existente." });
-      else{
-        await consulta(
-          'SELECT username FROM usuario WHERE username=$1',
-          [username],
-          async (error, data) => {
-            if (error) {
-              return res
-                .status(500)
-            }
-          }
-        );
-        await consulta(
-          'UPDATE usuario SET fullname = $1, username = $2, email = $3, turma = $4 WHERE id_usuario = $5',
-          [fullname, username, email, turma, idUser],
-          (error) => {
-            if (error) {
-              console.log(error);
-              return res.status(500).json({
-                msg: "Servidor indisponível. Tente novamente.",
-              });
-            } else {
-              return res
-                .status(200)
-                .json({ msg: "Usuário atualizado com sucesso!" });
-            }
-          }
-        );
-      }
+    if (isNaN(idUserInt)) {
+      return res
+        .status(422)
+        .json({ msg: `'id_usuario' informado não é um número (NaN).` });
     }
-  );
+
+    const prisma = new PrismaClient();
+
+    const foundUser = await prisma.usuario.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (foundUser) {
+      const data = await prisma.usuario.update({
+        where: {
+          id: idUserInt,
+        },
+        data: {
+          fullname,
+          username,
+          email,
+          turma,
+        },
+      });
+
+      return res
+        .status(200)
+        .json({ msg: "Usuário atualizado com sucesso!", data });
+    } else {
+      return res.status(404).json({ msg: "Usuário não encontrado." });
+    }
+  } catch (error) {
+    return res.status(500).json({
+      msg: "Servidor indisponível",
+      error,
+    });
+  }
 };
 
 export const ImgAtt = async (req: Request, res: Response) => {
-  const {urlImg, idUser} = req.body
-  await consulta(
-    'UPDATE usuario SET url_image = $1 WHERE id_usuario = $2',
-    [urlImg, idUser],
-    (error) => {
-      if (error) {
-        console.log(error);
-        return res.status(500).json({
-          msg: "Servidor indisponível. testee.",
-        });
-      } else {
-        return res
-          .status(200)
-          .json({ msg: "Imagem atualizada com sucesso!" });
-      }
+  try {
+    const { id } = req.params;
+    const { urlImg } = req.body;
+
+    const idInt = parseInt(id as string);
+
+    if (isNaN(idInt)) {
+      return res
+        .status(422)
+        .json({ msg: `'id' informado não é um número (NaN).` });
     }
-  );
 
-  // res.status(200).json({ msg: "funcionando!!" });
+    if (!urlImg) {
+      return res.status(422).json({ msg: `'urlImg' não informado.` });
+    }
 
+    const prisma = new PrismaClient();
+
+    const data = await prisma.usuario.update({
+      where: {
+        id: idInt,
+      },
+      data: {
+        url_image: urlImg,
+      },
+      select: {
+        id: true,
+        url_image: true,
+      },
+    });
+
+    return res.status(200).json({
+      msg: "Imagem de usuário atualizada com sucesso!",
+      data: data,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      msg: "Servidor indisponível.",
+      error,
+    });
+  }
 };
 
-
 export const ImgGet = async (req: Request, res: Response) => {
-  const {idUser}  = req.query;
+  try {
+    const { id } = req.params;
 
-  console.log("idUser: ", idUser);
-  await consulta(
-    "SELECT url_image FROM usuario WHERE id_usuario=$1",
-    [idUser],
-    async (error, data) => {
-      if (error) {
-        console.log(error);
-        console.log("error");
-        return res
-          .status(500)
-          .json({ msg: "Servidor indisponível. Tente novamente mais tarde." });
-      } else {
-        const resposta = await data.rows[0];
-        console.log("resposta: ", resposta);
-        return res.status(200).json({
-          msg: "Imagem Carregada!",
-          data: { resposta },
-        });
-      }
+    const idInt = parseInt(id as string);
+
+    if (isNaN(idInt)) {
+      return res
+        .status(422)
+        .json({ msg: `'id' informado não é um número (NaN).` });
     }
-  );
+
+    const prisma = new PrismaClient();
+
+    const data = await prisma.usuario.findFirst({
+      where: {
+        id: idInt,
+      },
+      select: {
+        id: true,
+        url_image: true,
+      },
+    });
+
+    return res.status(200).json({
+      data,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      msg: "Servidor indisponível.",
+      error,
+    });
+  }
 };

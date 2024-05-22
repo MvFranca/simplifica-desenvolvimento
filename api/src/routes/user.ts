@@ -1,12 +1,12 @@
 import express from "express";
-import { AttUser, GetUser, ImgAtt, ImgGet } from "../controllers/users";
+import { AttUser, GetUserById, ImgAtt, ImgGet } from "../controllers/users";
 
 const router = express.Router();
 
+router.get("/user/:id", GetUserById);
+router.put("/user/:id", AttUser);
 
-router.post("/img_att" ,ImgAtt);
-router.get("/img_get", ImgGet);
-router.get("/get_user", GetUser);
-router.post("/att_user", AttUser);
+router.get("/user/:id/image", ImgGet);
+router.put("/user/:id/image", ImgAtt);
 
 export default router;
