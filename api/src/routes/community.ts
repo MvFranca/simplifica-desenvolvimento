@@ -12,10 +12,10 @@ const router = express.Router();
 
 router.get("/duvidas", FindAllDuvidas);
 router.get("/duvidas/:id", FindDuvidaById);
-router.post("/post_duvidas", PostDuvida);
+router.post("/duvidas", PostDuvida);
 
 router.get("/duvidas/:id_duvida/comentarios", FindAllComentarios);
 router.get("/duvidas/:id_duvida/comentarios/:id", FindComentarioById);
-router.post("/post_comentarios", PostComentario);
+router.post("/comentarios", PostComentario);
 
 export default router;
