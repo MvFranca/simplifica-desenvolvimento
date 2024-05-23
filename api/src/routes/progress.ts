@@ -3,7 +3,7 @@ import {
   findAllTrilha,
   getProgress,
   updateProgress,
-} from "../controllers/content";
+} from "../controllers/progress";
 
 const router = express.Router();
 

@@ -3,7 +3,7 @@ import userRouter from "./routes/user";
 import authRouter from "./routes/auth";
 import pointsRouter from "./routes/points";
 import tableRanking from "./routes/table"
-import content from "./routes/content"
+import content from "./routes/progress"
 import community from "./routes/community"
 import bodyParser from "body-parser";
 import cors from "cors";
