@@ -9,6 +9,9 @@
     "dev": "nodemon --watch 'src/' --exec 'ts-node src/index.ts' -e ts",
     "postinstall": "tsc"
   },
+  "prisma": {
+    "seed": "npx tsx prisma/seed/seed.ts"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
