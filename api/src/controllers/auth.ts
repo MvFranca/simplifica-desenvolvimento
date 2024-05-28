@@ -39,20 +39,32 @@ export const register = async (req: Request, res: Response) => {
 
     const passwordHash = await bcrypt.hash(senha, 8);
 
-    const data = await prisma.usuario.create({
-      data: {
-        fullname,
-        username,
-        email,
-        url_image,
-        senha: passwordHash,
-        turma,
-      },
+    const user = await prisma.$transaction(async (tx) => {
+      const data = await prisma.usuario.create({
+        data: {
+          fullname,
+          username,
+          email,
+          url_image,
+          senha: passwordHash,
+          turma,
+        },
+      });
+
+      await prisma.pontuacao.create({
+        data: {
+          usuarioId: data.id,
+          pontuacao: 0,
+          fogo: 0,
+        },
+      });
+
+      return data;
     });
 
     return res
       .status(200)
-      .json({ msg: "Cadastro realizado com sucesso!", data });
+      .json({ msg: "Cadastro realizado com sucesso!", data: user });
   } catch (error) {
     return res.status(500).json({ msg: "Servidor indisponível. ", error });
   }
