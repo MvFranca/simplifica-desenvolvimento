@@ -138,11 +138,11 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img2_descricao:'Operador and (E): Retorna verdadeiro se as duas expressões forem verdadeiras. Operador or(OU): Caso uma das expressões seja verdadeira, retorna verdadeiro. Operador not (NÃO): Ajusta o valor da expressão.'
   },
   {
-    titulo: 'Operações matemáticas',
+    titulo: 'Estruturas de decisão',
     subtitulo: '',
     img1_alt: 'Código na linguagem C das quatro principais operações matemáticas.',
     img1_descricao: 'O programa define duas variáveis a e b, realiza operações matemáticas básicas (soma, subtração, multiplicação e divisão) com essas variáveis e exibe os resultados utilizando a função printf(). O programa verifica se a divisão por zero é evitada e trata adequadamente esse caso, exibindo uma mensagem de erro se necessário. Finalmente, o programa retorna 0 para indicar a conclusão bem-sucedida da execução.',
-    img1_titulo: 'Em C',
+    img1_titulo: 'Operações matemáticas',
     img1_url: './img_conteudos/ed6.png',
   },
   {
