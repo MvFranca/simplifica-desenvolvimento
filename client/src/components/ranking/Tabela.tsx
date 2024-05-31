@@ -4,10 +4,15 @@ import IconDiamondd from '../icons/diamante.svg';
 import Lupa from '../icons/lupa.svg'
 import axios from 'axios';
 
+interface pontuacao {
+    pontuacao: number,
+    fogo: number
+}
+
 interface users {
     username: string,
     turma: number,
-    pontuacao:string
+    pontuacao: pontuacao
 }
 
 const Tabela = () => {
@@ -20,11 +25,11 @@ const Tabela = () => {
       .get("http://localhost:8000/api/table/tableusers")
       .then((res) => {
         console.log(res)
-        const usuarios = res.data.data.data.rows
-
+        const usuarios = res.data.data
+        console.log('usuarios:')
+        console.log(usuarios)
         usuarios.sort((a: { pontuacao: number; }, b: { pontuacao: number; }) => b.pontuacao - a.pontuacao);
 
-        console.log(usuarios)
 
         setUsers(usuarios);
       })
@@ -38,10 +43,6 @@ const Tabela = () => {
         usersTable()
     }, [])
 
-
-    useEffect(() => {
-          
-    }, [users])
 
     return ( 
         <div  className={styles.tableRanking}>
@@ -89,16 +90,23 @@ const Tabela = () => {
                     
                 </tr>
                 {
-                    users &&
-                    users.map((user, index) => {
+                    users?.map((user, index) => {
                         return(
                             <tr className={styles.line}>
-                            <td className={styles.posicao}>{index + 1}</td>
-                            <td className={styles.username}>{ user.username }</td>
-                            <td>{user.turma}</td>
-                            <td className={styles.movimentos}>-</td>
+                            <td className={styles.posicao}>
+                                {index + 1}
+                            </td>
+                            <td className={styles.username}>
+                                { user.username }
+                            </td>
+                            <td>
+                                {user.turma}
+                            </td>
+                            <td className={styles.movimentos}>
+                                -
+                            </td>
                             <td className={styles.pontos}>
-                                {user.pontuacao}
+                                {user.pontuacao.pontuacao}
                                 <img src={IconDiamondd} alt="Diamante" />
                             </td>
                         </tr>
