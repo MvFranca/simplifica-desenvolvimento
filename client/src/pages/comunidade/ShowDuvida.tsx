@@ -79,8 +79,8 @@ const ShowDuvida = () => {
 
   async function dadosDuvida(id_duvida: string) {
       try{
-        const res = await axios.get(`http://localhost:8000/api/community/duvidas?id_duvida=${id_duvida}`)
-        setDuvida(await res.data.data.resposta[0])
+        const res = await axios.get(`http://localhost:8000/api/community/duvidas/${id_duvida}`)
+        setDuvida(await res.data.data)
       }
       catch(error){
         console.log(error)
@@ -131,14 +131,14 @@ const ShowDuvida = () => {
       <div className={styles.content}>
         <div className={styles.containerBox}>
           <div className={styles.infoLeft}>
-            <h3 className={styles.username}>{duvida?.username}</h3>
+            <h3 className={styles.username}>{duvida?.usuario.username}</h3>
             <p className={styles.dataLabel}>
               {/* <span>Data:</span> {duvida?.data && formatDate(duvida?.data)} */}
-              <span>Data: {duvida?.data_duvida}</span> 
+              <span>Data: {duvida?.createdAt}</span> 
               
             </p>
             <p className={styles.dataLabel}>
-              <span>Turma:</span> {duvida?.turma}
+              <span>Turma:</span> {duvida?.usuario.turma}
             </p>
           </div>
           <div className={styles.infoRight}>
@@ -158,16 +158,16 @@ const ShowDuvida = () => {
         </div>
         <div className={styles.caixaDuvidaContainer}>
           <div className={styles.caixaDuvidaContainer}>
-            <h1 className={styles.title}>{duvida?.titulo_duvida}</h1>
-            <p className={styles.description}>{duvida?.descricao_duvida}</p>
+            <h1 className={styles.title}>{duvida?.titulo}</h1>
+            <p className={styles.description}>{duvida?.descricao}</p>
             <div className={styles.line}></div>
           </div>
           <div className={styles.caixaDuvidaContainer}>
-            {duvida?.url_img_duvida && (
+            {duvida?.img_url && (
               <>
                 <ImagemComModal
-                  src={duvida.url_img_duvida}
-                  alt={duvida?.titulo_duvida}
+                  src={duvida.img_url}
+                  alt={duvida?.titulo}
                   classNameImagem={styles.image}
                 />
                 <div className={styles.line}></div>

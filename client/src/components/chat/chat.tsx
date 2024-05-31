@@ -1,15 +1,15 @@
-import { useEffect, useContext, useRef, useState } from "react";
+import { useEffect, useContext, useRef} from "react";
 import styles from "../../styles/comunidade/Chat.module.css";
 import DuvidaCard from "./duvida";
 // import { IoIosArrowForward } from "react-icons/io";
 import axios from "axios";
 import { pointContext } from "../../context/context";
 
-import { obterDiaDaSemana, obterDiaDeHoje } from "../../helpers/formatDate";
+// import { obterDiaDaSemana, obterDiaDeHoje } from "../../helpers/formatDate";
 
 const Chat = () => {
 
-  const [datas, setDatas] = useState<string[]>([])
+  // const [datas, setDatas] = useState<string[]>([])
 
   const duvidasScroll = useRef<HTMLDivElement>(null)
 
@@ -20,8 +20,10 @@ const Chat = () => {
 
     axios.get("http://localhost:8000/api/community/duvidas").then((res) => {
 
-      console.log(res.data.data.resposta)
-      setDuvidas(res.data.data.resposta)
+      const {data} = res.data
+      console.log('duvidas:')
+      console.log(data)
+      setDuvidas(data)
     }).catch((err: Error) => {
         console.log(err)
     })
@@ -32,17 +34,17 @@ const Chat = () => {
 
     if(duvidas.length != 0){
     
-      const datasUnicasSet = new Set();
+      // const datasUnicasSet = new Set();
 
 
-      duvidas.forEach((duvida) => {
-        datasUnicasSet.add(duvida.data_duvida);
-      });
+      // duvidas.forEach((duvida) => {
+      //   datasUnicasSet.add(duvida.data_duvida);
+      // });
 
-      const datasUnicasArray =  Array.from(datasUnicasSet).map(data => String(data)).reverse()
+      // const datasUnicasArray =  Array.from(datasUnicasSet).map(data => String(data)).reverse()
 
 
-      setDatas(datasUnicasArray)
+      // setDatas(datasUnicasArray)
     }
 
   }, [duvidas])
@@ -50,22 +52,22 @@ const Chat = () => {
   return (
     <div className={styles.chat}>
 
-      {
+      {/* {
         datas && 
         datas.map((data) => {
 
-        return(
+        return( */}
           <section className={styles.infoDuvidas}>
             <div className={styles.infoData}>
 
               
 
               <span className={styles.data}>
-                {
+                {/* {
 
                   data == obterDiaDeHoje() ? "Hoje" 
                   : obterDiaDaSemana(data)
-                }
+                } */}
               </span>
               <span className={styles.borda} />
             </div>
@@ -76,21 +78,21 @@ const Chat = () => {
               </span> */}
               <div className={styles.scroll} ref={duvidasScroll} id="teste">
                 {
-                  duvidas.slice().reverse().map((duvida) =>{
+                  duvidas?.slice().reverse().map((duvida) =>{
 
 
-                    if(duvida.data_duvida == data){
+                    // if(duvida.data_duvida == data){
                       return (
                         <DuvidaCard
                         duvida={{
-                          id_duvida: duvida.id_duvida,
-                          titulo_duvida: duvida.conteudo,
-                          descricao_duvida: duvida.descricao_duvida,
+                          id: duvida.id,
+                          titulo: duvida.conteudo,
+                          descricao: duvida.descricao,
 
                         }}
                       />
                       )
-                    }
+                    // }
                    
                   })
                 }
@@ -100,9 +102,9 @@ const Chat = () => {
               </span> */}
             </div>
           </section>
-        )
+        {/* )
       })
-      }
+      } */}
 
     </div>
   );

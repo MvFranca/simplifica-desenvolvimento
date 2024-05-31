@@ -3,7 +3,7 @@ import styles from '../../styles/comunidade/FormChat.module.css'
 import IconAddOutline from '../icons/IconAdd';
 import IconClose from '../icons/IconClose';
 import axios from 'axios';
-import { formatDate, hour } from '../../helpers/formatDate';
+// import { formatDate, hour } from '../../helpers/formatDate';
 
 import { pointContext } from '../../context/context';
 import { Duvidas } from '../../types/IDuvida';
@@ -51,31 +51,45 @@ const FormChat = () => {
     async function submit(e: React.FormEvent<HTMLFormElement>){
         e.preventDefault()
 
-        const idUser = Number(userObject.id_usuario);
+        const idUser = Number(userObject.id);
         
         const duvida = {
             titulo, 
             descricao, 
             url_img: String(url.current), 
             conteudo, 
-            data: String(formatDate(new Date())), 
-            hora: hour(), 
+            // data: String(formatDate(new Date())), 
+            // hora: hour(), 
             idUser 
-    }
+        }
 
-        axios.post("http://localhost:8000/api/community/post_duvidas", duvida).
+        console.log("duvida")
+        console.log(duvida)
+
+        axios.post("http://localhost:8000/api/community/duvidas", duvida).
         then(() => 
             {
 
                 const duvidasAtt: Duvidas[] = [...duvidas, {
-                    id_duvida: duvida.idUser,   
-                    titulo_duvida: duvida.titulo,
-                    descricao_duvida: duvida.descricao,
-                    url_img_duvida: duvida.url_img || '',
+                    id: duvida.idUser,
+                    titulo: duvida.titulo,
+                    descricao: duvida.descricao,
+                    img_url: duvida.url_img || '',
                     conteudo: duvida.conteudo,
-                    data_duvida: duvida.data,
-                    hora_duvida: duvida.hora,
-                    idUser: duvida.idUser  // Adicionei esta linha assumindo que idUser também é parte do objeto duvida
+                    // data_duvida: duvida.data,
+                    // hora_duvida: duvida.hora,
+                    idUser: duvida.idUser,
+                    usuario: {
+                        id: 0,
+                        username: '',
+                        email: '',
+                        senha: '',
+                        url_image: '',
+                        fullname: '',
+                        turma: ''
+                    },
+                    createdAt: '',
+                    url_img: ''
                 }];
 
                 console.log(duvidasAtt)

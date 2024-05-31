@@ -2,18 +2,21 @@ import { IResposta } from "./IResposta";
 import { IUser } from "./IUser";
 
 export interface IDuvida {
-  id_duvida: number;
+  id: number;
   user: IUser;
   username:string;
   tituloConteudo?: string;
-  titulo_duvida?: string;
+  titulo?: string;
   turma: string;
   conteudo: string;
-  descricao_duvida?: string;
+  descricao?: string;
   // data: Date;
-  data_duvida: string;
-  url_img_duvida?: string;
-  respostas_duvida?: IResposta[];
+  data: string;
+  img_url?: string;
+  url_img: string;
+  respostas?: IResposta[];
+  usuario: IUser;
+  createdAt: string
 }
 
 export interface IComentario {
@@ -33,12 +36,15 @@ export interface IComentario {
 }
 
 export interface Duvidas {
-  id_duvida: number;
-  titulo_duvida: string,
-  descricao_duvida: string,
-  url_img_duvida: string,
+  id: number;
+  titulo: string,
+  descricao: string,
+  img_url: string,
+  url_img: string,
   conteudo: string,
-  data_duvida: string,
-  hora_duvida: string,
-  idUser: number
+  // data_duvida: string,
+  // hora_duvida: string,
+  idUser: number,
+  usuario: IUser;
+  createdAt: string;
 }
