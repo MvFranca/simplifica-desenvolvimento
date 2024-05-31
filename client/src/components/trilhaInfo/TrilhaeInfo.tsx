@@ -17,15 +17,15 @@ const TrilhaeInfo = () => {
   async function api() {
 
 
-    axios.get(" http://localhost:8000/api/content/trilha").then((res) => {
-      const {resposta} = res.data.data;
+    axios.get("http://localhost:8000/api/content/trilha").then((res) => {
+      const resposta = res.data.data;
       setConteudos(resposta);
 
     })
 
-    .catch((err) => {
-      console.log(err);
-    });
+    // .catch((err) => {
+    //   console.log(err);
+    // });
 
     // const conteudos = await fetch("http://localhost:5173/trilha/trilha.json");
     // const data = await conteudos.json();
@@ -42,15 +42,15 @@ const TrilhaeInfo = () => {
   return (
    <main className={styles.main}>
       <div className={styles.conteudoContainer}>
-        {conteudos.map((assunto) => {
-          const { conteudo, descricao, id_trilha, src } = assunto;
+        {conteudos?.map((assunto) => {
+          const { conteudo, descricao, id, img_url = '' } = assunto;
           return (
             <Main
               conteudo={conteudo}
               descricao={descricao}
-              key={id_trilha}
-              id={id_trilha}
-              src={src}
+              key={id}
+              id={id}
+              src={img_url}
             />
           );
         })}

@@ -58,7 +58,7 @@ export default function Home() {
 
     if(!teste.current && user){
     axios
-      .get(`http://localhost:8000/api/points/pontuacao?idUser=${idUser}`)
+      .get(`http://localhost:8000/api/points/user/${idUser}/pontuacao`)
       .then((res) => {
         const pontuacao = res.data.data.resposta;
         setPontos(pontuacao.pontuacao);
@@ -81,7 +81,7 @@ export default function Home() {
 
     if(!teste.current && user){
     axios
-      .get(`http://localhost:8000/api/content/getProgress?idUser=${ idUser }`)
+      .get(`http://localhost:8000/api/content/user/${idUser}/progresso`)
       .then((res) => {
         const resposta = res.data.data.resposta;
         setMyProgress(resposta.id_progresso)

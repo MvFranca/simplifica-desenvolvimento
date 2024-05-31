@@ -6,7 +6,7 @@ dotenv.config({ path: "./.env" });
 
 const prisma = new PrismaClient();
 
-const load = async () => {
+export const load = async () => {
   try {
     if (process.env.PROJECT_STATE === "DEVELOPMENT") {
       await prisma.conteudo.deleteMany();

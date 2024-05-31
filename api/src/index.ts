@@ -8,6 +8,7 @@ import community from "./routes/community"
 import bodyParser from "body-parser";
 import cors from "cors";
 import { Request } from "express";
+import '../prisma/seed/seed'
 
 const app = express();
 app.use(express.json({limit: '500mb'}));
@@ -28,6 +29,8 @@ app.use("/api/points", pointsRouter);
 app.use("/api/table", tableRanking);
 app.use("/api/content", content);
 app.use("/api/community", community);
+
+
 
 Object.keys(require.cache).forEach(function(key) {
   delete require.cache[key];

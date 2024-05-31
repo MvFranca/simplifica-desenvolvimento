@@ -9,8 +9,8 @@ import {
 const router = express.Router();
 
 router.get("/user/:id_usuario/pontuacao", selectPontuacao);
-router.put("/user/:id_usuario/pontuacao", updateDiamantes);
-router.put("/user/:id_usuario/pontuacao", updateFogo);
+router.put("/user/:id_usuario/diamantes", updateDiamantes);
+router.put("/user/:id_usuario/fogo", updateFogo);
 
 router.post("/insertIdPoints", idPoints);
 
