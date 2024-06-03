@@ -179,8 +179,8 @@ export const PostComentario = async (req: Request, res: Response) => {
     const { descricao, titulo, url_img, /* data, hora,*/ id_duvida, idUser } =
       req.body;
 
-    if (!titulo)
-      return res.status(422).json({ msg: "O título é obrigatório!" });
+    // if (!titulo)
+    //   return res.status(422).json({ msg: "O título é obrigatório!" });
     if (!descricao)
       return res.status(422).json({ msg: "A descrição é obrigatória!" });
     if (!id_duvida)

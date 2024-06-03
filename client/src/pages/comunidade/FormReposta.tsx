@@ -52,7 +52,7 @@ const FormResposta = ({state, novaResposta, formRespostas}: props) => {
     function enviarResposta()   {
         event?.preventDefault()
         const idUser = JSON.parse(localStorage.getItem("simplifica:user")!).id_usuario
-        axios.post("http://localhost:8000/api/community/post_comentarios", {
+        axios.post("http://localhost:8000/api/community/comentarios", {
             idUser,
             descricao: descricao,
             url_img: String(Url.current),
