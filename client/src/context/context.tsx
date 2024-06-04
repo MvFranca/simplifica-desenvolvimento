@@ -119,7 +119,7 @@ const Context = ({children}: PropsWithChildren) => {
 
   if(controle.current && user){
     const userObject = JSON.parse(user);
-    const idUser = Number(userObject.id_usuario);
+    const idUser = Number(userObject);
 
     updateProgress(myProgress, idUser, progressoBotoes)
     controle.current = false

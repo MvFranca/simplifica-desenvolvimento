@@ -20,7 +20,8 @@ const Main = ({ conteudo, descricao, id, src }: props) => {
   const [classe, setClasse] = useState('titulo')
 
   useEffect(() => {
-  
+    console.log("id:")
+    console.log(id)
     if(id && myProgress >= id ){
 
       setClasse("titulo")

@@ -22,10 +22,9 @@ const TrilhaeInfo = () => {
       setConteudos(resposta);
 
     })
-
-    // .catch((err) => {
-    //   console.log(err);
-    // });
+    .catch((err) => {
+      console.log(err);
+    });
 
     // const conteudos = await fetch("http://localhost:5173/trilha/trilha.json");
     // const data = await conteudos.json();

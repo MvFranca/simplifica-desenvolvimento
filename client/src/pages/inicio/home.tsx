@@ -54,13 +54,15 @@ export default function Home() {
 
   useEffect(() => {
    
-    const idUser = Number(userObject.id_usuario);
-
+    // const idUser = Number(userObject.id_usuario);
+    const idUser = Number(userObject.id);
+    console.log("idUser")
+    console.log(idUser)
     if(!teste.current && user){
     axios
       .get(`http://localhost:8000/api/points/user/${idUser}/pontuacao`)
       .then((res) => {
-        const pontuacao = res.data.data.resposta;
+        const pontuacao = res.data.data;
         setPontos(pontuacao.pontuacao);
         setFogo(pontuacao.fogo);
         console.log(res)
@@ -77,15 +79,18 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const idUser = Number(userObject.id_usuario);
+    const idUser = Number(userObject.id);
 
     if(!teste.current && user){
     axios
       .get(`http://localhost:8000/api/content/user/${idUser}/progresso`)
       .then((res) => {
-        const resposta = res.data.data.resposta;
-        setMyProgress(resposta.id_progresso)
+        const resposta = res.data.data;
+        console.log('resposta:')
+        console.log(resposta)
+        setMyProgress(resposta.conteudoId)
         setProgressoBotoes(resposta.avanco)
+
       })
 
       .catch((err) => {

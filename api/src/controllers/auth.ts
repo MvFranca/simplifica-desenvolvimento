@@ -59,6 +59,12 @@ export const register = async (req: Request, res: Response) => {
         },
       });
 
+      await prisma.progresso.create({
+        data: {
+          usuarioId: data.id
+        },
+      });
+
       return data;
     });
 

@@ -31,7 +31,7 @@ export async function GetImgUser(){
 export async function updateProgress ( myProgress:number, idUser:number, progressoBotoes:number){
 
     
-        axios.put("http://localhost:8000/api/content/updateProgress", { myProgress, idUser, progressoBotoes }).then((res) =>{
+        axios.put(`http://localhost:8000/api/content/user/${idUser}/progresso`, { myProgress, progressoBotoes }).then((res) =>{
     
           console.log(res)
         }).catch((error) => {
