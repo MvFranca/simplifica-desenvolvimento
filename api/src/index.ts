@@ -5,6 +5,7 @@ import pointsRouter from "./routes/points";
 import tableRanking from "./routes/table"
 import content from "./routes/progress"
 import community from "./routes/community"
+import aprender from "./routes/content"
 import bodyParser from "body-parser";
 import cors from "cors";
 import { Request } from "express";
@@ -29,6 +30,7 @@ app.use("/api/points", pointsRouter);
 app.use("/api/table", tableRanking);
 app.use("/api/content", content);
 app.use("/api/community", community);
+app.use("/api/aprender", aprender);
 
 
 
