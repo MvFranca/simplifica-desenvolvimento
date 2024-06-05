@@ -1,19 +1,22 @@
 import { Prisma } from "@prisma/client";
 
-export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
+export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
   {
+    id: 1,
     titulo: "Variáveis",
     subtitulo: "O que é uma variável?",
     paragrafo:
       "Uma variável é um espaço destinado à armazenação de um determinado conteúdo, que por sua vez pode se manter constante ou variar conforme as alterações dentro do sistema ou de acordo com as necessidades do programador ao decorrer da execução do programa. Ou seja, as variáveis são responsáveis por armazenar informações que serão utilizadas pelo programador, para facilitar o armazenamento de dados.",
   },
   {
+    id: 2,
     titulo: "Variáveis",
     subtitulo: "Tipos de variáveis",
     paragrafo:
       "As variáveis são classes ou grupos que armazenam informações, entretanto, não é possível armazenar todas informações dentro de um grupo apenas, para facilitar a organização e distinguir informações distintas, existem diferentes tipos de variáveis, veja:",
   },
   {
+    id: 3,
     titulo: "Variáveis",
     subtitulo: "",
     img1_titulo: "Em Portugol",
@@ -28,12 +31,14 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
       "Aqui estão alguns exemplos de tipos de variáveis em C e o que cada grupo suporta. É válido ressaltar que  cada linguagem possui sua forma de nomear as categorias. É possível notar tal diferença ao comparar com o exemplo citado anteriormente. Além disso, para armazenar palavras em C utilizamos um  vetor do tipo char. Posteriormente abordaremos esse assunto de forma detalhada.",
   },
   {
+    id: 4,
     titulo: "Variáveis",
     subtitulo: "Declaração de variáveis",
     paragrafo:
       "É importante que todas as variáveis sejam declaradas antes de serem utilizadas dentro do código. Para declará-la é simples, basta apenas informar o tipo da variável e na frente nomeá-la de forma aleatória, desde que não tenha outra variável com o mesmo nome dentro do programa.",
   },
   {
+    id: 5,
     titulo: "Variáveis",
     subtitulo: "",
     img1_titulo: "Em Portugol",
@@ -48,6 +53,7 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
       'Neste caso a declaração é bastante similar ao exemplo anterior, mudando apenas a nomenclatura das variáveis, uma vez que a linguagem define que deve estar na língua inglesa e por fim, neste caso, lembre-se de adicionar um ";" para encerrar a declaração. Em Python não precisa informar o tipo da variável.',
   },
   {
+    id: 6,
     titulo: "Variáveis",
     subtitulo: "",
     img1_titulo: "Inicialização de variáveis",
@@ -57,18 +63,21 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img1_url: "./img_conteudos/variaveis5.png",
   },
   {
+    id: 7,
     titulo: "Input e Output",
     subtitulo: 'O que é "input"?',
     paragrafo:
       'O "input" (entrada) refere-se aos dados que um programa recebe do mundo exterior. Isso pode incluir informações inseridas pelo usuário, como texto digitado no teclado ou cliques do mouse. Para interagir com o usuário, os algoritmos em Portugol utilizam o comando leia().\nEsse comando lê um dado fornecido pelo usuário e o armazena em uma variável. O usuário é solicitado a inserir dados pelo teclado, e o algoritmo armazena esse valor na variável que é passada para o leia().',
   },
   {
+    id: 8,
     titulo: "Input e Output",
     subtitulo: 'O que é "output"?',
     paragrafo:
       'O "input" (entrada) refere-se aos resultados processados pelo programa, que são apresentados ao usuário. O comando escreva em Portugol é usado para imprimir informações na tela. Por exemplo: escreva("Olá mundo!"). Isso exibirá a mensagem "Olá mundo!" na tela. Em resumo, a entrada e saída de dados permitem que os algoritmos interajam com o usuário e processem informações.',
   },
   {
+    id: 9,
     titulo: "Input e Output",
     subtitulo: "",
     img1_alt: "Código na linguagem Portugol de uma saída de dados.",
@@ -83,6 +92,7 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img2_url: "./img_conteudos/io2.png",
   },
   {
+    id: 10,
     titulo: "Input e Output",
     subtitulo: "",
     img1_alt: "Código na linguagem C de uma entrada e saída de dados.",
@@ -97,18 +107,21 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img2_url: "./img_conteudos/io4.png",
   },
   {
+    id: 11,
     titulo: "Estruturas de decisão",
     subtitulo: "Estruturas de decisão",
     paragrafo:
       "Para ser um programador é essencial saber lidar com imprevistos, temos que pensar fora da caixinha para resolvermos problemas. Nem sempre os problemas serão simples, na maioria dos casos iremos precisar da interação com o usuário, onde a resposta do usuário será essencial para o funcionamento do código.\nA estrutura de repetição é um elemento indispensável na programação, uma vez que possibilita a execução repetida de um bloco de código em função de uma situação específica. Vejamos na prática:",
   },
   {
+    id: 12,
     titulo: "Estruturas de decisão",
     subtitulo: 'Condicional "se"/"if"',
     paragrafo:
       "Seu próprio nome diz tudo sobre esta condição. Ela consiste na análise das informações que foram dadas inicialmente, para confirmar se são realmente verídicas. Se for, esta condição vai executar o comando que lhe foi dado inicialmente. Caso seja falsa, nada vai acontecer e o código vai seguir. Além disso, um ‘se’ pode estar dentro de outro para executar funções.",
   },
   {
+    id: 13,
     titulo: "Estruturas de decisão",
     img1_titulo: 'Condicional "se" em Portugol',
     img2_titulo: 'Condicional "if" em C',
@@ -123,6 +136,7 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
       'Neste caso, o exemplo é similar ao anterior, possui a mesma ideia, porém neste caso a mensagem só será impressa se o usuário tiver mais que 18 anos. Observe que a diferença entre a forma de representação das linguagens é mínima, virando apenas a passagem do "se" para a língua inglesa e o ";" obrigatório da linguagem.',
   },
   {
+    id: 14,
     titulo: "Estruturas de decisão",
     subtitulo: "",
     img1_titulo: 'Condicional "se" em Portugol',
@@ -137,12 +151,14 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
       'Seguimos com o mesmo exemplo, mudando apenas a linguagem, como podemos observar, a variação de C para Python, neste caso, foi apenas a troca de "{}" por ":" antes de declarar o comando.',
   },
   {
+    id: 15,
     titulo: "Estruturas de decisão",
     subtitulo: "Operadores lógicos",
     paragrafo:
       "São responsáveis pela análise da informação e fornecem um resultado lógico (verdadeiro ou falso).\nE - usado para determinar que duas condições precisam ser verdadeiras;\nOU - usamos quando pelo menos uma das informações deve ser verdadeira, contudo podemos usá-lo no caso de ambas serem.\nNÃO - resulta na inversão de valores, se uma informação é verdadeira ela passa a ser falsa. Ou seja, ele nega afirmações.",
   },
   {
+    id: 16,
     titulo: "Estruturas de decisão",
     img1_titulo: "Em Python",
     img2_titulo: "Em C",
@@ -157,14 +173,18 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
       "Operador and (E): Retorna verdadeiro se as duas expressões forem verdadeiras. Operador or(OU): Caso uma das expressões seja verdadeira, retorna verdadeiro. Operador not (NÃO): Ajusta o valor da expressão.",
   },
   {
+    id: 17,
     titulo: "Estruturas de decisão",
     subtitulo: "",
-    img1_alt: "Código na linguagem C das quatro principais operações matemáticas.",
-    img1_descricao: "O programa define duas variáveis a e b, realiza operações matemáticas básicas (soma, subtração, multiplicação e divisão) com essas variáveis e exibe os resultados utilizando a função printf(). O programa verifica se a divisão por zero é evitada e trata adequadamente esse caso, exibindo uma mensagem de erro se necessário. Finalmente, o programa retorna 0 para indicar a conclusão bem-sucedida da execução.",
+    img1_alt:
+      "Código na linguagem C das quatro principais operações matemáticas.",
+    img1_descricao:
+      "O programa define duas variáveis a e b, realiza operações matemáticas básicas (soma, subtração, multiplicação e divisão) com essas variáveis e exibe os resultados utilizando a função printf(). O programa verifica se a divisão por zero é evitada e trata adequadamente esse caso, exibindo uma mensagem de erro se necessário. Finalmente, o programa retorna 0 para indicar a conclusão bem-sucedida da execução.",
     img1_titulo: "Operações matemáticas",
     img1_url: "./img_conteudos/ed6.png",
   },
   {
+    id: 18,
     titulo: "Estruturas de decisão",
     subtitulo: 'Condicional "senao"',
     paragrafo:
@@ -173,6 +193,7 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img1_url: "./img_conteudos/ed7.png",
   },
   {
+    id: 19,
     titulo: "Estruturas de decisão",
     img1_titulo: 'Condicional "else"',
     img2_titulo: 'Condicional "elif"/"else if"',
@@ -187,6 +208,7 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
       "O elif permite que você verifique várias condições em sequência e execute o bloco de código associado à primeira condição real, como no exemplo acima.",
   },
   {
+    id: 20,
     titulo: "Laços de Repetição",
     subtitulo: "O que são os laços de repetição?",
     paragrafo:
@@ -195,12 +217,14 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img1_url: "./img_conteudos/lr1.png",
   },
   {
+    id: 21,
     titulo: "Laços de Repetição",
     subtitulo: "Variáveis auxiliar",
     paragrafo:
       "Usadas para controlar e adicionar limites nos laços, com elas é possível determinar em que número ele começa, e antes de qual ele termina, assim determinando quantas vezes o comando se repete.\nNo exemplo visual sobre laços, a variável auxiliar está no losango, auxiliando a formação da condição. Um looping pode começar, por exemplo, no 1 e terminar antes do 6, sendo uma adicionada unidade a variável a cada repetição do looping.",
   },
   {
+    id: 22,
     titulo: "Laços de Repetição",
     subtitulo: "Tipos de laços",
     img1_titulo: "Pós-teste",
@@ -215,6 +239,7 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img2_url: "./img_conteudos/lr3.png",
   },
   {
+    id: 23,
     titulo: "Laços de Repetição",
     subtitulo: "",
     img1_alt: 'Laço de repetição "For" em Portugol.',
@@ -229,6 +254,7 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img2_url: "./img_conteudos/lr5.png",
   },
   {
+    id: 24,
     titulo: "Laços de Repetição",
     subtitulo: "",
     img1_alt: 'Laço de repetição "For" em Portugol.',
@@ -243,6 +269,7 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img2_url: "./img_conteudos/lr6.png",
   },
   {
+    id: 25,
     titulo: "Laços de Repetição",
     subtitulo: "",
     img1_alt: 'Laço de repetição "while" em Portugol.',
@@ -257,6 +284,7 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img2_url: "./img_conteudos/lr8.png",
   },
   {
+    id: 26,
     titulo: "Laços de Repetição",
     subtitulo: "",
     img1_alt: 'Laço de repetição "while" em Portugol.',
@@ -271,6 +299,7 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img2_url: "./img_conteudos/lr9.png",
   },
   {
+    id: 27,
     titulo: "Laços de Repetição",
     subtitulo: "",
     img1_alt: 'Laço de repetição "do while" em Portugol.',
@@ -285,6 +314,7 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img2_url: "./img_conteudos/lr11.png",
   },
   {
+    id: 28,
     titulo: "Laços de Repetição",
     subtitulo: "",
     img1_alt: 'Laço de repetição "do while" em Portugol.',
@@ -299,6 +329,7 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img2_url: "./img_conteudos/lr12.png",
   },
   {
+    id: 29,
     titulo: "Vetor",
     subtitulo: "O que são vetores?",
     paragrafo:
@@ -307,12 +338,14 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img1_url: "./img_conteudos/v1.png",
   },
   {
+    id: 30,
     titulo: "Vetor",
     subtitulo: "Leitura",
     paragrafo:
       "A leitura dos vetores acontece de duas formas, uma através dos laços de repetição, que lêem os dados e os aloca em seus devidos endereços de forma ordenada e a segunda forma é a manual, na qual o próprio programador especifica o endereço de cada dado lido, sendo a primeira forma a mais usada, pois é mais rápida e poupa tempo.",
   },
   {
+    id: 31,
     titulo: "Vetor",
     subtitulo: "",
     img1_alt: "Leitura de dados em vetores na linguagem Portugol.",
@@ -327,6 +360,7 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img2_url: "./img_conteudos/v3.png",
   },
   {
+    id: 32,
     titulo: "Vetor",
     subtitulo: "",
     img1_alt: "Leitura de dados em vetores na linguagem Portugol.",
@@ -341,12 +375,14 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img2_url: "./img_conteudos/v4.png",
   },
   {
+    id: 33,
     titulo: "Vetor",
     subtitulo: "Escrita",
     paragrafo:
       "A escrita pode ocorrer de duas formas: A primeira é informando o índice exato do dado a ser escrito, essa forma é mais individualista. A segunda é usando um laço de repetição, no qual todos os dados ou quantos quiser, serão escritos de uma vez, sem precisar que o próprio programador o faça um por um. Os exemplos abaixo mostram a segunda forma.",
   },
   {
+    id: 34,
     titulo: "Vetor",
     subtitulo: "",
     img1_alt: "Escrita de dados em vetores na linguagem Portugol.",
@@ -361,6 +397,7 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img2_url: "./img_conteudos/v6.png",
   },
   {
+    id: 35,
     titulo: "Vetor",
     subtitulo: "",
     img1_alt: "Escrita de dados em vetores na linguagem Portugol.",
@@ -375,18 +412,21 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img2_url: "./img_conteudos/v7.png",
   },
   {
+    id: 36,
     titulo: "Vetor",
     subtitulo: "Ordenação",
     paragrafo:
       "A ordenação de vetores serve para colocar os dados armazenados em ordem crescente ou decrescente. Para fazer isso existem vários métodos, mas de início iremos mostrar apenas o Insertion Sort.",
   },
   {
+    id: 37,
     titulo: "Vetor",
     subtitulo: "Método Insertion Sort",
     paragrafo:
       'O método consiste na comparação de dados, em fazer dois comandos "para" chamarem dois números e com um "se" compará-los para saber qual é o maior, se o primeiro número chamado for maior que o segundo, sua posição é trocada pelo segundo que é menor. E com funcionamento do loop, os outros dados serão testados, até que o vetor esteja em ordem crescente, se for para a decrescente é feito o contrário.',
   },
   {
+    id: 38,
     titulo: "Vetor",
     subtitulo: "",
     img1_titulo: "Método Insertion Sort",
@@ -396,6 +436,7 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img1_url: "./img_conteudos/v8.png",
   },
   {
+    id: 39,
     titulo: "Vetor",
     subtitulo: "",
     img1_alt: "Método Insertion Sort em Python",
@@ -410,6 +451,7 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img2_url: "./img_conteudos/v9.png",
   },
   {
+    id: 40,
     titulo: "Matriz",
     subtitulo: "",
     img1_descricao:
@@ -419,12 +461,14 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img1_url: "./img_conteudos/m1.png",
   },
   {
+    id: 41,
     titulo: "Matriz",
     subtitulo: "Leitura",
     paragrafo:
       'Assim como em vetor, a leitura de matriz pode ser feita de duas formas: Diretamente, com o programador colocando os dados de forma manual; e indiretamente, através de um laço de repetição.\nA forma de se fazer com o laço de repetição é muito parecida com a de vetor, a diferença é a necessidade de dois "for", um para preencher as linhas e outro para preencher as colunas, que juntas formam um índice específico.',
   },
   {
+    id: 42,
     titulo: "Matriz",
     subtitulo: "",
     img1_alt: "Leitura de matriz em Portugol.",
@@ -439,6 +483,7 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img2_url: "./img_conteudos/m3.png",
   },
   {
+    id: 43,
     titulo: "Matriz",
     subtitulo: "",
     img1_alt: "Leitura de matriz em Portugol.",
@@ -453,12 +498,14 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img2_url: "./img_conteudos/m4.png",
   },
   {
+    id: 44,
     titulo: "Matriz",
     subtitulo: "Escrita",
     paragrafo:
       'A escrita dos dados da matriz é tão simples quanto a de vetores, sem complicações, basta apenas repetir a mesma estrutura de dois "para", um para as linhas e outro para as colunas, tendo dentro do segundo laço um "escreva" com o nome da matriz e especificando através das variáveis auxiliares a linha e a coluna a ser exibida.',
   },
   {
+    id: 45,
     titulo: "Matriz",
     subtitulo: "",
     img1_alt: "Escrita de matriz em Portugol.",
@@ -473,6 +520,7 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img2_url: "./img_conteudos/m6.png",
   },
   {
+    id: 46,
     titulo: "Matriz",
     subtitulo: "",
     img1_alt: "Escrita de matriz em Portugol.",
@@ -487,18 +535,21 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img2_url: "./img_conteudos/m7.png",
   },
   {
+    id: 47,
     titulo: "Subprograma",
     subtitulo: "O que é?",
     paragrafo:
       "Em Portugol, um subprograma é uma parte do código que realiza uma tarefa específica e pode ser chamado (ou invocado) a partir de outras partes do programa principal. Os subprogramas são úteis para organizar e modularizar o código, tornando-o mais legível e fácil de manter.",
   },
   {
+    id: 48,
     titulo: "Subprograma",
     subtitulo: "Procedimentos/Funções",
     paragrafo:
       "Existem dois tipos de subprogramas: procedimentos e funções. A única diferença entre eles é que as funções produzem valores, enquanto os procedimentos não.\nProcedimentos: São blocos de código que realizam tarefas específicas, mas não retornam valores. Eles são úteis para agrupar ações que precisam ser executadas várias vezes em diferentes partes do programa.\nFunções: Também são blocos de código, mas têm a capacidade de retornar valores. Você pode pensar nelas como pequenos programas dentro do seu programa principal. As funções podem ser reutilizadas em diferentes partes do código, tornando o programa mais modular e organizado.",
   },
   {
+    id: 49,
     titulo: "Subprograma",
     subtitulo: "",
     img1_alt: 'Imagem de um código em Portugol de um subprograma "TRIANGULO".',
@@ -508,6 +559,7 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img1_url: "./img_conteudos/sp1.png",
   },
   {
+    id: 50,
     titulo: "Subprograma",
     subtitulo: "",
     img1_alt: 'Imagem de um código em Portugol de um subprograma "CALCULA".',
@@ -517,6 +569,7 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img1_url: "./img_conteudos/sp2.png",
   },
   {
+    id: 51,
     titulo: "Subprograma",
     subtitulo: "",
     img1_alt: 'Imagem de um código em Portugol de um subprograma "MEDIA".',
@@ -526,6 +579,7 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img1_url: "./img_conteudos/sp3.png",
   },
   {
+    id: 52,
     titulo: "Subprograma",
     subtitulo: "",
     img1_alt: 'Imagem de um código em C de um subprograma "MULTIPLICAR".',
@@ -540,6 +594,7 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img2_url: "./img_conteudos/sp5.png",
   },
   {
+    id: 53,
     titulo: "Subprograma",
     subtitulo: "",
     img1_alt: 'Imagem de um código em C de um subprograma "SOMAR".',
@@ -549,6 +604,7 @@ export const conteudoCreateMany: Prisma.ConteudoCreateInput[] = [
     img1_url: "./img_conteudos/sp6.png",
   },
   {
+    id: 54,
     titulo: "Subprograma",
     subtitulo: "",
     img1_alt:
