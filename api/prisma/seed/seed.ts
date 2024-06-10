@@ -1,8 +1,9 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Prisma } from "@prisma/client";
 import dotenv from "dotenv";
 import { conteudoCreateMany } from "./data/conteudoCreateMany";
 import { trilhaCreateMany } from "./data/trilhaCreateMany";
 import { questaoCreateMany } from "./data/questaoCreateMany";
+import { respostasCreateMany } from "./data/respostasCreateMany";
 dotenv.config({ path: "./.env" });
 
 const prisma = new PrismaClient();
@@ -18,9 +19,15 @@ const load = async () => {
       await prisma.trilha.createMany({
         data: trilhaCreateMany,
       });
+
       await prisma.questao.deleteMany();
       await prisma.questao.createMany({
         data: questaoCreateMany,
+      });
+
+      await prisma.respostas.deleteMany();
+      await prisma.respostas.createMany({
+        data: respostasCreateMany,
       });
     } else {
       throw new Error(
