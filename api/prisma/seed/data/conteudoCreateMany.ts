@@ -128,8 +128,8 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     subtitulo: "",
     img1_alt: 'Código da estrutura de condição "se" em Portugol.',
     img2_alt: 'Código da estrutura de condição "if" em C.',
-    img1_url: "./img_conteudos/ec1.png",
-    img2_url: ".img_conteudos/ec2.png",
+    img1_url: "./img_conteudos/ed1.png",
+    img2_url: ".img_conteudos/ed2.png",
     img1_descricao:
       "No exemplo acima estamos analisando se a idade do indivíduo corresponde a classificação do filme, se a idade do usuário não corresponder à idade mínima ideal para assistir, será impresso na tela uma mensagem na tela informando que não será possível assistir ao filme. Caso contrário, o código continuará a ser executado normalmente.",
     img2_descricao:
@@ -407,7 +407,7 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_url: "./img_conteudos/v5.png",
     img2_alt: "Escrita de dados em vetores na linguagem C.",
     img2_descricao:
-      'Em linguagem C, assim como em portugol e em python, a estrutura de escrita é a mesma, com um "for" idêntico ao usado na "leitura", com um "printf" para exibir todos os dados do vetor.',
+      'Em linguagem C, assim como em portugol e em Python, a estrutura de escrita é a mesma, com um "for" idêntico ao usado na "leitura", com um "printf" para exibir todos os dados do vetor.',
     img2_titulo: "Em C",
     img2_url: "./img_conteudos/v7.png",
   },
@@ -443,15 +443,20 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       "Em Python, há uma mistura da leitura de vetores de python, com a mesma estrutura de ordenação mostrada em Portugol, tendo apenas diferenças de sintaxe da própria linguagem.",
     img1_titulo: "Em Python",
-    img1_url: "./img_conteudos/v8.png",
-    img2_alt: "Método Insertion Sort em C",
-    img2_descricao:
-      "Esse é o exemplo desse método em linguagem C, como é possível observar o formato é o mesmo que em Portugol, as únicas diferenças se devem à sintaxe, própria da linguagem C.",
-    img2_titulo: "Em C",
-    img2_url: "./img_conteudos/v9.png",
+    img1_url: "./img_conteudos/v9.png",
   },
   {
     id: 40,
+    titulo: "Vetor",
+    subtitulo: "",
+    img1_alt: "Método Insertion Sort em C",
+    img1_descricao:
+      "Esse é o exemplo desse método em linguagem C, como é possível observar o formato é o mesmo que em Portugol, as únicas diferenças se devem à sintaxe, própria da linguagem C.",
+    img1_titulo: "Em C",
+    img1_url: "./img_conteudos/v10.png",
+  },
+  {
+    id: 41,
     titulo: "Matriz",
     subtitulo: "",
     img1_descricao:
@@ -461,14 +466,14 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_url: "./img_conteudos/m1.png",
   },
   {
-    id: 41,
+    id: 42,
     titulo: "Matriz",
     subtitulo: "Leitura",
     paragrafo:
       'Assim como em vetor, a leitura de matriz pode ser feita de duas formas: Diretamente, com o programador colocando os dados de forma manual; e indiretamente, através de um laço de repetição.\nA forma de se fazer com o laço de repetição é muito parecida com a de vetor, a diferença é a necessidade de dois "for", um para preencher as linhas e outro para preencher as colunas, que juntas formam um índice específico.',
   },
   {
-    id: 42,
+    id: 43,
     titulo: "Matriz",
     subtitulo: "",
     img1_alt: "Leitura de matriz em Portugol.",
@@ -483,7 +488,7 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img2_url: "./img_conteudos/m3.png",
   },
   {
-    id: 43,
+    id: 44,
     titulo: "Matriz",
     subtitulo: "",
     img1_alt: "Leitura de matriz em Portugol.",
@@ -498,14 +503,14 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img2_url: "./img_conteudos/m4.png",
   },
   {
-    id: 44,
+    id: 45,
     titulo: "Matriz",
     subtitulo: "Escrita",
     paragrafo:
       'A escrita dos dados da matriz é tão simples quanto a de vetores, sem complicações, basta apenas repetir a mesma estrutura de dois "para", um para as linhas e outro para as colunas, tendo dentro do segundo laço um "escreva" com o nome da matriz e especificando através das variáveis auxiliares a linha e a coluna a ser exibida.',
   },
   {
-    id: 45,
+    id: 46,
     titulo: "Matriz",
     subtitulo: "",
     img1_alt: "Escrita de matriz em Portugol.",
@@ -520,7 +525,7 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img2_url: "./img_conteudos/m6.png",
   },
   {
-    id: 46,
+    id: 47,
     titulo: "Matriz",
     subtitulo: "",
     img1_alt: "Escrita de matriz em Portugol.",
@@ -535,21 +540,21 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img2_url: "./img_conteudos/m7.png",
   },
   {
-    id: 47,
+    id: 48,
     titulo: "Subprograma",
     subtitulo: "O que é?",
     paragrafo:
       "Em Portugol, um subprograma é uma parte do código que realiza uma tarefa específica e pode ser chamado (ou invocado) a partir de outras partes do programa principal. Os subprogramas são úteis para organizar e modularizar o código, tornando-o mais legível e fácil de manter.",
   },
   {
-    id: 48,
+    id: 49,
     titulo: "Subprograma",
     subtitulo: "Procedimentos/Funções",
     paragrafo:
       "Existem dois tipos de subprogramas: procedimentos e funções. A única diferença entre eles é que as funções produzem valores, enquanto os procedimentos não.\nProcedimentos: São blocos de código que realizam tarefas específicas, mas não retornam valores. Eles são úteis para agrupar ações que precisam ser executadas várias vezes em diferentes partes do programa.\nFunções: Também são blocos de código, mas têm a capacidade de retornar valores. Você pode pensar nelas como pequenos programas dentro do seu programa principal. As funções podem ser reutilizadas em diferentes partes do código, tornando o programa mais modular e organizado.",
   },
   {
-    id: 49,
+    id: 50,
     titulo: "Subprograma",
     subtitulo: "",
     img1_alt: 'Imagem de um código em Portugol de um subprograma "TRIANGULO".',
@@ -559,52 +564,22 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_url: "./img_conteudos/sp1.png",
   },
   {
-    id: 50,
-    titulo: "Subprograma",
-    subtitulo: "",
-    img1_alt: 'Imagem de um código em Portugol de um subprograma "CALCULA".',
-    img1_descricao:
-      "Foi criado um procedimento que formata uma mensagem qualquer, e uma função que realiza um cálculo matemático entre dois números informados.",
-    img1_titulo: "CALCULA",
-    img1_url: "./img_conteudos/sp2.png",
-  },
-  {
-    id: 51,
-    titulo: "Subprograma",
-    subtitulo: "",
-    img1_alt: 'Imagem de um código em Portugol de um subprograma "MEDIA".',
-    img1_descricao:
-      "Esse programa permite ao usuário inserir três notas e escolher entre média aritmética e ponderada. Em seguida, o programa calcula a média com base nessas entradas e determina se o aluno foi aprovado ou reprovado, exibindo a mensagem apropriada junto com a média calculada.",
-    img1_titulo: "MEDIA",
-    img1_url: "./img_conteudos/sp3.png",
-  },
-  {
-    id: 52,
+    id: 53,
     titulo: "Subprograma",
     subtitulo: "",
     img1_alt: 'Imagem de um código em C de um subprograma "MULTIPLICAR".',
     img1_descricao:
       "Neste exemplo em C, a função MULTIPLICAR é um subprograma que aceita dois números como argumentos, multiplica e retorna o resultado. No main() função, nós chamamos multiplicar função com num1 e num2 como argumentos e, em seguida, imprimimos o resultado.",
     img1_titulo: "MULTIPLICAR",
-    img1_url: "./img_conteudos/sp4.png",
+    img1_url: "./img_conteudos/sp2.png",
     img2_alt: 'Imagem de um código em C de um subprograma "CALCULARDOBRO".',
     img2_descricao:
       "Neste exemplo em C, a função calcularDobro aceita um número como argumento, calcula o dobro desse número e retorna o resultado. No main() função, nós chamamos calcularDobro com o número 7 e imprimimos o resultado.",
     img2_titulo: "CALCULARDOBRO",
-    img2_url: "./img_conteudos/sp5.png",
+    img2_url: "./img_conteudos/sp3.png",
   },
   {
-    id: 53,
-    titulo: "Subprograma",
-    subtitulo: "",
-    img1_alt: 'Imagem de um código em C de um subprograma "SOMAR".',
-    img1_descricao:
-      "Neste exemplo, a função SOMAR é um subprograma que aceita dois números como argumentos, soma-os e retorna o resultado. No main() função, nós chamamos a função somar com num1 e num2 como argumentos e imprimimos o resultado da soma.",
-    img1_titulo: "SOMAR",
-    img1_url: "./img_conteudos/sp6.png",
-  },
-  {
-    id: 54,
+    id: 55,
     titulo: "Subprograma",
     subtitulo: "",
     img1_alt:
@@ -612,12 +587,12 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       "Neste exemplo em Python, temos uma função chamada CALCULAR_MEDIA que recebe uma lista de números como argumento. A função calcula a média dos números na lista, retornando o valor da média.",
     img1_titulo: "CALCULAR_MEDIA",
-    img1_url: "./img_conteudos/sp7.png",
+    img1_url: "./img_conteudos/sp4.png",
     img2_alt:
       'Imagem de um código em Python de um subprograma "verificar_sinal".',
     img2_descricao:
       "Neste exemplo em Python, temos uma função chamada verificar_sinal que recebe um número como argumento. A função verifica se o número é positivo, negativo ou zero e retorna a mensagem correspondente.",
     img2_titulo: "VERIFICAR_SINAL",
-    img2_url: "./img_conteudos/sp8.png",
+    img2_url: "./img_conteudos/sp5.png",
   },
 ];
