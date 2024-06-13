@@ -23,6 +23,12 @@
 
 .component4 .conteudo h2{
     font-size: 1.875rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.component4 .conteudo img{
+    width: 17rem;
 }
 
 .component4 .conteudo p{

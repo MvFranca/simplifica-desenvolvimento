@@ -43,7 +43,7 @@ const HeaderProfile = () => {
         const user = localStorage.getItem("simplifica:user")!;
         const userObject = JSON.parse(user);
     
-        const idUser = Number(userObject.id_usuario);
+        const idUser = Number(userObject.id);
     
 
         if (file) {
@@ -55,7 +55,7 @@ const HeaderProfile = () => {
                 console.log(urlImg)
                     
                 axios
-                .post("http://localhost:8000/api/users/img_att", { urlImg, idUser })
+                .put(`http://localhost:8000/api/users/user/${idUser}/image`, { urlImg })
                 .then((res) => {
                     console.log(res)
 

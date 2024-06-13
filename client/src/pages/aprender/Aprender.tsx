@@ -22,18 +22,19 @@ const Aprender = () => {
 
   const [conteudo, setConteudo] = useState<Array<conteudos>>([]);
   const barra = useRef<HTMLDivElement>(null);
-  const [width, setWidth] = useState(0);
+  const [width, setWidth] = useState(10);
   const [assuntoAtual, setAssuntoAtual] = useState(0);
-  const widthElement: number = 100 / conteudo.length;
+  const widthElement: number = 100 / (conteudo.length - 1);
+  const [typeComponent, setTypeComponent] = useState(1);
 
 
   const { id } = useParams();
   const router = useNavigate()
 
   async function conteudos() {
-    const api = await fetch(`https://simplifica-desenvolvimento.vercel.app/aprenda/${id}.json`);
+    const api = await fetch(`http://localhost:8000/api/aprender/conteudo/${id}`);
     const data = await api.json();
-    setConteudo(data);
+    setConteudo(data.data);
   }
 
   
@@ -45,13 +46,54 @@ const Aprender = () => {
   }, []);
 
 
-  const progressBar = () => setWidth(width + widthElement);
+  useEffect(() => {
 
-  const backProgress = () => setWidth(width - widthElement);
+    const conteudoAtual = conteudo[assuntoAtual];
+    console.log(conteudoAtual)
+    if (conteudoAtual) {
 
-  // useEffect(() => {
-  //   barra.current!.style.width = `${width}%`;
-  // }, [width]);
+      const componente4 = conteudoAtual.paragrafo && conteudoAtual.subtitulo && conteudoAtual.titulo && !conteudoAtual.img1_url
+      const componente3 = conteudoAtual.img1_url && conteudoAtual.img2_url && !conteudoAtual.subtitulo
+      const componente2 = conteudoAtual.img1_url && !conteudoAtual.img2_url && conteudoAtual.paragrafo && !conteudoAtual.subtitulo 
+      const componente1 = conteudoAtual.img1_url && !conteudoAtual.img2_url && conteudoAtual.subtitulo
+
+  
+      componente4 ?
+        setTypeComponent(4)
+      : 
+      componente3 ?
+        setTypeComponent(3)
+
+      : componente2 ?
+        setTypeComponent(2)
+      :
+        componente1 &&
+        setTypeComponent(1)
+    }
+  }, [conteudo, assuntoAtual])
+
+
+  const progressBar = () => {
+
+    if(conteudo.length > 0){
+        setWidth(prev => prev + widthElement) 
+    }
+ 
+  };
+
+  const backProgress = () => {
+    if(conteudo.length > 0){
+    setWidth(width - widthElement)
+    }
+  };
+
+  useEffect(() => {
+    console.log('width')
+        console.log(width)
+    if (barra.current) {
+      barra.current.style.width = `${width}%`;
+    }
+  }, [width]);
 
   useEffect(() => {
     progressBar();
@@ -78,14 +120,10 @@ const Aprender = () => {
     navigate('/')
   }
 
-
-  
-
-
   return (
     <>
       
-      {conteudo[0] ? 
+      {conteudo[assuntoAtual] ? 
       <div className={styles.container_conteudo}>
           <div className={styles.conteudo}>
             <div className={styles.miniHeader}>
@@ -98,22 +136,35 @@ const Aprender = () => {
               </Link>
             </div>
 
+              {
+                typeComponent == 1 ?
+                <Component1
+                data = {conteudo[assuntoAtual]}
+                />
 
-                  <Component1/>
-            
-                  {/* <Component2/> */}
-            
-                  {/* <Component3/> */}
-            
-                  {/* <Component4/> */}
-            
-                    <OpcoesAprender
-              avancar={avancar}
-              voltar={voltar}
-              assuntoAtual={assuntoAtual}
-              conteudo={conteudo}
-              finalizar={finalizar}
-            />
+                :  typeComponent == 2 ?
+                <Component2
+                data = {conteudo[assuntoAtual]}
+                />
+
+                : typeComponent == 3 ?
+                <Component3
+                data = {conteudo[assuntoAtual]}
+                /> 
+
+                : typeComponent == 4 &&
+                <Component4
+                  data = {conteudo[assuntoAtual]}
+                />
+              }
+
+              <OpcoesAprender
+                avancar={avancar}
+                voltar={voltar}
+                assuntoAtual={assuntoAtual}
+                conteudo={conteudo}
+                finalizar={finalizar}
+              />
           </div>
 
 

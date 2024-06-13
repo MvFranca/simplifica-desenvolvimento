@@ -105,23 +105,23 @@ const Botoes = ({ id, conteudo}: props) => {
   }
 
 
-  // useEffect(() => {
+  useEffect(() => {
  
    
-  //   if(modalBau){
-  //     const user = localStorage.getItem("simplifica:user")!;
-  //     const userObject = JSON.parse(user);
-  //     const idUser = Number(userObject.id_usuario);
+    if(modalBau){
+      const user = localStorage.getItem("simplifica:user")!;
+      const userObject = JSON.parse(user);
+      const idUser = Number(userObject.id);
       
-  //     axios.put("http://localhost:8000/api/points/updateFogo", {idUser, fogo}).then((res) => {
-  //       console.log(res)
-  //     }).catch((err:Error) => {
-  //       console.log(err)
-  //     })
+      axios.put(`http://localhost:8000/api/points/user/${idUser}/fogo`, {fogo}).then((res) => {
+        console.log(res)
+      }).catch((err:Error) => {
+        console.log(err)
+      })
 
-  //   } 
+    } 
 
-  // }, [fogo, modalBau])
+  }, [fogo, modalBau])
 
 
 
@@ -132,15 +132,15 @@ const Botoes = ({ id, conteudo}: props) => {
     if(modalTrofeu){
       const user = localStorage.getItem("simplifica:user")!;
       const userObject = JSON.parse(user);
-      const idUser = Number(userObject.id_usuario);
+      const idUser = Number(userObject.id);
 
-      axios.put(`http://localhost:8000/api/points/user/${idUser}/diamantes`, {pontos}).then((res) => {
+      axios.put(`http://localhost:8000/api/points/user/${idUser}/diamantes`, {pontos:pontos}).then((res) => {
         console.log(res)
       }).catch((err:Error) => {
         console.log(err)
       })
 
-      axios.put(`http://localhost:8000/api/points/user/${idUser}/fogo`, {fogo}).then((res) => {
+      axios.put(`http://localhost:8000/api/points/user/${idUser}/fogo`, {fogo: fogo}).then((res) => {
         console.log(res)
       }).catch((err:Error) => {
         console.log(err)

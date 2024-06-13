@@ -51,9 +51,13 @@ h1 {
   margin: 0;
 }
 
+.barradeProgresso{
+  width: 100%;
+
+}
+
 .barradeProgresso,
 .progresso {
-  width: 76%;
   border-radius: 13px;
   height: 28px;
   background-color: #e5e5e5;
@@ -62,6 +66,7 @@ h1 {
 .progresso {
   background-color: #268aff;
   transition: 0.3s all;
+  width: 10%;
 }
 
 .informacoes {

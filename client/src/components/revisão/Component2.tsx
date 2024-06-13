@@ -1,33 +1,41 @@
 import styles from '../../styles/aprender/Component2.module.css'
+import { conteudos } from '../../types/conteudos';
 
-const Component2 = () => {
+                
+type props = {
+    data: conteudos
+}
+
+
+const Component2 = ({data}: props) => {
 return ( 
         <div className={styles.component2}>
-            <h2>
+            {/* <h2>
                 Condicional “if”
                 <img src="/aprenda/retangulo.png" alt="Retangulo abaixo do título" />
-            </h2>
+            </h2> */}
             
             <div className={styles.explicacao}>
                 <div className={styles.esquerda}>
-                    <img src="/aprenda/imagem-teste.png" alt="" className={styles.imagem}/>
-                    <p>
+                    <img src={`${ data.img1_url }`} alt={`${data.img1_alt}`} className={styles.imagem}/>
+                    {/* <p>
                         Aqui nós temos isso isso isso isso isso fdsfdhsf  fsdfdsfhfhsd fdsfksdghfsdf fsdhfsdg sfsd fsdjk sd fdshf dskjf jkdsfjkfsd
-                    </p>
+                    </p> */}
                 </div>
                 <div className={styles.barra}/>
                 <div className={styles.direita}>
                     <p>
-                        A variável i indica o valor inicial do loop, que nesse caso é 0.
-                       verdade  i indica o valor inicial do loop, que nesse caso é de devariável i indica o valor ini sdfsdf sdaf f sdf sdfsdf asdfs
+                        {
+                            data.paragrafo
+                        }
                 
                     </p>
-                    <p>
+                    {/* <p>
                         O segundo parâmetro indica a condição para que o loop aconteça;
                     </p>
                     <p>
                         O terceiro parâmetro indica o valor que será somado a variável i após cada repetição.
-                    </p>
+                    </p> */}
                 </div>
             </div>
 

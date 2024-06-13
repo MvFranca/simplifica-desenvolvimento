@@ -51,14 +51,15 @@ const FormResposta = ({state, novaResposta, formRespostas}: props) => {
 
     function enviarResposta()   {
         event?.preventDefault()
-        const idUser = JSON.parse(localStorage.getItem("simplifica:user")!).id_usuario
+        const idUser = JSON.parse(localStorage.getItem("simplifica:user")!).id
         axios.post("http://localhost:8000/api/community/comentarios", {
             idUser,
             descricao: descricao,
             url_img: String(Url.current),
             data: String(formatDate(new Date())),
             hora: hour(),
-            id_duvida: id
+            id_duvida: id,
+            titulo: ''
         }). then(() => {
             responder.current!.style.marginLeft = "200vw"
             

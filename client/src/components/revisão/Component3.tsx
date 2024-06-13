@@ -1,21 +1,26 @@
 import styles from '../../styles/aprender/Component3.module.css'
+import { conteudos } from '../../types/conteudos';
 
-const Component3 = () => {
+type props = {
+    data: conteudos
+}
+
+const Component3 = ({data}: props) => {
     return ( 
         <div className={styles.component3}>
             <div className={styles.esquerda}>
 
                 <h2>
-                    Condicional “if”
+                    {data.img1_titulo}
                     <img src="/aprenda/retangulo.png" alt="Retangulo abaixo do título" />
                 </h2>
 
-                <img src="/aprenda/imagem-teste.png" alt="" className={styles.imagem}/>
+                <img src={`${data.img1_url}`} alt={`${data.img1_alt}`} className={styles.imagem}/>
 
                 <p>
-                A variável i indica o valor inicial do loop, que nesse caso é 0.
-                O segundo parâmetro indica a condição para que o loop aconteça;
-                O terceiro parâmetro indica o valor que será somado a variável i após cada repetição.   
+                {
+                    data.img1_descricao
+                }  
                 </p>
 
             </div>
@@ -25,16 +30,16 @@ const Component3 = () => {
             <div className={styles.direita}>
                 
                 <h2>
-                    Condicional “switch”
+                   {data.img2_titulo}
                     <img src="/aprenda/retangulo.png" alt="Retangulo abaixo do título" />
                 </h2>
 
-                <img src="/aprenda/imagem-teste.png" alt="" className={styles.imagem}/>
+                <img src={`${data.img2_url}`} alt={`${data.img2_alt}`} className={styles.imagem}/>
 
                 <p>
-                A variável i indica o valor inicial do loop, que nesse caso é 0.
-                O segundo parâmetro indica a condição para que o loop aconteça;
-                O terceiro parâmetro indica o valor que será somado a variável i após cada repetição.   
+                {
+                    data.img2_descricao
+                }   
                 </p>
 
             </div>

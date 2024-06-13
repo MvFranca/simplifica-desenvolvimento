@@ -1,11 +1,21 @@
 
 import styles from '../../styles/aprender/Component1.module.css'
+import { conteudos } from '../../types/conteudos';
 
-const Component1 = () => {
+
+type props = {
+    data: conteudos
+}
+
+
+const Component1 = ({data}: props) => {
+
+    
+
     return ( 
         <div className={styles.component1}>
            
-        <section className={styles.header}>
+        {/* <section className={styles.header}>
 
             <h2>
                 Estruturas de Repetição
@@ -17,7 +27,7 @@ const Component1 = () => {
             representadas nas imagens a seguir: 
             </p>
 
-        </section>
+        </section> */}
         <hr/>
         <section className={styles.explicacao} >
 
@@ -25,22 +35,17 @@ const Component1 = () => {
                 className={styles.esquerda}
             >
                     <h3>
-                    Laço de repetição FOR
+                    {data.img1_titulo}
                     <img src="/aprenda/retangulo.png" alt="Retangulo abaixo do título" />
                     </h3>
-                    <img src="/aprenda/imagem-teste.png" alt="" className={styles.imagem}/>
+                    <img src={`${data.img1_url}`} alt={`${data.img1_alt}`} className={styles.imagem}/>
             </div >
             <div className={styles.barra}/>
             <div
             className={styles.direita}
             >
                 <p>
-                O laço FOR é composto por três parâmetros.
-                </p>
-                <p>
-                A variável i indica o valor inicial do loop, que nesse caso é 0.
-                O segundo parâmetro indica a condição para que o loop aconteça;
-                O terceiro parâmetro indica o valor que será somado a variável i após cada repetição.
+                {data.paragrafo}
                 </p>
             </div >
                     

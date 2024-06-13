@@ -15,7 +15,7 @@ export async function GetImgUser(){
     const userObject = await JSON.parse(user);
 
     return await axios
-        .get(`http://localhost:8000/api/users/img_get?idUser=${userObject.id_usuario}`)
+        .get(`http://localhost:8000/api/users/user/${userObject.id}/image`)
         .then((res) => {
         
         return res.data.data.resposta.url_image

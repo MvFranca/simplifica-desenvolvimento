@@ -1,6 +1,11 @@
 import styles from '../../styles/aprender/Component4.module.css'
+import { conteudos } from '../../types/conteudos';
 
-const Component4 = () => {
+type Props = {
+    data: conteudos
+}
+
+const Component4 = ({data}:Props) => {
     return ( 
 
         <div className={styles.component4}>
@@ -10,16 +15,15 @@ const Component4 = () => {
                 <div className={styles.conteudo}> 
 
                     <h2>
-                        O que são funções?
-                        <img src="" alt="" />
+                        {data.subtitulo}
+                        <img src="/aprenda/retangulo.png" alt="Retangulo abaixo do título" />
                     </h2>
                     
                     <div className={styles.paragrafos}>
                         <p>
-                            A variável i indica o valor inicial do loop, que nesse caso é 0. dsgfjfsj fsdf s os segundo parâmetro indica a condição para que o loop aconteça, o terceiro parâmetro indica o valor que será somado a variável i após cada repetição.
-                        </p>
-                        <p>
-                            A variável i indica o valor inicial do loop, que nesse caso é 0. dsgfjfsj fsdf s os segundo parâmetro indica a condição para que o loop aconteça, o terceiro parâmetro indica o valor que será somado a variável i após cada repetição.
+                            {
+                                data.paragrafo
+                            }
                         </p>
                     </div>
                 </div>

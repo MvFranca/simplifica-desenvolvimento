@@ -69,8 +69,8 @@ const ShowDuvida = () => {
 
   async function respostas(id_duvida:string) {
     try{
-      const res = await axios.get(`http://localhost:8000/api/community/comentarios?id_duvida=${id_duvida}`)
-      setComentarios(await res.data.data.resposta)
+      const res = await axios.get(`http://localhost:8000/api/community/duvidas/${id_duvida}/comentarios`)
+      setComentarios(await res.data.data)
     }
     catch(error){
       console.log(error)
@@ -212,15 +212,15 @@ const ShowDuvida = () => {
                       }
                     </p>
                     <p className={styles.username}>
-                      <span>{resposta.username}</span>
+                      <span>{resposta.usuario.username}</span>
                     </p>
                   </div>
                 </div>
                 <div className={styles.line}></div>
-                <p className={styles.description}>{resposta.descricao_comentario}</p>
-                {resposta.url_img_comentario && (
+                <p className={styles.description}>{resposta.descricao}</p>
+                {resposta.img_url && (
                   <ImagemComModal
-                    src={resposta.url_img_comentario}
+                    src={resposta.img_url}
                     alt={resposta.username + " image"}
                     classNameImagem={styles.image}
                   />

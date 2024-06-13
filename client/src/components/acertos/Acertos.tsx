@@ -44,10 +44,10 @@ const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
       const user = localStorage.getItem("simplifica:user")!
       const userObject = JSON.parse(user)
       
-      const idUser = Number(userObject.id_usuario)
+      const idUser = Number(userObject.id)
       // .put("https://simplifica-desenvolvimento.onrender.com/api/points/updateDiamantes", { idUser, pontos })
       axios
-        .put("http://localhost:8000/api/points/updateFogo", { idUser, fogo })
+        .put(`http://localhost:8000/api/points/user/${idUser}/fogo`, { fogo })
         .then((res) => {
           console.log(res);
           // setRes(true)
