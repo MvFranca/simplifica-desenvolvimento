@@ -23,8 +23,8 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img2_titulo: "Em C",
     img1_alt: "Código em portugol dos tipos de variáveis.",
     img2_alt: "Código em C dos tipos de variáveis",
-    img1_url: "./img_conteudos/variaveis1.png",
-    img2_url: "./img_conteudos/variaveis2.png",
+    img1_url: "/img_conteudos/variaveis1.png",
+    img2_url: "/img_conteudos/variaveis2.png",
     img1_descricao:
       "Observe que para diferentes tipos de informações temos diferentes tipos de variáveis, uma vez que cada tipo de variável é destinada para receber informações de uma determinada característica. Para escolher a variável que será utilizada é necessário uma análise do contexto para perceber quais funções o programa deve realizar, e os elementos que a variável deverá armazenar.",
     img2_descricao:
@@ -45,8 +45,8 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img2_titulo: "Em Python",
     img1_alt: "Código em Portugol da declaração de variáveis.",
     img2_alt: "Código em Python da declaração de variáveis.",
-    img1_url: "./img_conteudos/variaveis3.png",
-    img2_url: "./img_conteudos/variaveis4.png",
+    img1_url: "/img_conteudos/variaveis3.png",
+    img2_url: "/img_conteudos/variaveis4.png",
     img1_descricao:
       'Observe que para declarar a variável primeiro informamos o tipo dela e em seguida nomeamos, podendo também atribuí-la um valor adicionando o símbolo "=" e em seguida o valor que ela recebe.',
     img2_descricao:
@@ -60,7 +60,7 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     paragrafo:
       "Podemos também inicializar a variável atribuindo a ela um valor, para que ela assuma aquele determinado valor enquanto não for atribuída nenhuma mudança à ela, para isto é necessário apenas que seja inserido um sinal de igualdade e o valor que a variável recebe, na frente dela. Exemplo:",
     img1_alt: "Código em Portugol da inicialização de variáveis",
-    img1_url: "./img_conteudos/variaveis5.png",
+    img1_url: "/img_conteudos/variaveis5.png",
   },
   {
     id: 7,
@@ -84,12 +84,12 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       'Este exemplo utiliza a saída de dados do Portugol para exibir a mensagem "Olá mundo".',
     img1_titulo: "Saída (output)",
-    img1_url: "./img_conteudos/io1.png",
+    img1_url: "/img_conteudos/io1.png",
     img2_alt: "Código na linguagem Portugol de uma entrada de dados.",
     img2_descricao:
       "Este exemplo utiliza a entrada de dados do Portugol para ler e armazenar um número inteiro em uma variável. Logo após, utiliza a saída de dados para exibir o número digitado.",
     img2_titulo: "Entrada (input)",
-    img2_url: "./img_conteudos/io2.png",
+    img2_url: "/img_conteudos/io2.png",
   },
   {
     id: 10,
@@ -99,12 +99,12 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       "Em C, é utilizado printf() para escrever e scanf() para ler. Neste exemplo, o programa solicita ao usuário que digite seu nome, lê o nome fornecido pelo usuário e em seguida exibe uma saudação personalizada com o nome digitado.",
     img1_titulo: "Em C",
-    img1_url: "./img_conteudos/io3.png",
+    img1_url: "/img_conteudos/io3.png",
     img2_alt: "Código na linguagem Python de uma entrada e saída de dados.",
     img2_descricao:
       "Em Python, é utilizado print() para escrever e input() para ler. Neste exemplo, usamos a entrada e saída de dados da linguagem python para pedir o nome do usuário e transmitir uma mensagem de boas vindas.",
     img2_titulo: "Em Python",
-    img2_url: "./img_conteudos/io4.png",
+    img2_url: "/img_conteudos/io4.png",
   },
   {
     id: 11,
@@ -128,7 +128,7 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     subtitulo: "",
     img1_alt: 'Código da estrutura de condição "se" em Portugol.',
     img2_alt: 'Código da estrutura de condição "if" em C.',
-    img1_url: "./img_conteudos/ed1.png",
+    img1_url: "/img_conteudos/ed1.png",
     img2_url: ".img_conteudos/ed2.png",
     img1_descricao:
       "No exemplo acima estamos analisando se a idade do indivíduo corresponde a classificação do filme, se a idade do usuário não corresponder à idade mínima ideal para assistir, será impresso na tela uma mensagem na tela informando que não será possível assistir ao filme. Caso contrário, o código continuará a ser executado normalmente.",
@@ -143,8 +143,8 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img2_titulo: 'Condicional "if" em Python',
     img1_alt: 'Código da estrutura de condição "se" em Portugol.',
     img2_alt: 'Código da estrutura de condição "if" em Python.',
-    img1_url: "./img_conteudos/ed1.png",
-    img2_url: "./img_conteudos/ed3.png",
+    img1_url: "/img_conteudos/ed1.png",
+    img2_url: "/img_conteudos/ed3.png",
     img1_descricao:
       "No exemplo acima estamos analisando se a idade do indivíduo corresponde a classificação do filme, se a idade do usuário não corresponder à idade mínima ideal para assistir, será impresso na tela uma mensagem na tela informando que não será possível assistir ao filme. Caso contrário, o código continuará a ser executado normalmente.",
     img2_descricao:
@@ -165,8 +165,8 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     subtitulo: "",
     img1_alt: "Operadores lógicos em Python",
     img2_alt: "Operadores lógicos em C",
-    img1_url: "./img_conteudos/ed4.png",
-    img2_url: "./img_conteudos/ed5.png",
+    img1_url: "/img_conteudos/ed4.png",
+    img2_url: "/img_conteudos/ed5.png",
     img1_descricao:
       "Operador && (E): vai analisar duas condições, é necessário que ambas sejam verdadeiras para execução do comando, ou seja, para que o resultado seja verdadeiro. Operador || (OU): Para que o resultado seja verdadeiro é necessário apenas que uma das condições sejam verdadeiras. Operador ! (NÃO): A consequência de uma condição é anulada. Se a condição for verdadeira, ela se torna falsa, e assim por diante.",
     img2_descricao:
@@ -181,7 +181,7 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       "O programa define duas variáveis a e b, realiza operações matemáticas básicas (soma, subtração, multiplicação e divisão) com essas variáveis e exibe os resultados utilizando a função printf(). O programa verifica se a divisão por zero é evitada e trata adequadamente esse caso, exibindo uma mensagem de erro se necessário. Finalmente, o programa retorna 0 para indicar a conclusão bem-sucedida da execução.",
     img1_titulo: "Operações matemáticas",
-    img1_url: "./img_conteudos/ed6.png",
+    img1_url: "/img_conteudos/ed6.png",
   },
   {
     id: 18,
@@ -190,7 +190,7 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     paragrafo:
       'Essa condição funciona de maneira similar a anterior, entretanto, este bloco do código só será executado se o primeiro comando for falso. Neste exemplo, a idade deve ser maior que 18 para que o comando dentro do "se" seja executado, caso contrário, será executada a função do "senao". Observe abaixo a estrutural:',
     img1_alt: 'Condição "senão" em Portugol.',
-    img1_url: "./img_conteudos/ed7.png",
+    img1_url: "/img_conteudos/ed7.png",
   },
   {
     id: 19,
@@ -200,8 +200,8 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     subtitulo: "",
     img1_alt: 'Condicional "else" em C.',
     img2_alt: 'Condicional "elif"/"else if" em Python.',
-    img1_url: "./img_conteudos/ed8.png",
-    img2_url: "./img_conteudos/ed9.png",
+    img1_url: "/img_conteudos/ed8.png",
+    img2_url: "/img_conteudos/ed9.png",
     img1_descricao:
       'Parte da mesma lógica do "senao".  Neste exemplo, a idade deve ser maior que 18 para que o comando dentro do "if" seja executado, caso contrário, será executada a função do "else" (em Python também são como "if" e "else").',
     img2_descricao:
@@ -214,7 +214,7 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     paragrafo:
       "Eles são estruturas de código que se repetem de acordo com uma condição; que, caso verdadeira, o laço repete. Usados quando há necessidade de repetir uma ação várias vezes com poucas linhas de código.",
     img1_alt: "Exemplo gráfico de um laço de repetição.",
-    img1_url: "./img_conteudos/lr1.png",
+    img1_url: "/img_conteudos/lr1.png",
   },
   {
     id: 21,
@@ -229,14 +229,14 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     subtitulo: "Tipos de laços",
     img1_titulo: "Pós-teste",
     img1_alt: 'Laço de repetição "pós-teste" em Portugol.',
-    img1_url: "./img_conteudos/lr2.png",
+    img1_url: "/img_conteudos/lr2.png",
     img1_descricao:
       'Nesse tipo, primeiro ocorre a execução do código e, em seguida, ele testa a condição para decidir se deve continuar a repetição ou não. Isso garante que o código seja executado pelo menos uma vez. No exemplo, o "i" será escrito uma vez e se a condição não for atendida o código não se repetirá.',
     img2_titulo: "Pré-teste",
     img2_alt: 'Laço de repetição "pré-teste" em Portugol.',
     img2_descricao:
       'Nos laços pré-teste, a condição é verificada antes da execução das ações ordenadas. Se a condição não for atendida desde o início, o código não será executado nenhuma vez. No exemplo, enquanto "i" for menor que 10, o código se repete.',
-    img2_url: "./img_conteudos/lr3.png",
+    img2_url: "/img_conteudos/lr3.png",
   },
   {
     id: 23,
@@ -246,12 +246,12 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       'O "para" é o comando "for" em portugol, "i" é o nome dado à variável que armazena o número de início do loop, adicionado no primeiro parâmetro. No segundo parâmetro é definido o número limite de repetições. O terceiro parâmetro serve para adicionar uma unidade a mais a variável "i" a cada repetição.',
     img1_titulo: "Em Portugol",
-    img1_url: "./img_conteudos/lr4.png",
+    img1_url: "/img_conteudos/lr4.png",
     img2_alt: 'Laço de repetição "For" em Portugol.',
     img2_descricao:
       'O comando "for" é declarado como "for i in range", sendo "i" o nome da variável. Sua estrutura é simples, sendo o primeiro parâmetro o valor da variável "i", o segundo parâmetro o limite de repetições e o terceiro parâmetro dita que a cada loop será adicionado 1 valor a mais a variável "i".',
     img2_titulo: "Em Python",
-    img2_url: "./img_conteudos/lr5.png",
+    img2_url: "/img_conteudos/lr5.png",
   },
   {
     id: 24,
@@ -261,12 +261,12 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       'O "para" é o comando "for" em portugol, "i" é o nome dado à variável que armazena o número de início do loop, adicionado no primeiro parâmetro. No segundo parâmetro é definido o número limite de repetições. O terceiro parâmetro serve para adicionar uma unidade a mais a variável "i" a cada repetição.',
     img1_titulo: "Em Portugol",
-    img1_url: "./img_conteudos/lr4.png",
+    img1_url: "/img_conteudos/lr4.png",
     img2_alt: 'Laço de repetição "For" em C.',
     img2_descricao:
       'A estrutura do "for" em linguagem C é extremamente parecida com portugol, tendo apenas como diferença a troca do comando "para" para "for". Sendo assim, sua estrutura se repete com o mesmo formato descrito em portugol.',
     img2_titulo: "Em C",
-    img2_url: "./img_conteudos/lr6.png",
+    img2_url: "/img_conteudos/lr6.png",
   },
   {
     id: 25,
@@ -276,12 +276,12 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       'O "enquanto" é o comando "while" em portugol, i é a variável que armazena o número 0. O comando "enquanto" continuará a se repetir enquanto a condição for atendida. Condição essa na qual "i" aumenta uma unidade a cada loop, esse que cessará quando "i" for menor que 10.',
     img1_titulo: "Em Portugol",
-    img1_url: "./img_conteudos/lr7.png",
+    img1_url: "/img_conteudos/lr7.png",
     img2_alt: 'Laço de repetição "while" em Python.',
     img2_descricao:
       'Em Python, o comando "while" mantém sua escrita e não há mais a necessidade de usar os parênteses e as chaves, sendo estes substituídos por ":" , mantendo o resto da estrutura.',
     img2_titulo: "Em Python",
-    img2_url: "./img_conteudos/lr8.png",
+    img2_url: "/img_conteudos/lr8.png",
   },
   {
     id: 26,
@@ -291,12 +291,12 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       'O "enquanto" é o comando "while" em portugol, i é a variável que armazena o número 0. O comando "enquanto" continuará a se repetir enquanto a condição for atendida. Condição essa na qual "i" aumenta uma unidade a cada loop, esse que cessará quando "i" for menor que 10.',
     img1_titulo: "Em Portugol",
-    img1_url: "./img_conteudos/lr7.png",
+    img1_url: "/img_conteudos/lr7.png",
     img2_alt: 'Laço de repetição "while" em C.',
     img2_descricao:
       'Como mostrado acima, não há nenhuma diferença entre a estrutura em portugol e C, exceto pelo comando que é escrito como "while".',
     img2_titulo: "Em C",
-    img2_url: "./img_conteudos/lr9.png",
+    img2_url: "/img_conteudos/lr9.png",
   },
   {
     id: 27,
@@ -306,12 +306,12 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       'O "faca/enquanto" é o comando "do/while" em portugol. O comando "faca" faz com que uma ação seja executada ao menos uma vez antes de ser testada pelo "enquanto" que aplica a condição para o loop se formar. Isso significa que mesmo que "i" fosse maior que 10, ele seria escrito ao menos uma vez.',
     img1_titulo: "Em Portugol",
-    img1_url: "./img_conteudos/lr10.png",
+    img1_url: "/img_conteudos/lr10.png",
     img2_alt: 'Laço de repetição "do while" em Python.',
     img2_descricao:
       'Em Python, o comando "do/while" não existe, porém, ainda é possível arranjar outras formas de aplicar a funcionalidade mesmo sem o comando específico, formando uma estrutura que se assemelha ao seu efeito, ainda que não efetivo quanto o original.',
     img2_titulo: "Em Python",
-    img2_url: "./img_conteudos/lr11.png",
+    img2_url: "/img_conteudos/lr11.png",
   },
   {
     id: 28,
@@ -321,12 +321,12 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       'O "faca/enquanto" é o comando "do/while" em portugol. O comando "faca" faz com que uma ação seja executada ao menos uma vez antes de ser testada pelo "enquanto" que aplica a condição para o loop se formar. Isso significa que mesmo que "i" fosse maior que 10, ele seria escrito ao menos uma vez.',
     img1_titulo: "Em Portugol",
-    img1_url: "./img_conteudos/lr10.png",
+    img1_url: "/img_conteudos/lr10.png",
     img2_alt: 'Laço de repetição "do while" em C.',
     img2_descricao:
       'Como mostrado acima, não há nenhuma diferença entre a estrutura em portugol e C, exceto pelo comando "faca"  e "enquanto" que passam a serem escritos como "do" e "while".',
     img2_titulo: "Em C",
-    img2_url: "./img_conteudos/lr12.png",
+    img2_url: "/img_conteudos/lr12.png",
   },
   {
     id: 29,
@@ -335,7 +335,7 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     paragrafo:
       "São variáveis que podem armazenar outras variáveis. São como uma caixa que pode armazenar outras caixas, essas por sua vez têm suas localizações identificadas por números únicos, chamados de índices.",
     img1_alt: "Imagem da representação de um vetor de 4 posições.",
-    img1_url: "./img_conteudos/v1.png",
+    img1_url: "/img_conteudos/v1.png",
   },
   {
     id: 30,
@@ -352,12 +352,12 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       'O vetor é declarado com a quantidade de índices desejados entre "[ ]". Depois, é preciso um laço de repetição para ler os dados, e para indicar o índice que armazenará o dado é colocado o "i" entre "[ ]", que automaticamente muda o índice a cada loop. O laço deve ser menor ou igual ao vetor.',
     img1_titulo: "Em Portugol",
-    img1_url: "./img_conteudos/v2.png",
+    img1_url: "/img_conteudos/v2.png",
     img2_alt: "Leitura de dados em vetores na linguagem Python.",
     img2_descricao:
       'O vetor não precisa de um tamanho definido, por isso ele pode ser declarado vazio. Para armazenar é usado o ".append( )" e entre "( )" fica a variável ou o dado a ser recebido. Para que a leitura dê certo, é preciso ter uma variável fora do laço, que receba os dados e repasse para o vetor, que não pode receber diretamente.',
     img2_titulo: "Em Python",
-    img2_url: "./img_conteudos/v3.png",
+    img2_url: "/img_conteudos/v3.png",
   },
   {
     id: 32,
@@ -367,12 +367,12 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       'O vetor é declarado com a quantidade de índices desejados entre "[ ]". Depois, é preciso um laço de repetição para ler os dados, e para indicar o índice que armazenará o dado é colocado o "i" entre "[ ]", que automaticamente muda o índice a cada loop. O laço deve ser menor ou igual ao vetor.',
     img1_titulo: "Em Portugol",
-    img1_url: "./img_conteudos/v2.png",
+    img1_url: "/img_conteudos/v2.png",
     img2_alt: "Leitura de dados em vetores na linguagem C.",
     img2_descricao:
       'Em linguagem C, a leitura de vetor segue a mesma estrutura do Portugol, sendo declarado com o número de índices, lido, normalmente, em um "for" e tendo seu endereço indicado pela variável "i". O scanf o "%i" indica o tipo da variável e o "&" indica a variável que receberá esse dado.',
     img2_titulo: "Em C",
-    img2_url: "./img_conteudos/v4.png",
+    img2_url: "/img_conteudos/v4.png",
   },
   {
     id: 33,
@@ -389,12 +389,12 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       'Após o vetor ter recebido os dados, é preciso escrevê-los, para isso se usa um "para" idêntico ao primeiro, com o mesmo tamanho, e dentro dele está o "escreva" que vai exibir o vetor de índice "i", que indica endereço do dado a ser exibido.',
     img1_titulo: "Em Portugol",
-    img1_url: "./img_conteudos/v5.png",
+    img1_url: "/img_conteudos/v5.png",
     img2_alt: "Escrita de dados em vetores na linguagem Python.",
     img2_descricao:
       'Em Python, apesar da "leitura" ser diferente do portugol, a "escrita" não é. Já tendo lido os dados, basta apenas fazer outro "for" de tamanho 10 e nele contendo um "print" que vai escrever todos os dados do vetor.',
     img2_titulo: "Em C",
-    img2_url: "./img_conteudos/v6.png",
+    img2_url: "/img_conteudos/v6.png",
   },
   {
     id: 35,
@@ -404,12 +404,12 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       'Após o vetor ter recebido os dados, é preciso escrevê-los, para isso se usa um "para" idêntico ao primeiro, com o mesmo tamanho, e dentro dele está o "escreva" que vai exibir o vetor de índice "i", que indica endereço do dado a ser exibido.',
     img1_titulo: "Em Portugol",
-    img1_url: "./img_conteudos/v5.png",
+    img1_url: "/img_conteudos/v5.png",
     img2_alt: "Escrita de dados em vetores na linguagem C.",
     img2_descricao:
       'Em linguagem C, assim como em portugol e em Python, a estrutura de escrita é a mesma, com um "for" idêntico ao usado na "leitura", com um "printf" para exibir todos os dados do vetor.',
     img2_titulo: "Em C",
-    img2_url: "./img_conteudos/v7.png",
+    img2_url: "/img_conteudos/v7.png",
   },
   {
     id: 36,
@@ -433,7 +433,7 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_alt: "Método Insertion Sort em Portugol",
     img1_descricao:
       'Primeiro faça dois "para" um para controlar o primeiro índice do vetor e outro para o segundo índice, com o controle sobre esses dois índices, são feitas as comparações.\nSe o vetor [a] for maior que o [b], ele já não é o menor, então é preciso colocar o [b] como primeiro, com a variável aux é feita esse troca, aux recebe os dados de [b], [b](que agora está vazio) recebe os de [a] e o [a] recebe os dados de aux.\nSe o vetor [a] for menor que [b], ele será testado com os outros índices do vetor [b]. E após os testes aquele indíce de [a] for o menor, então ele continua em sua posição enquanto os outros índices são testados, até que todos estejam em ordem crescente.',
-    img1_url: "./img_conteudos/v8.png",
+    img1_url: "/img_conteudos/v8.png",
   },
   {
     id: 39,
@@ -443,7 +443,7 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       "Em Python, há uma mistura da leitura de vetores de python, com a mesma estrutura de ordenação mostrada em Portugol, tendo apenas diferenças de sintaxe da própria linguagem.",
     img1_titulo: "Em Python",
-    img1_url: "./img_conteudos/v9.png",
+    img1_url: "/img_conteudos/v9.png",
   },
   {
     id: 40,
@@ -453,7 +453,7 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       "Esse é o exemplo desse método em linguagem C, como é possível observar o formato é o mesmo que em Portugol, as únicas diferenças se devem à sintaxe, própria da linguagem C.",
     img1_titulo: "Em C",
-    img1_url: "./img_conteudos/v10.png",
+    img1_url: "/img_conteudos/v10.png",
   },
   {
     id: 41,
@@ -463,7 +463,7 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
       'São semelhantes aos vetores, porém mais complexas, pois são estruturadas por linhas e colunas. Vetores são unidimensionais(apenas linhas), já as matrizes são bidimensionais(linhas e colunas) e comportam mais dados, pois são maiores. A matriz é escrita como: "matriz[L,C]", sendo L a linha e C a coluna, que juntos formam o índice.',
     img1_alt: "Imagem da representação de uma matriz.",
     img1_titulo: "O que são matrizes?",
-    img1_url: "./img_conteudos/m1.png",
+    img1_url: "/img_conteudos/m1.png",
   },
   {
     id: 42,
@@ -480,12 +480,12 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       'A matriz é criada, no exemplo, com 2 linhas e 2 colunas. O primeiro "para" vai definir a linha que será lida e o segundo "para" definirá a coluna que será lida, as duas em conjunto. Dentro do "leia" tem a matriz e entre "[ ]" tem o número da linha e da coluna, decididos pela variável "l" e "c".',
     img1_titulo: "Em Portugol",
-    img1_url: "./img_conteudos/m2.png",
+    img1_url: "/img_conteudos/m2.png",
     img2_alt: "Leitura de matriz em Python.",
     img2_descricao:
       "Em Python, é misturado o formato único de armazenar vetores de python, com a mesma estrutura de ordenação mostrada em Portugol, tendo apenas diferenças de sintaxe da própria linguagem.",
     img2_titulo: "Em Python",
-    img2_url: "./img_conteudos/m3.png",
+    img2_url: "/img_conteudos/m3.png",
   },
   {
     id: 44,
@@ -495,12 +495,12 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       'A matriz é criada, no exemplo, com 2 linhas e 2 colunas. O primeiro "para" vai definir a linha que será lida e o segundo "para" definirá a coluna que será lida, as duas em conjunto. Dentro do "leia" tem a matriz e entre "[ ]" tem o número da linha e da coluna, decididos pela variável "l" e "c".',
     img1_titulo: "Em Portugol",
-    img1_url: "./img_conteudos/m2.png",
+    img1_url: "/img_conteudos/m2.png",
     img2_alt: "Leitura de matriz em C.",
     img2_descricao:
       "Esse é o exemplo desse método em linguagem C, como é possível observar o formato é o mesmo que em Portugol, as únicas diferenças se devem à sintaxe própria da linguagem C.",
     img2_titulo: "Em C",
-    img2_url: "./img_conteudos/m4.png",
+    img2_url: "/img_conteudos/m4.png",
   },
   {
     id: 45,
@@ -517,12 +517,12 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       'Com os dados já lidos e a matriz preenchida, para exibi-los basta repetir os "para" e escrever a matriz da forma mostrada, onde a cada repetição ela exibirá o índice indicado pela linha e coluna.',
     img1_titulo: "Em Portugol",
-    img1_url: "./img_conteudos/m5.png",
+    img1_url: "/img_conteudos/m5.png",
     img2_alt: "Escrita de matriz em Python.",
     img2_descricao:
       "Em Python, o processo e a explicação anterior se repetem, com a mesma estrutura mostrada em Portugol, tendo apenas diferenças de sintaxe da própria linguagem.",
     img2_titulo: "Em Python",
-    img2_url: "./img_conteudos/m6.png",
+    img2_url: "/img_conteudos/m6.png",
   },
   {
     id: 47,
@@ -532,12 +532,12 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       'Com os dados já lidos e a matriz preenchida, para exibi-los basta repetir os "para" e escrever a matriz da forma mostrada, onde a cada repetição ela exibirá o índice indicado pela linha e coluna.',
     img1_titulo: "Em Portugol",
-    img1_url: "./img_conteudos/m5.png",
+    img1_url: "/img_conteudos/m5.png",
     img2_alt: "Escrita de matriz em C.",
     img2_descricao:
       "Em linguagem C, o processo e a explicação anterior se repetem, com a mesma estrutura mostrada em Portugol, tendo apenas diferenças de sintaxe da própria linguagem.",
     img2_titulo: "Em C",
-    img2_url: "./img_conteudos/m7.png",
+    img2_url: "/img_conteudos/m7.png",
   },
   {
     id: 48,
@@ -561,7 +561,7 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       "Este código solicitará ao usuário os valores dos três lados de um triângulo, calculará se é possível formar um triângulo com esses lados e, se for possível, determinará e imprimirá que tipo de triângulo é (equilátero, isósceles ou escaleno).",
     img1_titulo: "TRIÂNGULO",
-    img1_url: "./img_conteudos/sp1.png",
+    img1_url: "/img_conteudos/sp1.png",
   },
   {
     id: 53,
@@ -571,12 +571,12 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       "Neste exemplo em C, a função MULTIPLICAR é um subprograma que aceita dois números como argumentos, multiplica e retorna o resultado. No main() função, nós chamamos multiplicar função com num1 e num2 como argumentos e, em seguida, imprimimos o resultado.",
     img1_titulo: "MULTIPLICAR",
-    img1_url: "./img_conteudos/sp2.png",
+    img1_url: "/img_conteudos/sp2.png",
     img2_alt: 'Imagem de um código em C de um subprograma "CALCULARDOBRO".',
     img2_descricao:
       "Neste exemplo em C, a função calcularDobro aceita um número como argumento, calcula o dobro desse número e retorna o resultado. No main() função, nós chamamos calcularDobro com o número 7 e imprimimos o resultado.",
     img2_titulo: "CALCULARDOBRO",
-    img2_url: "./img_conteudos/sp3.png",
+    img2_url: "/img_conteudos/sp3.png",
   },
   {
     id: 55,
@@ -587,12 +587,12 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_descricao:
       "Neste exemplo em Python, temos uma função chamada CALCULAR_MEDIA que recebe uma lista de números como argumento. A função calcula a média dos números na lista, retornando o valor da média.",
     img1_titulo: "CALCULAR_MEDIA",
-    img1_url: "./img_conteudos/sp4.png",
+    img1_url: "/img_conteudos/sp4.png",
     img2_alt:
       'Imagem de um código em Python de um subprograma "verificar_sinal".',
     img2_descricao:
       "Neste exemplo em Python, temos uma função chamada verificar_sinal que recebe um número como argumento. A função verifica se o número é positivo, negativo ou zero e retorna a mensagem correspondente.",
     img2_titulo: "VERIFICAR_SINAL",
-    img2_url: "./img_conteudos/sp5.png",
+    img2_url: "/img_conteudos/sp5.png",
   },
 ];
