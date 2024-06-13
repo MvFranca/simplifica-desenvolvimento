@@ -58,7 +58,7 @@ const Opcoes = () => {
             <div>
               <img
                 alt="livro"
-                src={"/book.png"}
+                src={"z/book.png"}
                 width={100}
                 height={100}
                 className={styles.imagens}

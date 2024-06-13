@@ -27,12 +27,13 @@ export interface IComentario {
   titulo_comentario?: string;
   turma: string;
   conteudo: string;
-  descricao_comentario?: string;
+  descricao?: string;
   // data: Date;
   hora_comentario: string;
   data_comentario: string;
-  url_img_comentario?: string;
-  respostas_comentario?: IResposta[];
+  img_url?: string;
+  respostas?: IResposta[];
+  usuario?: IUser
 }
 
 export interface Duvidas {
