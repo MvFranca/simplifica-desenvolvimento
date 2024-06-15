@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from '../../styles/ranking/Tabela.module.css'
 import IconDiamondd from '../icons/diamante.svg';
 // import Lupa from '../icons/lupa.svg'
@@ -47,6 +47,20 @@ const Tabela = () => {
     }, [option])
 
 
+    const divScore = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+
+        if (divScore.current) {
+            const diamanteSpan = divScore.current.querySelector<HTMLSpanElement>('[data-diamante]');
+            const fogoSpan = divScore.current.querySelector<HTMLSpanElement>('[data-fogo]');
+        
+            // Define os estilos com base no option usando operador ternário
+            diamanteSpan!.style.borderBottom = option === 'pontuacao' ? "3px solid #268AFF" : "3px solid transparent";
+            fogoSpan!.style.borderBottom = option === 'fogo' ? "3px solid #268AFF" : "3px solid transparent";
+          }
+
+    }, [option])
 
 
     return ( 
@@ -70,17 +84,20 @@ const Tabela = () => {
                 </div>
             </div> */}
 
-            <div className={styles.pointsOptions}>
+            <div className={styles.pointsOptions} ref={divScore}>
 
-                    <span className={styles[option]}
+                    <span 
+                        // className={styles[option]}
                         onClick={() => setOption("pontuacao")}
+                        data-diamante
                     >
                         Diamantes
                     </span>
 
                     <span
-                        className={styles[option]}
+                        // className={styles[option]}
                         onClick={() => setOption("fogo")}
+                        data-fogo
                     >
                         Fogo
                     </span>
