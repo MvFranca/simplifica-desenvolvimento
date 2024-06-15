@@ -1,5 +1,6 @@
 import styles from '../../styles/aprender/Component3.module.css'
 import { conteudos } from '../../types/conteudos';
+import ImagemComModal from '../ImagemComModal';
 
 type props = {
     data: conteudos
@@ -15,7 +16,14 @@ const Component3 = ({data}: props) => {
                     <img src="/aprenda/retangulo.png" alt="Retangulo abaixo do título" />
                 </h2>
 
-                <img src={`${data.img1_url}`} alt={`${data.img1_alt}`} className={styles.imagem}/>
+                <div className={styles.imagem}  >
+                    {/* <img src={`${data.img1_url}`} alt={`${data.img1_alt}`}/> */}
+                    <ImagemComModal
+                    src={`${data.img1_url}`}
+                    alt={data.img1_alt + " image"}
+                    classNameImagem={styles.imagem}
+                  />
+                </div>
 
                 <p>
                 {
@@ -33,8 +41,15 @@ const Component3 = ({data}: props) => {
                    {data.img2_titulo}
                     <img src="/aprenda/retangulo.png" alt="Retangulo abaixo do título" />
                 </h2>
-
-                <img src={`${data.img2_url}`} alt={`${data.img2_alt}`} className={styles.imagem}/>
+                
+                <div  className={styles.imagem}>
+                    {/* <img src={`${data.img2_url}`} alt={`${data.img2_alt}`}/> */}
+                    <ImagemComModal
+                    src={`${data.img2_url}`}
+                    alt={data.img2_alt + " image"}
+                    classNameImagem={styles.imagem}
+                  />
+                </div>
 
                 <p>
                 {

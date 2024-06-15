@@ -1,6 +1,7 @@
 
 import styles from '../../styles/aprender/Component1.module.css'
 import { conteudos } from '../../types/conteudos';
+import ImagemComModal from '../ImagemComModal';
 
 
 type props = {
@@ -38,7 +39,12 @@ const Component1 = ({data}: props) => {
                     {data.img1_titulo}
                     <img src="/aprenda/retangulo.png" alt="Retangulo abaixo do título" />
                     </h3>
-                    <img src={`${data.img1_url}`} alt={`${data.img1_alt}`} className={styles.imagem}/>
+                    <ImagemComModal
+                    src={`${data.img1_url}`}
+                    alt={data.img1_alt + " image"}
+                    classNameImagem={styles.image}
+                  />
+                    {/* <img src={`${data.img1_url}`} alt={`${data.img1_alt}`} className={styles.imagem}/> */}
             </div >
             <div className={styles.barra}/>
             <div

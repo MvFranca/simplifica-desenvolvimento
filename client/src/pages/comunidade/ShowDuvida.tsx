@@ -212,7 +212,7 @@ const ShowDuvida = () => {
                       }
                     </p>
                     <p className={styles.username}>
-                      <span>{resposta.usuario.username}</span>
+                      <span>{resposta.usuario?.username}</span>
                     </p>
                   </div>
                 </div>

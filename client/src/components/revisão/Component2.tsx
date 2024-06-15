@@ -1,5 +1,6 @@
 import styles from '../../styles/aprender/Component2.module.css'
 import { conteudos } from '../../types/conteudos';
+import ImagemComModal from '../ImagemComModal';
 
                 
 type props = {
@@ -17,7 +18,12 @@ return (
             
             <div className={styles.explicacao}>
                 <div className={styles.esquerda}>
-                    <img src={`${ data.img1_url }`} alt={`${data.img1_alt}`} className={styles.imagem}/>
+                    {/* <img src={`${ data.img1_url }`} alt={`${data.img1_alt}`} className={styles.imagem}/> */}
+                    <ImagemComModal
+                    src={`${ data.img1_url }`}
+                    alt={data.img1_alt + " image"}
+                    classNameImagem={styles.imagem}
+                  />
                     {/* <p>
                         Aqui nós temos isso isso isso isso isso fdsfdhsf  fsdfdsfhfhsd fdsfksdghfsdf fsdhfsdg sfsd fsdjk sd fdshf dskjf jkdsfjkfsd
                     </p> */}
