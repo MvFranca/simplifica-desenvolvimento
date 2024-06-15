@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import styles from '../../styles/ranking/Tabela.module.css'
 import IconDiamondd from '../icons/diamante.svg';
-import Lupa from '../icons/lupa.svg'
+// import Lupa from '../icons/lupa.svg'
 import axios from 'axios';
+import IconFire from '../icons/IconFire';
 
-interface pontuacao {
+export interface pontuacao {
     pontuacao: number,
     fogo: number
 }
@@ -18,35 +19,39 @@ interface users {
 const Tabela = () => {
 
     const [users, setUsers] = useState<Array<users>>([])
+    const [option, setOption] = useState< "pontuacao" | "fogo" >("pontuacao")
+
+
+    function ordenacao(arr: users[]){
+        arr.sort((a: { pontuacao: pontuacao; }, b: { pontuacao: pontuacao; }) => b.pontuacao[option] - a.pontuacao[option]);
+    }
 
     async function usersTable(){
         
     axios
       .get("http://localhost:8000/api/table/tableusers")
       .then((res) => {
-        console.log(res)
-        const usuarios = res.data.data
-        console.log('usuarios:')
-        console.log(usuarios)
-        usuarios.sort((a: { pontuacao: number; }, b: { pontuacao: number; }) => b.pontuacao - a.pontuacao);
 
-
+        const usuarios: users[] = res.data.data
+        ordenacao(usuarios)
         setUsers(usuarios);
+
       })
       .catch((err) => {
-        console.log("to aqui")
         console.log(err);
       });
     }
 
     useEffect(() => {
         usersTable()
-    }, [])
+    }, [option])
+
+
 
 
     return ( 
         <div  className={styles.tableRanking}>
-            <div className={styles.cabecalho}>
+            {/* <div className={styles.cabecalho}>
                 <h1>
                     Ranking
 
@@ -63,16 +68,21 @@ const Tabela = () => {
                     </button>
 
                 </div>
-            </div>
+            </div> */}
 
             <div className={styles.pointsOptions}>
 
-                    <span className={styles.diamantes}>
+                    <span className={styles[option]}
+                        onClick={() => setOption("pontuacao")}
+                    >
                         Diamantes
                     </span>
 
-                    <span>
-                        Foguinho
+                    <span
+                        className={styles[option]}
+                        onClick={() => setOption("fogo")}
+                    >
+                        Fogo
                     </span>
                 
             </div>
@@ -106,8 +116,10 @@ const Tabela = () => {
                                 -
                             </td>
                             <td className={styles.pontos}>
-                                {user.pontuacao.pontuacao}
-                                <img src={IconDiamondd} alt="Diamante" />
+                                {user.pontuacao[option]}
+                                {
+                                 option == "pontuacao"  ? <img src={IconDiamondd} alt="Diamante" /> : <IconFire width={23} height={23} color="rgb(255, 126, 66)" />
+                                }
                             </td>
                         </tr>
                         )
