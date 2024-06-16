@@ -6,6 +6,7 @@ import ImagemComModal from "../../components/ImagemComModal";
 // import { formatDate } from "../../helpers/formatDate";
 import axios from "axios";
 import FormResposta from "./FormReposta";
+import { formatDate } from "../../helpers/formatDate";
 
 const ShowDuvida = () => {
   //* hooks
@@ -134,7 +135,7 @@ const ShowDuvida = () => {
             <h3 className={styles.username}>{duvida?.usuario.username}</h3>
             <p className={styles.dataLabel}>
               {/* <span>Data:</span> {duvida?.data && formatDate(duvida?.data)} */}
-              <span>Data: {duvida?.createdAt}</span> 
+              <span>Data: {formatDate(String(duvida?.createdAt))}</span> 
               
             </p>
             <p className={styles.dataLabel}>

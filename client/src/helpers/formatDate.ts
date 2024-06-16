@@ -3,16 +3,26 @@ import { ptBR } from 'date-fns/locale';
 
 const dataAtual = new Date();
 
-export const formatDate = (date: Date) => {
-    const rawDay = date.getDate().toString();
-    const day = rawDay.length > 1 ? rawDay : "0" + rawDay;
+export const formatDate = (date: string) => {
+    // const rawDay = date.getDate().toString();
+    // const day = rawDay.length > 1 ? rawDay : "0" + rawDay;
   
-    const rawMonth = (date.getMonth() + 1).toString();
-    const month = rawMonth.length > 1 ? rawMonth : "0" + rawMonth;
+    // const rawMonth = (date.getMonth() + 1).toString();
+    // const month = rawMonth.length > 1 ? rawMonth : "0" + rawMonth;
   
-    const year = date.getFullYear();
+    // const year = date.getFullYear();
+
+    const data = new Date(date);
+
+// Obtém o dia, mês e ano da data
+  const day = data.getUTCDate();
+  const month = data.getUTCMonth() + 1; 
+  const year = data.getUTCFullYear();
+
+  const diaFormatado = day.toString().padStart(2, '0');
+  const mesFormatado = month.toString().padStart(2, '0');
   
-    return `${day}/${month}/${year}`;
+    return `${diaFormatado}/${mesFormatado}/${year}`;
   };
 
 

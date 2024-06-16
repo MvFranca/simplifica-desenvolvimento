@@ -1,15 +1,15 @@
-import { useEffect, useContext, useRef} from "react";
+import { useEffect, useContext, useRef, useState} from "react";
 import styles from "../../styles/comunidade/Chat.module.css";
 import DuvidaCard from "./duvida";
 // import { IoIosArrowForward } from "react-icons/io";
 import axios from "axios";
 import { pointContext } from "../../context/context";
 
-// import { obterDiaDaSemana, obterDiaDeHoje } from "../../helpers/formatDate";
+import { formatDate, obterDiaDaSemana, obterDiaDeHoje } from "../../helpers/formatDate";
 
 const Chat = () => {
 
-  // const [datas, setDatas] = useState<string[]>([])
+  const [datas, setDatas] = useState<string[]>([])
 
   const duvidasScroll = useRef<HTMLDivElement>(null)
 
@@ -34,17 +34,17 @@ const Chat = () => {
 
     if(duvidas.length != 0){
     
-      // const datasUnicasSet = new Set();
+      const datasUnicasSet = new Set();
 
 
-      // duvidas.forEach((duvida) => {
-      //   datasUnicasSet.add(duvida.data_duvida);
-      // });
+      duvidas.forEach((duvida) => {
+        datasUnicasSet.add(formatDate(duvida.createdAt));
+      });
 
-      // const datasUnicasArray =  Array.from(datasUnicasSet).map(data => String(data)).reverse()
+      const datasUnicasArray =  Array.from(datasUnicasSet).map(data => String(data)).reverse()
 
 
-      // setDatas(datasUnicasArray)
+      setDatas(datasUnicasArray)
     }
 
   }, [duvidas])
@@ -52,22 +52,22 @@ const Chat = () => {
   return (
     <div className={styles.chat}>
 
-      {/* {
+      {
         datas && 
-        datas.map((data) => {
+        datas.map((data: string) => {
 
-        return( */}
+        return(
           <section className={styles.infoDuvidas}>
             <div className={styles.infoData}>
 
               
 
               <span className={styles.data}>
-                {/* {
+                {
 
                   data == obterDiaDeHoje() ? "Hoje" 
                   : obterDiaDaSemana(data)
-                } */}
+                }
               </span>
               <span className={styles.borda} />
             </div>
@@ -81,7 +81,7 @@ const Chat = () => {
                   duvidas?.slice().reverse().map((duvida) =>{
 
 
-                    // if(duvida.data_duvida == data){
+                    if(formatDate(duvida.createdAt) == data){
                       return (
                         <DuvidaCard
                         duvida={{
@@ -92,7 +92,7 @@ const Chat = () => {
                         }}
                       />
                       )
-                    // }
+                    }
                    
                   })
                 }
@@ -102,9 +102,9 @@ const Chat = () => {
               </span> */}
             </div>
           </section>
-        {/* )
+         )
       })
-      } */}
+      } 
 
     </div>
   );
