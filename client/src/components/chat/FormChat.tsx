@@ -49,6 +49,7 @@ const FormChat = () => {
 
     
     async function submit(e: React.FormEvent<HTMLFormElement>){
+        
         e.preventDefault()
 
         const idUser = Number(userObject.id);
@@ -63,8 +64,8 @@ const FormChat = () => {
             idUser 
         }
 
-        console.log("duvida")
-        console.log(duvida)
+        // console.log("duvida")
+        // console.log(duvida)
 
         axios.post("http://localhost:8000/api/community/duvidas", duvida).
         then(() => 
@@ -92,7 +93,7 @@ const FormChat = () => {
                     url_img: ''
                 }];
 
-                console.log(duvidasAtt)
+                // console.log(duvidasAtt)
 
                 setDuvidas(duvidasAtt)
                 setForm(false)
