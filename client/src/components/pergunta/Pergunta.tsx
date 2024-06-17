@@ -22,7 +22,7 @@ const Pergunta = ({ assunto, totalQuestions }: props) => {
   const [fim, setFim] = useState(false);
 
   const resposta = {
-    assinalada: "",
+    assinalada: 0,
   };
 
   function progressBar() {
@@ -32,7 +32,7 @@ const Pergunta = ({ assunto, totalQuestions }: props) => {
     progresso.current!.style.width = `${Width}%`;
   }
 
-  function Assinalada(veracidade: string) {
+  function Assinalada(veracidade: number) {
     resposta.assinalada = veracidade;
   }
 
@@ -53,7 +53,7 @@ const Pergunta = ({ assunto, totalQuestions }: props) => {
     inputs.map(input => {
     if(input.checked){
 
-    if (resposta.assinalada == "t") {
+    if (resposta.assinalada == assunto[perguntaAtual].respostas.alternativa_correta) {
       setAcertos(acertos + 1);
     }
     setPerguntaAtual(perguntaAtual + 1);
@@ -99,31 +99,31 @@ const Pergunta = ({ assunto, totalQuestions }: props) => {
 
             <div className={styles.alternativas}  ref={alternativas}>
 
-              <div
+               <div
                 id="A"
                 onClick={() =>
-                  Assinalada(assunto[perguntaAtual].questaoA.veracidade)
+                  Assinalada(1)
                 }
               >
     
                 <input type="radio" name="teste" id="a" />
                 <label htmlFor="a">
-                  {assunto[perguntaAtual].questaoA.texto}
+                  {assunto[perguntaAtual].respostas.alternativa1}
                 </label>
 
               </div>
-
               <div
                 id="B"
                 onClick={() =>
-                  Assinalada(assunto[perguntaAtual].questaoB.veracidade)
+                  Assinalada(2)
                 }
               >
                 
                 <input type="radio" name="teste" id="b" />
                 <label htmlFor="b">
                   {" "}
-                  {assunto[perguntaAtual].questaoB.texto}
+                  {assunto[perguntaAtual].respostas.alternativa2}
+
                 </label>
 
               </div>
@@ -131,28 +131,31 @@ const Pergunta = ({ assunto, totalQuestions }: props) => {
               <div
                 id="C"
                 onClick={() =>
-                  Assinalada(assunto[perguntaAtual].questaoC.veracidade)
-                }
-              >
+                  Assinalada(3)
+                  }
+                  >
 
                 <input type="radio" name="teste" id="c" />
                 <label htmlFor="c">
                   {" "}
-                  {assunto[perguntaAtual].questaoC.texto}
+                  {assunto[perguntaAtual].respostas.alternativa3}
+
                 </label>
 
               </div>
+                  
 
               <div
               id="D"
               onClick={() =>
-                Assinalada(assunto[perguntaAtual].questaoD.veracidade)
+                Assinalada(4)
               }>
       
                 <input type="radio" name="teste" id="d" />
                 <label htmlFor="d">
                   {" "}
-                  {assunto[perguntaAtual].questaoD.texto}
+                  {assunto[perguntaAtual].respostas.alternativa4}
+
                 </label>
 
               </div>   

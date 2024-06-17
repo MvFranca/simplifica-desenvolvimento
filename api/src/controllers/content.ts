@@ -42,3 +42,44 @@ export const getContent = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const getQuestions = async (req: Request, res: Response) => {
+ 
+  try{
+    
+    const {id} = req.params;
+    const idUserInt = parseInt(id as string);
+
+    const prisma = new PrismaClient();
+
+    const data = await prisma.questao.findMany({
+      where: {
+          id_grupo: idUserInt
+        },
+        include: {
+          respostas: {
+            select: {
+              alternativa1: true,
+              alternativa2: true,
+              alternativa3: true,
+              alternativa4: true,
+              alternativa_correta: true
+            },
+          },
+        },
+    });
+
+    return res.status(200).json({
+      data,
+    });
+    
+  } catch (error) {
+    return res.status(500).json({
+      msg: "Servidor indisponível.",
+      error,
+    });
+  }
+
+
+
+}
