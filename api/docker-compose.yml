@@ -16,6 +16,7 @@ services:
     image: dpage/pgadmin4
     container_name: pgadmin4_container
     restart: always
+    build: .
     ports:
       - "5555:80"
     environment:
@@ -23,3 +24,10 @@ services:
       PGADMIN_DEFAULT_PASSWORD: 1590753
     volumes:
       - ./pgadmin:/var/lib/pgadmin
+
+  api: 
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
