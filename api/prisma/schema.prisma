@@ -54,13 +54,14 @@ model Conteudo {
 }
 
 model Questao {
-  id             Int        @default(autoincrement()) @id
-  assunto        String
-  pergunta       String
-  id_grupo       Int
-  respostas      Respostas?
-  createdAt       DateTime        @default(now()) @map("created_at")
-  updatedAt       DateTime?       @updatedAt      @map("updated_at")
+  id                 Int        @default(autoincrement()) @id
+  assunto            String
+  pergunta           String
+  id_grupo           Int
+  respostas          Respostas?
+  resposta_ordenada  RespostaOrdenada[]
+  createdAt          DateTime        @default(now()) @map("created_at")
+  updatedAt          DateTime?       @updatedAt      @map("updated_at")
 
   @@map(name: "questao")
 }
@@ -78,6 +79,23 @@ model Respostas {
   updatedAt       DateTime?       @updatedAt      @map("updated_at")
 
   @@map(name: "respostas")
+}
+
+model RespostaOrdenada {
+  id                  Int     @default(autoincrement()) @id
+  bloco               String
+  posicoes_validas    PosicaoValida[]
+  questao             Questao? @relation(fields: [questaoId], references: [id])
+  questaoId           Int?
+  createdAt       DateTime        @default(now()) @map("created_at")
+  updatedAt       DateTime?       @updatedAt      @map("updated_at")
+}
+
+model PosicaoValida {
+  id                  Int     @default(autoincrement()) @id
+  index               Int
+  resposta            RespostaOrdenada @relation(fields: [respostaId], references: [id])
+  respostaId          Int
 }
 
 model Pontuacao {
