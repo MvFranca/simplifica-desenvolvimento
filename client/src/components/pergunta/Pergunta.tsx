@@ -66,7 +66,7 @@ const Pergunta = ({ assunto, totalQuestions }: props) => {
   }
 
   function finalizar() {
-    if (resposta.assinalada == "t") {
+    if (resposta.assinalada == assunto[perguntaAtual].respostas.alternativa_correta) {
       setAcertos(acertos + 1);
     }
     progressBar();
