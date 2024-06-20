@@ -184,6 +184,15 @@ export const respostasCreateMany: Prisma.RespostasUncheckedCreateInput[] = [
     alternativa_correta: 1,
   },
   {
+    id: 50,
+    questaoId: 50,
+    alternativa1: "Laços de repetição infinita.",
+    alternativa2: "Laços Pós-Teste.",
+    alternativa3: "Laços Pré-Teste.",
+    alternativa4: "Laços de execução única.",
+    alternativa_correta: 2,
+  },
+  {
     id: 20,
     questaoId: 20,
     alternativa1: "Controlar a execução de comandos dentro do laço.",

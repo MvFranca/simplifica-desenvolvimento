@@ -89,32 +89,32 @@ export const questaoCreateMany: Prisma.QuestaoUncheckedCreateInput[] = [
   },
   {
     id: 14,
-    assunto: "Estrtura de decisão",
+    assunto: "Estrutura de decisão",
     pergunta: "Qual a função das estruturas de decisão?",
     id_grupo: 3,
   },
   {
     id: 15,
-    assunto: "Estrtura de decisão",
+    assunto: "Estrutura de decisão",
     pergunta: "Para executar (condição1 e condição2) é necessário que:",
     id_grupo: 3,
   },
   {
     id: 16,
-    assunto: "Estrtura de decisão",
+    assunto: "Estrutura de decisão",
     pergunta: "Para executar (condição1 ou condição2) é necessário que:",
     id_grupo: 3,
   },
   {
     id: 17,
-    assunto: "Estrtura de decisão",
+    assunto: "Estrutura de decisão",
     pergunta:
       "Você está elaborando um site para a venda de bilhetes de um espetáculo, para comprá-los é necessário que o usuário tenha mais de 18 anos, se a condição for verdadeira o código deverá exibir uma mensagem dizendo “tudo certo” para o usuário. Como fazer esse comando em Portugol?",
     id_grupo: 3,
   },
   {
     id: 18,
-    assunto: "Estrtura de decisão",
+    assunto: "Estrutura de decisão",
     pergunta: "Seu programa deve verificar se um número é negativo em Py:",
     id_grupo: 3,
   },
@@ -232,5 +232,96 @@ export const questaoCreateMany: Prisma.QuestaoUncheckedCreateInput[] = [
     assunto: "Subprograma",
     pergunta: "Qual é a sintaxe correta para chamar uma função em Portugol?",
     id_grupo: 7,
+  },
+  {
+    id: 50,
+    assunto: "Laços de Repetição",
+    pergunta: "Qual tipo de laço em programação garante que o código seja executado pelo menos uma vez?",
+    id_grupo: 4
+  }
+];
+
+export const questaoOrdenadaCreateMany: Prisma.QuestaoUncheckedCreateInput[] = [
+  {
+    id: 37,
+    assunto: "Variáveis",
+    pergunta: "O código a seguir deverá ler e imprimir os dados. Ordene-o da forma correta:",
+    id_grupo: 1,
+  },
+  {
+    id: 38,
+    assunto: "Input e Output",
+    pergunta: "Organize os seguintes fragmentos de código para solicitar ao usuário que insira dois números inteiros e, em seguida, imprimir o resultado da multiplicação deles:",
+    id_grupo: 2,
+  },
+  {
+    id: 39,
+    assunto: "Estrutura de decisão",
+    pergunta: "O código a seguir deve verificar se a média dos alunos é maior que 6. Se for maior o programa deve exibir uma mensagem informando a aprovação do aluno, caso contrário emitirá uma mensagem de reprovação:",
+    id_grupo: 3,
+  },
+  {
+    id: 40,
+    assunto: "Estrutura de decisão",
+    pergunta: "Agora vamos verificar se um número é par ou ímpar.",
+    id_grupo: 3,
+  },
+  {
+    id: 41,
+    assunto: "Laços de repetição",
+    pergunta:
+      'Ordene o programa em C: Solicite ao usuário inserir um número inteiro positivo e, em seguida, imprima todos os números pares de 2 até o número inserido pelo usuário usando um loop "while".',
+    id_grupo: 4,
+  },
+  {
+    id: 42,
+    assunto: "Laços de repetição",
+    pergunta:
+      "Ordene o programa em Python: Solicite ao usuário inserir um número inteiro positivo e, em seguida, imprima a tabuada desse número de 1 a 10.",
+    id_grupo: 4,
+  },
+  {
+    id: 43,
+    assunto: "Laços de repetição",
+    pergunta:
+      'Ordene o programa em Portugol: Solicite ao usuário inserir um número inteiro positivo e, em seguida, calcule e imprima a soma dos dígitos desse número.',
+    id_grupo: 4,
+  },
+  {
+    id: 44,
+    assunto: "Vetor",
+    pergunta: "Ordene o programa em C: Declare um vetor, atribua valores a ele e depois os imprime na tela.",
+    id_grupo: 5,
+  },
+  {
+    id: 45,
+    assunto: "Vetor",
+    pergunta: "Ordene o programa em Python: Solicite ao usuário que insira valores para preencher um vetor.",
+    id_grupo: 5,
+  },
+  {
+    id: 46,
+    assunto: "Vetor",
+    pergunta: "Ordene o programa em Portugol: Solicite que o usuário insira as notas de 5 alunos, armazene essas notas em um vetor, calcule a média das notas e a imprima na tela.",
+    id_grupo: 5,
+  },
+  {
+    id: 47,
+    assunto: "Matriz",
+    pergunta: "Ordene o programa em Python: Solicite que o usuário insira números para preencher a matriz.",
+    id_grupo: 6,
+  },
+  {
+    id: 48,
+    assunto: "Matriz",
+    pergunta: "Ordene o programa em C: Multiplique cada um dos elementos da matriz por 2 e exiba o resultado.",
+    id_grupo: 6,
+  },
+  {
+    id: 49,
+    assunto: "Matriz",
+    pergunta:
+      "Ordene o programa em Python: some a “matrizA” com a “matrizB” na matriz “Resultado” e exiba “Resultado”.",
+    id_grupo: 6,
   },
 ];
