@@ -24,7 +24,6 @@ const Jogar = () => {
     try{
       const api = await fetch(`http://localhost:8000/api/aprender/questao/${id}`);
       const data = await api.json() 
-      console.log(data.data)
       setAssunto(data.data)
     }
     catch(Err){

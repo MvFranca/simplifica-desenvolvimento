@@ -21,7 +21,6 @@ const OpcoesPergunta = ({confirmar, perguntaAtual, setPerguntaAtual, assunto, fi
         limpar()
     }
 
-    console.log(assunto[7])
     
     return ( 
         <div className={styles.container}>

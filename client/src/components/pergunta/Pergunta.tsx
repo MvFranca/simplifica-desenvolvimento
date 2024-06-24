@@ -70,6 +70,7 @@ const Pergunta = ({ assunto, totalQuestions }: props) => {
       setAcertos(acertos + 1);
     }
     progressBar();
+    progressBar();
     setTimeout(() => {
       setFim(true);
     }, 500);
@@ -77,9 +78,10 @@ const Pergunta = ({ assunto, totalQuestions }: props) => {
 
   useEffect(() => {
     progressBar();
-    console.log(assunto);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+
 
   return (
     <section className={styles.container}>
@@ -162,12 +164,12 @@ const Pergunta = ({ assunto, totalQuestions }: props) => {
             </div>
           </div>
         ) : (
-          <Acertos acertos={acertos} quantidadeQuestoes={totalQuestions} />
+          <Acertos acertos={acertos} quantidadeQuestoes={totalQuestions -1} />
         )}
 
         <OpcoesPergunta
           confirmar={confirmar}
-          perguntaAtual={perguntaAtual}
+          perguntaAtual={perguntaAtual+1}
           setPerguntaAtual={setPerguntaAtual}
           assunto={assunto}
           finalizar={finalizar}
