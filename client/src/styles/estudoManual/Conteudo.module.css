@@ -25,6 +25,11 @@
     cursor: pointer;
 }
 
+.conteudo p {
+    max-height: 75px;
+    overflow: hidden;
+}
+
 .conteudo button:hover{
     transform: translateY(5px);
     box-shadow: none;

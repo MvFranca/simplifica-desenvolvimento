@@ -13,9 +13,9 @@ const EstudoManual = () => {
   const [conteudos, setConteudos] = useState<Array<conteudos>>([]);
 
   async function api() {
-    const api = await fetch("https://simplifica-desenvolvimento.vercel.app/trilha/trilha.json");
+    const api = await fetch("http://localhost:8000/api/content/trilha");
     const json = await api.json();
-    setConteudos(json);
+    setConteudos(json.data);
   }
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const EstudoManual = () => {
   return (
     <div className={styles.container}>
       <div className={styles.conteudos}>
-        {conteudos.map((conteudo) => {
+        {conteudos?.map((conteudo) => {
           return (
             <Conteudo
               titulo={conteudo.conteudo}
