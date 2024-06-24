@@ -42,7 +42,6 @@ const Ordenacao = () => {
   const [acertos, setAcertos] = useState(0)
   const [linhas, setLinhas] = useState<TypeLinhas[]>([])
   const progresso = useRef<HTMLDivElement>(null);
-  const [quantidade, setQuantidade] = useState([])
   const [Width, setWidth] = useState(10)
   const [fim, setFim] = useState(false)
 
@@ -122,7 +121,7 @@ function arraysAreEqual(arr1:TypeLinhas[], arr2: TypeLinhas[]) {
  
 
   function progressBar() {
-    const porcentagemPorQues = 100 / (quantidade.length);
+    const porcentagemPorQues = 100 / (questoes.length);
     setWidth((prev) => prev + porcentagemPorQues);
   }
 
@@ -135,7 +134,7 @@ function arraysAreEqual(arr1:TypeLinhas[], arr2: TypeLinhas[]) {
 
   useEffect(() => {
     setFim(false)
-      if(quantidade.length > 0){
+      if(questoes.length > 0){
         progressBar()
       }
   // eslint-disable-next-line react-hooks/exhaustive-deps
