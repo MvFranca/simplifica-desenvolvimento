@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import styles from "../styles/imagemComModal/ImagemComModal.module.css";
+import styles from "../styles/ImagemComModal/ImagemComModal.module.css";
 // import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 interface ImagemComModalProps {
