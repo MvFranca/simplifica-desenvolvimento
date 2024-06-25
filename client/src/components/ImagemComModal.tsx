@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import styles from "../styles/imagemComModal/ImagemComModal.module.css";
-import Zoom from 'react-medium-image-zoom'
+// import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 interface ImagemComModalProps {
   src: string;
@@ -11,7 +11,7 @@ interface ImagemComModalProps {
 const ImagemComModal = ({
   src,
   alt = "Imagem com modal",
-  classNameImagem,
+  // classNameImagem,
 }: ImagemComModalProps) => {
   //* states
   const [modalAberto, setModalAberto] = useState(false);
@@ -22,9 +22,10 @@ const ImagemComModal = ({
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const imageRef = useRef(null);
 
-  const handleZoomClick = (event) => {
+  const handleZoomClick = (event: MouseEvent) => {
     const { clientX, clientY } = event; // Coordenadas do clique na janela
-    const { left, top, width, height } = event.target.getBoundingClientRect(); // Posição e dimensões da imagem
+    const target = event.target as HTMLElement;
+    const { left, top, width, height } = target.getBoundingClientRect(); // Posição e dimensões da imagem
 
     // Calcular a posição relativa do clique dentro da imagem
     const clickX = clientX - left;
@@ -38,14 +39,14 @@ const ImagemComModal = ({
     setZoomPosition({ x: offsetX, y: offsetY });
   };
 
-  const handleDragStart = (event) => {
+  const handleDragStart = (event: DragEvent) => {
     if (zoomed) {
       setDragging(true);
       setDragStart({ x: event.clientX, y: event.clientY });
     }
   };
 
-  const handleDragMove = (event) => {
+  const handleDragMove = (event: DragEvent) => {
     if (dragging && zoomed) {
       const { clientX, clientY } = event;
       const offsetX = (clientX - dragStart.x) / 2; // Ajuste a sensibilidade de arrasto conforme necessário
@@ -102,10 +103,10 @@ const ImagemComModal = ({
               <span>X</span>
             </button>
 
-            <img style={zoomStyle} src={src} alt={alt} onClick={handleZoomClick} className="zoomable"
+            <img style={zoomStyle} src={src} alt={alt} onClick={() => handleZoomClick} className="zoomable"
   
-            onMouseDown={handleDragStart}
-            onMouseMove={handleDragMove}
+            onMouseDown={() => handleDragStart}
+            onMouseMove={() => handleDragMove}
             onMouseUp={handleDragEnd}
             onMouseLeave={handleDragEnd}
             ref={imageRef}/>

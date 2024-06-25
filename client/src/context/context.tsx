@@ -13,7 +13,7 @@ interface pontuacao {
   setUserId:  (number: number) => void;
 
   setPontos: Dispatch<SetStateAction<number>>;
-  setFogo: (number: number) => void;
+  setFogo: Dispatch<SetStateAction<number>>;
 
   setInitialValuePontos: (number: boolean) => void;
   initialValuePontos: boolean;

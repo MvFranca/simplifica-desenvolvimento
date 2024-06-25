@@ -24,7 +24,7 @@ const FormResposta = ({state, novaResposta, formRespostas}: props) => {
 
     function anexarImagem(event:ChangeEvent<HTMLInputElement>){
 
-        const [file] = input_image.current!.files
+        const [file]= input_image.current!.files  as FileList;
 
         if(file){
             const url = URL.createObjectURL(file)
@@ -56,7 +56,7 @@ const FormResposta = ({state, novaResposta, formRespostas}: props) => {
             idUser,
             descricao: descricao,
             url_img: String(Url.current),
-            data: String(formatDate(new Date())),
+            data: String(formatDate(String(new Date()))),
             hora: hour(),
             id_duvida: id,
             titulo: ''

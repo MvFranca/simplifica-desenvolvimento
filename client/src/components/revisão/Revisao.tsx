@@ -76,7 +76,7 @@ const Revisao = ({ conteudo }: props) => {
               </div>
 
               <div className={styles.imagem}>
-                <img src={conteudo[assuntoAtual].src} alt="" />
+                <img src={conteudo[assuntoAtual].src!} alt="" />
               </div>
             </div>
           </div>
