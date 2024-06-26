@@ -1,27 +1,27 @@
-import { useState } from "react";
-import IconEmail from "../../icons/IconEmail";
-import IconLockPasswordFill from "../../icons/IconPassword";
-import IconUser from "../../icons/IconUser";
-import styles from "../../styles/auth/InicioEntrar.module.css";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import IconGoogleClassroom from "../icons/iconClass";
+import { useState } from 'react';
+import IconEmail from '../../icons/IconEmail';
+import IconLockPasswordFill from '../../icons/IconPassword';
+import IconUser from '../../icons/IconUser';
+import styles from '../../styles/auth/InicioEntrar.module.css';
+import { Link, useNavigate } from 'react-router-dom';
+import IconGoogleClassroom from '../icons/iconClass';
+import { api } from '../../services/api';
 
 const InicioRegistro = () => {
-  const [fullname, setFullName] = useState("");
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [senha, setPassword] = useState("");
-  const [turma, setTurma] = useState("921")
-  const [confirmPassword, setConfirmPassoword] = useState("");
-  const [error, setError] = useState("");
-  const [sucess, setSucess] = useState("");
-  const [url_image] = useState("bvcb");
+  const [fullname, setFullName] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setPassword] = useState('');
+  const [turma, setTurma] = useState('921');
+  const [confirmPassword, setConfirmPassoword] = useState('');
+  const [error, setError] = useState('');
+  const [sucess, setSucess] = useState('');
+  const [url_image] = useState('bvcb');
   const router = useNavigate();
 
   function adicionarIdPontuacao() {
-    axios
-      .post("http://localhost:8000/api/points/insertIdPoints", {
+    api
+      .post('/points/insertIdPoints', {
         email,
       })
       .then((res) => {
@@ -34,10 +34,8 @@ const InicioRegistro = () => {
 
   function submitRegistro(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log('turma:')
-    console.log(turma)
-    axios
-      .post("http://localhost:8000/api/auth/register", {
+    api
+      .post('/auth/register', {
         username,
         email,
         senha,
@@ -47,26 +45,21 @@ const InicioRegistro = () => {
         turma,
       })
       .then((res) => {
-        setError("");
+        setError('');
 
         setSucess(res.data.msg);
 
         adicionarIdPontuacao();
 
         setTimeout(() => {
-          router("/");
+          router('/');
         }, 1000);
       })
       .catch((err) => {
         setError(err.response.data.msg);
-        setSucess("");
+        setSucess('');
       });
   }
-
-
-  // const turmas = [
-
-  // ]
 
   return (
     <>
@@ -98,7 +91,7 @@ const InicioRegistro = () => {
                 }}
               />
             </div>
-            
+
             <div>
               <label htmlFor="User" className={styles.iconEmail}>
                 <IconUser
@@ -121,7 +114,6 @@ const InicioRegistro = () => {
             </div>
 
             <div>
-
               <label htmlFor="turma" className={styles.iconEmail}>
                 <IconGoogleClassroom
                   width={20}
@@ -131,24 +123,19 @@ const InicioRegistro = () => {
                 />
               </label>
 
-             <select className={styles.classSelect} name="turma" id="turma" 
-             onChange={(e) => {
-              setTurma(e.target.value.replace(/\s/g, ''));
-            }}>
-                <option value="921">
-                  921
-                </option>
-                <option value="911">
-                  911
-                </option>
-                <option value="922">
-                  922
-                </option>
-                <option value="912">
-                  912
-                </option>
-             </select>
-
+              <select
+                className={styles.classSelect}
+                name="turma"
+                id="turma"
+                onChange={(e) => {
+                  setTurma(e.target.value.replace(/\s/g, ''));
+                }}
+              >
+                <option value="921">921</option>
+                <option value="911">911</option>
+                <option value="922">922</option>
+                <option value="912">912</option>
+              </select>
             </div>
             <div>
               <label htmlFor="email" className={styles.iconEmail}>

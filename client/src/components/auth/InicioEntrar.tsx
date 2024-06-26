@@ -1,57 +1,50 @@
-import {  useState } from "react";
-import IconApple from "../../icons/IconApple";
-import IconBxlFacebook from "../../icons/IconFacebook";
-import IconGooglePlus from "../../icons/IconGoogle";
-import IconLockPasswordFill from "../../icons/IconPassword";
-import IconUser from "../../icons/IconUser";
-import styles from "../../styles/auth/InicioEntrar.module.css";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-
+import { useState } from 'react';
+import IconApple from '../../icons/IconApple';
+import IconBxlFacebook from '../../icons/IconFacebook';
+import IconGooglePlus from '../../icons/IconGoogle';
+import IconLockPasswordFill from '../../icons/IconPassword';
+import IconUser from '../../icons/IconUser';
+import styles from '../../styles/auth/InicioEntrar.module.css';
+import { Link, useNavigate } from 'react-router-dom';
+import { api } from '../../services/api';
 
 const InicioForm = () => {
-
-  const [email, setEmail] = useState<string>("");
-  const [senha, setPassword] = useState<string>("");
-  const [error, setError] = useState("");
-  const [sucess, setSucess] = useState("");
+  const [email, setEmail] = useState<string>('');
+  const [senha, setPassword] = useState<string>('');
+  const [error, setError] = useState('');
+  const [sucess, setSucess] = useState('');
   const router = useNavigate();
 
   function submitLogin(event: React.FormEvent<HTMLFormElement>) {
-    
     event.preventDefault();
-    axios
-      .post("http://localhost:8000/api/auth/login", { email, senha })
+    api
+      .post('/auth/login', { email, senha })
       .then((res) => {
-        setError("");
+        setError('');
         setSucess(res.data.msg);
         localStorage.setItem(
-          "simplifica:user",
+          'simplifica:user',
           JSON.stringify(res.data.data.user)
-        );    
+        );
 
         localStorage.setItem(
-          "simplifica:token",
+          'simplifica:token',
           JSON.stringify(res.data.data.token)
         );
-        router("/");
+        router('/');
       })
 
       .catch((err) => {
         setError(err.response.data.msg);
-        setSucess("");
+        setSucess('');
         console.log(err);
       });
   }
-
-
 
   return (
     <>
       <div className={styles.container}>
         <div id={styles.formulario}>
-        {/* <img src="./logo-simplifica.png" alt="Logo Simplifica" className={styles.logo}/> */}
-    
           <div>
             <h1>Entrar na Conta</h1>
           </div>
@@ -63,7 +56,6 @@ const InicioForm = () => {
           <div>
             <p>Digite suas credenciais para entrar:</p>
           </div>
-          
 
           <form onSubmit={submitLogin}>
             <div>

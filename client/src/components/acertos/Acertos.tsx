@@ -1,8 +1,8 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import styles from "../../styles/home/Acertos.module.css";
+import { useContext, useEffect, useRef, useState } from 'react';
+import styles from '../../styles/home/Acertos.module.css';
 import 'react-toastify/dist/ReactToastify.css';
-import { pointContext } from "../../context/context";
-import axios from "axios";
+import { pointContext } from '../../context/context';
+import { api } from '../../services/api';
 
 type props = {
   acertos: number;
@@ -12,12 +12,10 @@ type props = {
 const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
   const [porcentagem, setPorcentagem] = useState(0);
   const { teste, fogo, setFogo } = useContext(pointContext);
-  const points = useRef(fogo)
-
-  // const [res, setRes] = useState(false)
+  const points = useRef(fogo);
 
   useEffect(() => {
-    const porcentagem = Math.trunc((acertos * 100) / quantidadeQuestoes)
+    const porcentagem = Math.trunc((acertos * 100) / quantidadeQuestoes);
     setPorcentagem(porcentagem);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -31,35 +29,28 @@ const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
     } else if (porcentagem < 50 && porcentagem > 0) {
       setFogo((prev: number) => prev + 1);
     } else if (porcentagem == 0) return;
-    points.current = fogo
-    teste.current = true
+    points.current = fogo;
+    teste.current = true;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [porcentagem]);
 
-  
+  useEffect(() => {
+    if (fogo !== points.current) {
+      const user = localStorage.getItem('simplifica:user')!;
+      const userObject = JSON.parse(user);
 
-    useEffect(() => {
-      if(fogo !== points.current){
-        
-      const user = localStorage.getItem("simplifica:user")!
-      const userObject = JSON.parse(user)
-      
-      const idUser = Number(userObject.id)
-      // .put("https://simplifica-desenvolvimento.onrender.com/api/points/updateDiamantes", { idUser, pontos })
-      axios
-        .put(`http://localhost:8000/api/points/user/${idUser}/fogo`, { fogo })
+      const idUser = Number(userObject.id);
+
+      api
+        .put(`/points/user/${idUser}/fogo`, { fogo })
         .then((res) => {
           console.log(res);
-          // setRes(true)
         })
         .catch((err) => {
           console.log(err);
         });
-        
-      }
-    }, [fogo])
-    
-
+    }
+  }, [fogo]);
 
   return (
     <div className={styles.container}>
@@ -82,7 +73,7 @@ const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
               <span>
                 <strong>{quantidadeQuestoes}</strong> POSSÍVEIS
               </span>
-               {/* <ToastContainer /> */}
+              {/* <ToastContainer /> */}
             </p>
           </div>
         </div>
