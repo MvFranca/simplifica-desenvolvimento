@@ -10,6 +10,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { Request } from 'express';
 import '../prisma/seed/seed';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 app.use(express.json({ limit: '500mb' }));

@@ -1,7 +1,6 @@
-import { useRef, useState } from "react";
-import styles from "../styles/imagemComModal/ImagemComModal.module.css";
-// import Zoom from 'react-medium-image-zoom'
-import 'react-medium-image-zoom/dist/styles.css'
+import { useRef, useState } from 'react';
+import styles from '../styles/ImagemComModal/ImagemComModal.module.css';
+import 'react-medium-image-zoom/dist/styles.css';
 interface ImagemComModalProps {
   src: string;
   alt?: string;
@@ -10,9 +9,9 @@ interface ImagemComModalProps {
 
 const ImagemComModal = ({
   src,
-  alt = "Imagem com modal",
-  // classNameImagem,
-}: ImagemComModalProps) => {
+  alt = 'Imagem com modal',
+}: // classNameImagem,
+ImagemComModalProps) => {
   //* states
   const [modalAberto, setModalAberto] = useState(false);
 
@@ -74,7 +73,6 @@ const ImagemComModal = ({
   //* render
   return (
     <>
-          
       <div className={styles.imagemResposta}>
         {/* <Zoom
         > */}
@@ -89,9 +87,7 @@ const ImagemComModal = ({
         {/* </Zoom> */}
       </div>
 
-      
       {modalAberto && (
-        
         <div className={styles.modalContainer}>
           <div className={styles.modal}>
             <button
@@ -103,19 +99,21 @@ const ImagemComModal = ({
               <span>X</span>
             </button>
 
-            <img style={zoomStyle} src={src} alt={alt} onClick={() => handleZoomClick} className="zoomable"
-  
-            onMouseDown={() => handleDragStart}
-            onMouseMove={() => handleDragMove}
-            onMouseUp={handleDragEnd}
-            onMouseLeave={handleDragEnd}
-            ref={imageRef}/>
-
+            <img
+              style={zoomStyle}
+              src={src}
+              alt={alt}
+              onClick={() => handleZoomClick}
+              className="zoomable"
+              onMouseDown={() => handleDragStart}
+              onMouseMove={() => handleDragMove}
+              onMouseUp={handleDragEnd}
+              onMouseLeave={handleDragEnd}
+              ref={imageRef}
+            />
           </div>
         </div>
-
       )}
-      
     </>
   );
 };
