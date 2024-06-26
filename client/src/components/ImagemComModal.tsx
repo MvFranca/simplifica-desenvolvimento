@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import styles from '../styles/ImagemComModal/ImagemComModal.module.css';
-// import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css';
+
 interface ImagemComModalProps {
   src: string;
   alt?: string;
@@ -11,8 +11,7 @@ interface ImagemComModalProps {
 const ImagemComModal = ({
   src,
   alt = 'Imagem com modal',
-}: // classNameImagem,
-ImagemComModalProps) => {
+}: ImagemComModalProps) => {
   //* states
   const [modalAberto, setModalAberto] = useState(false);
 
@@ -75,8 +74,6 @@ ImagemComModalProps) => {
   return (
     <>
       <div className={styles.imagemResposta}>
-        {/* <Zoom
-        > */}
         <img
           onClick={() => {
             setModalAberto(true);
@@ -84,8 +81,6 @@ ImagemComModalProps) => {
           src={src}
           alt={alt}
         />
-
-        {/* </Zoom> */}
       </div>
 
       {modalAberto && (
