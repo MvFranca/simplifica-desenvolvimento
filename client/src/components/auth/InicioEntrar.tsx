@@ -7,6 +7,7 @@ import IconUser from '../../icons/IconUser';
 import styles from '../../styles/auth/InicioEntrar.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { api } from '../../services/api';
+import { AxiosError } from 'axios';
 
 const InicioForm = () => {
   const [email, setEmail] = useState<string>('');
@@ -15,30 +16,22 @@ const InicioForm = () => {
   const [sucess, setSucess] = useState('');
   const router = useNavigate();
 
-  function submitLogin(event: React.FormEvent<HTMLFormElement>) {
+  async function submitLogin(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    api
-      .post('/auth/login', { email, senha })
-      .then((res) => {
-        setError('');
-        setSucess(res.data.msg);
-        localStorage.setItem(
-          'simplifica:user',
-          JSON.stringify(res.data.data.user)
-        );
+    try {
+      const { data } = await api.post('/auth/login', { email, senha });
 
-        localStorage.setItem(
-          'simplifica:token',
-          JSON.stringify(res.data.data.token)
-        );
-        router('/');
-      })
+      setError('');
+      setSucess(data.msg);
+      localStorage.setItem('simplifica:user', JSON.stringify(data.data.user));
+      localStorage.setItem('simplifica:token', JSON.stringify(data.data.token));
+      router('/');
+    } catch (err) {
+      setError((err as AxiosError).message);
+      console.log(err as AxiosError);
 
-      .catch((err) => {
-        setError(err.response.data.msg);
-        setSucess('');
-        console.log(err);
-      });
+      setSucess('');
+    }
   }
 
   return (

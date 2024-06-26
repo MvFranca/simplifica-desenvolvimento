@@ -6,6 +6,7 @@ import styles from '../../styles/auth/InicioEntrar.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import IconGoogleClassroom from '../icons/iconClass';
 import { api } from '../../services/api';
+import { AxiosError } from 'axios';
 
 const InicioRegistro = () => {
   const [fullname, setFullName] = useState('');
@@ -32,10 +33,10 @@ const InicioRegistro = () => {
       });
   }
 
-  function submitRegistro(event: React.FormEvent<HTMLFormElement>) {
+  async function submitRegistro(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    api
-      .post('/auth/register', {
+    try {
+      const { data } = await api.post('/auth/register', {
         username,
         email,
         senha,
@@ -43,22 +44,20 @@ const InicioRegistro = () => {
         url_image,
         fullname,
         turma,
-      })
-      .then((res) => {
-        setError('');
-
-        setSucess(res.data.msg);
-
-        adicionarIdPontuacao();
-
-        setTimeout(() => {
-          router('/');
-        }, 1000);
-      })
-      .catch((err) => {
-        setError(err.response.data.msg);
-        setSucess('');
       });
+      setError('');
+
+      setSucess(data.msg);
+
+      adicionarIdPontuacao();
+
+      setTimeout(() => {
+        router('/');
+      }, 1000);
+    } catch (err) {
+      setError((err as AxiosError).message);
+      setSucess('');
+    }
   }
 
   return (
