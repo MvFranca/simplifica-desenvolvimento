@@ -289,6 +289,7 @@ const Botoes = ({ id, conteudo }: props) => {
           return index != 0 ? (
             <Link
               to={url}
+              key={botao.id + botao.src + botao.to}
               id={botao.id}
               className={classe}
               onClick={() => avancar(disponivel, index, botao.alt)}
@@ -298,6 +299,7 @@ const Botoes = ({ id, conteudo }: props) => {
           ) : (
             <Link
               to={''}
+              key={botao.id + botao.src + botao.to}
               className={classe}
               onClick={() => show(disponivel, index)}
             >
