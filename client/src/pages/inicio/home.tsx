@@ -43,10 +43,9 @@ export default function Home() {
   }, [router]);
 
   useEffect(() => {
-    const idUser = Number(userObject.id);
-    console.log('idUser');
-    console.log(idUser);
     if (!teste.current && user) {
+      const idUser = Number(userObject.id);
+
       api
         .get(`/points/user/${idUser}/pontuacao`)
         .then((res) => {
@@ -60,12 +59,12 @@ export default function Home() {
           console.log(err);
         });
     }
-  }, [setFogo, setPontos, teste, user, userObject.id]);
+  }, [setFogo, setPontos, teste, user, userObject]);
 
   useEffect(() => {
-    const idUser = Number(userObject.id);
-
     if (!teste.current && user) {
+      const idUser = Number(userObject.id);
+
       api
         .get(`/content/user/${idUser}/progresso`)
         .then((res) => {
