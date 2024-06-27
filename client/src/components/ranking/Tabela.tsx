@@ -28,7 +28,7 @@ const Tabela = () => {
       (a: { pontuacao: pontuacao }, b: { pontuacao: pontuacao }) =>
         b.pontuacao[option] - a.pontuacao[option]
     );
-        setUsers(usuarios);
+    setUsers(usuarios);
   }, [option]);
 
   useEffect(() => {
@@ -55,58 +55,58 @@ const Tabela = () => {
   return (
     <div className={styles.tableRanking}>
       <div className={styles.pointsOptions} ref={divScore}>
-        <span
-          // className={styles[option]}
-          onClick={() => setOption('pontuacao')}
-          data-diamante
-        >
+        <span onClick={() => setOption('pontuacao')} data-diamante>
           Diamantes
         </span>
 
-        <span
-          // className={styles[option]}
-          onClick={() => setOption('fogo')}
-          data-fogo
-        >
+        <span onClick={() => setOption('fogo')} data-fogo>
           Fogo
         </span>
       </div>
 
       <table className={styles.tabela}>
-        <tr className={styles.cabecalho}>
-          <th
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <img src="./medalha-generica.png" alt="medalha" />
-            Rank
-          </th>
-          <th>User</th>
-          <th>Turma</th>
-          <th className={styles.movimentos}>Movimentos</th>
-          <th>Pontuação</th>
-        </tr>
-        {users?.map((user, index) => {
-          return (
-            <tr className={styles.line}>
-              <td className={styles.posicao}>{index + 1}</td>
-              <td className={styles.username}>{user.username}</td>
-              <td>{user.turma}</td>
-              <td className={styles.movimentos}>-</td>
-              <td className={styles.pontos}>
-                {user.pontuacao[option]}
-                {option == 'pontuacao' ? (
-                  <img src={IconDiamondd} alt="Diamante" />
-                ) : (
-                  <IconFire width={23} height={23} color="rgb(255, 126, 66)" />
-                )}
-              </td>
-            </tr>
-          );
-        })}
+        <thead>
+          <tr className={styles.cabecalho}>
+            <th
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <img src="./medalha-generica.png" alt="medalha" />
+              Rank
+            </th>
+            <th>User</th>
+            <th>Turma</th>
+            <th className={styles.movimentos}>Movimentos</th>
+            <th>Pontuação</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users?.map((user, index) => {
+            return (
+              <tr key={user.username} className={styles.line}>
+                <td className={styles.posicao}>{index + 1}</td>
+                <td className={styles.username}>{user.username}</td>
+                <td>{user.turma}</td>
+                <td className={styles.movimentos}>-</td>
+                <td className={styles.pontos}>
+                  {user.pontuacao[option]}
+                  {option == 'pontuacao' ? (
+                    <img src={IconDiamondd} alt="Diamante" />
+                  ) : (
+                    <IconFire
+                      width={23}
+                      height={23}
+                      color="rgb(255, 126, 66)"
+                    />
+                  )}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
     </div>
   );
