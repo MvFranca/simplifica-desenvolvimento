@@ -23,7 +23,7 @@ const InicioRegistro = () => {
   async function submitRegistro(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const toastId = toast.loading('Cadastrando');
+    const toastId = toast.loading('Cadastrando...');
 
     try {
       await api.post('/auth/register', {

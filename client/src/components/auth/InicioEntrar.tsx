@@ -19,7 +19,7 @@ const InicioForm = () => {
   async function submitLogin(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const toastId = toast.loading('Cadastrando');
+    const toastId = toast.loading('Logando...');
 
     try {
       const { data } = await api.post('/auth/login', { email, senha });
