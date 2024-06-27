@@ -20,19 +20,6 @@ const InicioRegistro = () => {
   const [url_image] = useState('bvcb');
   const router = useNavigate();
 
-  function adicionarIdPontuacao() {
-    api
-      .post('/points/insertIdPoints', {
-        email,
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
   async function submitRegistro(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     try {
@@ -48,8 +35,6 @@ const InicioRegistro = () => {
       setError('');
 
       setSucess(data.msg);
-
-      adicionarIdPontuacao();
 
       setTimeout(() => {
         router('/');

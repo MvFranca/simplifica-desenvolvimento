@@ -112,6 +112,15 @@ const Context = ({ children }: PropsWithChildren) => {
   }, [img, user]);
 
   useEffect(() => {
+    const updateProgressoData = async (idUser: number) => {
+      await api.put(`/content/user/${idUser}/progresso`, {
+        myProgress,
+        progressoBotoes,
+      });
+
+      controle.current = false;
+    };
+
     if (controle.current && user) {
       const userObject = JSON.parse(user);
       const idUser = Number(userObject.id);
@@ -119,12 +128,7 @@ const Context = ({ children }: PropsWithChildren) => {
         `myprogress: ${myProgress} | idUser: ${idUser} | progressoBotoes: ${progressoBotoes}`
       );
 
-      api.put(`/content/user/${idUser}/progresso`, {
-        myProgress,
-        progressoBotoes,
-      });
-
-      controle.current = false;
+      updateProgressoData(idUser);
     }
   }, [myProgress, progressoBotoes, user]);
 

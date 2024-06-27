@@ -51,9 +51,12 @@ const Ordenacao = () => {
   const [questoes, setQuestoes] = useState<TypeQuestions[]>([]);
 
   async function fetchQuestions() {
-    api.get(`/aprender/ordenadas/${id}`).then((data) => {
-      setQuestoes(data.data);
-    });
+    const { data } = await api.get(`/aprender/ordenadas/${id}`);
+
+    console.log('fetchingg');
+    console.log(data);
+
+    setQuestoes(data.data);
   }
 
   function VerifyEnd() {

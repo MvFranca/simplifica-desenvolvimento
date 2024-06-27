@@ -109,49 +109,36 @@ const Botoes = ({ id, conteudo }: props) => {
   }
 
   useEffect(() => {
+    const updateFogoData = async (idUser: number) => {
+      await api.put(`/points/user/${idUser}/fogo`, { fogo });
+    };
+
     if (modalBau) {
       const user = localStorage.getItem('simplifica:user')!;
       const userObject = JSON.parse(user);
       const idUser = Number(userObject.id);
 
-      api
-        .put(`/points/user/${idUser}/fogo`, { fogo })
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err: Error) => {
-          console.log(err);
-        });
+      updateFogoData(idUser);
     }
   }, [fogo, modalBau]);
 
   useEffect(() => {
+    const updatePointsData = async (idUser: number) => {
+      await api.put(`/points/user/${idUser}/diamantes`, {
+        pontos: pontos,
+      });
+
+      await api.put(`/points/user/${idUser}/fogo`, {
+        fogo: fogo,
+      });
+    };
+
     if (modalTrofeu) {
       const user = localStorage.getItem('simplifica:user')!;
       const userObject = JSON.parse(user);
       const idUser = Number(userObject.id);
 
-      api
-        .put(`/points/user/${idUser}/diamantes`, {
-          pontos: pontos,
-        })
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err: Error) => {
-          console.log(err);
-        });
-
-      api
-        .put(`/points/user/${idUser}/fogo`, {
-          fogo: fogo,
-        })
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err: Error) => {
-          console.log(err);
-        });
+      updatePointsData(idUser);
     }
   }, [pontos, modalTrofeu]);
 
@@ -171,10 +158,6 @@ const Botoes = ({ id, conteudo }: props) => {
       }
     }
   }
-
-  useEffect(() => {
-    console.log(myProgress);
-  }, [myProgress]);
 
   const hide = () => {
     setVisible(false);

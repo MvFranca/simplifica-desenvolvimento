@@ -13,9 +13,9 @@ const Jogar = () => {
 
   async function Questions(id: number | string) {
     try {
-      api.get(`/aprender/questao/${id}`).then((data) => {
-        setAssunto(data.data);
-      });
+      const { data } = await api.get(`/aprender/questao/${id}`);
+
+      setAssunto(data.data);
     } catch (Err) {
       console.log(Err);
     }

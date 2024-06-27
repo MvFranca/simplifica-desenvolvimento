@@ -5,8 +5,7 @@ import TrilhaeInfo from '../../components/trilhaInfo/TrilhaeInfo';
 import { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { pointContext } from '../../context/context';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import { api } from '../../services/api';
 
 export default function Home() {
@@ -43,48 +42,42 @@ export default function Home() {
   }, [router]);
 
   useEffect(() => {
+    const fetchPontuacao = async (idUser: number) => {
+      console.log('entrou');
+
+      const { data } = await api.get(`/points/user/${idUser}/pontuacao`);
+
+      const pontuacao = data.data;
+      setPontos(pontuacao.pontuacao);
+      setFogo(pontuacao.fogo);
+    };
+
     if (!teste.current && user) {
       const idUser = Number(userObject.id);
 
-      api
-        .get(`/points/user/${idUser}/pontuacao`)
-        .then((res) => {
-          const pontuacao = res.data.data;
-          setPontos(pontuacao.pontuacao);
-          setFogo(pontuacao.fogo);
-          console.log(res);
-        })
-
-        .catch((err) => {
-          console.log(err);
-        });
+      fetchPontuacao(idUser);
     }
   }, [setFogo, setPontos, teste, user, userObject]);
 
   useEffect(() => {
+    const fetchProgresso = async (idUser: number) => {
+      const { data } = await api.get(`/content/user/${idUser}/progresso`);
+      const resposta = data.data;
+
+      setMyProgress(resposta.conteudoId);
+      setProgressoBotoes(resposta.avanco);
+    };
+
     if (!teste.current && user) {
       const idUser = Number(userObject.id);
 
-      api
-        .get(`/content/user/${idUser}/progresso`)
-        .then((res) => {
-          const resposta = res.data.data;
-          console.log('resposta:');
-          console.log(resposta);
-          setMyProgress(resposta.conteudoId);
-          setProgressoBotoes(resposta.avanco);
-        })
-
-        .catch((err) => {
-          console.log(err);
-        });
+      fetchProgresso(idUser);
     }
   }, [user]);
 
   return (
     <div className={styles.container}>
       <TrilhaeInfo />
-      <ToastContainer />
     </div>
   );
 }

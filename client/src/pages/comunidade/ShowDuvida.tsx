@@ -1,46 +1,36 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { IComentario, IDuvida } from '../../types/IDuvida';
 import styles from '../../styles/comunidade/ShowDuvida.module.css';
 import ImagemComModal from '../../components/ImagemComModal';
 import FormResposta from './FormReposta';
 import { formatDate } from '../../helpers/formatDate';
 import { api } from '../../services/api';
+import { toast } from 'react-toastify';
+import { AxiosError } from 'axios';
 
 const ShowDuvida = () => {
   //* hooks
   const { id } = useParams();
+  const router = useNavigate();
 
   //* states
   const [duvida, setDuvida] = useState<IDuvida>();
   const [comentarios, setComentarios] = useState<IComentario[]>([]);
-
   const [formRespostas, setFormRespostas] = useState(false);
-
   const [novaResposta, setNovaResposta] = useState(false);
 
-  async function respostas(id_duvida: string) {
-    try {
-      api.get(`/community/duvidas/${id_duvida}/comentarios`).then((res) => {
-        setComentarios(res.data);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function dadosDuvida(id_duvida: string) {
-    try {
-      api.get(`/community/duvidas/${id_duvida}`).then((res) => {
-        setDuvida(res.data);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   useEffect(() => {
-    respostas(id!);
+    const fetchRespostas = async () => {
+      try {
+        const { data } = await api.get(`/community/duvidas/${id}/comentarios`);
+        setComentarios(data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchRespostas();
 
     if (novaResposta) {
       setNovaResposta(false);
@@ -48,7 +38,19 @@ const ShowDuvida = () => {
   }, [id, novaResposta]);
 
   useEffect(() => {
-    dadosDuvida(id!);
+    const fetchDadosDuvida = async () => {
+      try {
+        const { data } = await api.get(`/community/duvidas/${id}`);
+        setDuvida(data.data);
+      } catch (error) {
+        if ((error as AxiosError).response?.status === 404) {
+          toast.error('Dúvida não encontrada!');
+        }
+        router('/comunidade');
+      }
+    };
+
+    fetchDadosDuvida();
   }, [id]);
 
   const abrirFormResposta = () => setFormRespostas(!formRespostas);
@@ -58,13 +60,12 @@ const ShowDuvida = () => {
       <div className={styles.content}>
         <div className={styles.containerBox}>
           <div className={styles.infoLeft}>
-            <h3 className={styles.username}>{duvida?.usuario.username}</h3>
+            <h3 className={styles.username}>{duvida?.usuario?.username}</h3>
             <p className={styles.dataLabel}>
-              {/* <span>Data:</span> {duvida?.data && formatDate(duvida?.data)} */}
               <span>Data: {formatDate(String(duvida?.createdAt))}</span>
             </p>
             <p className={styles.dataLabel}>
-              <span>Turma:</span> {duvida?.usuario.turma}
+              <span>Turma:</span> {duvida?.usuario?.turma}
             </p>
           </div>
           <div className={styles.infoRight}>
@@ -101,7 +102,7 @@ const ShowDuvida = () => {
           </div>
           <div className={styles.spaceBetween}>
             <button className={styles.btnBlue}>
-              {comentarios.length} Ver a
+              {comentarios && comentarios.length} Ver a
               {comentarios && comentarios.length > 1 ? 's' : ''} resposta
               {comentarios && comentarios.length > 1 ? 's' : ''}{' '}
             </button>
@@ -124,12 +125,11 @@ const ShowDuvida = () => {
             .reverse()
             .map((resposta) => {
               return (
-                <div className={styles.respostaContainer}>
+                <div key={resposta.id} className={styles.respostaContainer}>
                   <div className={styles.spaceBetween}>
                     <h3 className={styles.title}>Resposta</h3>
                     <div className={styles.respostaRightInfo}>
                       <p className={styles.respostaDataLabel}>
-                        {/* {resposta.data && formatDate(resposta.data)} */}
                         {resposta.hora_comentario}
                       </p>
                       <p className={styles.username}>

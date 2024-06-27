@@ -41,10 +41,8 @@ const FormResposta = ({ state, novaResposta, formRespostas }: props) => {
   }
 
   function enviarResposta() {
-    event?.preventDefault();
-    const idUser = JSON.parse(localStorage.getItem('simplifica:user')!).id;
-    api
-      .post('/community/comentarios', {
+    const sendResposta = async (idUser: number) => {
+      await api.post('/community/comentarios', {
         idUser,
         descricao: descricao,
         url_img: String(Url.current),
@@ -52,18 +50,18 @@ const FormResposta = ({ state, novaResposta, formRespostas }: props) => {
         hora: hour(),
         id_duvida: id,
         titulo: '',
-      })
-      .then(() => {
-        responder.current!.style.marginLeft = '200vw';
-
-        setTimeout(() => {
-          state(false);
-          novaResposta(true);
-        }, 500);
-      })
-      .catch((err: Error) => {
-        console.log(err);
       });
+      responder.current!.style.marginLeft = '200vw';
+
+      setTimeout(() => {
+        state(false);
+        novaResposta(true);
+      }, 500);
+    };
+
+    event?.preventDefault();
+    const idUser = JSON.parse(localStorage.getItem('simplifica:user')!).id;
+    sendResposta(idUser);
   }
 
   const responder = useRef<HTMLFormElement>(null);

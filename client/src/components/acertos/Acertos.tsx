@@ -35,20 +35,17 @@ const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
   }, [porcentagem]);
 
   useEffect(() => {
+    const updateFogoData = async (idUser: number) => {
+      await api.put(`/points/user/${idUser}/fogo`, { fogo });
+    };
+
     if (fogo !== points.current) {
       const user = localStorage.getItem('simplifica:user')!;
       const userObject = JSON.parse(user);
 
       const idUser = Number(userObject.id);
 
-      api
-        .put(`/points/user/${idUser}/fogo`, { fogo })
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      updateFogoData(idUser);
     }
   }, [fogo]);
 
@@ -73,7 +70,6 @@ const Acertos = ({ acertos, quantidadeQuestoes }: props) => {
               <span>
                 <strong>{quantidadeQuestoes}</strong> POSSÍVEIS
               </span>
-              {/* <ToastContainer /> */}
             </p>
           </div>
         </div>

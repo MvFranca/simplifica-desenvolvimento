@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import styles from '../../styles/ranking/Tabela.module.css';
 import IconDiamondd from '../icons/diamante.svg';
 import IconFire from '../icons/IconFire';
@@ -19,25 +19,17 @@ const Tabela = () => {
   const [users, setUsers] = useState<Array<users>>([]);
   const [option, setOption] = useState<'pontuacao' | 'fogo'>('pontuacao');
 
-  function ordenacao(arr: users[]) {
-    arr.sort(
+  const usersTable = useCallback(async () => {
+    const { data } = await api.get('/table/tableusers');
+
+    const usuarios: users[] = data.data;
+
+    usuarios.sort(
       (a: { pontuacao: pontuacao }, b: { pontuacao: pontuacao }) =>
         b.pontuacao[option] - a.pontuacao[option]
     );
-  }
-
-  async function usersTable() {
-    api
-      .get('/table/tableusers')
-      .then((res) => {
-        const usuarios: users[] = res.data.data;
-        ordenacao(usuarios);
         setUsers(usuarios);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  }, [option]);
 
   useEffect(() => {
     usersTable();

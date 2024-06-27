@@ -18,14 +18,12 @@ const Chat = () => {
   const { setDuvidas, duvidas } = useContext(pointContext);
 
   useEffect(() => {
-    api
-      .get('/community/duvidas')
-      .then((res) => {
-        setDuvidas(res.data);
-      })
-      .catch((err: Error) => {
-        console.log(err);
-      });
+    const fetchData = async () => {
+      const { data } = await api.get('/community/duvidas');
+      setDuvidas(data.data);
+    };
+
+    fetchData();
   }, [setDuvidas]);
 
   useEffect(() => {

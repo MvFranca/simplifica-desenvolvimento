@@ -27,17 +27,17 @@ const Aprender = () => {
   const { id } = useParams();
   const router = useNavigate();
 
-  async function conteudos() {
-    api.get(`/aprender/conteudo/${id}`).then((res) => {
-      setConteudo(res.data);
-    });
-  }
-
   useEffect(() => {
-    conteudos();
-    const value = localStorage.getItem('simplifica:token');
-    if (!value) router('/entrar');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const fetchConteudos = async () => {
+      const { data } = await api.get(`/aprender/conteudo/${id}`);
+
+      setConteudo(data.data);
+
+      const value = localStorage.getItem('simplifica:token');
+      if (!value) router('/entrar');
+    };
+
+    fetchConteudos();
   }, []);
 
   useEffect(() => {
@@ -86,8 +86,6 @@ const Aprender = () => {
   };
 
   useEffect(() => {
-    console.log('width');
-    console.log(width);
     if (barra.current) {
       barra.current.style.width = `${width}%`;
     }

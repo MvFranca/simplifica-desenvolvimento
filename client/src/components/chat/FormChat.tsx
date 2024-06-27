@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState, useContext } from 'react';
+import { ChangeEvent, useRef, useState, useContext, useCallback } from 'react';
 import styles from '../../styles/comunidade/FormChat.module.css';
 import IconAddOutline from '../icons/IconAdd';
 import IconClose from '../icons/IconClose';
@@ -42,54 +42,53 @@ const FormChat = () => {
     }
   };
 
-  async function submit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  const submit = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
 
-    const idUser = Number(userObject.id);
+      const idUser = Number(userObject.id);
 
-    const duvida = {
-      titulo,
-      descricao,
-      url_img: String(url.current),
-      conteudo,
-      // data: String(formatDate(new Date())),
-      // hora: hour(),
-      idUser,
-    };
+      const duvida = {
+        titulo,
+        descricao,
+        url_img: String(url.current),
+        conteudo,
+        // data: String(formatDate(new Date())),
+        // hora: hour(),
+        idUser,
+      };
 
-    api
-      .post('/community/duvidas', duvida)
-      .then(() => {
-        const duvidasAtt: Duvidas[] = [
-          ...duvidas,
-          {
-            id: duvida.idUser,
-            titulo: duvida.titulo,
-            descricao: duvida.descricao,
-            img_url: duvida.url_img || '',
-            conteudo: duvida.conteudo,
-            // data_duvida: duvida.data,
-            // hora_duvida: duvida.hora,
-            idUser: duvida.idUser,
-            usuario: {
-              id: 0,
-              username: '',
-              email: '',
-              senha: '',
-              url_image: '',
-              fullname: '',
-              turma: '',
-            },
-            createdAt: '',
-            url_img: '',
+      await api.post('/community/duvidas', duvida);
+      const duvidasAtt: Duvidas[] = [
+        ...duvidas,
+        {
+          id: duvida.idUser,
+          titulo: duvida.titulo,
+          descricao: duvida.descricao,
+          img_url: duvida.url_img || '',
+          conteudo: duvida.conteudo,
+          // data_duvida: duvida.data,
+          // hora_duvida: duvida.hora,
+          idUser: duvida.idUser,
+          usuario: {
+            id: 0,
+            username: '',
+            email: '',
+            senha: '',
+            url_image: '',
+            fullname: '',
+            turma: '',
           },
-        ];
+          createdAt: '',
+          url_img: '',
+        },
+      ];
 
-        setDuvidas(duvidasAtt);
-        setForm(false);
-      })
-      .catch((err: Error) => console.log(err));
-  }
+      setDuvidas(duvidasAtt);
+      setForm(false);
+    },
+    [conteudo, descricao, duvidas, setDuvidas, titulo, userObject]
+  );
 
   return (
     <div className={styles.formChat}>

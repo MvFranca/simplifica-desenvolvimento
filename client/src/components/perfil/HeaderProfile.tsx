@@ -30,7 +30,7 @@ const HeaderProfile = () => {
     setUser(userObject);
   }
 
-  const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files![0];
 
     const user = localStorage.getItem('simplifica:user')!;
@@ -40,27 +40,20 @@ const HeaderProfile = () => {
 
     if (file) {
       const reader = new FileReader();
-      reader.onload = () => {
+      reader.onload = async () => {
         const urlImg = reader.result;
 
-        api
-          .put(`/users/user/${idUser}/image`, {
-            urlImg,
-          })
-          .then((res) => {
-            console.log(res);
+        await api.put(`/users/user/${idUser}/image`, {
+          urlImg,
+        });
 
-            const userDataJSON = localStorage.getItem('simplifica:user');
-            if (userDataJSON) {
-              const userData = JSON.parse(userDataJSON);
-              userData.url_image = urlImg;
-              localStorage.setItem('simplifica:user', JSON.stringify(userData));
-              setImg(String(urlImg));
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        const userDataJSON = localStorage.getItem('simplifica:user');
+        if (userDataJSON) {
+          const userData = JSON.parse(userDataJSON);
+          userData.url_image = urlImg;
+          localStorage.setItem('simplifica:user', JSON.stringify(userData));
+          setImg(String(urlImg));
+        }
       };
       reader.readAsDataURL(file);
     }
@@ -92,13 +85,8 @@ const HeaderProfile = () => {
               </div>
             </label>
             <div className={styles.data}>
-              <h2>
-                {/* @zeze_dicamargo */}@{user && user.username}
-              </h2>
-              <span>
-                {user && user.email}
-                {/* zeze09@hotmail.com */}
-              </span>
+              <h2>@{user && user.username}</h2>
+              <span>{user && user.email}</span>
               <span className={styles.turma}>{user && user.turma}</span>
             </div>
           </div>

@@ -7,19 +7,14 @@ import { api } from '../../services/api';
 const TrilhaeInfo = () => {
   const [conteudos, setConteudos] = useState([]);
 
-  async function fetchData() {
-    api
-      .get('/content/trilha')
-      .then((res) => {
-        const resposta = res.data.data;
-        setConteudos(resposta);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
   useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await api.get('/content/trilha');
+
+      const resposta = data.data;
+      setConteudos(resposta);
+    };
+
     fetchData();
   }, []);
 

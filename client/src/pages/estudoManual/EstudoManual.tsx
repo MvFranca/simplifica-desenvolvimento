@@ -12,13 +12,13 @@ interface conteudos {
 const EstudoManual = () => {
   const [conteudos, setConteudos] = useState<Array<conteudos>>([]);
 
-  async function fetchData() {
-    api.get('/content/trilha').then((res) => {
-      setConteudos(res.data);
-    });
-  }
-
   useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await api.get('/content/trilha');
+
+      setConteudos(data.data);
+    };
+
     fetchData();
   }, []);
 
@@ -28,6 +28,7 @@ const EstudoManual = () => {
         {conteudos?.map((conteudo) => {
           return (
             <Conteudo
+              key={conteudo.id}
               titulo={conteudo.conteudo}
               descricao={conteudo.descricao}
               id={conteudo.id}
