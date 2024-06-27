@@ -1,10 +1,8 @@
-import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import { Request, Response } from 'express';
+import { prisma } from '../services/prisma';
 
 export const FullUsers = async (req: Request, res: Response) => {
   try {
-    const prisma = new PrismaClient();
-
     const data = await prisma.usuario.findMany({
       include: {
         pontuacao: true,
@@ -15,6 +13,6 @@ export const FullUsers = async (req: Request, res: Response) => {
       data,
     });
   } catch (error) {
-    return res.status(500).json({ msg: "Servidor indisponível." });
+    return res.status(500).json({ msg: 'Servidor indisponível.' });
   }
 };

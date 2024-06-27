@@ -1,5 +1,5 @@
-import { PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
+import { prisma } from '../services/prisma';
 
 export const FindDuvidaById = async (req: Request, res: Response) => {
   try {
@@ -12,8 +12,6 @@ export const FindDuvidaById = async (req: Request, res: Response) => {
         .status(422)
         .json({ msg: `'id' informado não é um número (NaN).` });
     }
-
-    const prisma = new PrismaClient();
 
     const data = await prisma.duvida.findFirst({
       where: {
@@ -46,8 +44,6 @@ export const FindDuvidaById = async (req: Request, res: Response) => {
 
 export const FindAllDuvidas = async (req: Request, res: Response) => {
   try {
-    const prisma = new PrismaClient();
-
     const data = await prisma.duvida.findMany();
 
     return res.status(200).json({
@@ -72,8 +68,6 @@ export const PostDuvida = async (req: Request, res: Response) => {
       return res.status(422).json({ msg: 'O conteúdo é obrigatório!' });
     if (!descricao)
       return res.status(422).json({ msg: 'A descrição é obrigatória!' });
-
-    const prisma = new PrismaClient();
 
     const duvidaData = await prisma.duvida.create({
       data: {
@@ -111,8 +105,6 @@ export const FindAllComentarios = async (req: Request, res: Response) => {
         .status(422)
         .json({ msg: `'id_duvida' informado não é um número (NaN).` });
     }
-
-    const prisma = new PrismaClient();
 
     const data = await prisma.comentario.findMany({
       where: {
@@ -154,8 +146,6 @@ export const FindComentarioById = async (req: Request, res: Response) => {
         .status(422)
         .json({ msg: `'id' [de comentário] informado não é um número (NaN).` });
     }
-
-    const prisma = new PrismaClient();
 
     const data = await prisma.comentario.findFirst({
       where: {
@@ -207,8 +197,6 @@ export const PostComentario = async (req: Request, res: Response) => {
         .status(422)
         .json({ msg: `'idUser' informado não é um número (NaN).` });
     }
-
-    const prisma = new PrismaClient();
 
     const data = await prisma.comentario.create({
       data: {
