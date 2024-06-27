@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import { Request, Response } from 'express';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '../services/prisma';
 
 dotenv.config({ path: './.env' });
 
@@ -15,8 +15,6 @@ export const getContent = async (req: Request, res: Response) => {
         .status(422)
         .json({ msg: `'id' informado não é um número (NaN).` });
     }
-
-    const prisma = new PrismaClient();
 
     const dataTrilha = await prisma.trilha.findUnique({
       where: {
@@ -51,8 +49,6 @@ export const getQuestions = async (req: Request, res: Response) => {
         .status(422)
         .json({ msg: `'id' informado não é um número (NaN).` });
     }
-
-    const prisma = new PrismaClient();
 
     const data = await prisma.questao.findMany({
       where: {
@@ -92,8 +88,6 @@ export const getOrderedQuestions = async (req: Request, res: Response) => {
         .status(422)
         .json({ msg: `'id' informado não é um número (NaN).` });
     }
-
-    const prisma = new PrismaClient();
 
     const dataFull = await prisma.questao.findMany({
       where: {

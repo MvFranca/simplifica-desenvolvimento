@@ -1,6 +1,5 @@
-import { Request, Response } from "express";
-
-import { PrismaClient } from "@prisma/client";
+import { Request, Response } from 'express';
+import { prisma } from '../services/prisma';
 
 export const GetUserById = async (req: Request, res: Response) => {
   try {
@@ -14,8 +13,6 @@ export const GetUserById = async (req: Request, res: Response) => {
         .json({ msg: `'id' informado não é um número (NaN).` });
     }
 
-    const prisma = new PrismaClient();
-
     const data = await prisma.usuario.findFirst({
       where: {
         id: idInt,
@@ -27,7 +24,7 @@ export const GetUserById = async (req: Request, res: Response) => {
     });
   } catch (error) {
     return res.status(500).json({
-      msg: "Servidor indisponível.",
+      msg: 'Servidor indisponível.',
       error,
     });
   }
@@ -45,8 +42,6 @@ export const AttUser = async (req: Request, res: Response) => {
         .status(422)
         .json({ msg: `'id_usuario' informado não é um número (NaN).` });
     }
-
-    const prisma = new PrismaClient();
 
     const foundUser = await prisma.usuario.findUnique({
       where: {
@@ -69,13 +64,13 @@ export const AttUser = async (req: Request, res: Response) => {
 
       return res
         .status(200)
-        .json({ msg: "Usuário atualizado com sucesso!", data });
+        .json({ msg: 'Usuário atualizado com sucesso!', data });
     } else {
-      return res.status(404).json({ msg: "Usuário não encontrado." });
+      return res.status(404).json({ msg: 'Usuário não encontrado.' });
     }
   } catch (error) {
     return res.status(500).json({
-      msg: "Servidor indisponível",
+      msg: 'Servidor indisponível',
       error,
     });
   }
@@ -98,8 +93,6 @@ export const ImgAtt = async (req: Request, res: Response) => {
       return res.status(422).json({ msg: `'urlImg' não informado.` });
     }
 
-    const prisma = new PrismaClient();
-
     const data = await prisma.usuario.update({
       where: {
         id: idInt,
@@ -114,12 +107,12 @@ export const ImgAtt = async (req: Request, res: Response) => {
     });
 
     return res.status(200).json({
-      msg: "Imagem de usuário atualizada com sucesso!",
+      msg: 'Imagem de usuário atualizada com sucesso!',
       data: data,
     });
   } catch (error) {
     return res.status(500).json({
-      msg: "Servidor indisponível.",
+      msg: 'Servidor indisponível.',
       error,
     });
   }
@@ -137,8 +130,6 @@ export const ImgGet = async (req: Request, res: Response) => {
         .json({ msg: `'id' informado não é um número (NaN).` });
     }
 
-    const prisma = new PrismaClient();
-
     const data = await prisma.usuario.findFirst({
       where: {
         id: idInt,
@@ -154,7 +145,7 @@ export const ImgGet = async (req: Request, res: Response) => {
     });
   } catch (error) {
     return res.status(500).json({
-      msg: "Servidor indisponível.",
+      msg: 'Servidor indisponível.',
       error,
     });
   }
