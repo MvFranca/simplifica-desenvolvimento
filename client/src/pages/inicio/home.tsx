@@ -1,113 +1,83 @@
-"use client";
+'use client';
 
-import styles from "../../styles/home/page.module.css";
-import TrilhaeInfo from "../../components/trilhaInfo/TrilhaeInfo";
-import { useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { pointContext } from "../../context/context";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-// import IconDiamond from "../../components/icons/IconDiamond";
+import styles from '../../styles/home/page.module.css';
+import TrilhaeInfo from '../../components/trilhaInfo/TrilhaeInfo';
+import { useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { pointContext } from '../../context/context';
+import { toast } from 'react-toastify';
+import { api } from '../../services/api';
 
 export default function Home() {
-
-  const user = localStorage.getItem("simplifica:user")!;
+  const user = localStorage.getItem('simplifica:user')!;
   const userObject = JSON.parse(user);
-
 
   const router = useNavigate();
 
-  const { teste , fogo, setPontos, setFogo, setMyProgress, setProgressoBotoes} = useContext(pointContext);
+  const { teste, fogo, setPontos, setFogo, setMyProgress, setProgressoBotoes } =
+    useContext(pointContext);
 
-  const notify = (dimas:number) => toast(`Parabéns! Agora você tem ${dimas} Fires!`, {
-    position: "bottom-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-    
+  const notify = (dimas: number) =>
+    toast(`Parabéns! Agora você tem ${dimas} Fires!`, {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
     });
 
-
-
   useEffect(() => {
-
-    if(teste.current){
-      notify(fogo)
-      teste.current = false
+    if (teste.current) {
+      notify(fogo);
+      teste.current = false;
     }
-
-  }, [fogo])
-
-
+  }, [fogo]);
 
   useEffect(() => {
-    const value = localStorage.getItem("simplifica:token");
-    if (!value) router("/entrar");
+    const value = localStorage.getItem('simplifica:token');
+    if (!value) router('/entrar');
   }, [router]);
 
-  
+  useEffect(() => {
+    const fetchPontuacao = async (idUser: number) => {
+      console.log('entrou');
+
+      const { data } = await api.get(`/points/user/${idUser}/pontuacao`);
+
+      const pontuacao = data.data;
+      setPontos(pontuacao.pontuacao);
+      setFogo(pontuacao.fogo);
+    };
+
+    if (!teste.current && user) {
+      const idUser = Number(userObject.id);
+
+      fetchPontuacao(idUser);
+    }
+  }, [setFogo, setPontos, teste, user, userObject]);
 
   useEffect(() => {
-   
-    // const idUser = Number(userObject.id_usuario);
-    const idUser = Number(userObject.id);
-    console.log("idUser")
-    console.log(idUser)
-    if(!teste.current && user){
-    axios
-      .get(`http://localhost:8000/api/points/user/${idUser}/pontuacao`)
-      .then((res) => {
-        const pontuacao = res.data.data;
-        setPontos(pontuacao.pontuacao);
-        setFogo(pontuacao.fogo);
-        console.log(res)
-      })
+    const fetchProgresso = async (idUser: number) => {
+      const { data } = await api.get(`/content/user/${idUser}/progresso`);
+      const resposta = data.data;
 
-      .catch((err) => {
-        console.log(err);
-      });
+      setMyProgress(resposta.conteudoId);
+      setProgressoBotoes(resposta.avanco);
+    };
+
+    if (!teste.current && user) {
+      const idUser = Number(userObject.id);
+
+      fetchProgresso(idUser);
     }
+  }, [user]);
 
-
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    const idUser = Number(userObject.id);
-
-    if(!teste.current && user){
-    axios
-      .get(`http://localhost:8000/api/content/user/${idUser}/progresso`)
-      .then((res) => {
-        const resposta = res.data.data;
-        console.log('resposta:')
-        console.log(resposta)
-        setMyProgress(resposta.conteudoId)
-        setProgressoBotoes(resposta.avanco)
-
-      })
-
-      .catch((err) => {
-        console.log(err);
-      });
-    }
-  }, [user])
-
-
- 
   return (
     <div className={styles.container}>
       <TrilhaeInfo />
-      <ToastContainer 
-      
-      />
-
     </div>
   );
 }

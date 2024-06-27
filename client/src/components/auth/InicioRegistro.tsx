@@ -1,43 +1,32 @@
-import { useState } from "react";
-import IconEmail from "../../icons/IconEmail";
-import IconLockPasswordFill from "../../icons/IconPassword";
-import IconUser from "../../icons/IconUser";
-import styles from "../../styles/auth/InicioEntrar.module.css";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import IconGoogleClassroom from "../icons/iconClass";
+import { useState } from 'react';
+import IconEmail from '../../icons/IconEmail';
+import IconLockPasswordFill from '../../icons/IconPassword';
+import IconUser from '../../icons/IconUser';
+import styles from '../../styles/auth/InicioEntrar.module.css';
+import { Link, useNavigate } from 'react-router-dom';
+import IconGoogleClassroom from '../icons/iconClass';
+import { api } from '../../services/api';
+import { AxiosError } from 'axios';
+import { toast } from 'react-toastify';
 
 const InicioRegistro = () => {
-  const [fullname, setFullName] = useState("");
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [senha, setPassword] = useState("");
-  const [turma, setTurma] = useState("921")
-  const [confirmPassword, setConfirmPassoword] = useState("");
-  const [error, setError] = useState("");
-  const [sucess, setSucess] = useState("");
-  const [url_image] = useState("bvcb");
+  const [fullname, setFullName] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setPassword] = useState('');
+  const [turma, setTurma] = useState('921');
+  const [confirmPassword, setConfirmPassoword] = useState('');
+
+  const [url_image] = useState('bvcb');
   const router = useNavigate();
 
-  function adicionarIdPontuacao() {
-    axios
-      .post("http://localhost:8000/api/points/insertIdPoints", {
-        email,
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  function submitRegistro(event: React.FormEvent<HTMLFormElement>) {
+  async function submitRegistro(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log('turma:')
-    console.log(turma)
-    axios
-      .post("http://localhost:8000/api/auth/register", {
+
+    const toastId = toast.loading('Cadastrando');
+
+    try {
+      await api.post('/auth/register', {
         username,
         email,
         senha,
@@ -45,28 +34,27 @@ const InicioRegistro = () => {
         url_image,
         fullname,
         turma,
-      })
-      .then((res) => {
-        setError("");
-
-        setSucess(res.data.msg);
-
-        adicionarIdPontuacao();
-
-        setTimeout(() => {
-          router("/");
-        }, 1000);
-      })
-      .catch((err) => {
-        setError(err.response.data.msg);
-        setSucess("");
       });
+
+      toast.update(toastId, {
+        render: 'Cadastro realizado com sucesso!',
+        type: 'success',
+        isLoading: false,
+        autoClose: 5000,
+      });
+
+      setTimeout(() => {
+        router('/');
+      }, 1000);
+    } catch (err) {
+      toast.update(toastId, {
+        render: ((err as AxiosError).response?.data as { msg: string }).msg,
+        type: 'error',
+        isLoading: false,
+        autoClose: 5000,
+      });
+    }
   }
-
-
-  // const turmas = [
-
-  // ]
 
   return (
     <>
@@ -98,7 +86,7 @@ const InicioRegistro = () => {
                 }}
               />
             </div>
-            
+
             <div>
               <label htmlFor="User" className={styles.iconEmail}>
                 <IconUser
@@ -121,7 +109,6 @@ const InicioRegistro = () => {
             </div>
 
             <div>
-
               <label htmlFor="turma" className={styles.iconEmail}>
                 <IconGoogleClassroom
                   width={20}
@@ -131,24 +118,19 @@ const InicioRegistro = () => {
                 />
               </label>
 
-             <select className={styles.classSelect} name="turma" id="turma" 
-             onChange={(e) => {
-              setTurma(e.target.value.replace(/\s/g, ''));
-            }}>
-                <option value="921">
-                  921
-                </option>
-                <option value="911">
-                  911
-                </option>
-                <option value="922">
-                  922
-                </option>
-                <option value="912">
-                  912
-                </option>
-             </select>
-
+              <select
+                className={styles.classSelect}
+                name="turma"
+                id="turma"
+                onChange={(e) => {
+                  setTurma(e.target.value.replace(/\s/g, ''));
+                }}
+              >
+                <option value="921">921</option>
+                <option value="911">911</option>
+                <option value="922">922</option>
+                <option value="912">912</option>
+              </select>
             </div>
             <div>
               <label htmlFor="email" className={styles.iconEmail}>
@@ -225,11 +207,6 @@ const InicioRegistro = () => {
             </div>
             <div className={styles.voltar}>
               <Link to="/entrar">Entrar</Link>
-            </div>
-
-            <div className={styles.alertas}>
-              {error.length > 0 && <span id={styles.erro}>{error}</span>}
-              {sucess.length > 0 && <span id={styles.sucesso}>{sucess}</span>}
             </div>
           </form>
         </div>

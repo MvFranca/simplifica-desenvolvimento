@@ -1,25 +1,25 @@
-import Conteudo from "../../components/estudoManual/conteudo";
-import styles from "../../styles/estudoManual/EstudoManual.module.css";
-import { useEffect, useState } from "react";
-
+import Conteudo from '../../components/estudoManual/conteudo';
+import { api } from '../../services/api';
+import styles from '../../styles/estudoManual/EstudoManual.module.css';
+import { useEffect, useState } from 'react';
 
 interface conteudos {
-  conteudo:string
-  descricao: string
-  id: number
+  conteudo: string;
+  descricao: string;
+  id: number;
 }
 
 const EstudoManual = () => {
   const [conteudos, setConteudos] = useState<Array<conteudos>>([]);
 
-  async function api() {
-    const api = await fetch("http://localhost:8000/api/content/trilha");
-    const json = await api.json();
-    setConteudos(json.data);
-  }
-
   useEffect(() => {
-    api();
+    const fetchData = async () => {
+      const { data } = await api.get('/content/trilha');
+
+      setConteudos(data.data);
+    };
+
+    fetchData();
   }, []);
 
   return (
@@ -28,14 +28,14 @@ const EstudoManual = () => {
         {conteudos?.map((conteudo) => {
           return (
             <Conteudo
+              key={conteudo.id}
               titulo={conteudo.conteudo}
               descricao={conteudo.descricao}
-              id = {conteudo.id}
+              id={conteudo.id}
             />
           );
         })}
       </div>
-        
     </div>
   );
 };
