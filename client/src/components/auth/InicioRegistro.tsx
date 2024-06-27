@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import IconGoogleClassroom from '../icons/iconClass';
 import { api } from '../../services/api';
 import { AxiosError } from 'axios';
+import { toast } from 'react-toastify';
 
 const InicioRegistro = () => {
   const [fullname, setFullName] = useState('');
@@ -15,15 +16,17 @@ const InicioRegistro = () => {
   const [senha, setPassword] = useState('');
   const [turma, setTurma] = useState('921');
   const [confirmPassword, setConfirmPassoword] = useState('');
-  const [error, setError] = useState('');
-  const [sucess, setSucess] = useState('');
+
   const [url_image] = useState('bvcb');
   const router = useNavigate();
 
   async function submitRegistro(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    const toastId = toast.loading('Cadastrando');
+
     try {
-      const { data } = await api.post('/auth/register', {
+      await api.post('/auth/register', {
         username,
         email,
         senha,
@@ -32,16 +35,24 @@ const InicioRegistro = () => {
         fullname,
         turma,
       });
-      setError('');
 
-      setSucess(data.msg);
+      toast.update(toastId, {
+        render: 'Cadastro realizado com sucesso!',
+        type: 'success',
+        isLoading: false,
+        autoClose: 5000,
+      });
 
       setTimeout(() => {
         router('/');
       }, 1000);
     } catch (err) {
-      setError((err as AxiosError).message);
-      setSucess('');
+      toast.update(toastId, {
+        render: ((err as AxiosError).response?.data as { msg: string }).msg,
+        type: 'error',
+        isLoading: false,
+        autoClose: 5000,
+      });
     }
   }
 
@@ -196,11 +207,6 @@ const InicioRegistro = () => {
             </div>
             <div className={styles.voltar}>
               <Link to="/entrar">Entrar</Link>
-            </div>
-
-            <div className={styles.alertas}>
-              {error.length > 0 && <span id={styles.erro}>{error}</span>}
-              {sucess.length > 0 && <span id={styles.sucesso}>{sucess}</span>}
             </div>
           </form>
         </div>
