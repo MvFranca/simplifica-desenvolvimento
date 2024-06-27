@@ -28,7 +28,6 @@ const InicioForm = () => {
       router('/');
     } catch (err) {
       setError((err as AxiosError).message);
-      console.log(err as AxiosError);
 
       setSucess('');
     }
