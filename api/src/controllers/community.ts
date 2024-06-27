@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client";
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
+import { prisma } from '../services/prisma';
 
 export const FindDuvidaById = async (req: Request, res: Response) => {
   try {
@@ -12,8 +12,6 @@ export const FindDuvidaById = async (req: Request, res: Response) => {
         .status(422)
         .json({ msg: `'id' informado não é um número (NaN).` });
     }
-
-    const prisma = new PrismaClient();
 
     const data = await prisma.duvida.findFirst({
       where: {
@@ -29,27 +27,31 @@ export const FindDuvidaById = async (req: Request, res: Response) => {
       },
     });
 
+    if (!data) {
+      return res.status(404).json({
+        msg: 'Dúvida não encontrada.',
+      });
+    }
+
     return res.status(200).json({
-      msg: "Dúvida carregada com sucessso!",
+      msg: 'Dúvida carregada com sucessso!',
       data,
     });
   } catch (error) {
-    return res.status(500).json({ msg: "Servidor indisponível.", error });
+    return res.status(500).json({ msg: 'Servidor indisponível.', error });
   }
 };
 
 export const FindAllDuvidas = async (req: Request, res: Response) => {
   try {
-    const prisma = new PrismaClient();
-
     const data = await prisma.duvida.findMany();
 
     return res.status(200).json({
-      msg: "Dúvidas carregadas com sucessso!",
+      msg: 'Dúvidas carregadas com sucessso!',
       data,
     });
   } catch (error) {
-    return res.status(500).json({ msg: "Servidor indisponível.", error });
+    return res.status(500).json({ msg: 'Servidor indisponível.', error });
   }
 };
 
@@ -59,15 +61,13 @@ export const PostDuvida = async (req: Request, res: Response) => {
       req.body;
 
     if (!titulo)
-      return res.status(422).json({ msg: "O título é obrigatório!" });
+      return res.status(422).json({ msg: 'O título é obrigatório!' });
     if (!descricao)
-      return res.status(422).json({ msg: "A descrição é obrigatória!" });
+      return res.status(422).json({ msg: 'A descrição é obrigatória!' });
     if (!conteudo)
-      return res.status(422).json({ msg: "O conteúdo é obrigatório!" });
+      return res.status(422).json({ msg: 'O conteúdo é obrigatório!' });
     if (!descricao)
-      return res.status(422).json({ msg: "A descrição é obrigatória!" });
-
-    const prisma = new PrismaClient();
+      return res.status(422).json({ msg: 'A descrição é obrigatória!' });
 
     const duvidaData = await prisma.duvida.create({
       data: {
@@ -81,10 +81,10 @@ export const PostDuvida = async (req: Request, res: Response) => {
 
     return res
       .status(200)
-      .json({ msg: "Dúvida cadastrada com sucesso!", data: duvidaData });
+      .json({ msg: 'Dúvida cadastrada com sucesso!', data: duvidaData });
   } catch (error) {
     return res.status(500).json({
-      msg: "Servidor indisponível.",
+      msg: 'Servidor indisponível.',
       error,
     });
   }
@@ -106,8 +106,6 @@ export const FindAllComentarios = async (req: Request, res: Response) => {
         .json({ msg: `'id_duvida' informado não é um número (NaN).` });
     }
 
-    const prisma = new PrismaClient();
-
     const data = await prisma.comentario.findMany({
       where: {
         duvidaId: id_duvidaInt,
@@ -122,11 +120,11 @@ export const FindAllComentarios = async (req: Request, res: Response) => {
     });
 
     return res.status(200).json({
-      msg: "Comentários encontrados com sucesso!",
+      msg: 'Comentários encontrados com sucesso!',
       data,
     });
   } catch (error) {
-    return res.status(500).json({ msg: "Servidor indisponível.", error });
+    return res.status(500).json({ msg: 'Servidor indisponível.', error });
   }
 };
 
@@ -149,8 +147,6 @@ export const FindComentarioById = async (req: Request, res: Response) => {
         .json({ msg: `'id' [de comentário] informado não é um número (NaN).` });
     }
 
-    const prisma = new PrismaClient();
-
     const data = await prisma.comentario.findFirst({
       where: {
         duvidaId: id_duvidaInt,
@@ -166,23 +162,20 @@ export const FindComentarioById = async (req: Request, res: Response) => {
     });
 
     return res.status(200).json({
-      msg: "Comentários encontrados com sucesso!",
+      msg: 'Comentários encontrados com sucesso!',
       data,
     });
   } catch (error) {
-    return res.status(500).json({ msg: "Servidor indisponível.", error });
+    return res.status(500).json({ msg: 'Servidor indisponível.', error });
   }
 };
 
 export const PostComentario = async (req: Request, res: Response) => {
   try {
-    const { descricao, titulo, url_img, /* data, hora,*/ id_duvida, idUser } =
-      req.body;
+    const { descricao, titulo, url_img, id_duvida, idUser } = req.body;
 
-    // if (!titulo)
-    //   return res.status(422).json({ msg: "O título é obrigatório!" });
     if (!descricao)
-      return res.status(422).json({ msg: "A descrição é obrigatória!" });
+      return res.status(422).json({ msg: 'A descrição é obrigatória!' });
     if (!id_duvida)
       return res.status(422).json({ msg: `'id_duvida' não informado.` });
 
@@ -205,8 +198,6 @@ export const PostComentario = async (req: Request, res: Response) => {
         .json({ msg: `'idUser' informado não é um número (NaN).` });
     }
 
-    const prisma = new PrismaClient();
-
     const data = await prisma.comentario.create({
       data: {
         descricao,
@@ -219,10 +210,10 @@ export const PostComentario = async (req: Request, res: Response) => {
 
     return res
       .status(200)
-      .json({ msg: "Comentário enviado com sucesso!", data });
+      .json({ msg: 'Comentário enviado com sucesso!', data });
   } catch (error) {
     return res.status(500).json({
-      msg: "Servidor indisponível.",
+      msg: 'Servidor indisponível.',
       error,
     });
   }
