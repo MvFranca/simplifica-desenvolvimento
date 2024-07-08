@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { prisma } from '../services/prisma';
+import { AuthCustomRequest } from '../types/AuthCustomRequest';
 
 export const GetUserById = async (req: Request, res: Response) => {
   try {
@@ -32,20 +33,27 @@ export const GetUserById = async (req: Request, res: Response) => {
 
 export const AttUser = async (req: Request, res: Response) => {
   try {
-    const { id_usuario } = req.params;
+    const { id: id_usuario } = req.params;
     const { fullname, username, email, turma } = req.body;
+    const { user_info } = req as AuthCustomRequest;
 
     const idUserInt = parseInt(id_usuario as string);
 
     if (isNaN(idUserInt)) {
       return res
         .status(422)
-        .json({ msg: `'id_usuario' informado não é um número (NaN).` });
+        .json({ msg: `'id' informado não é um número (NaN).` });
+    }
+
+    if (user_info.id != idUserInt) {
+      return res
+        .status(401)
+        .json({ msg: 'Usuário não autorizado para esta operação.' });
     }
 
     const foundUser = await prisma.usuario.findUnique({
       where: {
-        email,
+        id: idUserInt,
       },
     });
 
@@ -53,6 +61,13 @@ export const AttUser = async (req: Request, res: Response) => {
       const data = await prisma.usuario.update({
         where: {
           id: idUserInt,
+        },
+        select: {
+          id: true,
+          username: true,
+          email: true,
+          updatedAt: true,
+          createdAt: true,
         },
         data: {
           fullname,
