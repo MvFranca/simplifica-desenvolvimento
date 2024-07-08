@@ -20,7 +20,8 @@ export const register = async (req: Request, res: Response) => {
 
     if (!fullname)
       return res.status(422).json({ msg: 'Nome completo é obrigatório!' });
-    if (!turma) return res.status(422).json({ msg: 'A turma é obrigatória!' });
+    if (!turma || typeof turma !== 'string')
+      return res.status(422).json({ msg: 'A turma é obrigatória!' });
     if (!username)
       return res.status(422).json({ msg: 'Usuário é obrigatório!' });
     if (!email) return res.status(422).json({ msg: 'O e-mail é obrigatório!' });
@@ -37,7 +38,7 @@ export const register = async (req: Request, res: Response) => {
     const passwordHash = await bcrypt.hash(senha, 8);
 
     const user = await prisma.$transaction(async (tx) => {
-      const data = await prisma.usuario.create({
+      const data = await tx.usuario.create({
         data: {
           fullname,
           username,
@@ -46,9 +47,12 @@ export const register = async (req: Request, res: Response) => {
           senha: passwordHash,
           turma,
         },
+        select: {
+          id: true,
+        },
       });
 
-      await prisma.pontuacao.create({
+      await tx.pontuacao.create({
         data: {
           usuarioId: data.id,
           pontuacao: 0,
@@ -56,7 +60,7 @@ export const register = async (req: Request, res: Response) => {
         },
       });
 
-      await prisma.progresso.create({
+      await tx.progresso.create({
         data: {
           usuarioId: data.id,
         },
@@ -77,6 +81,9 @@ export const login = async (req: Request, res: Response) => {
   try {
     const { email, senha } = req.body;
 
+    if (!email) return res.status(422).json({ msg: 'O e-mail é obrigatório!' });
+    if (!senha) return res.status(422).json({ msg: 'A senha é obrigatória!' });
+
     const user = await prisma.usuario.findUnique({
       where: {
         email,
@@ -92,7 +99,7 @@ export const login = async (req: Request, res: Response) => {
       const refreshToken = jwt.sign(
         {
           exp: Math.floor(Date.now() / 1000) + 24 * 60 * 60, // 24 horas
-          id: user.senha,
+          id: user.id,
         },
         process.env.REFRESH,
         { algorithm: 'HS256' }
@@ -100,11 +107,13 @@ export const login = async (req: Request, res: Response) => {
       const token = jwt.sign(
         {
           exp: Math.floor(Date.now() / 1000) + 1 * 60 * 60, // 1 hora
-          id: user.senha,
+          id: user.id,
         },
         process.env.TOKEN,
         { algorithm: 'HS256' }
       );
+
+      delete user['senha'];
 
       return res.status(200).json({
         msg: 'Usuário logado com sucesso!',
