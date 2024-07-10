@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { prisma } from '../services/prisma';
+import { AuthCustomRequest } from '../types/AuthCustomRequest';
 
 export const findAllTrilha = async (req: Request, res: Response) => {
   try {
@@ -17,6 +18,7 @@ export const findAllTrilha = async (req: Request, res: Response) => {
 export const getProgress = async (req: Request, res: Response) => {
   try {
     const { id_usuario } = req.params;
+    const { user_info } = req as AuthCustomRequest;
 
     const idUserInt = parseInt(id_usuario as string);
 
@@ -24,6 +26,12 @@ export const getProgress = async (req: Request, res: Response) => {
       return res
         .status(422)
         .json({ msg: `'id_usuario' informado não é um número (NaN).` });
+    }
+
+    if (user_info.id != idUserInt) {
+      return res
+        .status(401)
+        .json({ msg: 'Usuário não autorizado para esta operação.' });
     }
 
     const data = await prisma.progresso.findFirst({
@@ -45,6 +53,7 @@ export const updateProgress = async (req: Request, res: Response) => {
   try {
     const { id_usuario } = req.params;
     const { myProgress, progressoBotoes } = req.body;
+    const { user_info } = req as AuthCustomRequest;
 
     const idUserInt = parseInt(id_usuario as string);
 
@@ -52,6 +61,12 @@ export const updateProgress = async (req: Request, res: Response) => {
       return res
         .status(422)
         .json({ msg: `'id_usuario' informado não é um número (NaN).` });
+    }
+
+    if (user_info.id != idUserInt) {
+      return res
+        .status(401)
+        .json({ msg: 'Usuário não autorizado para esta operação.' });
     }
 
     const data = await prisma.progresso.update({

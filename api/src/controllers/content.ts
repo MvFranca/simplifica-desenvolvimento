@@ -8,9 +8,9 @@ export const getContent = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    const idUserInt = parseInt(id as string);
+    const idInt = parseInt(id as string);
 
-    if (isNaN(idUserInt)) {
+    if (isNaN(idInt)) {
       return res
         .status(422)
         .json({ msg: `'id' informado não é um número (NaN).` });
@@ -18,7 +18,7 @@ export const getContent = async (req: Request, res: Response) => {
 
     const dataTrilha = await prisma.trilha.findUnique({
       where: {
-        id: idUserInt,
+        id: idInt,
       },
     });
 
@@ -42,9 +42,10 @@ export const getContent = async (req: Request, res: Response) => {
 export const getQuestions = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const idUserInt = parseInt(id as string);
 
-    if (isNaN(idUserInt)) {
+    const idInt = parseInt(id as string);
+
+    if (isNaN(idInt)) {
       return res
         .status(422)
         .json({ msg: `'id' informado não é um número (NaN).` });
@@ -52,7 +53,7 @@ export const getQuestions = async (req: Request, res: Response) => {
 
     const data = await prisma.questao.findMany({
       where: {
-        id_grupo: idUserInt,
+        id_grupo: idInt,
       },
       include: {
         respostas: {
@@ -81,9 +82,9 @@ export const getQuestions = async (req: Request, res: Response) => {
 export const getOrderedQuestions = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const idUserInt = parseInt(id as string);
+    const idInt = parseInt(id as string);
 
-    if (isNaN(idUserInt)) {
+    if (isNaN(idInt)) {
       return res
         .status(422)
         .json({ msg: `'id' informado não é um número (NaN).` });
@@ -91,7 +92,7 @@ export const getOrderedQuestions = async (req: Request, res: Response) => {
 
     const dataFull = await prisma.questao.findMany({
       where: {
-        id_grupo: idUserInt,
+        id_grupo: idInt,
       },
       include: {
         resposta_ordenada: true,

@@ -4,10 +4,10 @@ import { authenticate } from '../middlewares/authMiddleware';
 
 const router = express.Router();
 
-router.get('/user/:id', GetUserById);
+router.get('/user/:id', authenticate, GetUserById);
 router.put('/user/:id', authenticate, AttUser);
 
 router.get('/user/:id/image', ImgGet);
-router.put('/user/:id/image', ImgAtt);
+router.put('/user/:id/image', authenticate, ImgAtt);
 
 export default router;

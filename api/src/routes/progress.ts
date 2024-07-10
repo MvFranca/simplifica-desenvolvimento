@@ -1,14 +1,15 @@
-import express from "express";
+import express from 'express';
 import {
   findAllTrilha,
   getProgress,
   updateProgress,
-} from "../controllers/progress";
+} from '../controllers/progress';
+import { authenticate } from '../middlewares/authMiddleware';
 
 const router = express.Router();
 
-router.get("/trilha", findAllTrilha);
-router.get("/user/:id_usuario/progresso", getProgress);
-router.put("/user/:id_usuario/progresso", updateProgress);
+router.get('/trilha', findAllTrilha);
+router.get('/user/:id_usuario/progresso', authenticate, getProgress);
+router.put('/user/:id_usuario/progresso', authenticate, updateProgress);
 
 export default router;
