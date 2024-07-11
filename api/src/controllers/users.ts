@@ -26,7 +26,17 @@ export const GetUserById = async (req: Request, res: Response) => {
         id: idInt,
       },
       select: {
-        comentario: true,
+        comentario: {
+          select: {
+            id: true,
+            titulo: true,
+            usuarioId: true,
+            descricao: true,
+            duvidaId: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
         createdAt: true,
         duvidas: true,
         email: true,
