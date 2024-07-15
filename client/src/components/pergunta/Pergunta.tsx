@@ -63,7 +63,7 @@ const Pergunta = ({ assunto, totalQuestions }: props) => {
     }
     })
 
-  }
+  } 
 
   function finalizar() {
     if (resposta.assinalada == assunto[perguntaAtual].respostas.alternativa_correta) {

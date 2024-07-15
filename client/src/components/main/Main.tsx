@@ -50,7 +50,7 @@ const Main = ({ conteudo, descricao, id, src }: props) => {
           />
 
         <img
-          src={src}
+          src={'./trilha/teste.gif'}
           alt="programador"
           width={260}
           height={200}

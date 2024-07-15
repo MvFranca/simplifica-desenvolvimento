@@ -13,7 +13,7 @@
 }
 
 .conteudo button{
-    width: 45%;
+    width: 100%;
     background-color: #268aff;
     color: #fff;
     box-shadow: 0px 5px 0px 0.5px #1564be;
@@ -23,6 +23,7 @@
     margin-top: 20px;
     transition: 0.2s all;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .conteudo p {

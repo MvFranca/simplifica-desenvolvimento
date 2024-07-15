@@ -23,9 +23,9 @@ const Conteudo = ({titulo, descricao, id}: props) => {
                 <button onClick={()=> {routes(`/aprender/${id}`)}}>
                     REVISÃO
                 </button>
-                <button onClick={()=> {routes(`/jogar/${id}`)}}>
+                {/* <button onClick={()=> {routes(`/jogar/${id}`)}}>
                     EXERCÍCIOS
-                </button>
+                </button> */}
             </div>
         </div>
      );
