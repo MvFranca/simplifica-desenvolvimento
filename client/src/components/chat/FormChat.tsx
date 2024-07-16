@@ -1,10 +1,12 @@
-import { ChangeEvent, useRef, useState, useContext, useCallback } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import styles from '../../styles/comunidade/FormChat.module.css';
 import IconAddOutline from '../icons/IconAdd';
 import IconClose from '../icons/IconClose';
-import { pointContext } from '../../context/context';
-import { Duvidas } from '../../types/IDuvida';
+// import { pointContext } from '../../context/context';
+// import { Duvidas } from '../../types/IDuvida';
 import { api } from '../../services/api';
+import { useNavigate } from 'react-router-dom';
+// import ImagemComModal from '../ImagemComModal';
 
 // import { z } from 'zod';
 
@@ -22,28 +24,40 @@ const FormChat = () => {
   const [descricao, setDescricao] = useState('');
   const [conteudo, setConteudo] = useState('Variáveis');
   // const [ url_img, set_url_img ] = useState('')
-  const url = useRef('');
+  const Url = useRef('');
+
+  const navigate = useNavigate()
+
+  const [url, setUrl] = useState('')
+
+  const input_image = useRef<HTMLInputElement>(null)
 
   const user = localStorage.getItem('simplifica:user')!;
   const userObject = JSON.parse(user);
 
-  const { duvidas, setDuvidas } = useContext(pointContext);
+  // const { duvidas, setDuvidas } = useContext(pointContext);
 
-  const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files![0];
+  function handleImageChange(event: ChangeEvent<HTMLInputElement>) {
+    const [file] = input_image.current!.files as FileList;
 
     if (file) {
+      const url = URL.createObjectURL(file);
+      setUrl(url);
+    }
+
+    const files = event.target.files![0];
+
+    if (files) {
       const reader = new FileReader();
       reader.onload = () => {
         const urlImg = reader.result;
-        url.current = String(urlImg);
+        Url.current = String(urlImg);
       };
       reader.readAsDataURL(file);
     }
-  };
+  }
 
-  const submit = useCallback(
-    async (e: React.FormEvent<HTMLFormElement>) => {
+  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
       const idUser = Number(userObject.id);
@@ -51,44 +65,44 @@ const FormChat = () => {
       const duvida = {
         titulo,
         descricao,
-        url_img: String(url.current),
+        url_img: String(Url.current),
         conteudo,
         // data: String(formatDate(new Date())),
         // hora: hour(),
         idUser,
       };
 
-      await api.post('/community/duvidas', duvida);
-      const duvidasAtt: Duvidas[] = [
-        ...duvidas,
-        {
-          id: duvida.idUser,
-          titulo: duvida.titulo,
-          descricao: duvida.descricao,
-          img_url: duvida.url_img || '',
-          conteudo: duvida.conteudo,
-          // data_duvida: duvida.data,
-          // hora_duvida: duvida.hora,
-          idUser: duvida.idUser,
-          usuario: {
-            id: 0,
-            username: '',
-            email: '',
-            senha: '',
-            url_image: '',
-            fullname: '',
-            turma: '',
-          },
-          createdAt: '',
-          url_img: '',
-        },
-      ];
+      await api.post('/community/duvidas', duvida).then(() => {
+        // const duvidasAtt: Duvidas[] = [
+        //   ...duvidas,
+        //   {
+        //     id: duvida.idUser,
+        //     titulo: duvida.titulo,
+        //     descricao: duvida.descricao,
+        //     img_url: duvida.url_img || '',
+        //     conteudo: duvida.conteudo,
+  
+        //     idUser: duvida.idUser,
+        //     createdAt: '',
+        //     url_img: '',
+        //   },
+        // ];
+        navigate("/comunidade")
+        // setDuvidas(duvidasAtt);
 
-      setDuvidas(duvidasAtt);
-      setForm(false);
-    },
-    [conteudo, descricao, duvidas, setDuvidas, titulo, userObject]
-  );
+      }).catch((Err) => {
+        console.log(Err)
+
+      }).finally(() => {
+        
+        setForm(false);
+      })
+
+
+    }
+    // ,
+  //   [conteudo, descricao, duvidas, titulo, userObject]
+  // );
 
   return (
     <div className={styles.formChat}>
@@ -137,6 +151,14 @@ const FormChat = () => {
                   <option value="Condicionais">Condicionais</option>
                 </select>
               </div>
+
+
+              {
+                url.length > 0 ?
+                <div className={styles.anexar}>
+                  <img src={url} className={styles.imageModal}/>
+                </div>
+                :
               <div className={styles.anexar}>
                 <label htmlFor="img">
                   Arraste ou clique para adicionar a imagem
@@ -148,8 +170,11 @@ const FormChat = () => {
                   onChange={handleImageChange}
                   accept="image/*"
                   className={styles.inputImg}
+                  ref={input_image}
                 />
               </div>
+
+              }
             </div>
 
             <button>Enviar</button>

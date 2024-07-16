@@ -75,8 +75,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    height: 16.875rem;
+    height: 100px;
     overflow: hidden;
     border: 1.5px solid #0000006d;
     border-radius: 8px;

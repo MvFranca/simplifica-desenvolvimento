@@ -24,7 +24,7 @@ const Chat = () => {
     };
 
     fetchData();
-  }, [setDuvidas]);
+  }, [setDuvidas, duvidas]);
 
   useEffect(() => {
     if (duvidas.length != 0) {

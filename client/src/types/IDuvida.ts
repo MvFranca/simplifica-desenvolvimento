@@ -47,6 +47,6 @@ export interface Duvidas {
   // data_duvida: string,
   // hora_duvida: string,
   idUser: number;
-  usuario: IUser;
+  usuario?: IUser;
   createdAt: string;
 }

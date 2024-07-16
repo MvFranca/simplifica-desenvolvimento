@@ -26,7 +26,7 @@ interface pontuacao {
   variaveis: boolean;
   setVariaveis: (valor: boolean) => void;
 
-  duvidas: Array<Duvidas>;
+  duvidas: Duvidas[];
   setDuvidas: Dispatch<SetStateAction<Array<Duvidas>>>;
 
   teste: React.MutableRefObject<boolean>;

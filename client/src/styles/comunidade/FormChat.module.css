@@ -125,6 +125,7 @@
     display: flex;
     border: 1px dashed #000;
     justify-content: center;
+    overflow: hidden;
     align-items: center;
 }
 
@@ -153,6 +154,11 @@
 .form button:hover{
     transform: translateY(4px) translateX(4px);
     box-shadow: none;
+}
+
+
+.imageModal{
+    width: 100%;
 }
 
 @media screen and (max-width: 1000px) {
