@@ -22,7 +22,7 @@ const Chat = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await api.get('/community/duvidass').finally(() => {
+      const { data } = await api.get('/community/duvidas').finally(() => {
 
         data.data.lenght == 0 && setLoading(true)
         
