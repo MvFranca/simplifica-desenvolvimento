@@ -18,15 +18,11 @@ const Chat = () => {
 
   const { setDuvidas, duvidas } = useContext(pointContext);
 
-  const [loading, setLoading] = useState(false)
+  const [loading] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await api.get('/community/duvidas').finally(() => {
-
-        data.data.lenght == 0 && setLoading(true)
-        
-      })
+      const { data } = await api.get('/community/duvidas')
         
       setDuvidas(data.data);
     };

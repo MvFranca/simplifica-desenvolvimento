@@ -8,6 +8,7 @@ import { formatDate } from '../../helpers/formatDate';
 import { api } from '../../services/api';
 import { toast } from 'react-toastify';
 import { AxiosError } from 'axios';
+import CarregamentoGif from '../../components/carregamentoGif';
 
 const ShowDuvida = () => {
   //* hooks
@@ -56,61 +57,71 @@ const ShowDuvida = () => {
   const abrirFormResposta = () => setFormRespostas(!formRespostas);
 
   return (
-    <div>
       <div className={styles.content}>
-        <div className={styles.containerBox}>
-          <div className={styles.infoLeft}>
-            <h3 className={styles.username}>{duvida?.usuario?.username}</h3>
-            <p className={styles.dataLabel}>
-              <span>Data: {formatDate(String(duvida?.createdAt))}</span>
-            </p>
-            <p className={styles.dataLabel}>
-              <span>Turma:</span> {duvida?.usuario?.turma}
-            </p>
-          </div>
-          <div className={styles.infoRight}>
-            <button className={styles.btnGray}>
-              {comentarios.length > 0 ? (
-                <span>Visto</span>
-              ) : (
-                <span style={{ color: 'red' }}>Não visto</span>
-              )}
-            </button>
-            <p className={styles.dataLabel}>
-              <span>Conteúdo:</span>
-              <a href=""> {duvida?.conteudo}</a>
-            </p>
-          </div>
-        </div>
-        <div className={styles.caixaDuvidaContainer}>
-          <div className={styles.caixaDuvidaContainer}>
-            <h1 className={styles.title}>{duvida?.titulo}</h1>
-            <p className={styles.description}>{duvida?.descricao}</p>
-            <div className={styles.line}></div>
-          </div>
-          <div className={styles.caixaDuvidaContainer}>
-            {duvida?.img_url && (
-              <>
-                <ImagemComModal
-                  src={duvida.img_url}
-                  alt={duvida?.titulo}
-                  classNameImagem={styles.image}
-                />
+
+        {
+          duvida ?
+          <>
+          <div className={styles.containerBox}>
+              <div className={styles.infoLeft}>
+                <h3 className={styles.username}>{duvida?.usuario?.username}</h3>
+                <p className={styles.dataLabel}>
+                  <span>Data: {formatDate(String(duvida?.createdAt))}</span>
+                </p>
+                <p className={styles.dataLabel}>
+                  <span>Turma:</span> {duvida?.usuario?.turma}
+                </p>
+              </div>
+              <div className={styles.infoRight}>
+                <button className={styles.btnGray}>
+                  {comentarios.length > 0 ? (
+                    <span>Visto</span>
+                  ) : (
+                    <span style={{ color: 'red' }}>Não visto</span>
+                  )}
+                </button>
+                <p className={styles.dataLabel}>
+                  <span>Conteúdo:</span>
+                  <a href=""> {duvida?.conteudo}</a>
+                </p>
+              </div>
+            </div>
+            <div className={styles.caixaDuvidaContainer}>
+              <div className={styles.caixaDuvidaContainer}>
+                <h1 className={styles.title}>{duvida?.titulo}</h1>
+                <p className={styles.description}>{duvida?.descricao}</p>
                 <div className={styles.line}></div>
-              </>
-            )}
-          </div>
-          <div className={styles.spaceBetween}>
-            <button className={styles.btnBlue}>
-              {comentarios && comentarios.length} Ver a
-              {comentarios && comentarios.length > 1 ? 's' : ''} resposta
-              {comentarios && comentarios.length > 1 ? 's' : ''}{' '}
-            </button>
-            <button className={styles.btnBlack} onClick={abrirFormResposta}>
-              Responder
-            </button>
-          </div>
-        </div>
+              </div>
+              <div className={styles.caixaDuvidaContainer}>
+                {duvida?.img_url && (
+                  <>
+                    <ImagemComModal
+                      src={duvida.img_url}
+                      alt={duvida?.titulo}
+                      classNameImagem={styles.image}
+                    />
+                    <div className={styles.line}></div>
+                  </>
+                )}
+              </div>
+              <div className={styles.spaceBetween}>
+                <button className={styles.btnBlue}>
+                  {comentarios && comentarios.length} Ver a
+                  {comentarios && comentarios.length > 1 ? 's' : ''} resposta
+                  {comentarios && comentarios.length > 1 ? 's' : ''}{' '}
+                </button>
+                <button className={styles.btnBlack} onClick={abrirFormResposta}>
+                  Responder
+                </button>
+              </div>
+            </div>
+          
+          </>
+          :
+          <CarregamentoGif/>
+        }
+
+        
 
         {formRespostas && (
           <FormResposta
@@ -150,7 +161,6 @@ const ShowDuvida = () => {
               );
             })}
       </div>
-    </div>
   );
 };
 
