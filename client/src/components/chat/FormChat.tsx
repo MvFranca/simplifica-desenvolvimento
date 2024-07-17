@@ -117,6 +117,7 @@ const FormChat = () => {
                 type="text"
                 placeholder="Qual é a sua dúvida?"
                 onChange={(e) => setTitulo(e.target.value)}
+                required
               />
             </div>
 
@@ -129,6 +130,8 @@ const FormChat = () => {
                 onChange={(e) => setDescricao(e.target.value)}
                 id=""
                 placeholder="Descreva de forma resumida a sua dúvida"
+                required
+
               ></textarea>
             </div>
 

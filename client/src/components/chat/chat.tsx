@@ -9,6 +9,7 @@ import {
   obterDiaDeHoje,
 } from '../../helpers/formatDate';
 import { api } from '../../services/api';
+import CarregamentoGif from '../carregamentoGif';
 
 const Chat = () => {
   const [datas, setDatas] = useState<string[]>([]);
@@ -17,9 +18,16 @@ const Chat = () => {
 
   const { setDuvidas, duvidas } = useContext(pointContext);
 
+  const [loading, setLoading] = useState(false)
+
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await api.get('/community/duvidas');
+      const { data } = await api.get('/community/duvidass').finally(() => {
+
+        data.data.lenght == 0 && setLoading(true)
+        
+      })
+        
       setDuvidas(data.data);
     };
 
@@ -44,7 +52,8 @@ const Chat = () => {
 
   return (
     <div className={styles.chat}>
-      {datas &&
+      {
+      datas.length > 0 ?
         datas.map((data: string) => {
           return (
             <section className={styles.infoDuvidas}>
@@ -77,7 +86,15 @@ const Chat = () => {
               </div>
             </section>
           );
-        })}
+        })
+        :
+        !loading ?
+        <CarregamentoGif/>
+        :
+        <div className={styles.carregamento}>
+            <p>Não há dúvidas cadastradas no momento!</p>
+        </div>
+      }
     </div>
   );
 };
