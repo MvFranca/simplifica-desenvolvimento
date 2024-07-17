@@ -1,12 +1,13 @@
 .tableRanking{
     width: 100% ;
+    height: 100%;
     overflow: hidden;
     box-sizing: border-box;
     /* padding: 50px 0px; */
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 3rem;
-    margin-top: 100px;
 }
 
 .cabecalho{
@@ -69,8 +70,9 @@
 .pointsOptions{
     width: 100%;
     display: flex;
-
     border-bottom: 1.5px solid #D9D9D9;
+    margin-top: 100px;
+    max-width: 1400px;
 
 }
 
@@ -110,6 +112,8 @@
     background-color: #f4f4f4;
     border: .0938rem solid #c7c7c7;
     border-radius: .3125rem;
+    max-width: 1400px;
+
 }
 
 .tabela .cabecalho{
@@ -199,13 +203,12 @@
     }
 }
 
-@media screen and (max-width: 50rem) {
+@media screen and (max-width: 800px) {
     .tableRanking{
         width: 100%;
         display: flex;
         justify-content: center;
-        margin: 4.375rem 0;
-        padding: 1.875rem 0;
+        padding-bottom: 4.375rem ;
 
     }
 
@@ -214,7 +217,7 @@
     }
 }
 
-@media screen and (max-width: 34.375rem) {
+@media screen and (max-width: 550px) {
 
     .searchInput input{
         width: 10rem;
@@ -239,7 +242,8 @@
     }
 
     .tableRanking{
-        padding: 1.875rem 0;
+        padding: 0;
+        padding-bottom: 120px;
     }
 
     .tabela .username{

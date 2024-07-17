@@ -3,6 +3,7 @@ import Main from '../main/Main';
 import Opcoes from '../opcoes/Opcoes';
 import styles from '../../styles/home/TrilhaeInfo.module.css';
 import { api } from '../../services/api';
+import CarregamentoGif from '../carregamentoGif';
 
 const TrilhaeInfo = () => {
   const [conteudos, setConteudos] = useState([]);
@@ -20,20 +21,25 @@ const TrilhaeInfo = () => {
 
   return (
     <main className={styles.main}>
-      <div className={styles.conteudoContainer}>
-        {conteudos?.map((assunto) => {
-          const { conteudo, descricao, id, img_url = '' } = assunto;
-          return (
-            <Main
-              conteudo={conteudo}
-              descricao={descricao}
-              key={id}
-              id={id}
-              src={img_url}
-            />
-          );
-        })}
-      </div>
+      <   div className={styles.conteudoContainer}>
+        {
+          conteudos.length > 0 ?
+              conteudos?.map((assunto) => {
+                const { conteudo, descricao, id, img_url = '' } = assunto;
+                return (
+                  <Main
+                    conteudo={conteudo}
+                    descricao={descricao}
+                    key={id}
+                    id={id}
+                    src={img_url}
+                  />
+                );
+              })
+          :
+          <CarregamentoGif/>
+        }
+          </div>
 
       <div className={styles.opcoes}>
         <Opcoes />

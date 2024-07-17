@@ -1,3 +1,4 @@
+import CarregamentoGif from '../../components/carregamentoGif';
 import Conteudo from '../../components/estudoManual/conteudo';
 import { api } from '../../services/api';
 import styles from '../../styles/estudoManual/EstudoManual.module.css';
@@ -24,18 +25,24 @@ const EstudoManual = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.conteudos}>
-        {conteudos?.map((conteudo) => {
-          return (
-            <Conteudo
-              key={conteudo.id}
-              titulo={conteudo.conteudo}
-              descricao={conteudo.descricao}
-              id={conteudo.id}
-            />
-          );
-        })}
-      </div>
+      {
+        conteudos.length > 0 ?
+          <div className={styles.conteudos}>
+            {conteudos?.map((conteudo) => {
+              return (
+                <Conteudo
+                  key={conteudo.id}
+                  titulo={conteudo.conteudo}
+                  descricao={conteudo.descricao}
+                  id={conteudo.id}
+                />
+              );
+            })}
+          </div>
+        :
+        <CarregamentoGif/>
+      }
+      
     </div>
   );
 };
