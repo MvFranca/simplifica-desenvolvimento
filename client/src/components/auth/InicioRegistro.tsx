@@ -130,6 +130,7 @@ const InicioRegistro = () => {
                 <option value="911">911</option>
                 <option value="922">922</option>
                 <option value="912">912</option>
+                <option value="1º Período">1º Período</option>
               </select>
             </div>
             <div>
