@@ -45,22 +45,32 @@ export const register = async (req: Request, res: Response) => {
           url_image,
           senha: passwordHash,
           turma,
+          // Utiliza API `create` do Prisma para criar os registros relacionados
+          pontuacao: {
+            create: {
+              pontuacao: 0,
+              fogo: 0,
+            },
+          },
+          progresso: {
+            create: {},
+          },
         },
       });
 
-      await prisma.pontuacao.create({
-        data: {
-          usuarioId: data.id,
-          pontuacao: 0,
-          fogo: 0,
-        },
-      });
+      // await prisma.pontuacao.create({
+      //   data: {
+      //     usuarioId: data.id,
+      //     pontuacao: 0,
+      //     fogo: 0,
+      //   },
+      // });
 
-      await prisma.progresso.create({
-        data: {
-          usuarioId: data.id,
-        },
-      });
+      // await prisma.progresso.create({
+      //   data: {
+      //     usuarioId: data.id,
+      //   },
+      // });
 
       return data;
     });
