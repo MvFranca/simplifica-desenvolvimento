@@ -75,36 +75,38 @@ export const login = async (req: Request, res: Response) => {
       },
     });
 
-    if (user) {
-      const checkPassword = await bcrypt.compare(senha, user.senha);
-      if (!checkPassword) {
-        return res.status(422).json({ msg: 'Senha incorreta.' });
-      }
+    // Inverte verificação do if para reduzir nesting do código
 
-      const refreshToken = jwt.sign(
-        {
-          exp: Math.floor(Date.now() / 1000) + 24 * 60 * 60, // 24 horas
-          id: user.senha,
-        },
-        process.env.REFRESH,
-        { algorithm: 'HS256' }
-      );
-      const token = jwt.sign(
-        {
-          exp: Math.floor(Date.now() / 1000) + 1 * 60 * 60, // 1 hora
-          id: user.senha,
-        },
-        process.env.TOKEN,
-        { algorithm: 'HS256' }
-      );
-
-      return res.status(200).json({
-        msg: 'Usuário logado com sucesso!',
-        data: { user, token: { token, refreshToken } },
-      });
-    } else {
+    if (!user) {
       return res.status(404).json({ msg: 'Usuário não encontrado.' });
     }
+
+    const checkPassword = await bcrypt.compare(senha, user.senha);
+    if (!checkPassword) {
+      return res.status(422).json({ msg: 'Senha incorreta.' });
+    }
+
+    const refreshToken = jwt.sign(
+      {
+        exp: Math.floor(Date.now() / 1000) + 24 * 60 * 60, // 24 horas
+        id: user.senha,
+      },
+      process.env.REFRESH,
+      { algorithm: 'HS256' }
+    );
+    const token = jwt.sign(
+      {
+        exp: Math.floor(Date.now() / 1000) + 1 * 60 * 60, // 1 hora
+        id: user.senha,
+      },
+      process.env.TOKEN,
+      { algorithm: 'HS256' }
+    );
+
+    return res.status(200).json({
+      msg: 'Usuário logado com sucesso!',
+      data: { user, token: { token, refreshToken } },
+    });
   } catch (error) {
     return res.status(500).json({ msg: 'Servidor indisponível.', error });
   }
