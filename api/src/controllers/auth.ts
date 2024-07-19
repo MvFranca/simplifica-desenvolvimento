@@ -36,43 +36,25 @@ export const register = async (req: Request, res: Response) => {
 
     const passwordHash = await bcrypt.hash(senha, 8);
 
-    const user = await prisma.$transaction(async (tx) => {
-      const data = await prisma.usuario.create({
-        data: {
-          fullname,
-          username,
-          email,
-          url_image,
-          senha: passwordHash,
-          turma,
-          // Utiliza API `create` do Prisma para criar os registros relacionados
-          pontuacao: {
-            create: {
-              pontuacao: 0,
-              fogo: 0,
-            },
-          },
-          progresso: {
-            create: {},
+    const user = await prisma.usuario.create({
+      data: {
+        fullname,
+        username,
+        email,
+        url_image,
+        senha: passwordHash,
+        turma,
+        // Utiliza API `create` do Prisma para criar os registros relacionados
+        pontuacao: {
+          create: {
+            pontuacao: 0,
+            fogo: 0,
           },
         },
-      });
-
-      // await prisma.pontuacao.create({
-      //   data: {
-      //     usuarioId: data.id,
-      //     pontuacao: 0,
-      //     fogo: 0,
-      //   },
-      // });
-
-      // await prisma.progresso.create({
-      //   data: {
-      //     usuarioId: data.id,
-      //   },
-      // });
-
-      return data;
+        progresso: {
+          create: {},
+        },
+      },
     });
 
     return res
