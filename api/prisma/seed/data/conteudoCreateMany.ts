@@ -129,7 +129,7 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     img1_alt: 'Código da estrutura de condição "se" em Portugol.',
     img2_alt: 'Código da estrutura de condição "if" em C.',
     img1_url: "/img_conteudos/ed1.png",
-    img2_url: ".img_conteudos/ed2.png",
+    img2_url: "/img_conteudos/ed2.png",
     img1_descricao:
       "No exemplo acima estamos analisando se a idade do indivíduo corresponde a classificação do filme, se a idade do usuário não corresponder à idade mínima ideal para assistir, será impresso na tela uma mensagem na tela informando que não será possível assistir ao filme. Caso contrário, o código continuará a ser executado normalmente.",
     img2_descricao:
@@ -178,7 +178,7 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     subtitulo: "",
     img1_alt:
       "Código na linguagem C das quatro principais operações matemáticas.",
-    img1_descricao:
+    paragrafo:
       "O programa define duas variáveis a e b, realiza operações matemáticas básicas (soma, subtração, multiplicação e divisão) com essas variáveis e exibe os resultados utilizando a função printf(). O programa verifica se a divisão por zero é evitada e trata adequadamente esse caso, exibindo uma mensagem de erro se necessário. Finalmente, o programa retorna 0 para indicar a conclusão bem-sucedida da execução.",
     img1_titulo: "Operações matemáticas",
     img1_url: "/img_conteudos/ed6.png",
@@ -186,11 +186,12 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
   {
     id: 18,
     titulo: "Estruturas de decisão",
-    subtitulo: 'Condicional "senao"',
+    subtitulo: '',
     paragrafo:
       'Essa condição funciona de maneira similar a anterior, entretanto, este bloco do código só será executado se o primeiro comando for falso. Neste exemplo, a idade deve ser maior que 18 para que o comando dentro do "se" seja executado, caso contrário, será executada a função do "senao". Observe abaixo a estrutural:',
     img1_alt: 'Condição "senão" em Portugol.',
     img1_url: "/img_conteudos/ed7.png",
+    img1_titulo: 'Condicional "senao"'
   },
   {
     id: 19,
@@ -210,7 +211,8 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
   {
     id: 20,
     titulo: "Laços de Repetição",
-    subtitulo: "O que são os laços de repetição?",
+    subtitulo: "",
+    img1_titulo: "O que são os laços de repetição?",
     paragrafo:
       "Eles são estruturas de código que se repetem de acordo com uma condição; que, caso verdadeira, o laço repete. Usados quando há necessidade de repetir uma ação várias vezes com poucas linhas de código.",
     img1_alt: "Exemplo gráfico de um laço de repetição.",
@@ -331,7 +333,8 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
   {
     id: 29,
     titulo: "Vetor",
-    subtitulo: "O que são vetores?",
+    subtitulo: "",
+    img1_titulo: "O que são vetores?",
     paragrafo:
       "São variáveis que podem armazenar outras variáveis. São como uma caixa que pode armazenar outras caixas, essas por sua vez têm suas localizações identificadas por números únicos, chamados de índices.",
     img1_alt: "Imagem da representação de um vetor de 4 posições.",
@@ -431,7 +434,7 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     subtitulo: "",
     img1_titulo: "Método Insertion Sort",
     img1_alt: "Método Insertion Sort em Portugol",
-    img1_descricao:
+    paragrafo:
       'Primeiro faça dois "para" um para controlar o primeiro índice do vetor e outro para o segundo índice, com o controle sobre esses dois índices, são feitas as comparações.\nSe o vetor [a] for maior que o [b], ele já não é o menor, então é preciso colocar o [b] como primeiro, com a variável aux é feita esse troca, aux recebe os dados de [b], [b](que agora está vazio) recebe os de [a] e o [a] recebe os dados de aux.\nSe o vetor [a] for menor que [b], ele será testado com os outros índices do vetor [b]. E após os testes aquele indíce de [a] for o menor, então ele continua em sua posição enquanto os outros índices são testados, até que todos estejam em ordem crescente.',
     img1_url: "/img_conteudos/v8.png",
   },
@@ -440,7 +443,7 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     titulo: "Vetor",
     subtitulo: "",
     img1_alt: "Método Insertion Sort em Python",
-    img1_descricao:
+    paragrafo:
       "Em Python, há uma mistura da leitura de vetores de python, com a mesma estrutura de ordenação mostrada em Portugol, tendo apenas diferenças de sintaxe da própria linguagem.",
     img1_titulo: "Em Python",
     img1_url: "/img_conteudos/v9.png",
@@ -450,7 +453,7 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     titulo: "Vetor",
     subtitulo: "",
     img1_alt: "Método Insertion Sort em C",
-    img1_descricao:
+    paragrafo:
       "Esse é o exemplo desse método em linguagem C, como é possível observar o formato é o mesmo que em Portugol, as únicas diferenças se devem à sintaxe, própria da linguagem C.",
     img1_titulo: "Em C",
     img1_url: "/img_conteudos/v10.png",
@@ -459,7 +462,7 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     id: 41,
     titulo: "Matriz",
     subtitulo: "",
-    img1_descricao:
+    paragrafo:
       'São semelhantes aos vetores, porém mais complexas, pois são estruturadas por linhas e colunas. Vetores são unidimensionais(apenas linhas), já as matrizes são bidimensionais(linhas e colunas) e comportam mais dados, pois são maiores. A matriz é escrita como: "matriz[L,C]", sendo L a linha e C a coluna, que juntos formam o índice.',
     img1_alt: "Imagem da representação de uma matriz.",
     img1_titulo: "O que são matrizes?",
@@ -558,7 +561,7 @@ export const conteudoCreateMany: Prisma.ConteudoUncheckedCreateInput[] = [
     titulo: "Subprograma",
     subtitulo: "",
     img1_alt: 'Imagem de um código em Portugol de um subprograma "TRIANGULO".',
-    img1_descricao:
+    paragrafo:
       "Este código solicitará ao usuário os valores dos três lados de um triângulo, calculará se é possível formar um triângulo com esses lados e, se for possível, determinará e imprimirá que tipo de triângulo é (equilátero, isósceles ou escaleno).",
     img1_titulo: "TRIÂNGULO",
     img1_url: "/img_conteudos/sp1.png",

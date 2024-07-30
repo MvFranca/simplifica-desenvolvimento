@@ -18,6 +18,10 @@ return (
             
             <div className={styles.explicacao}>
                 <div className={styles.esquerda}>
+                    <h2>
+                        {data.img1_titulo}
+                        <img src="/aprenda/retangulo.png" alt="Retangulo abaixo do título" />
+                    </h2>
                     {/* <img src={`${ data.img1_url }`} alt={`${data.img1_alt}`} className={styles.imagem}/> */}
                     <ImagemComModal
                     src={`${ data.img1_url }`}

@@ -43,6 +43,7 @@
 }
 
 .header_profile .user_data .user img{
+    object-fit: cover;
     border-radius: 50%;
     width: 9.375rem;
     height: 9.375rem;
