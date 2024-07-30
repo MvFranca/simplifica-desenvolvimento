@@ -13,31 +13,22 @@ import { api } from '../services/api';
 interface pontuacao {
   pontos: number;
   fogo: number;
-
   userId: number;
   setUserId: (number: number) => void;
-
   setPontos: Dispatch<SetStateAction<number>>;
   setFogo: Dispatch<SetStateAction<number>>;
-
   setInitialValuePontos: (number: boolean) => void;
   initialValuePontos: boolean;
-
   variaveis: boolean;
   setVariaveis: (valor: boolean) => void;
-
   duvidas: Duvidas[];
   setDuvidas: Dispatch<SetStateAction<Array<Duvidas>>>;
-
   teste: React.MutableRefObject<boolean>;
   controle: React.MutableRefObject<boolean>;
-
   img: string;
   setImg: (string: string) => void;
-
   myProgress: number;
   setMyProgress: Dispatch<SetStateAction<number>>;
-
   progressoBotoes: number;
   setProgressoBotoes: Dispatch<SetStateAction<number>>;
 }
@@ -45,10 +36,8 @@ interface pontuacao {
 const initialValue = {
   pontos: 0,
   fogo: 0,
-
   userId: 0,
   setUserId: () => {},
-
   setPontos: () => {},
   setFogo: () => {},
   variaveis: false,
@@ -60,14 +49,10 @@ const initialValue = {
   controle: { current: false },
   img: '',
   setImg: () => {},
-
   duvidas: [],
-
   setDuvidas: () => {},
-
   myProgress: 1,
   setMyProgress: () => {},
-
   progressoBotoes: 1,
   setProgressoBotoes: () => {},
 };
@@ -83,22 +68,18 @@ const Context = ({ children }: PropsWithChildren) => {
   const [fogo, setFogo] = useState(0);
   const [initialValuePontos, setInitialValuePontos] = useState(false);
   const [variaveis, setVariaveis] = useState(false);
-  const teste = useRef<boolean>(false);
-  const controle = useRef<boolean>(false);
-
   const [duvidas, setDuvidas] = useState<Array<Duvidas>>([]);
-
-  const user = localStorage.getItem('simplifica:user')!;
-
   const [userId, setUserId] = useState(0);
   const [img, setImg] = useState('');
-
   const [myProgress, setMyProgress] = useState(1);
   const [progressoBotoes, setProgressoBotoes] = useState(0);
 
+  const teste = useRef<boolean>(false);
+  const controle = useRef<boolean>(false);
+
+  const user = localStorage.getItem('simplifica:user')!;
+
   const imgUrl = async () => {
-    // const ImgUrl = await GetImgUser()
-    // setImg(ImgUrl)
     if (user) {
       const userObject: User = await JSON.parse(user);
 
@@ -124,9 +105,6 @@ const Context = ({ children }: PropsWithChildren) => {
     if (controle.current && user) {
       const userObject = JSON.parse(user);
       const idUser = Number(userObject.id);
-      console.log(
-        `myprogress: ${myProgress} | idUser: ${idUser} | progressoBotoes: ${progressoBotoes}`
-      );
 
       updateProgressoData(idUser);
     }

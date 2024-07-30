@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { prisma } from '../services/prisma';
+import { AuthCustomRequest } from '../types/AuthCustomRequest';
 
 export const FindDuvidaById = async (req: Request, res: Response) => {
   try {
@@ -59,6 +60,7 @@ export const PostDuvida = async (req: Request, res: Response) => {
   try {
     const { titulo, descricao, url_img, conteudo, /*, data, hora,*/ idUser } =
       req.body;
+    const { user_info } = req as AuthCustomRequest;
 
     if (!titulo)
       return res.status(422).json({ msg: 'O título é obrigatório!' });
@@ -66,8 +68,20 @@ export const PostDuvida = async (req: Request, res: Response) => {
       return res.status(422).json({ msg: 'A descrição é obrigatória!' });
     if (!conteudo)
       return res.status(422).json({ msg: 'O conteúdo é obrigatório!' });
-    if (!descricao)
-      return res.status(422).json({ msg: 'A descrição é obrigatória!' });
+
+    const idUserInt = parseInt(idUser as string);
+
+    if (isNaN(idUserInt)) {
+      return res
+        .status(422)
+        .json({ msg: `'idUser' informado não é um número (NaN).` });
+    }
+
+    if (user_info.id != idUserInt) {
+      return res
+        .status(401)
+        .json({ msg: 'Usuário não autorizado para esta operação.' });
+    }
 
     const duvidaData = await prisma.duvida.create({
       data: {
@@ -173,6 +187,7 @@ export const FindComentarioById = async (req: Request, res: Response) => {
 export const PostComentario = async (req: Request, res: Response) => {
   try {
     const { descricao, titulo, url_img, id_duvida, idUser } = req.body;
+    const { user_info } = req as AuthCustomRequest;
 
     if (!descricao)
       return res.status(422).json({ msg: 'A descrição é obrigatória!' });
@@ -198,10 +213,16 @@ export const PostComentario = async (req: Request, res: Response) => {
         .json({ msg: `'idUser' informado não é um número (NaN).` });
     }
 
+    if (user_info.id != idUserInt) {
+      return res
+        .status(401)
+        .json({ msg: 'Usuário não autorizado para esta operação.' });
+    }
+
     const data = await prisma.comentario.create({
       data: {
         descricao,
-        img_url: url_img,
+        img_url: url_img || '',
         usuarioId: idUserInt,
         duvidaId: id_duvidaInt,
         titulo: titulo,
@@ -212,6 +233,8 @@ export const PostComentario = async (req: Request, res: Response) => {
       .status(200)
       .json({ msg: 'Comentário enviado com sucesso!', data });
   } catch (error) {
+    console.log(error);
+
     return res.status(500).json({
       msg: 'Servidor indisponível.',
       error,
