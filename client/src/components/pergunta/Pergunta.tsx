@@ -50,16 +50,18 @@ const Pergunta = ({ assunto, totalQuestions }: props) => {
   function confirmar() {
     
     const inputs = Array.from(alternativas.current!.getElementsByTagName("input"))
-    inputs.map(input => {
+    inputs.map((input, index) => {
     if(input.checked){
 
     if (resposta.assinalada == assunto[perguntaAtual].respostas.alternativa_correta) {
       setAcertos(acertos + 1);
     }
-    setPerguntaAtual(perguntaAtual + 1);
     progressBar();
-
+    
     input.checked = false
+    if(inputs.length-1 == index){
+      setPerguntaAtual(prev => prev + 1);
+    }
     }
     })
 
@@ -69,6 +71,7 @@ const Pergunta = ({ assunto, totalQuestions }: props) => {
     if (resposta.assinalada == assunto[perguntaAtual].respostas.alternativa_correta) {
       setAcertos(acertos + 1);
     }
+    progressBar();
     progressBar();
     progressBar();
     setTimeout(() => {
@@ -97,7 +100,7 @@ const Pergunta = ({ assunto, totalQuestions }: props) => {
 
         {!fim ? (
           <div className={styles.perguntas}>
-            <h2>{assunto[perguntaAtual].pergunta}</h2>
+            <h2>{assunto[perguntaAtual]?.pergunta}</h2>
 
             <div className={styles.alternativas}  ref={alternativas}>
 
@@ -110,7 +113,7 @@ const Pergunta = ({ assunto, totalQuestions }: props) => {
     
                 <input type="radio" name="teste" id="a" />
                 <label htmlFor="a">
-                  {assunto[perguntaAtual].respostas.alternativa1}
+                  {assunto[perguntaAtual]?.respostas.alternativa1}
                 </label>
 
               </div>
@@ -124,7 +127,7 @@ const Pergunta = ({ assunto, totalQuestions }: props) => {
                 <input type="radio" name="teste" id="b" />
                 <label htmlFor="b">
                   {" "}
-                  {assunto[perguntaAtual].respostas.alternativa2}
+                  {assunto[perguntaAtual]?.respostas.alternativa2}
 
                 </label>
 
@@ -140,7 +143,7 @@ const Pergunta = ({ assunto, totalQuestions }: props) => {
                 <input type="radio" name="teste" id="c" />
                 <label htmlFor="c">
                   {" "}
-                  {assunto[perguntaAtual].respostas.alternativa3}
+                  {assunto[perguntaAtual]?.respostas.alternativa3}
 
                 </label>
 
@@ -156,7 +159,7 @@ const Pergunta = ({ assunto, totalQuestions }: props) => {
                 <input type="radio" name="teste" id="d" />
                 <label htmlFor="d">
                   {" "}
-                  {assunto[perguntaAtual].respostas.alternativa4}
+                  {assunto[perguntaAtual]?.respostas.alternativa4}
 
                 </label>
 
@@ -164,12 +167,12 @@ const Pergunta = ({ assunto, totalQuestions }: props) => {
             </div>
           </div>
         ) : (
-          <Acertos acertos={acertos} quantidadeQuestoes={totalQuestions -1} />
+          <Acertos acertos={acertos} quantidadeQuestoes={totalQuestions - 1} />
         )}
 
         <OpcoesPergunta
           confirmar={confirmar}
-          perguntaAtual={perguntaAtual+1}
+          perguntaAtual={perguntaAtual}
           setPerguntaAtual={setPerguntaAtual}
           assunto={assunto}
           finalizar={finalizar}
