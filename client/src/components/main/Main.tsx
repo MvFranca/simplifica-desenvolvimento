@@ -7,14 +7,14 @@ type props = {
   conteudo: string;
   descricao: string;
   id: number;
-  src: string;
+  src?: string;
 
 };
 
 
 
 
-const Main = ({ conteudo, descricao, id, src }: props) => {
+const Main = ({ conteudo, descricao, id }: props) => {
 
   const { myProgress } = useContext(pointContext)
   const [classe, setClasse] = useState('titulo')
@@ -50,7 +50,7 @@ const Main = ({ conteudo, descricao, id, src }: props) => {
           />
 
         <img
-          src={src}
+          src={'./trilha/teste.gif'}
           alt="programador"
           width={260}
           height={200}

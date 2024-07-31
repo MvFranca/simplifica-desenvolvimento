@@ -93,7 +93,7 @@ const Opcoes = () => {
             <button className={styles.botao}>CLIQUE AQUI PARA ACESSAR</button>
           </Link>
         </div>
-        <div className={styles.progresso}>
+        {/* <div className={styles.progresso}>
           <h2>PROGRESSO</h2>
           <div className={styles.textos} id={styles.infoComunidade}>
             <img
@@ -110,7 +110,7 @@ const Opcoes = () => {
               <p>15/20XP</p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </aside>
   );

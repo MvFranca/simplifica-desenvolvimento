@@ -1,6 +1,5 @@
 'use client';
 
-import styles from '../../styles/home/page.module.css';
 import TrilhaeInfo from '../../components/trilhaInfo/TrilhaeInfo';
 import { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -76,8 +75,6 @@ export default function Home() {
   }, [user]);
 
   return (
-    <div className={styles.container}>
       <TrilhaeInfo />
-    </div>
   );
 }

@@ -33,13 +33,13 @@ const Jogar = () => {
   }, [id]);
 
   return (
-    <div>
+    <>
       {assunto[0] ? (
         <Pergunta assunto={assunto} totalQuestions={assunto.length} />
       ) : (
         <Carregamento />
       )}
-    </div>
+    </>
   );
 };
 

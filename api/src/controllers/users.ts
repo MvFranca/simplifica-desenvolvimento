@@ -1,9 +1,11 @@
 import { Request, Response } from 'express';
 import { prisma } from '../services/prisma';
+import { AuthCustomRequest } from '../types/AuthCustomRequest';
 
 export const GetUserById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
+    const { user_info } = req as AuthCustomRequest;
 
     const idInt = parseInt(id as string);
 
@@ -13,9 +15,38 @@ export const GetUserById = async (req: Request, res: Response) => {
         .json({ msg: `'id' informado não é um número (NaN).` });
     }
 
+    if (user_info.id != idInt) {
+      return res
+        .status(401)
+        .json({ msg: 'Usuário não autorizado para esta operação.' });
+    }
+
     const data = await prisma.usuario.findFirst({
       where: {
         id: idInt,
+      },
+      select: {
+        comentario: {
+          select: {
+            id: true,
+            titulo: true,
+            usuarioId: true,
+            descricao: true,
+            duvidaId: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        createdAt: true,
+        duvidas: true,
+        email: true,
+        fullname: true,
+        id: true,
+        pontuacao: true,
+        progresso: true,
+        turma: true,
+        updatedAt: true,
+        username: true,
       },
     });
 
@@ -32,20 +63,27 @@ export const GetUserById = async (req: Request, res: Response) => {
 
 export const AttUser = async (req: Request, res: Response) => {
   try {
-    const { id_usuario } = req.params;
+    const { id: id_usuario } = req.params;
     const { fullname, username, email, turma } = req.body;
+    const { user_info } = req as AuthCustomRequest;
 
     const idUserInt = parseInt(id_usuario as string);
 
     if (isNaN(idUserInt)) {
       return res
         .status(422)
-        .json({ msg: `'id_usuario' informado não é um número (NaN).` });
+        .json({ msg: `'id' informado não é um número (NaN).` });
+    }
+
+    if (user_info.id != idUserInt) {
+      return res
+        .status(401)
+        .json({ msg: 'Usuário não autorizado para esta operação.' });
     }
 
     const foundUser = await prisma.usuario.findUnique({
       where: {
-        email,
+        id: idUserInt,
       },
     });
 
@@ -53,6 +91,15 @@ export const AttUser = async (req: Request, res: Response) => {
       const data = await prisma.usuario.update({
         where: {
           id: idUserInt,
+        },
+        select: {
+          id: true,
+          username: true,
+          email: true,
+          updatedAt: true,
+          createdAt: true,
+          turma: true,
+          fullname: true,
         },
         data: {
           fullname,
@@ -80,6 +127,7 @@ export const ImgAtt = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const { urlImg } = req.body;
+    const { user_info } = req as AuthCustomRequest;
 
     const idInt = parseInt(id as string);
 
@@ -87,6 +135,12 @@ export const ImgAtt = async (req: Request, res: Response) => {
       return res
         .status(422)
         .json({ msg: `'id' informado não é um número (NaN).` });
+    }
+
+    if (user_info.id != idInt) {
+      return res
+        .status(401)
+        .json({ msg: 'Usuário não autorizado para esta operação.' });
     }
 
     if (!urlImg) {

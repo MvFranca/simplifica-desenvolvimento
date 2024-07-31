@@ -86,14 +86,14 @@ const ImagemComModal = ({
       {modalAberto && (
         <div className={styles.modalContainer}>
           <div className={styles.modal}>
-            <button
+            <a
               onClick={() => {
                 setModalAberto(false);
               }}
               className={styles.closeButton}
             >
               <span>X</span>
-            </button>
+            </a>
 
             <img
               style={zoomStyle}

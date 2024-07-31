@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import IconApple from '../../icons/IconApple';
-import IconBxlFacebook from '../../icons/IconFacebook';
-import IconGooglePlus from '../../icons/IconGoogle';
+
 import IconLockPasswordFill from '../../icons/IconPassword';
 import IconUser from '../../icons/IconUser';
 import styles from '../../styles/auth/InicioEntrar.module.css';
@@ -51,11 +49,11 @@ const InicioForm = () => {
           <div>
             <h1>Entrar na Conta</h1>
           </div>
-          <div className={styles.icons}>
+          {/* <div className={styles.icons}>
             <IconBxlFacebook className={styles.icon} />
             <IconGooglePlus className={styles.icon} />
             <IconApple className={styles.icon} />
-          </div>
+          </div> */}
           <div>
             <p>Digite suas credenciais para entrar:</p>
           </div>

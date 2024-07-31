@@ -17,6 +17,7 @@ const InicioRegistro = () => {
   const [turma, setTurma] = useState('921');
   const [confirmPassword, setConfirmPassoword] = useState('');
 
+
   const [url_image] = useState('./perfil-padrao.png');
   const router = useNavigate();
 

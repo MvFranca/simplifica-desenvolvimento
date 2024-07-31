@@ -274,12 +274,12 @@ export const posicaoValidaCreateMany: Prisma.PosicaoValidaUncheckedCreateInput[]
     {
         id: 55,
         index: 3,
-        respostaId: 50
+        respostaId: 55
     },
     {
         id: 56,
         index: 4,
-        respostaId: 6
+        respostaId: 56
     },
     {
         id: 57,
@@ -340,45 +340,5 @@ export const posicaoValidaCreateMany: Prisma.PosicaoValidaUncheckedCreateInput[]
         id: 68,
         index: 11,
         respostaId: 68
-    },
-    {
-        id: 69,
-        index: 7,
-        respostaId: 59
-    },
-    {
-        id: 70,
-        index: 2,
-        respostaId: 64
-    },
-    {
-        id: 71,
-        index: 8,
-        respostaId: 60
-    },
-    {
-        id: 72,
-        index: 3,
-        respostaId: 65
-    },
-    {
-        id: 73,
-        index: 9,
-        respostaId: 62
-    },
-    {
-        id: 74,
-        index: 5,
-        respostaId: 66
-    },
-    {
-        id: 75,
-        index: 10,
-        respostaId: 63
-    },
-    {
-        id: 76,
-        index: 6,
-        respostaId: 67
     },
 ];

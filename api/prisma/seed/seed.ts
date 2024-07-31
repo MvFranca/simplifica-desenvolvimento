@@ -35,11 +35,11 @@ export const load = async () => {
       await prisma.respostas.createMany({
         data: respostasCreateMany,
       });
+      await prisma.posicaoValida.deleteMany();
       await prisma.respostaOrdenada.deleteMany();
       await prisma.respostaOrdenada.createMany({
         data: respostaOrdenadaCreateMany,
       });
-      await prisma.posicaoValida.deleteMany();
       await prisma.posicaoValida.createMany({
         data: posicaoValidaCreateMany,
       });

@@ -250,11 +250,12 @@ const Botoes = ({ id, conteudo }: props) => {
           <img src="./trilha/modal-gif.gif" alt="" className="confetes" />
         </Rodal>
 
+        {/* myProgress > id
+            ? botao.to
+            : */}
         {listaBotoes.map((botao, index) => {
           const url =
-            myProgress > id
-              ? botao.to
-              : myProgress == id && progressoBotoes >= index
+           myProgress == id && progressoBotoes == index
               ? botao.to
               : '';
 
@@ -267,7 +268,7 @@ const Botoes = ({ id, conteudo }: props) => {
               ? `botao-habilitado`
               : 'botao-desabilitado';
 
-          const disponivel = myProgress >= id && progressoBotoes >= index;
+          const disponivel = myProgress == id && progressoBotoes == index;
 
           return index != 0 ? (
             <Link
